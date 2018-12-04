@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Config>
+  <LogFolder>C:\Debug\</LogFolder>
+  <AppName>Exwold_Tracking_PC</AppName>
+  <LogLevel>0</LogLevel>
+  <DBConnectionString>Data Source=172.16.2.36\SQLEXPRESS2017;Initial Catalog=ExwoldTracking_20170530;Persist Security Info=True;User ID=Exwold;Password=Exwold-991068;MultipleActiveResultSets=True;</DBConnectionString>
+  <CartonProcName>spAcceptCartonTable</CartonProcName>
+  <LogProcName>spAcceptLogTable</LogProcName>
+  <PalletProcName>spAcceptPalletTable</PalletProcName>
+  <BatchesProcName>spGetBatchesTable</BatchesProcName>
+  <PalletDetailsProcName>spCollectPalletDetails</PalletDetailsProcName>
+  <DatabaseBackupsDaysToKeep>15</DatabaseBackupsDaysToKeep>
+  <DatabaseBackupPath>D:\Program Files\Microsoft SQL Server\MSSQL13.SQLEXPRESS\MSSQL\Backup</DatabaseBackupPath>
+  <NiceLabelSDKPath>C:\Program Files\NiceLabel\NiceLabel 2017\bin.net</NiceLabelSDKPath>
+</Config>
