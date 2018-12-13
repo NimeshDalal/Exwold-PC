@@ -23,6 +23,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>Exwold PC - Product Maintenance</ProductName>
+    <PublisherName>ITS Ltd</PublisherName>
     <AutorunEnabled>true</AutorunEnabled>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
@@ -179,6 +181,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ReportOperatorActionsAudit.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ReprintPalletLabels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReprintPalletLabels.Designer.cs">
+      <DependentUpon>ReprintPalletLabels.cs</DependentUpon>
+    </Compile>
     <Compile Include="ShutdownLogoff.cs" />
     <Compile Include="SSCCReportForm.cs">
       <SubType>Form</SubType>
@@ -245,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ReportOperatorActionsAudit.rdlc" />
     <EmbeddedResource Include="ReportPalletBatchAudit.rdlc" />
+    <EmbeddedResource Include="ReprintPalletLabels.resx">
+      <DependentUpon>ReprintPalletLabels.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SSCCReport.rdlc" />
     <EmbeddedResource Include="SSCCReportForm.resx">
       <DependentUpon>SSCCReportForm.cs</DependentUpon>
