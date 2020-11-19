@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsRptGenealogy" targetNamespace="http://tempuri.org/dsRptGenealogy.xsd" xmlns:mstns="http://tempuri.org/dsRptGenealogy.xsd" xmlns="http://tempuri.org/dsRptGenealogy.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsRptGenealogy" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsRptGenealogy" msprop:Generator_UserDSName="dsRptGenealogy">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtRptGenealogy" msprop:Generator_TableClassName="dtRptGenealogyDataTable" msprop:Generator_TableVarName="tabledtRptGenealogy" msprop:Generator_TablePropName="dtRptGenealogy" msprop:Generator_RowDeletingName="dtRptGenealogyRowDeleting" msprop:Generator_RowChangingName="dtRptGenealogyRowChanging" msprop:Generator_RowEvHandlerName="dtRptGenealogyRowChangeEventHandler" msprop:Generator_RowDeletedName="dtRptGenealogyRowDeleted" msprop:Generator_UserTableName="dtRptGenealogy" msprop:Generator_RowChangedName="dtRptGenealogyRowChanged" msprop:Generator_RowEvArgName="dtRptGenealogyRowChangeEvent" msprop:Generator_RowClassName="dtRptGenealogyRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BatchNo" msprop:Generator_ColumnVarNameInTable="columnBatchNo" msprop:Generator_ColumnPropNameInRow="BatchNo" msprop:Generator_ColumnPropNameInTable="BatchNoColumn" msprop:Generator_UserColumnName="BatchNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SSCC" msprop:Generator_ColumnVarNameInTable="columnSSCC" msprop:Generator_ColumnPropNameInRow="SSCC" msprop:Generator_ColumnPropNameInTable="SSCCColumn" msprop:Generator_UserColumnName="SSCC">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="18" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PalletBatchUniqueNo" msprop:Generator_ColumnVarNameInTable="columnPalletBatchUniqueNo" msprop:Generator_ColumnPropNameInRow="PalletBatchUniqueNo" msprop:Generator_ColumnPropNameInTable="PalletBatchUniqueNoColumn" msprop:Generator_UserColumnName="PalletBatchUniqueNo" type="xs:long" />
+              <xs:element name="PalletBatchNo" msprop:Generator_ColumnVarNameInTable="columnPalletBatchNo" msprop:Generator_ColumnPropNameInRow="PalletBatchNo" msprop:Generator_ColumnPropNameInTable="PalletBatchNoColumn" msprop:Generator_UserColumnName="PalletBatchNo">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProductionLineNo" msprop:Generator_ColumnVarNameInTable="columnProductionLineNo" msprop:Generator_ColumnPropNameInRow="ProductionLineNo" msprop:Generator_ColumnPropNameInTable="ProductionLineNoColumn" msprop:Generator_UserColumnName="ProductionLineNo" type="xs:int" />
+              <xs:element name="ProductCode" msprop:Generator_ColumnVarNameInTable="columnProductCode" msprop:Generator_ColumnPropNameInRow="ProductCode" msprop:Generator_ColumnPropNameInTable="ProductCodeColumn" msprop:Generator_UserColumnName="ProductCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProductName" msprop:Generator_ColumnVarNameInTable="columnProductName" msprop:Generator_ColumnPropNameInRow="ProductName" msprop:Generator_ColumnPropNameInTable="ProductNameColumn" msprop:Generator_UserColumnName="ProductName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Customer" msprop:Generator_ColumnVarNameInTable="columnCustomer" msprop:Generator_ColumnPropNameInRow="Customer" msprop:Generator_ColumnPropNameInTable="CustomerColumn" msprop:Generator_UserColumnName="Customer" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GMID" msprop:Generator_ColumnVarNameInTable="columnGMID" msprop:Generator_ColumnPropNameInRow="GMID" msprop:Generator_ColumnPropNameInTable="GMIDColumn" msprop:Generator_UserColumnName="GMID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint11">
+      <xs:selector xpath=".//mstns:dtRptGenealogy" />
+      <xs:field xpath="mstns:PalletBatchUniqueNo" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsAuditProduct" targetNamespace="http://tempuri.org/dsAuditProduct.xsd" xmlns:mstns="http://tempuri.org/dsAuditProduct.xsd" xmlns="http://tempuri.org/dsAuditProduct.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsAuditProduct" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsAuditProduct" msprop:Generator_UserDSName="dsAuditProduct">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtAuditProduct" msprop:Generator_TableClassName="dtAuditProductDataTable" msprop:Generator_TableVarName="tabledtAuditProduct" msprop:Generator_RowChangedName="dtAuditProductRowChanged" msprop:Generator_TablePropName="dtAuditProduct" msprop:Generator_RowDeletingName="dtAuditProductRowDeleting" msprop:Generator_RowChangingName="dtAuditProductRowChanging" msprop:Generator_RowEvHandlerName="dtAuditProductRowChangeEventHandler" msprop:Generator_RowDeletedName="dtAuditProductRowDeleted" msprop:Generator_RowClassName="dtAuditProductRow" msprop:Generator_UserTableName="dtAuditProduct" msprop:Generator_RowEvArgName="dtAuditProductRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ProductUniqueNo" msprop:Generator_ColumnVarNameInTable="columnProductUniqueNo" msprop:Generator_ColumnPropNameInRow="ProductUniqueNo" msprop:Generator_ColumnPropNameInTable="ProductUniqueNoColumn" msprop:Generator_UserColumnName="ProductUniqueNo" type="xs:long" minOccurs="0" />
+              <xs:element name="ProductCode" msprop:Generator_ColumnVarNameInTable="columnProductCode" msprop:Generator_ColumnPropNameInRow="ProductCode" msprop:Generator_ColumnPropNameInTable="ProductCodeColumn" msprop:Generator_UserColumnName="ProductCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ProductName" msprop:Generator_ColumnVarNameInTable="columnProductName" msprop:Generator_ColumnPropNameInRow="ProductName" msprop:Generator_ColumnPropNameInTable="ProductNameColumn" msprop:Generator_UserColumnName="ProductName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Customer" msprop:Generator_ColumnVarNameInTable="columnCustomer" msprop:Generator_ColumnPropNameInRow="Customer" msprop:Generator_ColumnPropNameInTable="CustomerColumn" msprop:Generator_UserColumnName="Customer" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CustomerDetails" msprop:Generator_ColumnVarNameInTable="columnCustomerDetails" msprop:Generator_ColumnPropNameInRow="CustomerDetails" msprop:Generator_ColumnPropNameInTable="CustomerDetailsColumn" msprop:Generator_UserColumnName="CustomerDetails" type="xs:string" minOccurs="0" />
+              <xs:element name="GMID" msprop:Generator_ColumnVarNameInTable="columnGMID" msprop:Generator_ColumnPropNameInRow="GMID" msprop:Generator_ColumnPropNameInTable="GMIDColumn" msprop:Generator_UserColumnName="GMID" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DefaultTotalNoOfCartons" msprop:Generator_ColumnVarNameInTable="columnDefaultTotalNoOfCartons" msprop:Generator_ColumnPropNameInRow="DefaultTotalNoOfCartons" msprop:Generator_ColumnPropNameInTable="DefaultTotalNoOfCartonsColumn" msprop:Generator_UserColumnName="DefaultTotalNoOfCartons" type="xs:int" minOccurs="0" />
+              <xs:element name="DefaultCartonsPerPallet" msprop:Generator_ColumnVarNameInTable="columnDefaultCartonsPerPallet" msprop:Generator_ColumnPropNameInRow="DefaultCartonsPerPallet" msprop:Generator_ColumnPropNameInTable="DefaultCartonsPerPalletColumn" msprop:Generator_UserColumnName="DefaultCartonsPerPallet" type="xs:int" minOccurs="0" />
+              <xs:element name="DefaultInnerPackPerCarton" msprop:Generator_ColumnVarNameInTable="columnDefaultInnerPackPerCarton" msprop:Generator_ColumnPropNameInRow="DefaultInnerPackPerCarton" msprop:Generator_ColumnPropNameInTable="DefaultInnerPackPerCartonColumn" msprop:Generator_UserColumnName="DefaultInnerPackPerCarton" type="xs:int" minOccurs="0" />
+              <xs:element name="InnerPackWeightOrVolume" msprop:Generator_ColumnVarNameInTable="columnInnerPackWeightOrVolume" msprop:Generator_ColumnPropNameInRow="InnerPackWeightOrVolume" msprop:Generator_ColumnPropNameInTable="InnerPackWeightOrVolumeColumn" msprop:Generator_UserColumnName="InnerPackWeightOrVolume" type="xs:float" minOccurs="0" />
+              <xs:element name="UnitsOfMeasure" msprop:Generator_ColumnVarNameInTable="columnUnitsOfMeasure" msprop:Generator_ColumnPropNameInRow="UnitsOfMeasure" msprop:Generator_ColumnPropNameInTable="UnitsOfMeasureColumn" msprop:Generator_UserColumnName="UnitsOfMeasure" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GTIN" msprop:Generator_ColumnVarNameInTable="columnGTIN" msprop:Generator_ColumnPropNameInRow="GTIN" msprop:Generator_ColumnPropNameInTable="GTINColumn" msprop:Generator_UserColumnName="GTIN" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="14" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SsccCompanyCode" msprop:Generator_ColumnVarNameInTable="columnSsccCompanyCode" msprop:Generator_ColumnPropNameInRow="SsccCompanyCode" msprop:Generator_ColumnPropNameInTable="SsccCompanyCodeColumn" msprop:Generator_UserColumnName="SsccCompanyCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="9" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SsccProductionLineCustomerCode" msprop:Generator_ColumnVarNameInTable="columnSsccProductionLineCustomerCode" msprop:Generator_ColumnPropNameInRow="SsccProductionLineCustomerCode" msprop:Generator_ColumnPropNameInTable="SsccProductionLineCustomerCodeColumn" msprop:Generator_UserColumnName="SsccProductionLineCustomerCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AdditionalInfo" msprop:Generator_ColumnVarNameInTable="columnAdditionalInfo" msprop:Generator_ColumnPropNameInRow="AdditionalInfo" msprop:Generator_ColumnPropNameInTable="AdditionalInfoColumn" msprop:Generator_UserColumnName="AdditionalInfo" type="xs:string" minOccurs="0" />
+              <xs:element name="ChangeUser" msprop:Generator_ColumnVarNameInTable="columnChangeUser" msprop:Generator_ColumnPropNameInRow="ChangeUser" msprop:Generator_ColumnPropNameInTable="ChangeUserColumn" msprop:Generator_UserColumnName="ChangeUser" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ChangeAction" msprop:Generator_ColumnVarNameInTable="columnChangeAction" msprop:Generator_ColumnPropNameInRow="ChangeAction" msprop:Generator_ColumnPropNameInTable="ChangeActionColumn" msprop:Generator_UserColumnName="ChangeAction" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ChangeDTUTC" msprop:Generator_ColumnVarNameInTable="columnChangeDTUTC" msprop:Generator_ColumnPropNameInRow="ChangeDTUTC" msprop:Generator_ColumnPropNameInTable="ChangeDTUTCColumn" msprop:Generator_UserColumnName="ChangeDTUTC" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ChangeDTLocal" msprop:Generator_ColumnVarNameInTable="columnChangeDTLocal" msprop:Generator_ColumnPropNameInRow="ChangeDTLocal" msprop:Generator_ColumnPropNameInTable="ChangeDTLocalColumn" msprop:Generator_UserColumnName="ChangeDTLocal" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ChangeSqlUser" msprop:Generator_ColumnVarNameInTable="columnChangeSqlUser" msprop:Generator_ColumnPropNameInRow="ChangeSqlUser" msprop:Generator_ColumnPropNameInTable="ChangeSqlUserColumn" msprop:Generator_UserColumnName="ChangeSqlUser" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ChangeUID" msprop:Generator_ColumnVarNameInTable="columnChangeUID" msprop:Generator_ColumnPropNameInRow="ChangeUID" msprop:Generator_ColumnPropNameInTable="ChangeUIDColumn" msprop:Generator_UserColumnName="ChangeUID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:dtAuditProduct" />
+      <xs:field xpath="mstns:ProductUniqueNo" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

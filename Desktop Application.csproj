@@ -1,0 +1,419 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{09AACE26-3000-4C7B-A47C-5C00A12F366F}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ITS.Exwold.Desktop</RootNamespace>
+    <AssemblyName>ExwoldDesktop</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>S:\S-Eglington\temp\Exwold\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ProductName>Exwold PC - Product Maintenance</ProductName>
+    <PublisherName>ITS Ltd</PublisherName>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>2.0.4.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>ITS.Exwold.Desktop.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>E3FBD8ACBC71E180B69D0CEC24BF1E686733C836</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Exwold PC - Product Maintenance_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Resources\ExwoldApp.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ITS.Security">
+      <HintPath>..\ITS.DAL\ITS.Security\bin\Release\ITS.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1404.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="SDK.NET.Interface">
+      <HintPath>bin\Release\SDK.NET.Interface.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.DirectoryServices.AccountManagement" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Classes\clsAzureHelper.cs" />
+    <Compile Include="Classes\clsCustomAppSetting.cs" />
+    <Compile Include="Classes\clsDataInterface.cs" />
+    <Compile Include="Classes\clsLogging.cs" />
+    <Compile Include="Classes\clsMx300N.cs" />
+    <Compile Include="Classes\clsValidation.cs" />
+    <Compile Include="Classes\CommsTCPClient.cs" />
+    <Compile Include="Classes\clsHelper.cs" />
+    <Compile Include="Forms\frmLineInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmLineInfo.Designer.cs">
+      <DependentUpon>frmLineInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPlantHardware.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPlantHardware.Designer.cs">
+      <DependentUpon>frmPlantHardware.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmOuterInnerLabelPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmOuterInnerLabelPrint.Designer.cs">
+      <DependentUpon>frmOuterInnerLabelPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\dsAuditOpAction.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAuditOpAction.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\dsAuditPalletBatch.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAuditPalletBatch.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\dsAuditProduct.cs">
+      <DependentUpon>dsAuditProduct.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\dsAuditProduct.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAuditProduct.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\dsRptGenealogy.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsRptGenealogy.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\dsRptPallet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsRptPallet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frmReportDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frmReportDisplay.Designer.cs">
+      <DependentUpon>frmReportDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmProduct.Designer.cs">
+      <DependentUpon>frmProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPallet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPallet.Designer.cs">
+      <DependentUpon>frmPallet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmMainStatus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmMainStatus.Designer.cs">
+      <DependentUpon>frmMainStatus.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\frmAuditReportsDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\frmAuditReportsDisplay.Designer.cs">
+      <DependentUpon>frmAuditReportsDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmReprintPalletLabels.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmReprintPalletLabels.Designer.cs">
+      <DependentUpon>frmReprintPalletLabels.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\ShutdownLogoff.cs" />
+    <Compile Include="Forms\frmReportSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmReportSelector.Designer.cs">
+      <DependentUpon>frmReportSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmBatchDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmBatchDetails.Designer.cs">
+      <DependentUpon>frmBatchDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\MDC_ASCII.cs" />
+    <Compile Include="Forms\frmPrint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPrint.Designer.cs">
+      <DependentUpon>frmPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Classes\Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Classes\ScannerCommunications.cs" />
+    <Compile Include="Classes\TCPServer.cs" />
+    <Compile Include="Classes\ThreadLog.cs" />
+    <Compile Include="Forms\frmUserAuthentication.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmUserAuthentication.Designer.cs">
+      <DependentUpon>frmUserAuthentication.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="Forms\frmLineInfo.resx">
+      <DependentUpon>frmLineInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPlantHardware.resx">
+      <DependentUpon>frmPlantHardware.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmOuterInnerLabelPrint.resx">
+      <DependentUpon>frmOuterInnerLabelPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmProduct.resx">
+      <DependentUpon>frmProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPallet.resx">
+      <DependentUpon>frmPallet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmMainStatus.resx">
+      <DependentUpon>frmMainStatus.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptBatch.rdlc" />
+    <EmbeddedResource Include="Reports\frmReportDisplay.resx">
+      <DependentUpon>frmReportDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptAuditProduct.rdlc" />
+    <EmbeddedResource Include="Reports\frmAuditReportsDisplay.resx">
+      <DependentUpon>frmAuditReportsDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptAuditOpAction.rdlc" />
+    <EmbeddedResource Include="Reports\rptAuditPalletBatch.rdlc" />
+    <EmbeddedResource Include="Forms\frmReprintPalletLabels.resx">
+      <DependentUpon>frmReprintPalletLabels.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\rptSSCC.rdlc" />
+    <EmbeddedResource Include="Forms\frmReportSelector.resx">
+      <DependentUpon>frmReportSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmBatchDetails.resx">
+      <DependentUpon>frmBatchDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPrint.resx">
+      <DependentUpon>frmPrint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Reports\rptPallet.rdlc" />
+    <EmbeddedResource Include="Forms\frmUserAuthentication.resx">
+      <DependentUpon>frmUserAuthentication.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include=".editorconfig" />
+    <None Include="packages.config" />
+    <None Include="Exwold PC - Product Maintenance_TemporaryKey.pfx" />
+    <None Include="Reports\dsAuditOpAction.xsc">
+      <DependentUpon>dsAuditOpAction.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\dsAuditOpAction.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAuditOpAction.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\dsAuditOpAction.xss">
+      <DependentUpon>dsAuditOpAction.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\dsAuditPalletBatch.xsc">
+      <DependentUpon>dsAuditPalletBatch.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\dsAuditPalletBatch.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAuditPalletBatch.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\dsAuditPalletBatch.xss">
+      <DependentUpon>dsAuditPalletBatch.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\dsAuditProduct.xsc">
+      <DependentUpon>dsAuditProduct.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\dsAuditProduct.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAuditProduct.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\dsAuditProduct.xss">
+      <DependentUpon>dsAuditProduct.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\dsRptGenealogy.xsc">
+      <DependentUpon>dsRptGenealogy.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\dsRptGenealogy.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsRptGenealogy.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\dsRptGenealogy.xss">
+      <DependentUpon>dsRptGenealogy.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\dsRptPallet.xsc">
+      <DependentUpon>dsRptPallet.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\dsRptPallet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsRptPallet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Reports\dsRptPallet.xss">
+      <DependentUpon>dsRptPallet.xsd</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="SimpleSample1EXWOLD.lbl" />
+    <None Include="SimpleSample2.lbl" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\ExwoldApp.ico" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Resources\ITS-logo-small1.jpg" />
+    <None Include="Resources\ITS-logo-small.jpg" />
+    <None Include="Resources\Exwold High Res Logo No Strapline - small.jpg" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

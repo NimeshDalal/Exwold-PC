@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsAuditOpAction" targetNamespace="http://tempuri.org/dsAuditOpAction.xsd" xmlns:mstns="http://tempuri.org/dsAuditOpAction.xsd" xmlns="http://tempuri.org/dsAuditOpAction.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsAuditOpAction" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsAuditOpAction" msprop:Generator_UserDSName="dsAuditOpAction">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="dtAuditOpAction" msprop:Generator_TableClassName="dtAuditOpActionDataTable" msprop:Generator_TableVarName="tabledtAuditOpAction" msprop:Generator_TablePropName="dtAuditOpAction" msprop:Generator_RowDeletingName="dtAuditOpActionRowDeleting" msprop:Generator_RowChangingName="dtAuditOpActionRowChanging" msprop:Generator_RowEvHandlerName="dtAuditOpActionRowChangeEventHandler" msprop:Generator_RowDeletedName="dtAuditOpActionRowDeleted" msprop:Generator_UserTableName="dtAuditOpAction" msprop:Generator_RowChangedName="dtAuditOpActionRowChanged" msprop:Generator_RowEvArgName="dtAuditOpActionRowChangeEvent" msprop:Generator_RowClassName="dtAuditOpActionRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AuditUniqueNo" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnAuditUniqueNo" msprop:Generator_ColumnPropNameInRow="AuditUniqueNo" msprop:Generator_ColumnPropNameInTable="AuditUniqueNoColumn" msprop:Generator_UserColumnName="AuditUniqueNo" type="xs:long" />
+              <xs:element name="AuditDateTime" msprop:Generator_ColumnVarNameInTable="columnAuditDateTime" msprop:Generator_ColumnPropNameInRow="AuditDateTime" msprop:Generator_ColumnPropNameInTable="AuditDateTimeColumn" msprop:Generator_UserColumnName="AuditDateTime" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="AuditMesssage" msprop:Generator_ColumnVarNameInTable="columnAuditMesssage" msprop:Generator_ColumnPropNameInRow="AuditMesssage" msprop:Generator_ColumnPropNameInTable="AuditMesssageColumn" msprop:Generator_UserColumnName="AuditMesssage" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
