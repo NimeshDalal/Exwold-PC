@@ -18,6 +18,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using NiceLabel.SDK;
 using System.Data;
+using System.Text;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
 
@@ -26,7 +27,7 @@ namespace ITS.Exwold.Desktop
     /// <summary>
     /// The main Form class.
     /// </summary>
-    public partial class frmOuterInnerLabels : Form
+    internal partial class frmOuterInnerLabels : Form
     {
         #region Local variables
         //Data variables
@@ -38,14 +39,11 @@ namespace ITS.Exwold.Desktop
         private int _innerPackUId = -1;
         private int _innerTotalLabels = 0;
         private int _innerQtyPrinted = 0;
+        private NiceLabel niceLabel = new NiceLabel(System.Configuration.ConfigurationManager.AppSettings["NiceLabelSDKPath"]);
+        private ExwoldConfigSettings _exwoldConfigSettings = null;
         #endregion
 
-        //public string PrintBatchFlag;
-        //public string PrintBatchID;
-
-        //int PalletBatchID;
-        //string PalletLabel;
-        //string PrinterName;
+        
 
         #region Properties
         internal DataInterface.execFunction DB
@@ -58,91 +56,91 @@ namespace ITS.Exwold.Desktop
             get { return _palletBatchUId; }
             set { _palletBatchUId = value; }
         }
+        internal ExwoldConfigSettings ExwoldConfigSettings
+        {
+            get { return _exwoldConfigSettings; }
+            set { _exwoldConfigSettings = value; }
+        }
         #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="frmPrint"/> class.
         /// </summary>
         /// 
-        public frmOuterInnerLabels(DataInterface.execFunction database, int PalletBatchUId)
+        internal frmOuterInnerLabels(DataInterface.execFunction database, int PalletBatchUId, ExwoldConfigSettings exwoldConfigSettings)
         {
             InitializeComponent();
             _db = database;
             _palletBatchUId = PalletBatchUId;
+            _exwoldConfigSettings = exwoldConfigSettings;
+            tbOuterPrinter.Text = _exwoldConfigSettings.OuterPackLabelPrinters[0].Name;
+            tbInnerPrinter.Text = _exwoldConfigSettings.InnerPackLabelPrinters[0].Name;
+            SetPrinters();
         }
-
-        /// <summary>
-        /// Raises the CreateControl event.
-        /// </summary>
-        protected override void OnCreateControl()
+        private void cboOuterPrinters_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //this.InitializePrintEngine();
-            base.OnCreateControl();
+            Console.WriteLine($"{cboOuterPrinters.SelectedIndex}, {cboOuterPrinters.SelectedItem}");
+            tbOuterPrinter.Text = cboOuterPrinters.Text;
+            SetPrinters();
         }
-
-        /// <summary>
-        /// Raises the <see cref="E:System.Windows.Forms.Form.Closed" /> event.
-        /// </summary>
-        /// <param name="e">The <see cref="T:System.EventArgs" /> that contains the event data.</param>
-        protected override void OnClosed(EventArgs e)
-        {
-            try
-            {
-                PrintEngineFactory.PrintEngine.Shutdown();
-
-                base.OnClosed(e);
-            }
-            catch (Exception ex)
-            {
-                //Program.Log.LogMessage(ThreadLog.DebugLevel.Debug, Logging.ThisMethod(), "EXCEPTION: destroying PrintEngine: " + ex.ToString());
-                //MessageBox.Show(Logging.ThisMethod(), "Error destroying PrintEngine");
-            }
+        private void cboInnerPrinters_SelectedIndexChanged(object sender, EventArgs e)
+        {           
+            tbInnerPrinter.Text = cboInnerPrinters.Text;
+            SetPrinters();
         }
-
-        /// <summary>
-        /// Initializes the Print engine.
-        /// </summary>
-        private void InitializePrintEngine()
-        {
-            try
-            {
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Debug, Logging.ThisMethod(), "Starting");
-                if (Directory.Exists(System.Configuration.ConfigurationManager.AppSettings["NiceLabelSDKPath"]))
-                {
-                    PrintEngineFactory.SDKFilesPath = System.Configuration.ConfigurationManager.AppSettings["NiceLabelSDKPath"];
-                }
-                PrintEngineFactory.PrintEngine.Initialize();
-
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Debug, Logging.ThisMethod(), "Finished");
-            }
-            catch (SDKException exception)
-            {
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Debug, Logging.ThisMethod(), "SDK EXCEPTION: " + exception.ToString());
-                MessageBox.Show("Initialization of the SDK failed, SDK error.");
-                Program.Log.logSave();
-                Application.Exit();
-            }
-            catch (Exception ex)
-            {
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Debug, Logging.ThisMethod(), "EXCEPTION: " + ex.ToString());
-                MessageBox.Show("Initialization of the SDK failed, other error.");
-                Program.Log.logSave();
-                Application.Exit();
-            }
-        }
-
-
-        /// <param name="sender">The source of the event.</param>
-        /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
-        private void PrintFunction()
-        {
-        }
-
-        private async void PrintForm_Load(object sender, EventArgs e)
+        private void Form_Load(object sender, EventArgs e)
         {
             //set top
             this.TopMost = true;
-            getLabelData(_palletBatchUId);
+            getLabelData(_palletBatchUId);            
+        }
+        private void Form_Closing(object sender, FormClosingEventArgs e)
+        {
+            niceLabel.Dispose();
+        }
+        private void SetPrinters()
+        {
+            bool bRes = false;
+            #region Outer Label Printer
+            this.cboOuterPrinters.SelectedIndexChanged -= new System.EventHandler(this.cboOuterPrinters_SelectedIndexChanged);
+            cboOuterPrinters.DataSource = niceLabel.LabelPrinters;
+            cboOuterPrinters.DisplayMember = "Name";
+            this.cboOuterPrinters.SelectedIndexChanged += new System.EventHandler(this.cboOuterPrinters_SelectedIndexChanged);
+            bRes = validatePrinter(tbOuterPrinter, tbOuterPrinter.Text);
+            btnOuterPrint.Enabled = bRes;
+            grpOuterAvailPrinters.Visible = !bRes;
+            #endregion
+            #region Inner Label Printer
+            cboInnerPrinters.DataSource = niceLabel.LabelPrinters;
+            cboInnerPrinters.DisplayMember = "Name";
+            bRes = validatePrinter(tbInnerPrinter, tbInnerPrinter.Text);
+            btnInnerPrint.Enabled = bRes;
+            grpInnerAvailPrinters.Visible = !bRes;
+            #endregion
+        }
+        private bool validatePrinter(TextBox tb, string PrinterName)
+        {
+            bool bPrinterOK = false;
+            tb.Text = PrinterName;
+            // Do we have the printer
+            foreach (IPrinter prnt in niceLabel.LabelPrinters)
+            {
+                if (prnt.Name == PrinterName)
+                {
+                    bPrinterOK = true;
+                    break;
+                }
+            }
+            if (bPrinterOK)
+            {
+                epQtyToPrint.SetError(tb, "");
+                return true;
+            }
+            else
+            {
+                epQtyToPrint.SetError(tb, "Printer NOT available");
+                return false;
+            }
         }
 
         private async void getLabelData(int PalletBatchUId)
@@ -158,8 +156,14 @@ namespace ITS.Exwold.Desktop
             {
                 dtOuter = ds.Tables[0];
                 dtInner = ds.Tables[1];
-                writeOuterLabelData(dtOuter);
-                writeInnerLabelData(dtInner);
+                if (dtOuter.Rows.Count > 0)
+                {
+                    writeOuterLabelData(dtOuter);
+                }
+                if (dtInner.Rows.Count > 0)
+                {
+                    writeInnerLabelData(dtInner);
+                }
             }
         }
 
@@ -263,36 +267,101 @@ namespace ITS.Exwold.Desktop
 
         private async void btnInnerPrint_Click(object sender, EventArgs e)
         {
-            int iPrintQty = int.Parse(tbInnerQtyToPrint.Text);
-            _innerQtyPrinted = _innerQtyPrinted + iPrintQty;
-            tbInnerQtyPrinted.Text = _innerQtyPrinted.ToString();
-            tbInnerRemainingQty.Text = (_innerTotalLabels - _innerQtyPrinted).ToString();
+            InnerLabelData labelData = new InnerLabelData();
+            int iPrintQty = 0;
+            DateTime dtDoM = DateTime.MinValue;
+            StringBuilder ErrorMsg = new StringBuilder();
+            try
+            {
+                int.TryParse(tbInnerQtyToPrint.Text, out iPrintQty);
+                DateTime.TryParse(tbInnerDateOfMan.Text, out dtDoM);
+            }
+            catch (Exception ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex);
+            }
+            //Setup the print parameters
+            labelData.LabelPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\labels\\InnerLabel.nlbl";
+            labelData.PrintQty = iPrintQty;
 
-            _db.QueryParameters.Clear();
-            _db.QueryParameters.Add("InnerPackUId", _innerPackUId.ToString());
-            _db.QueryParameters.Add("AdditionalLabels", tbInnerQtyToPrint.Text);
-            DataTable dt = await _db.executeSP("[GUI].[updateInnerLabelsPrinted]", true);
+            labelData.GTIN = tbOuterGTIN.Text;
+            labelData.LotNo = tbOuterLotNumber.Text;
+            labelData.ProductionDate = dtDoM;
 
-            tbInnerQtyToPrint.Text = "0";
-            btnInnerPrint.Enabled = false;
+            if (labelData.CanPrintLabel(out ErrorMsg))
+            {
+                niceLabel.PrintInnerLabel(labelData, tbInnerPrinter.Text);
+
+                //Update the user Interface with the updated values
+                _innerQtyPrinted = _innerQtyPrinted + iPrintQty;
+                tbInnerQtyPrinted.Text = _innerQtyPrinted.ToString();
+                tbInnerRemainingQty.Text = (_innerTotalLabels - _innerQtyPrinted).ToString();
+
+                //Write the updates to the database
+                _db.QueryParameters.Clear();
+                _db.QueryParameters.Add("InnerPackUId", _innerPackUId.ToString());
+                _db.QueryParameters.Add("AdditionalLabels", tbOuterQtyToPrint.Text);
+                DataTable dt = await _db.executeSP("[GUI].[updateInnerLabelsPrinted]", true);
+
+                //Done with the printing - Need to set new parameters
+                tbInnerQtyToPrint.Text = "0";
+                btnInnerPrint.Enabled = false;
+            }
+            else
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Information, Logging.ThisMethod(), ErrorMsg.ToString());
+            }
         }
 
         private async void btnOuterPrint_Click(object sender, EventArgs e)
         {
-            int iPrintQty = int.Parse(tbOuterQtyToPrint.Text);
-            _outerQtyPrinted = _outerQtyPrinted + iPrintQty;
-            tbOuterQtyPrinted.Text = _outerQtyPrinted.ToString();
-            tbOuterRemainingQty.Text = (_outerTotalLabels - _outerQtyPrinted).ToString();
-           
-            _db.QueryParameters.Clear();
-            _db.QueryParameters.Add("OuterPackUId", _outerPackUId.ToString());
-            _db.QueryParameters.Add("AdditionalLabels", tbOuterQtyToPrint.Text);
-            DataTable dt = await _db.executeSP("[GUI].[updateOuterLabelsPrinted]", true);
+            OuterLabelData labelData = new OuterLabelData();
+            int iPrintQty = 0;
+            DateTime dtDoM = DateTime.MinValue;
+            StringBuilder ErrorMsg = new StringBuilder();
+            try
+            {
+                int.TryParse(tbOuterQtyToPrint.Text, out iPrintQty);
+                DateTime.TryParse(tbOuterDateOfMan.Text, out dtDoM);
+            }
+            catch(Exception ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex);
+            }
+            //Setup the print parameters
+            labelData.LabelPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\labels\\OuterLabel.nlbl";
+            labelData.PrintQty = iPrintQty;
+            
+            labelData.GTIN = tbOuterGTIN.Text;
+            labelData.LotNo = tbOuterLotNumber.Text;
+            labelData.ProductName = tbOuterProductName.Text;
+            labelData.ProductionDate = dtDoM;
 
-            tbOuterQtyToPrint.Text = "0";
-            btnOuterPrint.Enabled = false;
+            if (labelData.CanPrintLabel(out ErrorMsg))
+            {
+                niceLabel.PrintOuterLabel(labelData, tbOuterPrinter.Text);
+
+                //Update the user Interface with the updated values
+                _outerQtyPrinted = _outerQtyPrinted + iPrintQty;
+                tbOuterQtyPrinted.Text = _outerQtyPrinted.ToString();
+                tbOuterRemainingQty.Text = (_outerTotalLabels - _outerQtyPrinted).ToString();
+
+                //Write the updates to the database
+                _db.QueryParameters.Clear();
+                _db.QueryParameters.Add("OuterPackUId", _outerPackUId.ToString());
+                _db.QueryParameters.Add("AdditionalLabels", tbOuterQtyToPrint.Text);
+                DataTable dt = await _db.executeSP("[GUI].[updateOuterLabelsPrinted]", true);
+
+                //Done with the printing - Need to set new parameters
+                tbOuterQtyToPrint.Text = "0";
+                btnOuterPrint.Enabled = false;
+            }
+            else
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Information, Logging.ThisMethod(), ErrorMsg.ToString());
+            }
         }
-
+        
         private bool ValidateQtyToPrint(TextBox tb, int UpperLimit, Button PrintButton)
         {
             int LowerLimit = 0;
@@ -326,7 +395,6 @@ namespace ITS.Exwold.Desktop
                 return false;
             }
         }
-
         private void tbOuterQtyToPrint_Validating(object sender, System.ComponentModel.CancelEventArgs e)
         {
             TextBox tb = sender as TextBox;
@@ -339,7 +407,6 @@ namespace ITS.Exwold.Desktop
             bool bRes = ValidateQtyToPrint(tb, _innerTotalLabels, btnInnerPrint);
             if (e != null) e.Cancel = !bRes;
         }
-
         private void tbOuterQtyToPrint_Validated(object sender, EventArgs e)
         {
             btnOuterPrint.Enabled = true;
@@ -349,8 +416,7 @@ namespace ITS.Exwold.Desktop
         {
             btnInnerPrint.Enabled = true;
             btnInnerPrint.Focus();
-        }
-        
+        }   
         private void tbOuterQtyToPrint_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
@@ -358,8 +424,6 @@ namespace ITS.Exwold.Desktop
                 ValidateQtyToPrint(sender as TextBox, _outerTotalLabels, btnOuterPrint);
             }
         }
-
-
         private void tbInnerQtyToPrint_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Return)
@@ -367,6 +431,7 @@ namespace ITS.Exwold.Desktop
                 ValidateQtyToPrint(sender as TextBox, _innerTotalLabels, btnInnerPrint);
             }
         }
+
     }
 }
 

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button_setBatch = new System.Windows.Forms.Button();
             this.button_exitPalletTracking = new System.Windows.Forms.Button();
             this.btnSetProduct = new System.Windows.Forms.Button();
@@ -204,7 +204,7 @@
             this.tbLabelTest.Name = "tbLabelTest";
             this.tbLabelTest.Size = new System.Drawing.Size(100, 29);
             this.tbLabelTest.TabIndex = 99;
-            this.tbLabelTest.Text = "859";
+            this.tbLabelTest.Text = "858";
             // 
             // btnLabelTest
             // 
@@ -278,12 +278,12 @@
             // 
             // dgvOnHold
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvOnHold.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dgvOnHold.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvOnHold.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dgvOnHold.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvOnHold.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -291,14 +291,14 @@
             this.dgvOnHold.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvOnHold.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOnHold.ColumnHeadersVisible = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Palatino Linotype", 12F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOnHold.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOnHold.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvOnHold.Enabled = false;
             this.dgvOnHold.EnableHeadersVisualStyles = false;
             this.dgvOnHold.Location = new System.Drawing.Point(1390, 325);
@@ -312,12 +312,12 @@
             // 
             // dgvReadyToPrint
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvReadyToPrint.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dgvReadyToPrint.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvReadyToPrint.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dgvReadyToPrint.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvReadyToPrint.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -325,14 +325,14 @@
             this.dgvReadyToPrint.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvReadyToPrint.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReadyToPrint.ColumnHeadersVisible = false;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Palatino Linotype", 12F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvReadyToPrint.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvReadyToPrint.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvReadyToPrint.Enabled = false;
             this.dgvReadyToPrint.EnableHeadersVisualStyles = false;
             this.dgvReadyToPrint.Location = new System.Drawing.Point(1390, 71);

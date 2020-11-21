@@ -532,11 +532,8 @@ namespace ITS.Exwold.Desktop
         private void btnLabelTest_Click(object sender, EventArgs e)
         {
 
-            frmOuterInnerLabels fLabel = new frmOuterInnerLabels(_db, int.Parse(tbLabelTest.Text));
+            frmOuterInnerLabels fLabel = new frmOuterInnerLabels(_db, int.Parse(tbLabelTest.Text), _exwoldConfigSettings);
             fLabel.Show();
-            
-
-
         }
     }
 }

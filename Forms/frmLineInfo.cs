@@ -39,7 +39,8 @@ namespace ITS.Exwold.Desktop
         #region Local variables
         //Data variables
         private DataInterface.execFunction _db = null;
-
+        private ExwoldConfigSettings _exwoldConfigSettings = null;
+        private int _plantNumber = 0;
         private int _lineId = 0;
         private string _lineName = string.Empty;
         #endregion
@@ -82,7 +83,16 @@ namespace ITS.Exwold.Desktop
         {
             InitializeComponent();
             _db = database;
-        }
+            if (int.TryParse(System.Configuration.ConfigurationManager.AppSettings["plantNumber"], out _plantNumber))
+            {
+                _exwoldConfigSettings = new ExwoldConfigSettings(_plantNumber);
+            }
+            else
+            {
+                _exwoldConfigSettings = null;
+            }
+
+    }
         public async void GetLineData()
         {
             //Collect the line information
@@ -100,9 +110,13 @@ namespace ITS.Exwold.Desktop
                     lblStatusMessage.Text = "Not Running";
                     lblStatusMessage.ForeColor = System.Drawing.Color.Black;
                     btnPalletDetails.Visible = false;
+                    btnPackLabels.Visible = false;
                     break;
                 case 1:
                     _palletBatchID = Convert.ToInt32(dtPalletBatch.Rows[0].Field<Int64>("PalletBatchUniqueNo"));
+                    //Mesh
+                    textBox1.Text = _palletBatchID.ToString();
+
                     _db.QueryParameters.Clear();
                     _db.QueryParameters.Add("PalletBatchId", _palletBatchID.ToString());
                     DataTable dtCurrentProduct = await _db.executeSP("[GUI].[getPalletBatchById]", true);
@@ -123,6 +137,7 @@ namespace ITS.Exwold.Desktop
                     lblStatusMessage.Text = Helper.LineStatus[status];
                     lblStatusMessage.ForeColor = Helper.LineStatusColour[status];
                     btnPalletDetails.Visible = Helper.LineStatusVisibility[status];
+                    btnPackLabels.Visible = Helper.LineStatusVisibility[status];
                     #endregion
                     //Mesh Remove
                     //txtPalletBatchNo.Text = dtCurrentProduct.Rows[0].Field<string>("PalletBatchNo");
@@ -230,6 +245,15 @@ namespace ITS.Exwold.Desktop
         private void frmLineInfo_Load(object sender, EventArgs e)
         {
             GetLineData();
+        }
+
+        private void btnPackLabels_Click(object sender, EventArgs e)
+        {
+            // Need the plant settings for the Pack Printer form
+            if (_exwoldConfigSettings == null) throw new ArgumentNullException("PlantSettings", Logging.ThisMethod());
+
+            frmOuterInnerLabels fLabel = new frmOuterInnerLabels(_db, _palletBatchID, _exwoldConfigSettings);
+            fLabel.Show();
         }
     }
 }

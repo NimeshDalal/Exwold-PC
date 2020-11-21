@@ -18,6 +18,15 @@
             this.components = new System.ComponentModel.Container();
             this.tabPrintForms = new System.Windows.Forms.TabControl();
             this.tabOuterPackLabels = new System.Windows.Forms.TabPage();
+            this.grpOuterAvailPrinters = new System.Windows.Forms.GroupBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cboOuterPrinters = new System.Windows.Forms.ComboBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnOuterPrint = new System.Windows.Forms.Button();
+            this.tbOuterPrinter = new System.Windows.Forms.TextBox();
+            this.lblOuterPrinter = new System.Windows.Forms.Label();
+            this.lblOuterQtyToPrint = new System.Windows.Forms.Label();
+            this.tbOuterQtyToPrint = new System.Windows.Forms.TextBox();
             this.grpOuterLabelData = new System.Windows.Forms.GroupBox();
             this.lblOuterProductName = new System.Windows.Forms.Label();
             this.lblOuterLotNo = new System.Windows.Forms.Label();
@@ -28,9 +37,6 @@
             this.tbOuterGTIN = new System.Windows.Forms.TextBox();
             this.lblOuterGTIN = new System.Windows.Forms.Label();
             this.grpOuterPrintInfo = new System.Windows.Forms.GroupBox();
-            this.lblOuterQtyToPrint = new System.Windows.Forms.Label();
-            this.tbOuterQtyToPrint = new System.Windows.Forms.TextBox();
-            this.btnOuterPrint = new System.Windows.Forms.Button();
             this.lblOuterRemainingQty = new System.Windows.Forms.Label();
             this.lblOuterQtyPrinted = new System.Windows.Forms.Label();
             this.tbOuterRemainingQty = new System.Windows.Forms.TextBox();
@@ -41,12 +47,18 @@
             this.grpOuterClose = new System.Windows.Forms.GroupBox();
             this.btnOuterClose = new System.Windows.Forms.Button();
             this.tabInnerPackLabels = new System.Windows.Forms.TabPage();
+            this.grpInnerAvailPrinters = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cboInnerPrinters = new System.Windows.Forms.ComboBox();
+            this.grpInnerPrint = new System.Windows.Forms.GroupBox();
+            this.btnInnerPrint = new System.Windows.Forms.Button();
+            this.lblInnerPrinter = new System.Windows.Forms.Label();
+            this.tbInnerPrinter = new System.Windows.Forms.TextBox();
+            this.lblInnerQtyToPrint = new System.Windows.Forms.Label();
+            this.tbInnerQtyToPrint = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnInnerClose = new System.Windows.Forms.Button();
             this.grpInnerPrintInfo = new System.Windows.Forms.GroupBox();
-            this.lblInnerQtyToPrint = new System.Windows.Forms.Label();
-            this.tbInnerQtyToPrint = new System.Windows.Forms.TextBox();
-            this.btnInnerPrint = new System.Windows.Forms.Button();
             this.lblInnerRemainingQty = new System.Windows.Forms.Label();
             this.lblInnerQtyPrinted = new System.Windows.Forms.Label();
             this.tbInnerRemainingQty = new System.Windows.Forms.TextBox();
@@ -66,10 +78,14 @@
             this.epQtyToPrint = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabPrintForms.SuspendLayout();
             this.tabOuterPackLabels.SuspendLayout();
+            this.grpOuterAvailPrinters.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.grpOuterLabelData.SuspendLayout();
             this.grpOuterPrintInfo.SuspendLayout();
             this.grpOuterClose.SuspendLayout();
             this.tabInnerPackLabels.SuspendLayout();
+            this.grpInnerAvailPrinters.SuspendLayout();
+            this.grpInnerPrint.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.grpInnerPrintInfo.SuspendLayout();
             this.grpInnerLabelData.SuspendLayout();
@@ -89,6 +105,8 @@
             // 
             // tabOuterPackLabels
             // 
+            this.tabOuterPackLabels.Controls.Add(this.grpOuterAvailPrinters);
+            this.tabOuterPackLabels.Controls.Add(this.groupBox2);
             this.tabOuterPackLabels.Controls.Add(this.grpOuterLabelData);
             this.tabOuterPackLabels.Controls.Add(this.grpOuterPrintInfo);
             this.tabOuterPackLabels.Controls.Add(this.grpOuterClose);
@@ -99,6 +117,116 @@
             this.tabOuterPackLabels.TabIndex = 1;
             this.tabOuterPackLabels.Text = "Labels For Outer Packs";
             this.tabOuterPackLabels.UseVisualStyleBackColor = true;
+            // 
+            // grpOuterAvailPrinters
+            // 
+            this.grpOuterAvailPrinters.Controls.Add(this.label2);
+            this.grpOuterAvailPrinters.Controls.Add(this.cboOuterPrinters);
+            this.grpOuterAvailPrinters.Location = new System.Drawing.Point(3, 405);
+            this.grpOuterAvailPrinters.Name = "grpOuterAvailPrinters";
+            this.grpOuterAvailPrinters.Size = new System.Drawing.Size(465, 53);
+            this.grpOuterAvailPrinters.TabIndex = 86;
+            this.grpOuterAvailPrinters.TabStop = false;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label2.Location = new System.Drawing.Point(31, 20);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(133, 22);
+            this.label2.TabIndex = 76;
+            this.label2.Text = "Available Printers:";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cboOuterPrinters
+            // 
+            this.cboOuterPrinters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboOuterPrinters.FormattingEnabled = true;
+            this.cboOuterPrinters.Location = new System.Drawing.Point(169, 16);
+            this.cboOuterPrinters.Name = "cboOuterPrinters";
+            this.cboOuterPrinters.Size = new System.Drawing.Size(263, 30);
+            this.cboOuterPrinters.TabIndex = 83;
+            this.cboOuterPrinters.SelectedIndexChanged += new System.EventHandler(this.cboOuterPrinters_SelectedIndexChanged);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnOuterPrint);
+            this.groupBox2.Controls.Add(this.tbOuterPrinter);
+            this.groupBox2.Controls.Add(this.lblOuterPrinter);
+            this.groupBox2.Controls.Add(this.lblOuterQtyToPrint);
+            this.groupBox2.Controls.Add(this.tbOuterQtyToPrint);
+            this.groupBox2.Location = new System.Drawing.Point(3, 277);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(465, 128);
+            this.groupBox2.TabIndex = 85;
+            this.groupBox2.TabStop = false;
+            // 
+            // btnOuterPrint
+            // 
+            this.btnOuterPrint.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOuterPrint.Location = new System.Drawing.Point(169, 77);
+            this.btnOuterPrint.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnOuterPrint.Name = "btnOuterPrint";
+            this.btnOuterPrint.Size = new System.Drawing.Size(263, 37);
+            this.btnOuterPrint.TabIndex = 67;
+            this.btnOuterPrint.Text = "&Print";
+            this.btnOuterPrint.UseVisualStyleBackColor = true;
+            this.btnOuterPrint.Click += new System.EventHandler(this.btnOuterPrint_Click);
+            // 
+            // tbOuterPrinter
+            // 
+            this.tbOuterPrinter.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbOuterPrinter.Location = new System.Drawing.Point(169, 47);
+            this.tbOuterPrinter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbOuterPrinter.MaxLength = 40;
+            this.tbOuterPrinter.Name = "tbOuterPrinter";
+            this.tbOuterPrinter.Size = new System.Drawing.Size(263, 29);
+            this.tbOuterPrinter.TabIndex = 69;
+            this.tbOuterPrinter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbOuterQtyToPrint_KeyDown);
+            this.tbOuterPrinter.Validating += new System.ComponentModel.CancelEventHandler(this.tbOuterQtyToPrint_Validating);
+            this.tbOuterPrinter.Validated += new System.EventHandler(this.tbOuterQtyToPrint_Validated);
+            // 
+            // lblOuterPrinter
+            // 
+            this.lblOuterPrinter.AutoSize = true;
+            this.lblOuterPrinter.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOuterPrinter.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblOuterPrinter.Location = new System.Drawing.Point(103, 50);
+            this.lblOuterPrinter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOuterPrinter.Name = "lblOuterPrinter";
+            this.lblOuterPrinter.Size = new System.Drawing.Size(61, 22);
+            this.lblOuterPrinter.TabIndex = 68;
+            this.lblOuterPrinter.Text = "Printer:";
+            this.lblOuterPrinter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // lblOuterQtyToPrint
+            // 
+            this.lblOuterQtyToPrint.AutoSize = true;
+            this.lblOuterQtyToPrint.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOuterQtyToPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblOuterQtyToPrint.Location = new System.Drawing.Point(64, 20);
+            this.lblOuterQtyToPrint.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOuterQtyToPrint.Name = "lblOuterQtyToPrint";
+            this.lblOuterQtyToPrint.Size = new System.Drawing.Size(100, 22);
+            this.lblOuterQtyToPrint.TabIndex = 68;
+            this.lblOuterQtyToPrint.Text = "Qty To Print:";
+            this.lblOuterQtyToPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tbOuterQtyToPrint
+            // 
+            this.tbOuterQtyToPrint.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbOuterQtyToPrint.Location = new System.Drawing.Point(169, 17);
+            this.tbOuterQtyToPrint.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbOuterQtyToPrint.MaxLength = 40;
+            this.tbOuterQtyToPrint.Name = "tbOuterQtyToPrint";
+            this.tbOuterQtyToPrint.Size = new System.Drawing.Size(70, 29);
+            this.tbOuterQtyToPrint.TabIndex = 69;
+            this.tbOuterQtyToPrint.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbOuterQtyToPrint_KeyDown);
+            this.tbOuterQtyToPrint.Validating += new System.ComponentModel.CancelEventHandler(this.tbOuterQtyToPrint_Validating);
+            this.tbOuterQtyToPrint.Validated += new System.EventHandler(this.tbOuterQtyToPrint_Validated);
             // 
             // grpOuterLabelData
             // 
@@ -123,7 +251,7 @@
             this.lblOuterProductName.AutoSize = true;
             this.lblOuterProductName.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOuterProductName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblOuterProductName.Location = new System.Drawing.Point(70, 25);
+            this.lblOuterProductName.Location = new System.Drawing.Point(50, 25);
             this.lblOuterProductName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOuterProductName.Name = "lblOuterProductName";
             this.lblOuterProductName.Size = new System.Drawing.Size(114, 22);
@@ -136,7 +264,7 @@
             this.lblOuterLotNo.AutoSize = true;
             this.lblOuterLotNo.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOuterLotNo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblOuterLotNo.Location = new System.Drawing.Point(85, 115);
+            this.lblOuterLotNo.Location = new System.Drawing.Point(65, 115);
             this.lblOuterLotNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOuterLotNo.Name = "lblOuterLotNo";
             this.lblOuterLotNo.Size = new System.Drawing.Size(99, 22);
@@ -147,7 +275,7 @@
             // tbOuterLotNumber
             // 
             this.tbOuterLotNumber.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbOuterLotNumber.Location = new System.Drawing.Point(189, 112);
+            this.tbOuterLotNumber.Location = new System.Drawing.Point(169, 112);
             this.tbOuterLotNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbOuterLotNumber.MaxLength = 40;
             this.tbOuterLotNumber.Name = "tbOuterLotNumber";
@@ -157,7 +285,7 @@
             // tbOuterProductName
             // 
             this.tbOuterProductName.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbOuterProductName.Location = new System.Drawing.Point(189, 22);
+            this.tbOuterProductName.Location = new System.Drawing.Point(169, 22);
             this.tbOuterProductName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbOuterProductName.MaxLength = 50;
             this.tbOuterProductName.Name = "tbOuterProductName";
@@ -167,7 +295,7 @@
             // tbOuterDateOfMan
             // 
             this.tbOuterDateOfMan.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbOuterDateOfMan.Location = new System.Drawing.Point(189, 82);
+            this.tbOuterDateOfMan.Location = new System.Drawing.Point(169, 82);
             this.tbOuterDateOfMan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbOuterDateOfMan.MaxLength = 40;
             this.tbOuterDateOfMan.Name = "tbOuterDateOfMan";
@@ -179,7 +307,7 @@
             this.lblOuterDateOfMan.AutoSize = true;
             this.lblOuterDateOfMan.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOuterDateOfMan.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblOuterDateOfMan.Location = new System.Drawing.Point(24, 85);
+            this.lblOuterDateOfMan.Location = new System.Drawing.Point(4, 85);
             this.lblOuterDateOfMan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOuterDateOfMan.Name = "lblOuterDateOfMan";
             this.lblOuterDateOfMan.Size = new System.Drawing.Size(160, 22);
@@ -190,7 +318,7 @@
             // tbOuterGTIN
             // 
             this.tbOuterGTIN.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbOuterGTIN.Location = new System.Drawing.Point(189, 52);
+            this.tbOuterGTIN.Location = new System.Drawing.Point(169, 52);
             this.tbOuterGTIN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbOuterGTIN.MaxLength = 15;
             this.tbOuterGTIN.Name = "tbOuterGTIN";
@@ -202,7 +330,7 @@
             this.lblOuterGTIN.AutoSize = true;
             this.lblOuterGTIN.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOuterGTIN.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblOuterGTIN.Location = new System.Drawing.Point(131, 55);
+            this.lblOuterGTIN.Location = new System.Drawing.Point(111, 55);
             this.lblOuterGTIN.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOuterGTIN.Name = "lblOuterGTIN";
             this.lblOuterGTIN.Size = new System.Drawing.Size(53, 22);
@@ -212,9 +340,6 @@
             // 
             // grpOuterPrintInfo
             // 
-            this.grpOuterPrintInfo.Controls.Add(this.lblOuterQtyToPrint);
-            this.grpOuterPrintInfo.Controls.Add(this.tbOuterQtyToPrint);
-            this.grpOuterPrintInfo.Controls.Add(this.btnOuterPrint);
             this.grpOuterPrintInfo.Controls.Add(this.lblOuterRemainingQty);
             this.grpOuterPrintInfo.Controls.Add(this.lblOuterQtyPrinted);
             this.grpOuterPrintInfo.Controls.Add(this.tbOuterRemainingQty);
@@ -225,54 +350,16 @@
             this.grpOuterPrintInfo.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpOuterPrintInfo.Location = new System.Drawing.Point(3, 155);
             this.grpOuterPrintInfo.Name = "grpOuterPrintInfo";
-            this.grpOuterPrintInfo.Size = new System.Drawing.Size(465, 186);
+            this.grpOuterPrintInfo.Size = new System.Drawing.Size(465, 122);
             this.grpOuterPrintInfo.TabIndex = 77;
             this.grpOuterPrintInfo.TabStop = false;
             this.grpOuterPrintInfo.Text = "Printer Info";
-            // 
-            // lblOuterQtyToPrint
-            // 
-            this.lblOuterQtyToPrint.AutoSize = true;
-            this.lblOuterQtyToPrint.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOuterQtyToPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblOuterQtyToPrint.Location = new System.Drawing.Point(84, 115);
-            this.lblOuterQtyToPrint.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblOuterQtyToPrint.Name = "lblOuterQtyToPrint";
-            this.lblOuterQtyToPrint.Size = new System.Drawing.Size(100, 22);
-            this.lblOuterQtyToPrint.TabIndex = 68;
-            this.lblOuterQtyToPrint.Text = "Qty To Print:";
-            this.lblOuterQtyToPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // tbOuterQtyToPrint
-            // 
-            this.tbOuterQtyToPrint.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbOuterQtyToPrint.Location = new System.Drawing.Point(189, 112);
-            this.tbOuterQtyToPrint.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbOuterQtyToPrint.MaxLength = 40;
-            this.tbOuterQtyToPrint.Name = "tbOuterQtyToPrint";
-            this.tbOuterQtyToPrint.Size = new System.Drawing.Size(110, 29);
-            this.tbOuterQtyToPrint.TabIndex = 69;
-            this.tbOuterQtyToPrint.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbOuterQtyToPrint_KeyDown);
-            this.tbOuterQtyToPrint.Validating += new System.ComponentModel.CancelEventHandler(this.tbOuterQtyToPrint_Validating);
-            this.tbOuterQtyToPrint.Validated += new System.EventHandler(this.tbOuterQtyToPrint_Validated);
-            // 
-            // btnOuterPrint
-            // 
-            this.btnOuterPrint.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOuterPrint.Location = new System.Drawing.Point(189, 142);
-            this.btnOuterPrint.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnOuterPrint.Name = "btnOuterPrint";
-            this.btnOuterPrint.Size = new System.Drawing.Size(110, 37);
-            this.btnOuterPrint.TabIndex = 67;
-            this.btnOuterPrint.Text = "&Print";
-            this.btnOuterPrint.UseVisualStyleBackColor = true;
-            this.btnOuterPrint.Click += new System.EventHandler(this.btnOuterPrint_Click);
             // 
             // lblOuterRemainingQty
             // 
             this.lblOuterRemainingQty.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOuterRemainingQty.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblOuterRemainingQty.Location = new System.Drawing.Point(25, 85);
+            this.lblOuterRemainingQty.Location = new System.Drawing.Point(5, 85);
             this.lblOuterRemainingQty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOuterRemainingQty.Name = "lblOuterRemainingQty";
             this.lblOuterRemainingQty.Size = new System.Drawing.Size(159, 22);
@@ -284,7 +371,7 @@
             // 
             this.lblOuterQtyPrinted.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOuterQtyPrinted.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblOuterQtyPrinted.Location = new System.Drawing.Point(25, 55);
+            this.lblOuterQtyPrinted.Location = new System.Drawing.Point(5, 55);
             this.lblOuterQtyPrinted.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOuterQtyPrinted.Name = "lblOuterQtyPrinted";
             this.lblOuterQtyPrinted.Size = new System.Drawing.Size(159, 22);
@@ -295,28 +382,28 @@
             // tbOuterRemainingQty
             // 
             this.tbOuterRemainingQty.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbOuterRemainingQty.Location = new System.Drawing.Point(189, 82);
+            this.tbOuterRemainingQty.Location = new System.Drawing.Point(169, 82);
             this.tbOuterRemainingQty.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbOuterRemainingQty.MaxLength = 40;
             this.tbOuterRemainingQty.Name = "tbOuterRemainingQty";
-            this.tbOuterRemainingQty.Size = new System.Drawing.Size(110, 29);
+            this.tbOuterRemainingQty.Size = new System.Drawing.Size(70, 29);
             this.tbOuterRemainingQty.TabIndex = 69;
             // 
             // tbOuterQtyPrinted
             // 
             this.tbOuterQtyPrinted.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbOuterQtyPrinted.Location = new System.Drawing.Point(189, 52);
+            this.tbOuterQtyPrinted.Location = new System.Drawing.Point(169, 52);
             this.tbOuterQtyPrinted.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbOuterQtyPrinted.MaxLength = 40;
             this.tbOuterQtyPrinted.Name = "tbOuterQtyPrinted";
-            this.tbOuterQtyPrinted.Size = new System.Drawing.Size(110, 29);
+            this.tbOuterQtyPrinted.Size = new System.Drawing.Size(70, 29);
             this.tbOuterQtyPrinted.TabIndex = 69;
             // 
             // lblOuterTotalLabels
             // 
             this.lblOuterTotalLabels.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOuterTotalLabels.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblOuterTotalLabels.Location = new System.Drawing.Point(4, 25);
+            this.lblOuterTotalLabels.Location = new System.Drawing.Point(-16, 25);
             this.lblOuterTotalLabels.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOuterTotalLabels.Name = "lblOuterTotalLabels";
             this.lblOuterTotalLabels.Size = new System.Drawing.Size(180, 22);
@@ -337,11 +424,11 @@
             // tbOuterTotalLabels
             // 
             this.tbOuterTotalLabels.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbOuterTotalLabels.Location = new System.Drawing.Point(189, 22);
+            this.tbOuterTotalLabels.Location = new System.Drawing.Point(169, 22);
             this.tbOuterTotalLabels.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbOuterTotalLabels.MaxLength = 40;
             this.tbOuterTotalLabels.Name = "tbOuterTotalLabels";
-            this.tbOuterTotalLabels.Size = new System.Drawing.Size(110, 29);
+            this.tbOuterTotalLabels.Size = new System.Drawing.Size(70, 29);
             this.tbOuterTotalLabels.TabIndex = 69;
             // 
             // grpOuterClose
@@ -366,6 +453,8 @@
             // 
             // tabInnerPackLabels
             // 
+            this.tabInnerPackLabels.Controls.Add(this.grpInnerAvailPrinters);
+            this.tabInnerPackLabels.Controls.Add(this.grpInnerPrint);
             this.tabInnerPackLabels.Controls.Add(this.groupBox1);
             this.tabInnerPackLabels.Controls.Add(this.grpInnerPrintInfo);
             this.tabInnerPackLabels.Controls.Add(this.grpInnerLabelData);
@@ -375,6 +464,116 @@
             this.tabInnerPackLabels.TabIndex = 2;
             this.tabInnerPackLabels.Text = "Labels For Inner Packs";
             this.tabInnerPackLabels.UseVisualStyleBackColor = true;
+            // 
+            // grpInnerAvailPrinters
+            // 
+            this.grpInnerAvailPrinters.Controls.Add(this.label1);
+            this.grpInnerAvailPrinters.Controls.Add(this.cboInnerPrinters);
+            this.grpInnerAvailPrinters.Location = new System.Drawing.Point(3, 405);
+            this.grpInnerAvailPrinters.Name = "grpInnerAvailPrinters";
+            this.grpInnerAvailPrinters.Size = new System.Drawing.Size(465, 53);
+            this.grpInnerAvailPrinters.TabIndex = 85;
+            this.grpInnerAvailPrinters.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label1.Location = new System.Drawing.Point(31, 20);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(133, 22);
+            this.label1.TabIndex = 76;
+            this.label1.Text = "Available Printers:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // cboInnerPrinters
+            // 
+            this.cboInnerPrinters.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboInnerPrinters.FormattingEnabled = true;
+            this.cboInnerPrinters.Location = new System.Drawing.Point(169, 16);
+            this.cboInnerPrinters.Name = "cboInnerPrinters";
+            this.cboInnerPrinters.Size = new System.Drawing.Size(263, 30);
+            this.cboInnerPrinters.TabIndex = 83;
+            this.cboInnerPrinters.SelectedIndexChanged += new System.EventHandler(this.cboInnerPrinters_SelectedIndexChanged);
+            // 
+            // grpInnerPrint
+            // 
+            this.grpInnerPrint.Controls.Add(this.btnInnerPrint);
+            this.grpInnerPrint.Controls.Add(this.lblInnerPrinter);
+            this.grpInnerPrint.Controls.Add(this.tbInnerPrinter);
+            this.grpInnerPrint.Controls.Add(this.lblInnerQtyToPrint);
+            this.grpInnerPrint.Controls.Add(this.tbInnerQtyToPrint);
+            this.grpInnerPrint.Location = new System.Drawing.Point(3, 277);
+            this.grpInnerPrint.Name = "grpInnerPrint";
+            this.grpInnerPrint.Size = new System.Drawing.Size(465, 128);
+            this.grpInnerPrint.TabIndex = 84;
+            this.grpInnerPrint.TabStop = false;
+            // 
+            // btnInnerPrint
+            // 
+            this.btnInnerPrint.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInnerPrint.Location = new System.Drawing.Point(169, 77);
+            this.btnInnerPrint.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnInnerPrint.Name = "btnInnerPrint";
+            this.btnInnerPrint.Size = new System.Drawing.Size(263, 37);
+            this.btnInnerPrint.TabIndex = 70;
+            this.btnInnerPrint.Text = "&Print";
+            this.btnInnerPrint.UseVisualStyleBackColor = true;
+            this.btnInnerPrint.Click += new System.EventHandler(this.btnInnerPrint_Click);
+            // 
+            // lblInnerPrinter
+            // 
+            this.lblInnerPrinter.AutoSize = true;
+            this.lblInnerPrinter.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInnerPrinter.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblInnerPrinter.Location = new System.Drawing.Point(103, 50);
+            this.lblInnerPrinter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblInnerPrinter.Name = "lblInnerPrinter";
+            this.lblInnerPrinter.Size = new System.Drawing.Size(61, 22);
+            this.lblInnerPrinter.TabIndex = 76;
+            this.lblInnerPrinter.Text = "Printer:";
+            this.lblInnerPrinter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tbInnerPrinter
+            // 
+            this.tbInnerPrinter.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbInnerPrinter.Location = new System.Drawing.Point(169, 47);
+            this.tbInnerPrinter.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbInnerPrinter.MaxLength = 40;
+            this.tbInnerPrinter.Name = "tbInnerPrinter";
+            this.tbInnerPrinter.Size = new System.Drawing.Size(263, 29);
+            this.tbInnerPrinter.TabIndex = 75;
+            this.tbInnerPrinter.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbInnerQtyToPrint_KeyDown);
+            this.tbInnerPrinter.Validating += new System.ComponentModel.CancelEventHandler(this.tbInnerQtyToPrint_Validating);
+            this.tbInnerPrinter.Validated += new System.EventHandler(this.tbInnerQtyToPrint_Validated);
+            // 
+            // lblInnerQtyToPrint
+            // 
+            this.lblInnerQtyToPrint.AutoSize = true;
+            this.lblInnerQtyToPrint.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInnerQtyToPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblInnerQtyToPrint.Location = new System.Drawing.Point(64, 20);
+            this.lblInnerQtyToPrint.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblInnerQtyToPrint.Name = "lblInnerQtyToPrint";
+            this.lblInnerQtyToPrint.Size = new System.Drawing.Size(100, 22);
+            this.lblInnerQtyToPrint.TabIndex = 71;
+            this.lblInnerQtyToPrint.Text = "Qty To Print:";
+            this.lblInnerQtyToPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // tbInnerQtyToPrint
+            // 
+            this.tbInnerQtyToPrint.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbInnerQtyToPrint.Location = new System.Drawing.Point(169, 17);
+            this.tbInnerQtyToPrint.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbInnerQtyToPrint.MaxLength = 40;
+            this.tbInnerQtyToPrint.Name = "tbInnerQtyToPrint";
+            this.tbInnerQtyToPrint.Size = new System.Drawing.Size(70, 29);
+            this.tbInnerQtyToPrint.TabIndex = 75;
+            this.tbInnerQtyToPrint.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbInnerQtyToPrint_KeyDown);
+            this.tbInnerQtyToPrint.Validating += new System.ComponentModel.CancelEventHandler(this.tbInnerQtyToPrint_Validating);
+            this.tbInnerQtyToPrint.Validated += new System.EventHandler(this.tbInnerQtyToPrint_Validated);
             // 
             // groupBox1
             // 
@@ -398,9 +597,6 @@
             // 
             // grpInnerPrintInfo
             // 
-            this.grpInnerPrintInfo.Controls.Add(this.lblInnerQtyToPrint);
-            this.grpInnerPrintInfo.Controls.Add(this.tbInnerQtyToPrint);
-            this.grpInnerPrintInfo.Controls.Add(this.btnInnerPrint);
             this.grpInnerPrintInfo.Controls.Add(this.lblInnerRemainingQty);
             this.grpInnerPrintInfo.Controls.Add(this.lblInnerQtyPrinted);
             this.grpInnerPrintInfo.Controls.Add(this.tbInnerRemainingQty);
@@ -411,54 +607,16 @@
             this.grpInnerPrintInfo.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpInnerPrintInfo.Location = new System.Drawing.Point(3, 155);
             this.grpInnerPrintInfo.Name = "grpInnerPrintInfo";
-            this.grpInnerPrintInfo.Size = new System.Drawing.Size(465, 186);
+            this.grpInnerPrintInfo.Size = new System.Drawing.Size(465, 122);
             this.grpInnerPrintInfo.TabIndex = 1;
             this.grpInnerPrintInfo.TabStop = false;
             this.grpInnerPrintInfo.Text = "Printer Info";
-            // 
-            // lblInnerQtyToPrint
-            // 
-            this.lblInnerQtyToPrint.AutoSize = true;
-            this.lblInnerQtyToPrint.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInnerQtyToPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblInnerQtyToPrint.Location = new System.Drawing.Point(84, 115);
-            this.lblInnerQtyToPrint.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblInnerQtyToPrint.Name = "lblInnerQtyToPrint";
-            this.lblInnerQtyToPrint.Size = new System.Drawing.Size(100, 22);
-            this.lblInnerQtyToPrint.TabIndex = 71;
-            this.lblInnerQtyToPrint.Text = "Qty To Print:";
-            this.lblInnerQtyToPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
-            // tbInnerQtyToPrint
-            // 
-            this.tbInnerQtyToPrint.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerQtyToPrint.Location = new System.Drawing.Point(189, 112);
-            this.tbInnerQtyToPrint.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbInnerQtyToPrint.MaxLength = 40;
-            this.tbInnerQtyToPrint.Name = "tbInnerQtyToPrint";
-            this.tbInnerQtyToPrint.Size = new System.Drawing.Size(110, 29);
-            this.tbInnerQtyToPrint.TabIndex = 75;
-            this.tbInnerQtyToPrint.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbInnerQtyToPrint_KeyDown);
-            this.tbInnerQtyToPrint.Validating += new System.ComponentModel.CancelEventHandler(this.tbInnerQtyToPrint_Validating);
-            this.tbInnerQtyToPrint.Validated += new System.EventHandler(this.tbInnerQtyToPrint_Validated);
-            // 
-            // btnInnerPrint
-            // 
-            this.btnInnerPrint.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInnerPrint.Location = new System.Drawing.Point(189, 142);
-            this.btnInnerPrint.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnInnerPrint.Name = "btnInnerPrint";
-            this.btnInnerPrint.Size = new System.Drawing.Size(110, 37);
-            this.btnInnerPrint.TabIndex = 70;
-            this.btnInnerPrint.Text = "&Print";
-            this.btnInnerPrint.UseVisualStyleBackColor = true;
-            this.btnInnerPrint.Click += new System.EventHandler(this.btnInnerPrint_Click);
             // 
             // lblInnerRemainingQty
             // 
             this.lblInnerRemainingQty.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnerRemainingQty.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblInnerRemainingQty.Location = new System.Drawing.Point(25, 85);
+            this.lblInnerRemainingQty.Location = new System.Drawing.Point(5, 85);
             this.lblInnerRemainingQty.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInnerRemainingQty.Name = "lblInnerRemainingQty";
             this.lblInnerRemainingQty.Size = new System.Drawing.Size(159, 22);
@@ -470,7 +628,7 @@
             // 
             this.lblInnerQtyPrinted.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnerQtyPrinted.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.lblInnerQtyPrinted.Location = new System.Drawing.Point(25, 55);
+            this.lblInnerQtyPrinted.Location = new System.Drawing.Point(5, 55);
             this.lblInnerQtyPrinted.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInnerQtyPrinted.Name = "lblInnerQtyPrinted";
             this.lblInnerQtyPrinted.Size = new System.Drawing.Size(159, 22);
@@ -481,28 +639,28 @@
             // tbInnerRemainingQty
             // 
             this.tbInnerRemainingQty.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerRemainingQty.Location = new System.Drawing.Point(189, 82);
+            this.tbInnerRemainingQty.Location = new System.Drawing.Point(169, 82);
             this.tbInnerRemainingQty.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbInnerRemainingQty.MaxLength = 40;
             this.tbInnerRemainingQty.Name = "tbInnerRemainingQty";
-            this.tbInnerRemainingQty.Size = new System.Drawing.Size(110, 29);
+            this.tbInnerRemainingQty.Size = new System.Drawing.Size(70, 29);
             this.tbInnerRemainingQty.TabIndex = 76;
             // 
             // tbInnerQtyPrinted
             // 
             this.tbInnerQtyPrinted.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerQtyPrinted.Location = new System.Drawing.Point(189, 52);
+            this.tbInnerQtyPrinted.Location = new System.Drawing.Point(169, 52);
             this.tbInnerQtyPrinted.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbInnerQtyPrinted.MaxLength = 40;
             this.tbInnerQtyPrinted.Name = "tbInnerQtyPrinted";
-            this.tbInnerQtyPrinted.Size = new System.Drawing.Size(110, 29);
+            this.tbInnerQtyPrinted.Size = new System.Drawing.Size(70, 29);
             this.tbInnerQtyPrinted.TabIndex = 77;
             // 
             // lblInnerTotalLabels
             // 
             this.lblInnerTotalLabels.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnerTotalLabels.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblInnerTotalLabels.Location = new System.Drawing.Point(4, 25);
+            this.lblInnerTotalLabels.Location = new System.Drawing.Point(-16, 25);
             this.lblInnerTotalLabels.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInnerTotalLabels.Name = "lblInnerTotalLabels";
             this.lblInnerTotalLabels.Size = new System.Drawing.Size(180, 22);
@@ -523,11 +681,11 @@
             // tbInnerTotalLabels
             // 
             this.tbInnerTotalLabels.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerTotalLabels.Location = new System.Drawing.Point(189, 22);
+            this.tbInnerTotalLabels.Location = new System.Drawing.Point(169, 22);
             this.tbInnerTotalLabels.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbInnerTotalLabels.MaxLength = 40;
             this.tbInnerTotalLabels.Name = "tbInnerTotalLabels";
-            this.tbInnerTotalLabels.Size = new System.Drawing.Size(110, 29);
+            this.tbInnerTotalLabels.Size = new System.Drawing.Size(70, 29);
             this.tbInnerTotalLabels.TabIndex = 78;
             // 
             // grpInnerLabelData
@@ -553,7 +711,7 @@
             this.lblInnerLotNo.AutoSize = true;
             this.lblInnerLotNo.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnerLotNo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblInnerLotNo.Location = new System.Drawing.Point(85, 85);
+            this.lblInnerLotNo.Location = new System.Drawing.Point(65, 85);
             this.lblInnerLotNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInnerLotNo.Name = "lblInnerLotNo";
             this.lblInnerLotNo.Size = new System.Drawing.Size(99, 22);
@@ -564,7 +722,7 @@
             // tbInnerLotNumber
             // 
             this.tbInnerLotNumber.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerLotNumber.Location = new System.Drawing.Point(189, 82);
+            this.tbInnerLotNumber.Location = new System.Drawing.Point(169, 82);
             this.tbInnerLotNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbInnerLotNumber.MaxLength = 40;
             this.tbInnerLotNumber.Name = "tbInnerLotNumber";
@@ -575,7 +733,7 @@
             // tbInnerProductName
             // 
             this.tbInnerProductName.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerProductName.Location = new System.Drawing.Point(189, 22);
+            this.tbInnerProductName.Location = new System.Drawing.Point(169, 22);
             this.tbInnerProductName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbInnerProductName.MaxLength = 50;
             this.tbInnerProductName.Name = "tbInnerProductName";
@@ -587,7 +745,7 @@
             // tbInnerDateOfMan
             // 
             this.tbInnerDateOfMan.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerDateOfMan.Location = new System.Drawing.Point(189, 52);
+            this.tbInnerDateOfMan.Location = new System.Drawing.Point(169, 52);
             this.tbInnerDateOfMan.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbInnerDateOfMan.MaxLength = 40;
             this.tbInnerDateOfMan.Name = "tbInnerDateOfMan";
@@ -600,7 +758,7 @@
             this.lblInnerDateOfMan.AutoSize = true;
             this.lblInnerDateOfMan.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnerDateOfMan.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblInnerDateOfMan.Location = new System.Drawing.Point(24, 55);
+            this.lblInnerDateOfMan.Location = new System.Drawing.Point(4, 55);
             this.lblInnerDateOfMan.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInnerDateOfMan.Name = "lblInnerDateOfMan";
             this.lblInnerDateOfMan.Size = new System.Drawing.Size(160, 22);
@@ -611,7 +769,7 @@
             // tbInnerGTIN
             // 
             this.tbInnerGTIN.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerGTIN.Location = new System.Drawing.Point(189, 22);
+            this.tbInnerGTIN.Location = new System.Drawing.Point(169, 112);
             this.tbInnerGTIN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbInnerGTIN.MaxLength = 15;
             this.tbInnerGTIN.Name = "tbInnerGTIN";
@@ -623,7 +781,7 @@
             this.lblInnerGTIN.AutoSize = true;
             this.lblInnerGTIN.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnerGTIN.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblInnerGTIN.Location = new System.Drawing.Point(131, 25);
+            this.lblInnerGTIN.Location = new System.Drawing.Point(111, 25);
             this.lblInnerGTIN.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInnerGTIN.Name = "lblInnerGTIN";
             this.lblInnerGTIN.Size = new System.Drawing.Size(53, 22);
@@ -636,7 +794,7 @@
             this.lblInnerProductName.AutoSize = true;
             this.lblInnerProductName.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnerProductName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblInnerProductName.Location = new System.Drawing.Point(70, 25);
+            this.lblInnerProductName.Location = new System.Drawing.Point(50, 116);
             this.lblInnerProductName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblInnerProductName.Name = "lblInnerProductName";
             this.lblInnerProductName.Size = new System.Drawing.Size(114, 22);
@@ -659,15 +817,24 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmOuterInnerLabels";
             this.Text = "Print Inner / Outer Labels";
-            this.Load += new System.EventHandler(this.PrintForm_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form_Closing);
+            this.Load += new System.EventHandler(this.Form_Load);
             this.tabPrintForms.ResumeLayout(false);
             this.tabOuterPackLabels.ResumeLayout(false);
+            this.grpOuterAvailPrinters.ResumeLayout(false);
+            this.grpOuterAvailPrinters.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.grpOuterLabelData.ResumeLayout(false);
             this.grpOuterLabelData.PerformLayout();
             this.grpOuterPrintInfo.ResumeLayout(false);
             this.grpOuterPrintInfo.PerformLayout();
             this.grpOuterClose.ResumeLayout(false);
             this.tabInnerPackLabels.ResumeLayout(false);
+            this.grpInnerAvailPrinters.ResumeLayout(false);
+            this.grpInnerAvailPrinters.PerformLayout();
+            this.grpInnerPrint.ResumeLayout(false);
+            this.grpInnerPrint.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.grpInnerPrintInfo.ResumeLayout(false);
             this.grpInnerPrintInfo.PerformLayout();
@@ -727,6 +894,18 @@
         private System.Windows.Forms.TextBox tbOuterUId;
         private System.Windows.Forms.TextBox tbInnerUId;
         private System.Windows.Forms.ErrorProvider epQtyToPrint;
+        private System.Windows.Forms.ComboBox cboInnerPrinters;
+        private System.Windows.Forms.TextBox tbOuterPrinter;
+        private System.Windows.Forms.TextBox tbInnerPrinter;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label lblOuterPrinter;
+        private System.Windows.Forms.GroupBox grpInnerPrint;
+        private System.Windows.Forms.Label lblInnerPrinter;
+        private System.Windows.Forms.GroupBox grpOuterAvailPrinters;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cboOuterPrinters;
+        private System.Windows.Forms.GroupBox grpInnerAvailPrinters;
+        private System.Windows.Forms.Label label1;
     }
 }
 

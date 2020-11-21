@@ -49,6 +49,8 @@
             this.lblCustomer = new System.Windows.Forms.Label();
             this.lblLine = new System.Windows.Forms.Label();
             this.grpDisplay = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnPackLabels = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentPallet)).BeginInit();
             this.grpDisplay.SuspendLayout();
             this.SuspendLayout();
@@ -297,6 +299,7 @@
             // 
             // grpDisplay
             // 
+            this.grpDisplay.Controls.Add(this.textBox1);
             this.grpDisplay.Controls.Add(this.txtPalletBatchNo);
             this.grpDisplay.Controls.Add(this.lblTotalCartonsScanned);
             this.grpDisplay.Controls.Add(this.lblSalesOrder);
@@ -319,6 +322,24 @@
             this.grpDisplay.TabIndex = 80;
             this.grpDisplay.TabStop = false;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(318, 55);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 25);
+            this.textBox1.TabIndex = 79;
+            // 
+            // btnPackLabels
+            // 
+            this.btnPackLabels.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPackLabels.Location = new System.Drawing.Point(211, 424);
+            this.btnPackLabels.Name = "btnPackLabels";
+            this.btnPackLabels.Size = new System.Drawing.Size(191, 30);
+            this.btnPackLabels.TabIndex = 60;
+            this.btnPackLabels.Text = "Pack Labels";
+            this.btnPackLabels.UseVisualStyleBackColor = true;
+            this.btnPackLabels.Click += new System.EventHandler(this.btnPackLabels_Click);
+            // 
             // frmLineInfo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -326,6 +347,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.grpDisplay);
             this.Controls.Add(this.lblLine);
+            this.Controls.Add(this.btnPackLabels);
             this.Controls.Add(this.btnPalletDetails);
             this.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -362,5 +384,7 @@
         private System.Windows.Forms.Label lblCustomer;
         private System.Windows.Forms.Label lblLine;
         private System.Windows.Forms.GroupBox grpDisplay;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button btnPackLabels;
     }
 }

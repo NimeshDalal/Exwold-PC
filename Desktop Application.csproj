@@ -100,9 +100,9 @@
     <Reference Include="RestSharp, Version=106.11.7.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
       <HintPath>packages\RestSharp.106.11.7\lib\net452\RestSharp.dll</HintPath>
     </Reference>
-    <Reference Include="SDK.NET.Interface">
-      <HintPath>bin\Release\SDK.NET.Interface.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="SDK.NET.Interface, Version=17.1.1.0, Culture=neutral, PublicKeyToken=865eaf3445b2ea56, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files\NiceLabel\NiceLabel 2019\bin.net\SDK.NET.Interface.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
@@ -129,6 +129,7 @@
     <Compile Include="Classes\clsDataInterface.cs" />
     <Compile Include="Classes\clsLogging.cs" />
     <Compile Include="Classes\clsMx300N.cs" />
+    <Compile Include="Classes\clsNiceLabel.cs" />
     <Compile Include="Classes\clsValidation.cs" />
     <Compile Include="Classes\CommsTCPClient.cs" />
     <Compile Include="Classes\clsHelper.cs" />
@@ -302,6 +303,12 @@
       <DependentUpon>frmUserAuthentication.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".editorconfig" />
+    <None Include="Labels\InnerLabel.nlbl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Labels\OuterLabel.nlbl">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
     <None Include="Exwold PC - Product Maintenance_TemporaryKey.pfx" />
     <None Include="Reports\dsAuditOpAction.xsc">
@@ -408,6 +415,7 @@
     <None Include="Resources\ITS-logo-small.jpg" />
     <None Include="Resources\Exwold High Res Logo No Strapline - small.jpg" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
