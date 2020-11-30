@@ -30,6 +30,8 @@ namespace ITS.Exwold.Desktop
         #region Local Variables
         //Date variables
         private DataInterface.execFunction _db = null;
+        private ExwoldConfigSettings _exwoldConfigSettings = null;
+
         int _palletLabelID;
         bool _viewBatch = false;
         int _palletBatchId;
@@ -54,12 +56,11 @@ namespace ITS.Exwold.Desktop
         #endregion
 
         int status;
-        string statusText;
-
-        public frmBatchDetails(DataInterface.execFunction database)
+        public frmBatchDetails(ExwoldConfigSettings ExwoldConfigSettings, DataInterface.execFunction database)
         {
             InitializeComponent();
             _db = database;
+            _exwoldConfigSettings = ExwoldConfigSettings;
         }
 
         private async void BatchDetailsForm_Load(object sender, EventArgs e)
@@ -207,7 +208,7 @@ namespace ITS.Exwold.Desktop
             if (auth.Supervisor)
             {
                 // set batch ID globals and open palletBatch form
-                frmPallet fPallets = new frmPallet(_db);
+                frmPallet fPallets = new frmPallet(_exwoldConfigSettings, _db);
                 fPallets.CreateBatchFlag = "Edit";
                 fPallets.CreateBatchID = Convert.ToString(_palletBatchId);
                 fPallets.ShowDialog();

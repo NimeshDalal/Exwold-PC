@@ -234,7 +234,7 @@ namespace ITS.Exwold.Desktop
 
         private void btnPalletDetails_Click(object sender, EventArgs e)
         {
-            frmBatchDetails fDetails = new frmBatchDetails(_db);
+            frmBatchDetails fDetails = new frmBatchDetails(_exwoldConfigSettings, _db);
             fDetails.ViewBatch = true;
             fDetails.PalletBatchId = _palletBatchID;
             fDetails.ShowDialog();

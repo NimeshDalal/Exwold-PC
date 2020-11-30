@@ -375,8 +375,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="SimpleSample1EXWOLD.lbl" />
-    <None Include="SimpleSample2.lbl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

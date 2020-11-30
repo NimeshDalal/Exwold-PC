@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button_setBatch = new System.Windows.Forms.Button();
             this.button_exitPalletTracking = new System.Windows.Forms.Button();
             this.btnSetProduct = new System.Windows.Forms.Button();
@@ -45,6 +45,9 @@
             this.pnlPosn1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tbLabelTest = new System.Windows.Forms.TextBox();
+            this.btnScannerTest_Stop = new System.Windows.Forms.Button();
+            this.btnScannerTest_Start = new System.Windows.Forms.Button();
+            this.btnScannerTest_Init = new System.Windows.Forms.Button();
             this.btnLabelTest = new System.Windows.Forms.Button();
             this.btnChangePage = new System.Windows.Forms.Button();
             this.btnHardwareSettings = new System.Windows.Forms.Button();
@@ -173,6 +176,9 @@
             // panel4
             // 
             this.panel4.Controls.Add(this.tbLabelTest);
+            this.panel4.Controls.Add(this.btnScannerTest_Stop);
+            this.panel4.Controls.Add(this.btnScannerTest_Start);
+            this.panel4.Controls.Add(this.btnScannerTest_Init);
             this.panel4.Controls.Add(this.btnLabelTest);
             this.panel4.Controls.Add(this.btnChangePage);
             this.panel4.Controls.Add(this.btnHardwareSettings);
@@ -205,6 +211,36 @@
             this.tbLabelTest.Size = new System.Drawing.Size(100, 29);
             this.tbLabelTest.TabIndex = 99;
             this.tbLabelTest.Text = "858";
+            // 
+            // btnScannerTest_Stop
+            // 
+            this.btnScannerTest_Stop.Location = new System.Drawing.Point(132, 35);
+            this.btnScannerTest_Stop.Name = "btnScannerTest_Stop";
+            this.btnScannerTest_Stop.Size = new System.Drawing.Size(122, 29);
+            this.btnScannerTest_Stop.TabIndex = 98;
+            this.btnScannerTest_Stop.Text = "Scanner Stop";
+            this.btnScannerTest_Stop.UseVisualStyleBackColor = true;
+            this.btnScannerTest_Stop.Click += new System.EventHandler(this.btnScannerTest_Stop_Click);
+            // 
+            // btnScannerTest_Start
+            // 
+            this.btnScannerTest_Start.Location = new System.Drawing.Point(132, 3);
+            this.btnScannerTest_Start.Name = "btnScannerTest_Start";
+            this.btnScannerTest_Start.Size = new System.Drawing.Size(122, 29);
+            this.btnScannerTest_Start.TabIndex = 98;
+            this.btnScannerTest_Start.Text = "Scanner Start";
+            this.btnScannerTest_Start.UseVisualStyleBackColor = true;
+            this.btnScannerTest_Start.Click += new System.EventHandler(this.btnScannerTest_Start_Click);
+            // 
+            // btnScannerTest_Init
+            // 
+            this.btnScannerTest_Init.Location = new System.Drawing.Point(19, 3);
+            this.btnScannerTest_Init.Name = "btnScannerTest_Init";
+            this.btnScannerTest_Init.Size = new System.Drawing.Size(107, 29);
+            this.btnScannerTest_Init.TabIndex = 98;
+            this.btnScannerTest_Init.Text = "Scanner Init";
+            this.btnScannerTest_Init.UseVisualStyleBackColor = true;
+            this.btnScannerTest_Init.Click += new System.EventHandler(this.btnScannerTest_Init_Click);
             // 
             // btnLabelTest
             // 
@@ -278,12 +314,12 @@
             // 
             // dgvOnHold
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvOnHold.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dgvOnHold.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvOnHold.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dgvOnHold.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvOnHold.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -291,14 +327,14 @@
             this.dgvOnHold.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvOnHold.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOnHold.ColumnHeadersVisible = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOnHold.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOnHold.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvOnHold.Enabled = false;
             this.dgvOnHold.EnableHeadersVisualStyles = false;
             this.dgvOnHold.Location = new System.Drawing.Point(1390, 325);
@@ -312,12 +348,12 @@
             // 
             // dgvReadyToPrint
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvReadyToPrint.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dgvReadyToPrint.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvReadyToPrint.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.dgvReadyToPrint.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvReadyToPrint.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -325,14 +361,14 @@
             this.dgvReadyToPrint.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvReadyToPrint.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReadyToPrint.ColumnHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Palatino Linotype", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvReadyToPrint.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvReadyToPrint.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvReadyToPrint.Enabled = false;
             this.dgvReadyToPrint.EnableHeadersVisualStyles = false;
             this.dgvReadyToPrint.Location = new System.Drawing.Point(1390, 71);
@@ -429,6 +465,9 @@
         private System.Windows.Forms.Label lblPlantName;
         private System.Windows.Forms.Button btnLabelTest;
         private System.Windows.Forms.TextBox tbLabelTest;
+        private System.Windows.Forms.Button btnScannerTest_Init;
+        private System.Windows.Forms.Button btnScannerTest_Stop;
+        private System.Windows.Forms.Button btnScannerTest_Start;
     }
 }
 

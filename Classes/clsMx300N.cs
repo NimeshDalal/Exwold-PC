@@ -22,7 +22,7 @@ using System.Net.Sockets;
 using System.Windows.Forms;
 using System.ComponentModel;
 
-namespace Threading.Classes
+namespace ITS.Exwold.Desktop
 {
     class clsMx300NDataAsync : IDisposable
     {

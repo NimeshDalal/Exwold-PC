@@ -27,6 +27,8 @@ namespace ITS.Exwold.Desktop
         #region Local variables
         //Data variables
         private DataInterface.execFunction _db = null;
+        private ExwoldConfigSettings _exwoldConfigSettings = null;
+
         public string CreateBatchFlag;
         public string CreateBatchID;
         string UpdateType;
@@ -44,10 +46,11 @@ namespace ITS.Exwold.Desktop
             set { _db = value; }
         }
         #endregion
-        public frmPallet(DataInterface.execFunction database)
+        public frmPallet(ExwoldConfigSettings ExwoldConfigSettings, DataInterface.execFunction database)
         {
             InitializeComponent();
             _db = database;
+            _exwoldConfigSettings = ExwoldConfigSettings;
         }
         private async void PalletDetailsForm_Load(object sender, EventArgs e)
         {
@@ -69,14 +72,14 @@ namespace ITS.Exwold.Desktop
                 case "Create":
                     {
                         ProductID = Convert.ToInt32(CreateBatchID);
-                        button_add.PerformClick();
+                        btnAdd.PerformClick();
                         Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Form Loaded from Create Pallet Batch Button");
                         break;
                     }
                 case "Edit":
                     {
                         BatchID = Convert.ToInt32(CreateBatchID);
-                        button_edit.PerformClick();
+                        btnEdit.PerformClick();
                         Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Form Loaded from Edit Pallet Batch Button");
                         break;
                     }
@@ -86,6 +89,7 @@ namespace ITS.Exwold.Desktop
         private async Task<DataTable> PopulateOrdersGrid()
         {
             _db.QueryParameters.Clear();
+            _db.QueryParameters.Add("Plant", _exwoldConfigSettings.PlantID.ToString());
             //Get the data
             DataTable dt = await _db.executeSP("[GUI].[getIncompleteOrders]", null);
             this.dgvOrders.DataSource = dt;
@@ -174,7 +178,7 @@ namespace ITS.Exwold.Desktop
                 default:  //no product has been selected, send user to products page
                     {
                         this.Close();
-                        frmProduct fProduct = new frmProduct(_db);
+                        frmProduct fProduct = new frmProduct(_exwoldConfigSettings, _db);
                         fProduct.DB = _db;
                         fProduct.ShowDialog();
                         Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Open Product Form from Pallet Form Add button");
@@ -585,7 +589,7 @@ namespace ITS.Exwold.Desktop
         {
             BatchID = Convert.ToInt32(dgvOrders.CurrentRow.Cells[1].Value);
 
-            frmBatchDetails fBatchDetail = new frmBatchDetails(_db);
+            frmBatchDetails fBatchDetail = new frmBatchDetails(_exwoldConfigSettings, _db);
             fBatchDetail.ViewBatch = true;
             fBatchDetail.PalletBatchId = BatchID;
             fBatchDetail.ShowDialog(); 

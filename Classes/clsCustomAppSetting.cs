@@ -199,7 +199,7 @@ namespace ITS.Exwold.Desktop
     /// <summary>
     /// Reads the default OR custom configuration file
     /// </summary>
-    internal class ExwoldConfigSettings
+    public class ExwoldConfigSettings
     {
         private string _configFile = string.Empty;
         private Configuration _cnfg = null;

@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvOrders = new System.Windows.Forms.DataGridView();
-            this.button_add = new System.Windows.Forms.Button();
-            this.button_edit = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.tbProdCode = new System.Windows.Forms.MaskedTextBox();
             this.buttonEnableStatus = new System.Windows.Forms.Button();
@@ -70,7 +70,7 @@
             this.button_save = new System.Windows.Forms.Button();
             this.button_close = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
-            this.buttonDelete = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.buttonSetStatus = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -100,25 +100,25 @@
             this.dgvOrders.TabIndex = 0;
             this.dgvOrders.TabStop = false;
             // 
-            // button_add
+            // btnAdd
             // 
-            this.button_add.Location = new System.Drawing.Point(0, 0);
-            this.button_add.Name = "button_add";
-            this.button_add.Size = new System.Drawing.Size(99, 32);
-            this.button_add.TabIndex = 1;
-            this.button_add.Text = "Add";
-            this.button_add.UseVisualStyleBackColor = true;
-            this.button_add.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnAdd.Location = new System.Drawing.Point(0, 0);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(99, 32);
+            this.btnAdd.TabIndex = 1;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // button_edit
+            // btnEdit
             // 
-            this.button_edit.Location = new System.Drawing.Point(105, 0);
-            this.button_edit.Name = "button_edit";
-            this.button_edit.Size = new System.Drawing.Size(99, 32);
-            this.button_edit.TabIndex = 2;
-            this.button_edit.Text = "Edit";
-            this.button_edit.UseVisualStyleBackColor = true;
-            this.button_edit.Click += new System.EventHandler(this.button_edit_Click);
+            this.btnEdit.Location = new System.Drawing.Point(105, 0);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(99, 32);
+            this.btnEdit.TabIndex = 2;
+            this.btnEdit.Text = "Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.button_edit_Click);
             // 
             // panel1
             // 
@@ -162,11 +162,11 @@
             this.panel1.TabIndex = 3;
             this.panel1.Visible = false;
             // 
-            // TextBoxProdCode
+            // tbProdCode
             // 
             this.tbProdCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbProdCode.Location = new System.Drawing.Point(133, 75);
-            this.tbProdCode.Name = "TextBoxProdCode";
+            this.tbProdCode.Name = "tbProdCode";
             this.tbProdCode.ReadOnly = true;
             this.tbProdCode.Size = new System.Drawing.Size(155, 23);
             this.tbProdCode.TabIndex = 50;
@@ -182,7 +182,7 @@
             this.buttonEnableStatus.UseVisualStyleBackColor = true;
             this.buttonEnableStatus.Click += new System.EventHandler(this.buttonEnableStatus_Click);
             // 
-            // comboBoxStatus
+            // cboStatus
             // 
             this.cboStatus.DataSource = this.palletBatchStatusBindingSource;
             this.cboStatus.DisplayMember = "Status";
@@ -190,49 +190,49 @@
             this.cboStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboStatus.FormattingEnabled = true;
             this.cboStatus.Location = new System.Drawing.Point(1103, 128);
-            this.cboStatus.Name = "comboBoxStatus";
+            this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(146, 24);
             this.cboStatus.TabIndex = 48;
             this.cboStatus.ValueMember = "StatusNo";
             // 
-            // labelStatus
+            // lblStatus
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.Location = new System.Drawing.Point(960, 128);
-            this.lblStatus.Name = "labelStatus";
+            this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(48, 17);
             this.lblStatus.TabIndex = 47;
             this.lblStatus.Text = "Status";
             // 
-            // TextBoxInnerPackStyle
+            // tbInnerPackStyle
             // 
             this.tbInnerPackStyle.Location = new System.Drawing.Point(87, 242);
-            this.tbInnerPackStyle.Name = "TextBoxInnerPackStyle";
+            this.tbInnerPackStyle.Name = "tbInnerPackStyle";
             this.tbInnerPackStyle.Size = new System.Drawing.Size(27, 20);
             this.tbInnerPackStyle.TabIndex = 46;
             this.tbInnerPackStyle.Visible = false;
             // 
-            // TextBoxClientCode
+            // tbClientCode
             // 
             this.tbClientCode.Location = new System.Drawing.Point(54, 242);
-            this.tbClientCode.Name = "TextBoxClientCode";
+            this.tbClientCode.Name = "tbClientCode";
             this.tbClientCode.Size = new System.Drawing.Size(27, 20);
             this.tbClientCode.TabIndex = 45;
             this.tbClientCode.Visible = false;
             // 
-            // TextBoxCompanyCode
+            // tbCompanyCode
             // 
             this.tbCompanyCode.Location = new System.Drawing.Point(54, 216);
-            this.tbCompanyCode.Name = "TextBoxCompanyCode";
+            this.tbCompanyCode.Name = "tbCompanyCode";
             this.tbCompanyCode.Size = new System.Drawing.Size(27, 20);
             this.tbCompanyCode.TabIndex = 44;
             this.tbCompanyCode.Visible = false;
             // 
-            // TextBoxGTIN
+            // tbGTIN
             // 
             this.tbGTIN.Location = new System.Drawing.Point(87, 216);
-            this.tbGTIN.Name = "TextBoxGTIN";
+            this.tbGTIN.Name = "tbGTIN";
             this.tbGTIN.Size = new System.Drawing.Size(27, 20);
             this.tbGTIN.TabIndex = 43;
             this.tbGTIN.Visible = false;
@@ -255,18 +255,18 @@
             this.TextBoxPalletBatchNo.Size = new System.Drawing.Size(172, 23);
             this.TextBoxPalletBatchNo.TabIndex = 41;
             // 
-            // TextBoxGMID
+            // tbGMID
             // 
             this.tbGMID.Location = new System.Drawing.Point(21, 242);
-            this.tbGMID.Name = "TextBoxGMID";
+            this.tbGMID.Name = "tbGMID";
             this.tbGMID.Size = new System.Drawing.Size(27, 20);
             this.tbGMID.TabIndex = 40;
             this.tbGMID.Visible = false;
             // 
-            // TextBoxDetails
+            // tbDetails
             // 
             this.tbDetails.Location = new System.Drawing.Point(21, 216);
-            this.tbDetails.Name = "TextBoxDetails";
+            this.tbDetails.Name = "tbDetails";
             this.tbDetails.Size = new System.Drawing.Size(27, 20);
             this.tbDetails.TabIndex = 39;
             this.tbDetails.Visible = false;
@@ -281,16 +281,16 @@
             this.label8.TabIndex = 37;
             this.label8.Text = "Customer Name";
             // 
-            // TextBoxCustomer
+            // tbCustomer
             // 
             this.tbCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCustomer.Location = new System.Drawing.Point(133, 128);
-            this.tbCustomer.Name = "TextBoxCustomer";
+            this.tbCustomer.Name = "tbCustomer";
             this.tbCustomer.ReadOnly = true;
             this.tbCustomer.Size = new System.Drawing.Size(155, 23);
             this.tbCustomer.TabIndex = 36;
             // 
-            // comboBoxProdLine
+            // cboProdLine
             // 
             this.cboProdLine.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboProdLine.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
@@ -303,7 +303,7 @@
             "2",
             "3"});
             this.cboProdLine.Location = new System.Drawing.Point(1103, 101);
-            this.cboProdLine.Name = "comboBoxProdLine";
+            this.cboProdLine.Name = "cboProdLine";
             this.cboProdLine.Size = new System.Drawing.Size(43, 24);
             this.cboProdLine.TabIndex = 35;
             // 
@@ -347,15 +347,15 @@
             this.label7.TabIndex = 22;
             this.label7.Text = "Notes";
             // 
-            // TextBoxNotes
+            // tbNotes
             // 
             this.tbNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbNotes.Location = new System.Drawing.Point(633, 179);
-            this.tbNotes.Name = "TextBoxNotes";
+            this.tbNotes.Name = "tbNotes";
             this.tbNotes.Size = new System.Drawing.Size(261, 23);
             this.tbNotes.TabIndex = 21;
             // 
-            // comboBoxInnerUnit
+            // cboInnerUnit
             // 
             this.cboInnerUnit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cboInnerUnit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
@@ -368,7 +368,7 @@
             "Kg",
             "L"});
             this.cboInnerUnit.Location = new System.Drawing.Point(811, 152);
-            this.cboInnerUnit.Name = "comboBoxInnerUnit";
+            this.cboInnerUnit.Name = "cboInnerUnit";
             this.cboInnerUnit.Size = new System.Drawing.Size(43, 24);
             this.cboInnerUnit.TabIndex = 20;
             // 
@@ -382,11 +382,11 @@
             this.label6.TabIndex = 17;
             this.label6.Text = "Inner weight/volume";
             // 
-            // TextBoxInnerWeight
+            // tbInnerWeight
             // 
             this.tbInnerWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnerWeight.Location = new System.Drawing.Point(633, 153);
-            this.tbInnerWeight.Name = "TextBoxInnerWeight";
+            this.tbInnerWeight.Name = "tbInnerWeight";
             this.tbInnerWeight.Size = new System.Drawing.Size(172, 23);
             this.tbInnerWeight.TabIndex = 16;
             // 
@@ -400,11 +400,11 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "Inners per Carton";
             // 
-            // TextBoxInnersPerCart
+            // tbInnersPerCart
             // 
             this.tbInnersPerCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnersPerCart.Location = new System.Drawing.Point(633, 127);
-            this.tbInnersPerCart.Name = "TextBoxInnersPerCart";
+            this.tbInnersPerCart.Name = "tbInnersPerCart";
             this.tbInnersPerCart.Size = new System.Drawing.Size(172, 23);
             this.tbInnersPerCart.TabIndex = 14;
             // 
@@ -418,11 +418,11 @@
             this.label4.TabIndex = 13;
             this.label4.Text = "Cartons per Pallet";
             // 
-            // TextBoxCartsPerPallet
+            // tbCartonsPerPallet
             // 
             this.tbCartonsPerPallet.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbCartonsPerPallet.Location = new System.Drawing.Point(633, 101);
-            this.tbCartonsPerPallet.Name = "TextBoxCartsPerPallet";
+            this.tbCartonsPerPallet.Name = "tbCartonsPerPallet";
             this.tbCartonsPerPallet.Size = new System.Drawing.Size(172, 23);
             this.tbCartonsPerPallet.TabIndex = 12;
             // 
@@ -436,11 +436,11 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "Number of Cartons";
             // 
-            // TextBoxTotalCartons
+            // tbTotalCartons
             // 
             this.tbTotalCartons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbTotalCartons.Location = new System.Drawing.Point(633, 75);
-            this.tbTotalCartons.Name = "TextBoxTotalCartons";
+            this.tbTotalCartons.Name = "tbTotalCartons";
             this.tbTotalCartons.Size = new System.Drawing.Size(172, 23);
             this.tbTotalCartons.TabIndex = 10;
             // 
@@ -454,11 +454,11 @@
             this.label2.TabIndex = 9;
             this.label2.Text = "Product Name";
             // 
-            // TextBoxProdName
+            // tbProdName
             // 
             this.tbProdName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbProdName.Location = new System.Drawing.Point(133, 102);
-            this.tbProdName.Name = "TextBoxProdName";
+            this.tbProdName.Name = "tbProdName";
             this.tbProdName.ReadOnly = true;
             this.tbProdName.Size = new System.Drawing.Size(155, 23);
             this.tbProdName.TabIndex = 8;
@@ -517,15 +517,15 @@
             this.label15.TabIndex = 7;
             this.label15.Text = "Sales Order details";
             // 
-            // buttonDelete
+            // btnDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(210, 0);
-            this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(99, 32);
-            this.buttonDelete.TabIndex = 10;
-            this.buttonDelete.Text = "Delete";
-            this.buttonDelete.UseVisualStyleBackColor = true;
-            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            this.btnDelete.Location = new System.Drawing.Point(210, 0);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(99, 32);
+            this.btnDelete.TabIndex = 10;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
             // buttonSetStatus
             // 
@@ -551,16 +551,16 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.buttonSetStatus);
-            this.panel3.Controls.Add(this.buttonDelete);
-            this.panel3.Controls.Add(this.button_edit);
-            this.panel3.Controls.Add(this.button_add);
+            this.panel3.Controls.Add(this.btnDelete);
+            this.panel3.Controls.Add(this.btnEdit);
+            this.panel3.Controls.Add(this.btnAdd);
             this.panel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel3.Location = new System.Drawing.Point(206, 415);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1088, 33);
             this.panel3.TabIndex = 13;
             // 
-            // PalletForm
+            // frmPallet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -569,7 +569,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.button_close);
-            this.Name = "PalletForm";
+            this.Name = "frmPallet";
             this.Text = "EXWOLD PALLET TRACKING";
             this.Load += new System.EventHandler(this.PalletDetailsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();
@@ -585,8 +585,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button_add;
-        private System.Windows.Forms.Button button_edit;
+        private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button_cancel;
         private System.Windows.Forms.Button button_save;
@@ -609,7 +609,7 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.ComboBox cboProdLine;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.MaskedTextBox tbCustomer;

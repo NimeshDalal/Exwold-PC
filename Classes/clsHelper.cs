@@ -153,7 +153,44 @@ namespace ITS.Exwold.Desktop
             }
         }
 
-        
+        internal static int dgvHasColumn(DataGridView dgv, string colName)
+        {
+            if (dgv.Columns.Contains(colName))
+            {
+                return dgv.Columns[colName].Index;
+            }
+            else
+            {
+                return -1;
+            }
+        }
+        internal static bool dgvColumnsVisible(DataGridView dgv, string colName, bool Show)
+        {
+            if (dgv.Columns.Contains(colName))
+            {
+                dgv.Columns[colName].Visible = Show;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        internal static dynamic dgvGetCurrentRowColumn(DataGridView dgv, string colName)
+        {
+            int colIdx = int.MinValue;
+            if (dgv.CurrentRow == null) return null;
+
+            colIdx = dgvHasColumn(dgv, colName);
+            if (colIdx >= 0)
+            {
+                return dgv.CurrentRow.Cells[colIdx].Value;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         #endregion
     }

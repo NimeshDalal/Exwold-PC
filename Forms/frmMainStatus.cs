@@ -29,6 +29,8 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Drawing.Text;
 using ITS.Exwold.Desktop.DataInterface;
+using System.Threading;
+using System.Net;
 
 namespace ITS.Exwold.Desktop
 {
@@ -171,6 +173,7 @@ namespace ITS.Exwold.Desktop
                 //Get the assembly name
                 _assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
                 _plantName = _exwoldConfigSettings.PlantName;
+                
 
                 //Create an instance of the data access class (used throught this app)
                 _db = new execFunction(_pAzure);
@@ -322,7 +325,7 @@ namespace ITS.Exwold.Desktop
             auth.ShowDialog();
             if (auth.Supervisor)
             {
-                frmPallet fPallet = new frmPallet(_db);
+                frmPallet fPallet = new frmPallet(_exwoldConfigSettings, _db);
                 fPallet.ShowDialog();
                 GetLineData();
             }
@@ -334,9 +337,9 @@ namespace ITS.Exwold.Desktop
             auth.ShowDialog();
             if (auth.Supervisor)
             {
-                frmProduct fProduct = new frmProduct(_db);
+                frmProduct fProduct = new frmProduct(_exwoldConfigSettings, _db);
                 fProduct.ShowDialog();
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Open Product Maintenance Form");
+                //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Open Product Maintenance Form");
             }
         }
 
@@ -464,8 +467,6 @@ namespace ITS.Exwold.Desktop
             }
         }
 
- 
-
         private void BackgroundWorkerPrintLabel_DoWork(object sender, DoWorkEventArgs e)
         {
           const string methodName = moduleName + "BackgroundWorkerPrintLabel_DoWork(): ";
@@ -508,8 +509,6 @@ namespace ITS.Exwold.Desktop
           }
         }
 
-
-
         public void ReprintPalletLabel(long PalletNumber)
         {
           messageFromScanner = String.Format("REPRINT:{0}", PalletNumber);
@@ -529,11 +528,117 @@ namespace ITS.Exwold.Desktop
             frmHW.ShowDialog();
         }
 
+
+        #region Testing
         private void btnLabelTest_Click(object sender, EventArgs e)
         {
 
             frmOuterInnerLabels fLabel = new frmOuterInnerLabels(_db, int.Parse(tbLabelTest.Text), _exwoldConfigSettings);
             fLabel.Show();
         }
+        private void mx300n_ScannerRead(object sender, ScannerReadEventArgs a)
+        {
+            Console.WriteLine($"Scanner:{a.IPAddr}, GoodReads:{a.GoodReads}, ReadsTried:{a.ReadsTried}, Raw Date:{a.RawData}");
+        }
+        private void mx300n_ScannerReadStarted(object sender, ScannerReadStatusEventArgs a)
+        {
+            Console.WriteLine("Scanner read start");
+            //tbS1Status.BeginInvoke((Action)delegate ()
+            //{
+            //    tbS1Status.Text = $"{a.Message},{a.Status.ToString()}";
+            //});
+        }
+        private void SubscribeScannerEvents(StandAloneScanner scanner, bool subscribe)
+        {
+            if (subscribe)
+            {
+                scanner.MX300N.ScannerRead += mx300n_ScannerRead;
+                scanner.MX300N.ScannerReadStarted += mx300n_ScannerReadStarted;
+                scanner.MX300N.ScannerReadStopped += mx300n_ScannerReadStopped;
+            }
+            else
+            {
+                scanner.MX300N.ScannerRead -= mx300n_ScannerRead;
+                scanner.MX300N.ScannerReadStarted -= mx300n_ScannerReadStarted;
+                scanner.MX300N.ScannerReadStopped -= mx300n_ScannerReadStopped;
+            }
+        }
+        private void mx300n_ScannerReadStopped(object sender, ScannerReadStatusEventArgs a)
+        {
+            Console.WriteLine("Scanner read stopped");
+            //tbS1Status.Text = $"{a.Message},{a.Status.ToString()}";
+        }
+        internal List<StandAloneScanner> Scanners = new List<StandAloneScanner>();
+        private void btnScannerTest_Init_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine($"No of scanners : {_exwoldConfigSettings.StandAloneScanners.Count}");
+            foreach (StandAloneScannerConfigElement scannerConfig in _exwoldConfigSettings.StandAloneScanners)
+            {
+                Console.WriteLine($"Id:{scannerConfig.Id}, Name:{scannerConfig.Name}");
+                StandAloneScanner scanner = new StandAloneScanner(scannerConfig);
+                Scanners.Add(scanner);
+                SubscribeScannerEvents(scanner, true);
+                scanner.MX300N.CancelMultiRead();
+            }
+        }
+
+        private void btnScannerTest_Start_Click(object sender, EventArgs e)
+        {
+            foreach (StandAloneScanner scanner in Scanners)
+            {
+                scanner.MX300N.multiReadTcpSocket(1000);
+            }
+        }
+
+        private void btnScannerTest_Stop_Click(object sender, EventArgs e)
+        {
+            foreach (StandAloneScanner scanner in Scanners)
+            {
+                try
+                {
+                    scanner.MX300N.CancelMultiRead();
+                }
+                catch(Exception ex)
+                {
+                    Logging.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex.Message);
+                }
+            }
+        }
+        #endregion
     }
+    internal class StandAloneScanner
+    {
+        #region Local Variables
+        private StandAloneScannerConfigElement _configData = null;
+        //private CancellationTokenSource _cts = new CancellationTokenSource();
+        private clsMx300NDataAsync _mx300n = null;
+        #endregion
+        #region Properties
+        public StandAloneScannerConfigElement ConfigData
+        {
+            get { return _configData; }
+            set { _configData = value; }
+        }
+        //public CancellationTokenSource CancellationSource
+        //{
+        //    get { return _cts; }
+        //    set { _cts = value; }
+        //}
+        public clsMx300NDataAsync MX300N
+        {
+            get { return _mx300n; }
+            set { _mx300n = value; }
+        }
+        #endregion
+        internal StandAloneScanner(StandAloneScannerConfigElement ConfigData)
+        {
+            _configData = ConfigData;
+            _mx300n = new clsMx300NDataAsync(IPAddress.Parse(_configData.IpAddr), _configData.Port);
+            _mx300n.LogControl = null;
+            _mx300n.ctrlReads = null;
+            _mx300n.ctrlGoodReads = null;
+            _mx300n.LogControl = null;
+        }
+    }
+
 }
