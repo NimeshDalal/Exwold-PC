@@ -733,7 +733,7 @@
             // tbInnerProductName
             // 
             this.tbInnerProductName.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerProductName.Location = new System.Drawing.Point(169, 22);
+            this.tbInnerProductName.Location = new System.Drawing.Point(169, 112);
             this.tbInnerProductName.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbInnerProductName.MaxLength = 50;
             this.tbInnerProductName.Name = "tbInnerProductName";
@@ -769,7 +769,7 @@
             // tbInnerGTIN
             // 
             this.tbInnerGTIN.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerGTIN.Location = new System.Drawing.Point(169, 112);
+            this.tbInnerGTIN.Location = new System.Drawing.Point(169, 22);
             this.tbInnerGTIN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbInnerGTIN.MaxLength = 15;
             this.tbInnerGTIN.Name = "tbInnerGTIN";

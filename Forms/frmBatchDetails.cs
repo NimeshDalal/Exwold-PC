@@ -208,10 +208,10 @@ namespace ITS.Exwold.Desktop
             if (auth.Supervisor)
             {
                 // set batch ID globals and open palletBatch form
-                frmPallet fPallets = new frmPallet(_exwoldConfigSettings, _db);
-                fPallets.CreateBatchFlag = "Edit";
-                fPallets.CreateBatchID = Convert.ToString(_palletBatchId);
-                fPallets.ShowDialog();
+                frmSalesOrderDetails fSalesOrderDetails = new frmSalesOrderDetails(_exwoldConfigSettings, _db);
+                fSalesOrderDetails.CreateBatchFlag = "Edit";
+                fSalesOrderDetails.CreateBatchID = Convert.ToString(_palletBatchId);
+                fSalesOrderDetails.ShowDialog();
                 const string methodName = moduleName + "buttonEdit_Click(): ";
                 Program.Log.LogMessage(ThreadLog.DebugLevel.Message, methodName + "User clicked Edit for batch " + _palletLabelID);
             }

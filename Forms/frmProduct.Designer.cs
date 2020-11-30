@@ -76,6 +76,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
+            this.lblDoM = new System.Windows.Forms.Label();
+            this.tbDateOfManufacture = new System.Windows.Forms.MaskedTextBox();
+            this.dtpDateOfManufacture = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllProducts)).BeginInit();
             this.pnlProductDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource)).BeginInit();
@@ -95,7 +98,7 @@
             this.dgvAllProducts.ShowCellToolTips = false;
             this.dgvAllProducts.ShowEditingIcon = false;
             this.dgvAllProducts.ShowRowErrors = false;
-            this.dgvAllProducts.Size = new System.Drawing.Size(1500, 400);
+            this.dgvAllProducts.Size = new System.Drawing.Size(1472, 400);
             this.dgvAllProducts.TabIndex = 0;
             this.dgvAllProducts.TabStop = false;
             this.dgvAllProducts.SelectionChanged += new System.EventHandler(this.dgvAllProducts_SelectionChanged);
@@ -124,7 +127,10 @@
             // 
             // pnlProductDetails
             // 
+            this.pnlProductDetails.Controls.Add(this.dtpDateOfManufacture);
+            this.pnlProductDetails.Controls.Add(this.lblDoM);
             this.pnlProductDetails.Controls.Add(this.lblInnerGTIN);
+            this.pnlProductDetails.Controls.Add(this.tbDateOfManufacture);
             this.pnlProductDetails.Controls.Add(this.tbInnerGTIN);
             this.pnlProductDetails.Controls.Add(this.label18);
             this.pnlProductDetails.Controls.Add(this.tbInnerPackStyle);
@@ -187,7 +193,7 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(471, 214);
+            this.label18.Location = new System.Drawing.Point(413, 214);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(110, 17);
             this.label18.TabIndex = 38;
@@ -196,16 +202,16 @@
             // tbInnerPackStyle
             // 
             this.tbInnerPackStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerPackStyle.Location = new System.Drawing.Point(610, 211);
+            this.tbInnerPackStyle.Location = new System.Drawing.Point(552, 211);
             this.tbInnerPackStyle.Name = "tbInnerPackStyle";
-            this.tbInnerPackStyle.Size = new System.Drawing.Size(172, 23);
+            this.tbInnerPackStyle.Size = new System.Drawing.Size(289, 23);
             this.tbInnerPackStyle.TabIndex = 28;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(945, 165);
+            this.label17.Location = new System.Drawing.Point(945, 188);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(45, 17);
             this.label17.TabIndex = 36;
@@ -214,7 +220,7 @@
             // tbNotes
             // 
             this.tbNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNotes.Location = new System.Drawing.Point(1132, 159);
+            this.tbNotes.Location = new System.Drawing.Point(1132, 185);
             this.tbNotes.Name = "tbNotes";
             this.tbNotes.Size = new System.Drawing.Size(133, 23);
             this.tbNotes.TabIndex = 35;
@@ -222,20 +228,20 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(471, 22);
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(413, 22);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(104, 17);
+            this.label14.Size = new System.Drawing.Size(132, 20);
             this.label14.TabIndex = 34;
             this.label14.Text = "Product Details";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(52, 22);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(115, 17);
+            this.label13.Size = new System.Drawing.Size(147, 20);
             this.label13.TabIndex = 33;
             this.label13.Text = "Customer Details";
             // 
@@ -297,7 +303,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(945, 136);
+            this.label9.Location = new System.Drawing.Point(945, 162);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(166, 17);
             this.label9.TabIndex = 26;
@@ -306,7 +312,7 @@
             // tbClientCode
             // 
             this.tbClientCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbClientCode.Location = new System.Drawing.Point(1132, 133);
+            this.tbClientCode.Location = new System.Drawing.Point(1132, 159);
             this.tbClientCode.Name = "tbClientCode";
             this.tbClientCode.Size = new System.Drawing.Size(133, 23);
             this.tbClientCode.TabIndex = 34;
@@ -315,7 +321,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(945, 110);
+            this.label8.Location = new System.Drawing.Point(945, 136);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(144, 17);
             this.label8.TabIndex = 24;
@@ -324,7 +330,7 @@
             // tbCompanyCode
             // 
             this.tbCompanyCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCompanyCode.Location = new System.Drawing.Point(1132, 107);
+            this.tbCompanyCode.Location = new System.Drawing.Point(1132, 133);
             this.tbCompanyCode.Name = "tbCompanyCode";
             this.tbCompanyCode.Size = new System.Drawing.Size(133, 23);
             this.tbCompanyCode.TabIndex = 33;
@@ -359,7 +365,7 @@
             this.cboInnerUnit.Items.AddRange(new object[] {
             "Kg",
             "L"});
-            this.cboInnerUnit.Location = new System.Drawing.Point(788, 184);
+            this.cboInnerUnit.Location = new System.Drawing.Point(844, 184);
             this.cboInnerUnit.Name = "cboInnerUnit";
             this.cboInnerUnit.Size = new System.Drawing.Size(43, 24);
             this.cboInnerUnit.TabIndex = 27;
@@ -368,7 +374,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(471, 188);
+            this.label6.Location = new System.Drawing.Point(413, 188);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(133, 17);
             this.label6.TabIndex = 17;
@@ -377,16 +383,16 @@
             // tbInnerWeight
             // 
             this.tbInnerWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerWeight.Location = new System.Drawing.Point(610, 185);
+            this.tbInnerWeight.Location = new System.Drawing.Point(552, 185);
             this.tbInnerWeight.Name = "tbInnerWeight";
-            this.tbInnerWeight.Size = new System.Drawing.Size(172, 23);
+            this.tbInnerWeight.Size = new System.Drawing.Size(289, 23);
             this.tbInnerWeight.TabIndex = 26;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(471, 159);
+            this.label5.Location = new System.Drawing.Point(413, 159);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(118, 17);
             this.label5.TabIndex = 15;
@@ -395,16 +401,16 @@
             // tbInnersPerCart
             // 
             this.tbInnersPerCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnersPerCart.Location = new System.Drawing.Point(610, 159);
+            this.tbInnersPerCart.Location = new System.Drawing.Point(552, 159);
             this.tbInnersPerCart.Name = "tbInnersPerCart";
-            this.tbInnersPerCart.Size = new System.Drawing.Size(172, 23);
+            this.tbInnersPerCart.Size = new System.Drawing.Size(289, 23);
             this.tbInnersPerCart.TabIndex = 25;
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(471, 136);
+            this.label4.Location = new System.Drawing.Point(413, 136);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(121, 17);
             this.label4.TabIndex = 13;
@@ -413,9 +419,9 @@
             // tbCartsPerPallet
             // 
             this.tbCartsPerPallet.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCartsPerPallet.Location = new System.Drawing.Point(610, 133);
+            this.tbCartsPerPallet.Location = new System.Drawing.Point(552, 133);
             this.tbCartsPerPallet.Name = "tbCartsPerPallet";
-            this.tbCartsPerPallet.Size = new System.Drawing.Size(172, 23);
+            this.tbCartsPerPallet.Size = new System.Drawing.Size(289, 23);
             this.tbCartsPerPallet.TabIndex = 24;
             this.tbCartsPerPallet.Text = "0";
             // 
@@ -423,7 +429,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(471, 110);
+            this.label3.Location = new System.Drawing.Point(413, 110);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(130, 17);
             this.label3.TabIndex = 11;
@@ -432,9 +438,9 @@
             // tbDefaultCartons
             // 
             this.tbDefaultCartons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDefaultCartons.Location = new System.Drawing.Point(610, 107);
+            this.tbDefaultCartons.Location = new System.Drawing.Point(552, 107);
             this.tbDefaultCartons.Name = "tbDefaultCartons";
-            this.tbDefaultCartons.Size = new System.Drawing.Size(172, 23);
+            this.tbDefaultCartons.Size = new System.Drawing.Size(289, 23);
             this.tbDefaultCartons.TabIndex = 23;
             this.tbDefaultCartons.Text = "0";
             // 
@@ -442,7 +448,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(471, 84);
+            this.label2.Location = new System.Drawing.Point(413, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(79, 17);
             this.label2.TabIndex = 9;
@@ -451,16 +457,16 @@
             // tbProdName
             // 
             this.tbProdName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbProdName.Location = new System.Drawing.Point(610, 81);
+            this.tbProdName.Location = new System.Drawing.Point(552, 81);
             this.tbProdName.Name = "tbProdName";
-            this.tbProdName.Size = new System.Drawing.Size(172, 23);
+            this.tbProdName.Size = new System.Drawing.Size(289, 23);
             this.tbProdName.TabIndex = 22;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(471, 58);
+            this.label1.Location = new System.Drawing.Point(413, 58);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 17);
             this.label1.TabIndex = 7;
@@ -469,9 +475,9 @@
             // tbProdCode
             // 
             this.tbProdCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbProdCode.Location = new System.Drawing.Point(610, 55);
+            this.tbProdCode.Location = new System.Drawing.Point(552, 55);
             this.tbProdCode.Name = "tbProdCode";
-            this.tbProdCode.Size = new System.Drawing.Size(172, 23);
+            this.tbProdCode.Size = new System.Drawing.Size(289, 23);
             this.tbProdCode.TabIndex = 21;
             // 
             // btnCancel
@@ -576,6 +582,36 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
+            // lblDoM
+            // 
+            this.lblDoM.AutoSize = true;
+            this.lblDoM.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDoM.Location = new System.Drawing.Point(945, 110);
+            this.lblDoM.Name = "lblDoM";
+            this.lblDoM.Size = new System.Drawing.Size(140, 17);
+            this.lblDoM.TabIndex = 40;
+            this.lblDoM.Text = "Date Of Manufacture";
+            // 
+            // tbDateOfManufacture
+            // 
+            this.tbDateOfManufacture.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbDateOfManufacture.Location = new System.Drawing.Point(1132, 107);
+            this.tbDateOfManufacture.Mask = "00/00/0000";
+            this.tbDateOfManufacture.Name = "tbDateOfManufacture";
+            this.tbDateOfManufacture.Size = new System.Drawing.Size(133, 23);
+            this.tbDateOfManufacture.TabIndex = 32;
+            this.tbDateOfManufacture.ValidatingType = typeof(System.DateTime);
+            // 
+            // dtpDateOfManufacture
+            // 
+            this.dtpDateOfManufacture.CustomFormat = "dd-MMM-yyyy";
+            this.dtpDateOfManufacture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDateOfManufacture.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDateOfManufacture.Location = new System.Drawing.Point(1132, 20);
+            this.dtpDateOfManufacture.Name = "dtpDateOfManufacture";
+            this.dtpDateOfManufacture.Size = new System.Drawing.Size(133, 22);
+            this.dtpDateOfManufacture.TabIndex = 41;
+            // 
             // frmProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -650,6 +686,9 @@
         private System.Windows.Forms.Label lblInnerGTIN;
         private System.Windows.Forms.MaskedTextBox tbInnerGTIN;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Label lblDoM;
+        private System.Windows.Forms.MaskedTextBox tbDateOfManufacture;
+        private System.Windows.Forms.DateTimePicker dtpDateOfManufacture;
     }
 }
 

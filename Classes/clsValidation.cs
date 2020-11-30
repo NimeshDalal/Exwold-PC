@@ -134,15 +134,25 @@ namespace ITS.Exwold.Desktop
             }
             if (CheckType == "ProdLine")
             {
-                bool containsLetter = Regex.IsMatch(CheckString, "[123]");
+                bool containsLetter = Regex.IsMatch(CheckString, "[0123456789]");
                 if (containsLetter == false)
                 {
-                    MessageBox.Show(DisplayString + " Must be 1, 2 or 3");
-                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), DisplayString + " not 1, 2 or 3");
+                    MessageBox.Show(DisplayString + " Must be 1,2,3,4,5 or 6");
+                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), DisplayString + " not 1,2,3,4,5 or 6");
 
                     return true;
                 }
 
+            }
+            if (CheckType == "DateTime")
+            {
+                DateTime dt;
+                if (!DateTime.TryParse(DisplayString, out dt))
+                {
+                    MessageBox.Show($"{DisplayString} Must a valid date");
+                    return false;
+                }
+                return true;
             }
             if (Canbe0 == "No")
             {

@@ -325,8 +325,8 @@ namespace ITS.Exwold.Desktop
             auth.ShowDialog();
             if (auth.Supervisor)
             {
-                frmPallet fPallet = new frmPallet(_exwoldConfigSettings, _db);
-                fPallet.ShowDialog();
+                frmSalesOrderDetails fSalesOrderDetails = new frmSalesOrderDetails(_exwoldConfigSettings, _db);
+                fSalesOrderDetails.ShowDialog();
                 GetLineData();
             }
         }

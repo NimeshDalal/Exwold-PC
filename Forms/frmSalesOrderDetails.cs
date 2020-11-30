@@ -22,7 +22,7 @@ using System.Windows.Forms;
 
 namespace ITS.Exwold.Desktop
 {
-    public partial class frmPallet : Form
+    public partial class frmSalesOrderDetails : Form
     {
         #region Local variables
         //Data variables
@@ -46,7 +46,7 @@ namespace ITS.Exwold.Desktop
             set { _db = value; }
         }
         #endregion
-        public frmPallet(ExwoldConfigSettings ExwoldConfigSettings, DataInterface.execFunction database)
+        public frmSalesOrderDetails(ExwoldConfigSettings ExwoldConfigSettings, DataInterface.execFunction database)
         {
             InitializeComponent();
             _db = database;
@@ -62,77 +62,37 @@ namespace ITS.Exwold.Desktop
             this.FormBorderStyle = FormBorderStyle.None;
             this.WindowState = FormWindowState.Maximized;
 #endif
-            await PopulateOrdersGrid();
-            this.dgvOrders.Columns[2].Visible = false;
+            
 
+            // Populated the combo boxes
+            getProductionLines(_exwoldConfigSettings.PlantID);
+            getOrderStatus();
+            
             //do this if opened from Products page ***********UPDATE**************
-
             switch (CreateBatchFlag)
             {
-                case "Create":
+                case "Create":  //Called from the products form
                     {
-                        ProductID = Convert.ToInt32(CreateBatchID);
+                        ProductID = int.Parse(CreateBatchID);
                         btnAdd.PerformClick();
                         Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Form Loaded from Create Pallet Batch Button");
                         break;
                     }
-                case "Edit":
+                case "Edit":    // Called from the Batch details form
                     {
-                        BatchID = Convert.ToInt32(CreateBatchID);
+                        BatchID = int.Parse(CreateBatchID);
                         btnEdit.PerformClick();
                         Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Form Loaded from Edit Pallet Batch Button");
                         break;
                     }
+                default:
+                    {
+                        getIncompleteOrders();
+                        break;
+                    }
             }
         }
-
-        private async Task<DataTable> PopulateOrdersGrid()
-        {
-            _db.QueryParameters.Clear();
-            _db.QueryParameters.Add("Plant", _exwoldConfigSettings.PlantID.ToString());
-            //Get the data
-            DataTable dt = await _db.executeSP("[GUI].[getIncompleteOrders]", null);
-            this.dgvOrders.DataSource = dt;
-
-            return dt;
-            //Mesh Remove
-            //string sql = "SELECT PalletBatchNo AS SalesOrder, * FROM data.PalletBatch WHERE status <> 4 and status <> 5 and ChangeAction <> 'Delete'";
-            //DataTable dt = Program.ExwoldDb.ExecuteQuery(sql);
-        }
-
-        private async Task<DataTable> GetPalletBatch(int BatchId)
-        {
-            _db.QueryParameters.Clear();
-            _db.QueryParameters.Add("@PalletBatchId", BatchId.ToString());
-            //Get the data
-            return await _db.executeSP("[GUI].[getPalletBatchById]", true);
-
-            //Mesh Remove
-            //sql = "SELECT * FROM Data.PalletBatch WHERE PalletBatchUniqueNo = " + BatchID;
-            //DataTable dtCurrentProduct = Program.ExwoldDb.ExecuteQuery(sql);
-        }
-
-        private void EnableTextBoxes(bool enabled)
-        { 
-            tbCustomer.Enabled = enabled;
-            tbProdCode.Enabled = enabled;
-            tbProdName.Enabled = enabled;
-            tbTotalCartons.Enabled = enabled;
-            tbCartonsPerPallet.Enabled = enabled;
-            tbInnersPerCart.Enabled = enabled;
-            tbInnerWeight.Enabled = enabled;
-            cboInnerUnit.Enabled = enabled;
-            TextBoxPalletBatchNo.Enabled = enabled;
-            cboProdLine.Enabled = enabled;
-            tbNotes.Enabled = enabled;
-            buttonEnableStatus.Visible = enabled;
-        }
-
-        private void button_close_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
+        #region Button Event handlers
         private async void btnAdd_Click(object sender, EventArgs e)
         {
             //Set update type for save button, and open input panel
@@ -141,21 +101,23 @@ namespace ITS.Exwold.Desktop
                 case "Create":  //means dialogue has been opened from products page, continue
                     {
                         UpdateType = "Add";
-                        this.panel1.Visible = true;
+                        this.pnlTextBoxes.Visible = true;
                         this.buttonEnableStatus.Visible = false;
-                        this.button_save.Text = "Save";
+                        btnSave.Text = "Save";
 
                         _db.QueryParameters.Clear();
                         _db.QueryParameters.Add("ProductId", ProductID.ToString());
                         //Get the data
                         DataTable dtCurrentProduct = await _db.executeSP("[GUI].[getProductById]", true);
-
+                        dgvOrders.DataSource = dtCurrentProduct;
                         //Mesh remove
                         //sql = "SELECT * FROM Config.Products WHERE ProductUniqueNo = " + ProductID;
                         //DataTable dtCurrentProduct = Program.ExwoldDb.ExecuteQuery(sql);
 
                         tbCustomer.Text = dtCurrentProduct.Rows[0]["Customer"].ToString();
                         tbDetails.Text = dtCurrentProduct.Rows[0]["CustomerDetails"].ToString();
+                        tbPlant.Text = dtCurrentProduct.Rows[0]["Plant"].ToString();
+
                         tbGMID.Text = dtCurrentProduct.Rows[0]["GMID"].ToString();
                         tbProdCode.Text = dtCurrentProduct.Rows[0]["ProductCode"].ToString();
                         tbProdName.Text = dtCurrentProduct.Rows[0]["ProductName"].ToString();
@@ -166,9 +128,11 @@ namespace ITS.Exwold.Desktop
                         cboInnerUnit.Text = dtCurrentProduct.Rows[0]["UnitsOfMeasure"].ToString();
                         tbInnerPackStyle.Text = dtCurrentProduct.Rows[0]["PH2_InnerPackStylePackStyle"].ToString();
                         tbGTIN.Text = dtCurrentProduct.Rows[0]["GTIN"].ToString();
+                        tbInnerGTIN.Text = dtCurrentProduct.Rows[0]["InnerGTIN"].ToString();
                         tbCompanyCode.Text = dtCurrentProduct.Rows[0]["SsccCompanyCode"].ToString();
                         tbClientCode.Text = dtCurrentProduct.Rows[0]["SsccProductionLineCustomerCode"].ToString();
                         tbNotes.Text = dtCurrentProduct.Rows[0]["AdditionalInfo"].ToString();
+                        tbDateOfManufacture.Text = dtCurrentProduct.Rows[0]["DateOfManufacture"].ToString();
 
                         cboStatus.Visible = false;
                         lblStatus.Visible = false;
@@ -186,7 +150,180 @@ namespace ITS.Exwold.Desktop
                     }
             }
         }
+        private async void btnEdit_Click(object sender, EventArgs e)
+        {
+            //enable input panel and populate from selected row in datagrid. Set update type for save button
+            if (CreateBatchFlag != "Edit")
+            {
+                if (dgvOrders.CurrentRow != null && dgvOrders.CurrentRow.Cells[1] != null)
+                {
+                    BatchID = int.Parse(Helper.dgvGetCurrentRowColumn(dgvOrders, "PalletBatchUniqueNo").ToString());
+                }
+                else
+                {
+                    CreateBatchFlag = "";
+                    MessageBox.Show("No Sales Order Selected");
+                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Attempt to edit blank Sales Order" + BatchID);
+                    return;
+                }
+            }
+            UpdateType = "Edit";
+            btnSave.Text = "Update";
+            pnlTextBoxes.Visible = true;
+            CreateBatchFlag = "";
 
+            DataTable dtCurrentProduct = await GetPalletBatch(BatchID);
+            //dgvOrders.DataSource = dtCurrentProduct;
+
+            tbCustomer.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "Customer").ToString();
+            tbProdCode.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "ProductCode").ToString();
+            tbProdName.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "ProductName").ToString();
+            tbTotalCartons.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "TotalNoOfCartons").ToString();
+            tbCartonsPerPallet.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "CartonsPerPallet").ToString();
+            tbInnersPerCart.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "InnerPacksPerCarton").ToString();
+            tbInnerWeight.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "InnerPackWeightOrVolume").ToString();
+            TextBoxPalletBatchNo.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "PalletBatchNo").ToString();
+            tbNotes.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "AdditionalInfo").ToString();
+
+            cboInnerUnit.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "UnitsOfMeasure").ToString();
+            int idx;
+            try
+            {
+                int.TryParse(Helper.dgvGetCurrentRowColumn(dgvOrders, "ProductionLineNo").ToString(), out idx);
+                cboProdLine.SelectedValue = idx;
+            }
+            catch
+            {
+                cboProdLine.SelectedValue = -1;
+            }
+            try
+            {
+                int.TryParse(Helper.dgvGetCurrentRowColumn(dgvOrders, "Status").ToString(), out idx);
+                cboStatus.SelectedValue = idx;
+            }
+            catch
+            {
+                cboStatus.SelectedValue = -1;
+            }
+            string str = Helper.dgvGetCurrentRowColumn(dgvOrders, "UnitsOfMeasure").ToString().Trim();
+            cboInnerUnit.SelectedIndex = cboInnerUnit.FindString(Helper.dgvGetCurrentRowColumn(dgvOrders, "UnitsOfMeasure").ToString().Trim());
+
+
+
+            //DataTable dtCurrentProduct = await GetPalletBatch(BatchID);
+
+            ////Mesh Remove
+            ////sql = "SELECT * FROM Data.PalletBatch WHERE PalletBatchUniqueNo = " + BatchID;
+            ////DataTable dtCurrentProduct = Program.ExwoldDb.ExecuteQuery(sql);
+
+            //tbCustomer.Text = dtCurrentProduct.Rows[0]["Customer"].ToString();
+            //tbProdCode.Text = dtCurrentProduct.Rows[0]["ProductCode"].ToString();
+            //tbProdName.Text = dtCurrentProduct.Rows[0]["ProductName"].ToString();
+            //tbTotalCartons.Text = dtCurrentProduct.Rows[0]["TotalNoOfCartons"].ToString();
+            //tbCartonsPerPallet.Text = dtCurrentProduct.Rows[0]["CartonsPerPallet"].ToString();
+            //tbInnersPerCart.Text = dtCurrentProduct.Rows[0]["InnerPacksPerCarton"].ToString();
+            //tbInnerWeight.Text = dtCurrentProduct.Rows[0]["InnerPackWeightOrVolume"].ToString();
+            //cboInnerUnit.Text = dtCurrentProduct.Rows[0]["UnitsOfMeasure"].ToString();
+            //TextBoxPalletBatchNo.Text = dtCurrentProduct.Rows[0]["PalletBatchNo"].ToString();
+            //cboProdLine.Text = dtCurrentProduct.Rows[0]["ProductionLineNo"].ToString();
+
+            //tbNotes.Text = dtCurrentProduct.Rows[0]["AdditionalInfo"].ToString();
+            //cboStatus.SelectedValue = dtCurrentProduct.Rows[0]["Status"].ToString();
+
+            //Warn user if batch is In-Progress
+            if (Convert.ToString(cboStatus.SelectedValue) == "1")
+            {
+                MessageBox.Show("WARNING - Pallet Batch is In-Progress" + Environment.NewLine + "" + Environment.NewLine + "You cannot edit this batch unless the status is changed.");
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "In-Progress Pallet Batch opened to edit " + BatchID);
+
+                cboStatus.Enabled = false;
+                EnableTextBoxes(false);
+
+                //Mesh Remove
+                //cboStatus.Enabled = false;
+                //tbCustomer.Enabled = false;
+                //tbProdCode.Enabled = false;
+                //tbProdName.Enabled = false;
+                //tbTotalCartons.Enabled = false;
+                //tbCartonsPerPallet.Enabled = false;
+                //tbInnersPerCart.Enabled = false;
+                //tbInnerWeight.Enabled = false;
+                //cboInnerUnit.Enabled = false;
+                //TextBoxPalletBatchNo.Enabled = false;
+                //cboProdLine.Enabled = false;
+                //tbNotes.Enabled = false;
+            }
+            else
+            {
+                cboStatus.Enabled = false;
+                EnableTextBoxes(true);
+                //Mesh Remove
+                //tbCustomer.Enabled = true;
+                //tbProdCode.Enabled = true;
+                //tbProdName.Enabled = true;
+                //tbTotalCartons.Enabled = true;
+                //tbCartonsPerPallet.Enabled = true;
+                //tbInnersPerCart.Enabled = true;
+                //tbInnerWeight.Enabled = true;
+                //cboInnerUnit.Enabled = true;
+                //TextBoxPalletBatchNo.Enabled = true;
+                //cboProdLine.Enabled = true;
+                //tbNotes.Enabled = true;
+            }
+        }
+        private async void btnDelete_Click(object sender, EventArgs e)
+        {
+            {
+                //Set update type for save button, and open input panel
+                UpdateType = "Delete";
+                this.pnlTextBoxes.Visible = true;
+                this.btnSave.Text = "Delete";
+                BatchID = int.Parse(Helper.dgvGetCurrentRowColumn(dgvOrders, "PalletBatchUniqueNo").ToString());
+                //Convert.ToInt32(dgvOrders.CurrentRow.Cells[1].Value);
+
+                DataTable dtCurrentProduct = await GetPalletBatch(BatchID);
+                //Mesh Remove
+                //sql = "SELECT * FROM Data.PalletBatch WHERE PalletBatchUniqueNo = " + BatchID;
+                //DataTable dtCurrentProduct = Program.ExwoldDb.ExecuteQuery(sql);
+
+
+                tbCustomer.Text = dtCurrentProduct.Rows[0]["Customer"].ToString();
+                tbProdCode.Text = dtCurrentProduct.Rows[0]["ProductCode"].ToString();
+                tbProdName.Text = dtCurrentProduct.Rows[0]["ProductName"].ToString();
+                tbTotalCartons.Text = dtCurrentProduct.Rows[0]["TotalNoOfCartons"].ToString();
+                tbCartonsPerPallet.Text = dtCurrentProduct.Rows[0]["CartonsPerPallet"].ToString();
+                tbInnersPerCart.Text = dtCurrentProduct.Rows[0]["InnerPacksPerCarton"].ToString();
+                tbInnerWeight.Text = dtCurrentProduct.Rows[0]["InnerPackWeightOrVolume"].ToString();
+                cboInnerUnit.Text = dtCurrentProduct.Rows[0]["UnitsOfMeasure"].ToString();
+                TextBoxPalletBatchNo.Text = dtCurrentProduct.Rows[0]["PalletBatchNo"].ToString();
+                cboProdLine.Text = dtCurrentProduct.Rows[0]["ProductionLineNo"].ToString();
+                tbNotes.Text = dtCurrentProduct.Rows[0]["AdditionalInfo"].ToString();
+                cboStatus.SelectedValue = dtCurrentProduct.Rows[0]["Status"].ToString();
+
+                status = Convert.ToInt16(cboStatus.SelectedValue);
+
+                cboStatus.Enabled = false;
+                EnableTextBoxes(false);
+
+                //Mesh Remove
+                //tbCustomer.Enabled = false;
+                //tbProdCode.Enabled = false;
+                //tbProdName.Enabled = false;
+                //tbTotalCartons.Enabled = false;
+                //tbCartonsPerPallet.Enabled = false;
+                //tbInnersPerCart.Enabled = false;
+                //tbInnerWeight.Enabled = false;
+                //cboInnerUnit.Enabled = false;
+                //TextBoxPalletBatchNo.Enabled = false;
+                //cboProdLine.Enabled = false;
+                //tbNotes.Enabled = false;
+                //buttonEnableStatus.Visible = false;
+            }
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         private async void btnSave_Click(object sender, EventArgs e)
         {
             #region Do data validation
@@ -228,7 +365,6 @@ namespace ITS.Exwold.Desktop
             {
                 DoAdd = "no";
             }
-
             if (await chk.ValidateInput(cboProdLine.Text, "Production Line", "ProdLine"))
             {
                 DoAdd = "no";
@@ -277,8 +413,8 @@ namespace ITS.Exwold.Desktop
                         //NoRows = Program.ExwoldDb.ExecuteNonQuery(sql);
 
                         // Re-Populate Datagrid                        
-                        await PopulateOrdersGrid();
-                        this.panel1.Visible = false;
+                        getIncompleteOrders();
+                        this.pnlTextBoxes.Visible = false;
 
                         //error checking - remove or update for logging
                         switch (NoRows)
@@ -369,8 +505,8 @@ namespace ITS.Exwold.Desktop
                         //NoRows = Program.ExwoldDb.ExecuteNonQuery(sql);
 
                         // Re-Populate Datagrid                        
-                        await PopulateOrdersGrid();
-                        this.panel1.Visible = false;
+                        getIncompleteOrders();
+                        this.pnlTextBoxes.Visible = false;
                         CreateBatchFlag = "False";
 
                         switch (NoRows)
@@ -417,8 +553,8 @@ namespace ITS.Exwold.Desktop
                         //NoRows = Program.ExwoldDb.ExecuteNonQuery(sql);
 
                         // Re-Populate Datagrid                        
-                        await PopulateOrdersGrid();
-                        this.panel1.Visible = false;
+                        getIncompleteOrders();
+                        this.pnlTextBoxes.Visible = false;
 
                         // logging 
                         switch (NoRows)
@@ -446,161 +582,26 @@ namespace ITS.Exwold.Desktop
                     break;
             }
         }
-
-        private async void button_edit_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Opens Pallet details form for highlighted batch
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnSetStatus_Click(object sender, EventArgs e)
         {
-            //enable input panel and populate from selected row in datagrid. Set update type for save button
-            if (CreateBatchFlag != "Edit")
-            {
-                if (dgvOrders.CurrentRow != null
-                     && dgvOrders.CurrentRow.Cells[1] != null)
-                {
-                    BatchID = Convert.ToInt32(dgvOrders.CurrentRow.Cells[1].Value);
-                }
-                else
-                {
-                    CreateBatchFlag = "";
-                    MessageBox.Show("No Sales Order Selected");
-                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Attempt to edit blank Sales Order" + BatchID);
-                    return;
-                }
-            }
-            UpdateType = "Edit";
-            this.button_save.Text = "Update";
-            this.panel1.Visible = true;
-            CreateBatchFlag = "";
-
-            DataTable dtCurrentProduct = await GetPalletBatch(BatchID);
-
-            //Mesh Remove
-            //sql = "SELECT * FROM Data.PalletBatch WHERE PalletBatchUniqueNo = " + BatchID;
-            //DataTable dtCurrentProduct = Program.ExwoldDb.ExecuteQuery(sql);
-
-            tbCustomer.Text = dtCurrentProduct.Rows[0]["Customer"].ToString();
-            tbProdCode.Text = dtCurrentProduct.Rows[0]["ProductCode"].ToString();
-            tbProdName.Text = dtCurrentProduct.Rows[0]["ProductName"].ToString();
-            tbTotalCartons.Text = dtCurrentProduct.Rows[0]["TotalNoOfCartons"].ToString();
-            tbCartonsPerPallet.Text = dtCurrentProduct.Rows[0]["CartonsPerPallet"].ToString();
-            tbInnersPerCart.Text = dtCurrentProduct.Rows[0]["InnerPacksPerCarton"].ToString();
-            tbInnerWeight.Text = dtCurrentProduct.Rows[0]["InnerPackWeightOrVolume"].ToString();
-            cboInnerUnit.Text = dtCurrentProduct.Rows[0]["UnitsOfMeasure"].ToString();
-            TextBoxPalletBatchNo.Text = dtCurrentProduct.Rows[0]["PalletBatchNo"].ToString();
-            cboProdLine.Text = dtCurrentProduct.Rows[0]["ProductionLineNo"].ToString();
-            tbNotes.Text = dtCurrentProduct.Rows[0]["AdditionalInfo"].ToString();
-            cboStatus.SelectedValue = dtCurrentProduct.Rows[0]["Status"].ToString();
-
-            //Warn user if batch is In-Progress
-            if (Convert.ToString(cboStatus.SelectedValue) == "1")
-            {
-                MessageBox.Show("WARNING - Pallet Batch is In-Progress" + Environment.NewLine + "" + Environment.NewLine + "You cannot edit this batch unless the status is changed.");
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "In-Progress Pallet Batch opened to edit " + BatchID);
-
-                cboStatus.Enabled = false;
-                EnableTextBoxes(false);
-
-                //Mesh Remove
-                //cboStatus.Enabled = false;
-                //tbCustomer.Enabled = false;
-                //tbProdCode.Enabled = false;
-                //tbProdName.Enabled = false;
-                //tbTotalCartons.Enabled = false;
-                //tbCartonsPerPallet.Enabled = false;
-                //tbInnersPerCart.Enabled = false;
-                //tbInnerWeight.Enabled = false;
-                //cboInnerUnit.Enabled = false;
-                //TextBoxPalletBatchNo.Enabled = false;
-                //cboProdLine.Enabled = false;
-                //tbNotes.Enabled = false;
-            }
-            else 
-            {
-                cboStatus.Enabled = false;
-                EnableTextBoxes(true);
-                //Mesh Remove
-                //tbCustomer.Enabled = true;
-                //tbProdCode.Enabled = true;
-                //tbProdName.Enabled = true;
-                //tbTotalCartons.Enabled = true;
-                //tbCartonsPerPallet.Enabled = true;
-                //tbInnersPerCart.Enabled = true;
-                //tbInnerWeight.Enabled = true;
-                //cboInnerUnit.Enabled = true;
-                //TextBoxPalletBatchNo.Enabled = true;
-                //cboProdLine.Enabled = true;
-                //tbNotes.Enabled = true;
-            }
-        }
-
-        private async void buttonDelete_Click(object sender, EventArgs e)
-        {
-            {
-                //Set update type for save button, and open input panel
-                UpdateType = "Delete";
-                this.panel1.Visible = true;
-                this.button_save.Text = "Delete";
-                BatchID = Convert.ToInt32(dgvOrders.CurrentRow.Cells[1].Value);
-
-                DataTable dtCurrentProduct = await GetPalletBatch(BatchID);
-                //Mesh Remove
-                //sql = "SELECT * FROM Data.PalletBatch WHERE PalletBatchUniqueNo = " + BatchID;
-                //DataTable dtCurrentProduct = Program.ExwoldDb.ExecuteQuery(sql);
-
-
-                tbCustomer.Text = dtCurrentProduct.Rows[0]["Customer"].ToString();
-                tbProdCode.Text = dtCurrentProduct.Rows[0]["ProductCode"].ToString();
-                tbProdName.Text = dtCurrentProduct.Rows[0]["ProductName"].ToString();
-                tbTotalCartons.Text = dtCurrentProduct.Rows[0]["TotalNoOfCartons"].ToString();
-                tbCartonsPerPallet.Text = dtCurrentProduct.Rows[0]["CartonsPerPallet"].ToString();
-                tbInnersPerCart.Text = dtCurrentProduct.Rows[0]["InnerPacksPerCarton"].ToString();
-                tbInnerWeight.Text = dtCurrentProduct.Rows[0]["InnerPackWeightOrVolume"].ToString();
-                cboInnerUnit.Text = dtCurrentProduct.Rows[0]["UnitsOfMeasure"].ToString();
-                TextBoxPalletBatchNo.Text = dtCurrentProduct.Rows[0]["PalletBatchNo"].ToString();
-                cboProdLine.Text = dtCurrentProduct.Rows[0]["ProductionLineNo"].ToString();
-                tbNotes.Text = dtCurrentProduct.Rows[0]["AdditionalInfo"].ToString();
-                cboStatus.SelectedValue = dtCurrentProduct.Rows[0]["Status"].ToString();
-                
-                status = Convert.ToInt16(cboStatus.SelectedValue);
-
-                cboStatus.Enabled = false;
-                EnableTextBoxes(false);
-
-                //Mesh Remove
-                //tbCustomer.Enabled = false;
-                //tbProdCode.Enabled = false;
-                //tbProdName.Enabled = false;
-                //tbTotalCartons.Enabled = false;
-                //tbCartonsPerPallet.Enabled = false;
-                //tbInnersPerCart.Enabled = false;
-                //tbInnerWeight.Enabled = false;
-                //cboInnerUnit.Enabled = false;
-                //TextBoxPalletBatchNo.Enabled = false;
-                //cboProdLine.Enabled = false;
-                //tbNotes.Enabled = false;
-                //buttonEnableStatus.Visible = false;
-            }
-        }
-
-       /// <summary>
-       /// Opens Pallet details form for highlighted batch
-       /// </summary>
-       /// <param name="sender"></param>
-       /// <param name="e"></param>
-       private void buttonSetStatus_Click(object sender, EventArgs e)
-        {
-            BatchID = Convert.ToInt32(dgvOrders.CurrentRow.Cells[1].Value);
+            BatchID = int.Parse(Helper.dgvGetCurrentRowColumn(dgvOrders, "PalletBatchUniqueNo").ToString());
 
             frmBatchDetails fBatchDetail = new frmBatchDetails(_exwoldConfigSettings, _db);
             fBatchDetail.ViewBatch = true;
             fBatchDetail.PalletBatchId = BatchID;
             fBatchDetail.ShowDialog(); 
         }
-
-       /// <summary>
-       /// enables status field to be updated - warn user
-       /// </summary>
-       /// <param name="sender"></param>
-       /// <param name="e"></param>
-       private void buttonEnableStatus_Click(object sender, EventArgs e)
+        /// <summary>
+        /// enables status field to be updated - warn user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnEnableStatus_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("WARNING - Pallet Batch status should normally be controlled" + Environment.NewLine + "via the Hand Held Scanner." + Environment.NewLine + "It should only be changed from this application to resolve problems." + Environment.NewLine + Environment.NewLine + "Are you sure?", "", MessageBoxButtons.YesNo);
 
@@ -615,19 +616,94 @@ namespace ITS.Exwold.Desktop
             {
                 //don't enable status
             }
-        }
-
-        private void button_cancel_Click(object sender, EventArgs e)
+        }                
+        private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.panel1.Visible = false;
+            this.pnlTextBoxes.Visible = false;
             cboStatus.Enabled = true;
             cboStatus.Visible = true;
             lblStatus.Visible = true;
             this.buttonEnableStatus.Visible = true;
             CreateBatchFlag = "Reset";
             Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "User cancelled batch edit " + dgvOrders.CurrentRow.Cells[1].Value);
-
         }
+        #endregion
+
+        #region Local helpers methods
+        private async void getIncompleteOrders()
+        {
+            _db.QueryParameters.Clear();
+            _db.QueryParameters.Add("Plant", _exwoldConfigSettings.PlantID.ToString());
+            //Get the data
+            DataTable dt = await _db.executeSP("[GUI].[getIncompleteOrders]", true);
+            dgvOrders.DataSource = dt;
+            Helper.dgvColumnVisible(dgvOrders, "PalletBatchUniqueNo", false);
+            Helper.dgvColumnVisible(dgvOrders, "ProductUniqueNo", false);
+            Helper.dgvColumnVisible(dgvOrders, "DateOfManufacture", false);
+            Helper.dgvColumnVisible(dgvOrders, "OuterLabelsRqd", false);
+            Helper.dgvColumnVisible(dgvOrders, "InnerLabelsRqd", false);
+            Helper.dgvColumnVisible(dgvOrders, "OuterLabelsPrinted", false);
+            Helper.dgvColumnVisible(dgvOrders, "InnerLabelsPrinted", false);
+            Helper.dgvColumnVisible(dgvOrders, "ChangeUser", false);
+            Helper.dgvColumnVisible(dgvOrders, "ChangeAction", false);
+            Helper.dgvColumnVisible(dgvOrders, "ChangeDTUTC", false);
+            Helper.dgvColumnVisible(dgvOrders, "ChangeDTLocal", false);
+            Helper.dgvColumnVisible(dgvOrders, "ChangeSqlUser", false);
+            Helper.dgvColumnVisible(dgvOrders, "ChangeUID", false);
+
+            //return dt;
+            //Mesh Remove
+            //string sql = "SELECT PalletBatchNo AS SalesOrder, * FROM data.PalletBatch WHERE status <> 4 and status <> 5 and ChangeAction <> 'Delete'";
+            //DataTable dt = Program.ExwoldDb.ExecuteQuery(sql);
+        }
+        private async void getProductionLines(int Plant)
+        {
+            _db.QueryParameters.Clear();
+            _db.QueryParameters.Add("Plant", _exwoldConfigSettings.PlantID.ToString());
+            //Get the data
+            DataTable dt = await _db.executeSP("[GUI].[getProductionLines]", true);
+
+            cboProdLine.DisplayMember = "Name";
+            cboProdLine.ValueMember = "UId";
+            cboProdLine.DataSource = dt;
+        }
+        private async void getOrderStatus()
+        {
+            _db.QueryParameters.Clear();
+            //Get the data
+            DataTable dt = await _db.executeSP("[GUI].[getOrderStatus]");
+
+            cboStatus.DisplayMember = "Status";
+            cboStatus.ValueMember = "StatusNo";
+            cboStatus.DataSource = dt;
+        }
+        private void EnableTextBoxes(bool enabled)
+        {
+            tbCustomer.Enabled = enabled;
+            tbProdCode.Enabled = enabled;
+            tbProdName.Enabled = enabled;
+            tbTotalCartons.Enabled = enabled;
+            tbCartonsPerPallet.Enabled = enabled;
+            tbInnersPerCart.Enabled = enabled;
+            tbInnerWeight.Enabled = enabled;
+            cboInnerUnit.Enabled = enabled;
+            TextBoxPalletBatchNo.Enabled = enabled;
+            cboProdLine.Enabled = enabled;
+            tbNotes.Enabled = enabled;
+            buttonEnableStatus.Visible = enabled;
+        }
+        private async Task<DataTable> GetPalletBatch(int BatchId)
+        {
+            _db.QueryParameters.Clear();
+            _db.QueryParameters.Add("@PalletBatchId", BatchId.ToString());
+            //Get the data
+            return await _db.executeSP("[GUI].[getPalletBatchById]", true);
+
+            //Mesh Remove
+            //sql = "SELECT * FROM Data.PalletBatch WHERE PalletBatchUniqueNo = " + BatchID;
+            //DataTable dtCurrentProduct = Program.ExwoldDb.ExecuteQuery(sql);
+        }
+        #endregion
     }
 }
 

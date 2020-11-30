@@ -164,7 +164,7 @@ namespace ITS.Exwold.Desktop
                 return -1;
             }
         }
-        internal static bool dgvColumnsVisible(DataGridView dgv, string colName, bool Show)
+        internal static bool dgvColumnVisible(DataGridView dgv, string colName, bool Show)
         {
             if (dgv.Columns.Contains(colName))
             {
@@ -176,6 +176,19 @@ namespace ITS.Exwold.Desktop
                 return false;
             }
         }
+        internal static bool dgvColumnStyle(DataGridView dgv, string colName, string format)
+        {
+            if (dgv.Columns.Contains(colName))
+            {
+                dgv.Columns[colName].DefaultCellStyle.Format = format;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         internal static dynamic dgvGetCurrentRowColumn(DataGridView dgv, string colName)
         {
             int colIdx = int.MinValue;

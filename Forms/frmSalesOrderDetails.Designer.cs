@@ -1,6 +1,6 @@
 ﻿namespace ITS.Exwold.Desktop
 {
-    partial class frmPallet
+    partial class frmSalesOrderDetails
     {
         /// <summary>
         /// Required designer variable.
@@ -28,15 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.dgvOrders = new System.Windows.Forms.DataGridView();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlTextBoxes = new System.Windows.Forms.Panel();
             this.tbProdCode = new System.Windows.Forms.MaskedTextBox();
             this.buttonEnableStatus = new System.Windows.Forms.Button();
             this.cboStatus = new System.Windows.Forms.ComboBox();
-            this.palletBatchStatusBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lblStatus = new System.Windows.Forms.Label();
             this.tbInnerPackStyle = new System.Windows.Forms.MaskedTextBox();
             this.tbClientCode = new System.Windows.Forms.MaskedTextBox();
@@ -67,26 +65,26 @@
             this.tbProdName = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button_cancel = new System.Windows.Forms.Button();
-            this.button_save = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.button_close = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
             this.buttonSetStatus = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.exwoldTrackingDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pnlForm = new System.Windows.Forms.Panel();
+            this.pnlButtons = new System.Windows.Forms.Panel();
+            this.tbInnerGTIN = new System.Windows.Forms.MaskedTextBox();
+            this.tbPlant = new System.Windows.Forms.MaskedTextBox();
+            this.tbDateOfManufacture = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.palletBatchStatusBindingSource)).BeginInit();
-            this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.exwoldTrackingDataSetBindingSource)).BeginInit();
+            this.pnlTextBoxes.SuspendLayout();
+            this.pnlForm.SuspendLayout();
+            this.pnlButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvOrders
             // 
             this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOrders.Location = new System.Drawing.Point(0, 0);
+            this.dgvOrders.Location = new System.Drawing.Point(3, 0);
             this.dgvOrders.MultiSelect = false;
             this.dgvOrders.Name = "dgvOrders";
             this.dgvOrders.ReadOnly = true;
@@ -96,7 +94,7 @@
             this.dgvOrders.ShowCellToolTips = false;
             this.dgvOrders.ShowEditingIcon = false;
             this.dgvOrders.ShowRowErrors = false;
-            this.dgvOrders.Size = new System.Drawing.Size(1500, 400);
+            this.dgvOrders.Size = new System.Drawing.Size(1469, 400);
             this.dgvOrders.TabIndex = 0;
             this.dgvOrders.TabStop = false;
             // 
@@ -118,49 +116,52 @@
             this.btnEdit.TabIndex = 2;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.button_edit_Click);
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // panel1
+            // pnlTextBoxes
             // 
-            this.panel1.Controls.Add(this.tbProdCode);
-            this.panel1.Controls.Add(this.buttonEnableStatus);
-            this.panel1.Controls.Add(this.cboStatus);
-            this.panel1.Controls.Add(this.lblStatus);
-            this.panel1.Controls.Add(this.tbInnerPackStyle);
-            this.panel1.Controls.Add(this.tbClientCode);
-            this.panel1.Controls.Add(this.tbCompanyCode);
-            this.panel1.Controls.Add(this.tbGTIN);
-            this.panel1.Controls.Add(this.label9);
-            this.panel1.Controls.Add(this.TextBoxPalletBatchNo);
-            this.panel1.Controls.Add(this.tbGMID);
-            this.panel1.Controls.Add(this.tbDetails);
-            this.panel1.Controls.Add(this.label8);
-            this.panel1.Controls.Add(this.tbCustomer);
-            this.panel1.Controls.Add(this.cboProdLine);
-            this.panel1.Controls.Add(this.label14);
-            this.panel1.Controls.Add(this.label13);
-            this.panel1.Controls.Add(this.label10);
-            this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.tbNotes);
-            this.panel1.Controls.Add(this.cboInnerUnit);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.tbInnerWeight);
-            this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.tbInnersPerCart);
-            this.panel1.Controls.Add(this.label4);
-            this.panel1.Controls.Add(this.tbCartonsPerPallet);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.tbTotalCartons);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.tbProdName);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.button_cancel);
-            this.panel1.Controls.Add(this.button_save);
-            this.panel1.Location = new System.Drawing.Point(96, 500);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1308, 267);
-            this.panel1.TabIndex = 3;
-            this.panel1.Visible = false;
+            this.pnlTextBoxes.Controls.Add(this.tbProdCode);
+            this.pnlTextBoxes.Controls.Add(this.buttonEnableStatus);
+            this.pnlTextBoxes.Controls.Add(this.cboStatus);
+            this.pnlTextBoxes.Controls.Add(this.lblStatus);
+            this.pnlTextBoxes.Controls.Add(this.tbInnerPackStyle);
+            this.pnlTextBoxes.Controls.Add(this.tbClientCode);
+            this.pnlTextBoxes.Controls.Add(this.tbCompanyCode);
+            this.pnlTextBoxes.Controls.Add(this.tbPlant);
+            this.pnlTextBoxes.Controls.Add(this.tbDateOfManufacture);
+            this.pnlTextBoxes.Controls.Add(this.tbInnerGTIN);
+            this.pnlTextBoxes.Controls.Add(this.tbGTIN);
+            this.pnlTextBoxes.Controls.Add(this.label9);
+            this.pnlTextBoxes.Controls.Add(this.TextBoxPalletBatchNo);
+            this.pnlTextBoxes.Controls.Add(this.tbGMID);
+            this.pnlTextBoxes.Controls.Add(this.tbDetails);
+            this.pnlTextBoxes.Controls.Add(this.label8);
+            this.pnlTextBoxes.Controls.Add(this.tbCustomer);
+            this.pnlTextBoxes.Controls.Add(this.cboProdLine);
+            this.pnlTextBoxes.Controls.Add(this.label14);
+            this.pnlTextBoxes.Controls.Add(this.label13);
+            this.pnlTextBoxes.Controls.Add(this.label10);
+            this.pnlTextBoxes.Controls.Add(this.label7);
+            this.pnlTextBoxes.Controls.Add(this.tbNotes);
+            this.pnlTextBoxes.Controls.Add(this.cboInnerUnit);
+            this.pnlTextBoxes.Controls.Add(this.label6);
+            this.pnlTextBoxes.Controls.Add(this.tbInnerWeight);
+            this.pnlTextBoxes.Controls.Add(this.label5);
+            this.pnlTextBoxes.Controls.Add(this.tbInnersPerCart);
+            this.pnlTextBoxes.Controls.Add(this.label4);
+            this.pnlTextBoxes.Controls.Add(this.tbCartonsPerPallet);
+            this.pnlTextBoxes.Controls.Add(this.label3);
+            this.pnlTextBoxes.Controls.Add(this.tbTotalCartons);
+            this.pnlTextBoxes.Controls.Add(this.label2);
+            this.pnlTextBoxes.Controls.Add(this.tbProdName);
+            this.pnlTextBoxes.Controls.Add(this.label1);
+            this.pnlTextBoxes.Controls.Add(this.button_cancel);
+            this.pnlTextBoxes.Controls.Add(this.btnSave);
+            this.pnlTextBoxes.Location = new System.Drawing.Point(96, 500);
+            this.pnlTextBoxes.Name = "pnlTextBoxes";
+            this.pnlTextBoxes.Size = new System.Drawing.Size(1308, 264);
+            this.pnlTextBoxes.TabIndex = 3;
+            this.pnlTextBoxes.Visible = false;
             // 
             // tbProdCode
             // 
@@ -176,22 +177,20 @@
             this.buttonEnableStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonEnableStatus.Location = new System.Drawing.Point(1103, 155);
             this.buttonEnableStatus.Name = "buttonEnableStatus";
-            this.buttonEnableStatus.Size = new System.Drawing.Size(110, 25);
+            this.buttonEnableStatus.Size = new System.Drawing.Size(172, 25);
             this.buttonEnableStatus.TabIndex = 49;
             this.buttonEnableStatus.Text = "Change Status";
             this.buttonEnableStatus.UseVisualStyleBackColor = true;
-            this.buttonEnableStatus.Click += new System.EventHandler(this.buttonEnableStatus_Click);
+            this.buttonEnableStatus.Click += new System.EventHandler(this.btnEnableStatus_Click);
             // 
             // cboStatus
             // 
-            this.cboStatus.DataSource = this.palletBatchStatusBindingSource;
-            this.cboStatus.DisplayMember = "Status";
             this.cboStatus.Enabled = false;
             this.cboStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboStatus.FormattingEnabled = true;
             this.cboStatus.Location = new System.Drawing.Point(1103, 128);
             this.cboStatus.Name = "cboStatus";
-            this.cboStatus.Size = new System.Drawing.Size(146, 24);
+            this.cboStatus.Size = new System.Drawing.Size(172, 24);
             this.cboStatus.TabIndex = 48;
             this.cboStatus.ValueMember = "StatusNo";
             // 
@@ -304,7 +303,7 @@
             "3"});
             this.cboProdLine.Location = new System.Drawing.Point(1103, 101);
             this.cboProdLine.Name = "cboProdLine";
-            this.cboProdLine.Size = new System.Drawing.Size(43, 24);
+            this.cboProdLine.Size = new System.Drawing.Size(172, 24);
             this.cboProdLine.TabIndex = 35;
             // 
             // label14
@@ -460,7 +459,7 @@
             this.tbProdName.Location = new System.Drawing.Point(133, 102);
             this.tbProdName.Name = "tbProdName";
             this.tbProdName.ReadOnly = true;
-            this.tbProdName.Size = new System.Drawing.Size(155, 23);
+            this.tbProdName.Size = new System.Drawing.Size(325, 23);
             this.tbProdName.TabIndex = 8;
             // 
             // label1
@@ -482,18 +481,18 @@
             this.button_cancel.TabIndex = 5;
             this.button_cancel.Text = "Cancel";
             this.button_cancel.UseVisualStyleBackColor = true;
-            this.button_cancel.Click += new System.EventHandler(this.button_cancel_Click);
+            this.button_cancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // button_save
             // 
-            this.button_save.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_save.Location = new System.Drawing.Point(1085, 226);
-            this.button_save.Name = "button_save";
-            this.button_save.Size = new System.Drawing.Size(99, 32);
-            this.button_save.TabIndex = 4;
-            this.button_save.Text = "Save";
-            this.button_save.UseVisualStyleBackColor = true;
-            this.button_save.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(1085, 226);
+            this.btnSave.Name = "button_save";
+            this.btnSave.Size = new System.Drawing.Size(99, 32);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "Save";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // button_close
             // 
@@ -505,7 +504,7 @@
             this.button_close.TabIndex = 6;
             this.button_close.Text = "Close";
             this.button_close.UseVisualStyleBackColor = true;
-            this.button_close.Click += new System.EventHandler(this.button_close_Click);
+            this.button_close.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label15
             // 
@@ -525,7 +524,7 @@
             this.btnDelete.TabIndex = 10;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // buttonSetStatus
             // 
@@ -535,50 +534,72 @@
             this.buttonSetStatus.TabIndex = 12;
             this.buttonSetStatus.Text = "View details for this Sales Order";
             this.buttonSetStatus.UseVisualStyleBackColor = true;
-            this.buttonSetStatus.Click += new System.EventHandler(this.buttonSetStatus_Click);
+            this.buttonSetStatus.Click += new System.EventHandler(this.btnSetStatus_Click);
             // 
-            // panel2
+            // pnlForm
             // 
-            this.panel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.panel2.Controls.Add(this.panel3);
-            this.panel2.Controls.Add(this.panel1);
-            this.panel2.Controls.Add(this.dgvOrders);
-            this.panel2.Location = new System.Drawing.Point(0, 175);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1500, 800);
-            this.panel2.TabIndex = 13;
+            this.pnlForm.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pnlForm.Controls.Add(this.pnlButtons);
+            this.pnlForm.Controls.Add(this.pnlTextBoxes);
+            this.pnlForm.Controls.Add(this.dgvOrders);
+            this.pnlForm.Location = new System.Drawing.Point(0, 175);
+            this.pnlForm.Name = "pnlForm";
+            this.pnlForm.Size = new System.Drawing.Size(1472, 764);
+            this.pnlForm.TabIndex = 13;
             // 
-            // panel3
+            // pnlButtons
             // 
-            this.panel3.Controls.Add(this.buttonSetStatus);
-            this.panel3.Controls.Add(this.btnDelete);
-            this.panel3.Controls.Add(this.btnEdit);
-            this.panel3.Controls.Add(this.btnAdd);
-            this.panel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel3.Location = new System.Drawing.Point(206, 415);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1088, 33);
-            this.panel3.TabIndex = 13;
+            this.pnlButtons.Controls.Add(this.buttonSetStatus);
+            this.pnlButtons.Controls.Add(this.btnDelete);
+            this.pnlButtons.Controls.Add(this.btnEdit);
+            this.pnlButtons.Controls.Add(this.btnAdd);
+            this.pnlButtons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pnlButtons.Location = new System.Drawing.Point(206, 415);
+            this.pnlButtons.Name = "pnlButtons";
+            this.pnlButtons.Size = new System.Drawing.Size(1088, 33);
+            this.pnlButtons.TabIndex = 13;
             // 
-            // frmPallet
+            // tbInnerGTIN
+            // 
+            this.tbInnerGTIN.Location = new System.Drawing.Point(120, 216);
+            this.tbInnerGTIN.Name = "tbInnerGTIN";
+            this.tbInnerGTIN.Size = new System.Drawing.Size(27, 20);
+            this.tbInnerGTIN.TabIndex = 43;
+            this.tbInnerGTIN.Visible = false;
+            // 
+            // tbPlant
+            // 
+            this.tbPlant.Location = new System.Drawing.Point(21, 190);
+            this.tbPlant.Name = "tbPlant";
+            this.tbPlant.Size = new System.Drawing.Size(27, 20);
+            this.tbPlant.TabIndex = 43;
+            this.tbPlant.Visible = false;
+            // 
+            // tbDateOfManufacture
+            // 
+            this.tbDateOfManufacture.Location = new System.Drawing.Point(120, 242);
+            this.tbDateOfManufacture.Name = "tbDateOfManufacture";
+            this.tbDateOfManufacture.Size = new System.Drawing.Size(27, 20);
+            this.tbDateOfManufacture.TabIndex = 43;
+            this.tbDateOfManufacture.Visible = false;
+            // 
+            // frmSalesOrderDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 961);
             this.ControlBox = false;
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnlForm);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.button_close);
-            this.Name = "frmPallet";
+            this.Name = "frmSalesOrderDetails";
             this.Text = "EXWOLD PALLET TRACKING";
             this.Load += new System.EventHandler(this.PalletDetailsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.palletBatchStatusBindingSource)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.exwoldTrackingDataSetBindingSource)).EndInit();
+            this.pnlTextBoxes.ResumeLayout(false);
+            this.pnlTextBoxes.PerformLayout();
+            this.pnlForm.ResumeLayout(false);
+            this.pnlButtons.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -587,9 +608,9 @@
         #endregion
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlTextBoxes;
         private System.Windows.Forms.Button button_cancel;
-        private System.Windows.Forms.Button button_save;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button button_close;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
@@ -627,10 +648,11 @@
         private System.Windows.Forms.Button buttonEnableStatus;
         private System.Windows.Forms.DataGridView dgvOrders;
         private System.Windows.Forms.MaskedTextBox tbProdCode;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.BindingSource exwoldTrackingDataSetBindingSource;
-        private System.Windows.Forms.BindingSource palletBatchStatusBindingSource;
+        private System.Windows.Forms.Panel pnlForm;
+        private System.Windows.Forms.Panel pnlButtons;
+        private System.Windows.Forms.MaskedTextBox tbPlant;
+        private System.Windows.Forms.MaskedTextBox tbDateOfManufacture;
+        private System.Windows.Forms.MaskedTextBox tbInnerGTIN;
     }
 }
 

@@ -26,11 +26,12 @@ namespace ITS.Exwold.Desktop
     {
         #region Local variables
         //Data variables
-        private DataInterface.execFunction _db = null;
-        private ExwoldConfigSettings _exwoldConfigSettings = null;
+        private DataInterface.execFunction _db              = null;
+        private ExwoldConfigSettings _exwoldConfigSettings  = null;
 
         // Define Class variables
-        private const string _cstbtnSalesOrderText = "Create Sales Order";
+        private const string _cstbtnSalesOrderText          = "Create Sales Order";
+        private const string _cstDateFmt                    = "dd/MM/yyyy";
         public string CreateBatchID;
         public string CreateBatchFlag;
         string UpdateType;
@@ -78,43 +79,18 @@ namespace ITS.Exwold.Desktop
             this.Close();
         }
 
-        private async void btnEdit_Click(object sender, EventArgs e)
+        private void btnEdit_Click(object sender, EventArgs e)
         {
             //enable input panel and populate from selected row in datagrid. Set update type for save button
             UpdateType = "Edit";
             this.pnlProductDetails.Visible = true;
             this.btnSave.Text = "Update";
 
-            DataTable dtCurrentProduct = null;
-
-            int ProdId = -1;
-            if (int.TryParse(dgvAllProducts.CurrentRow.Cells[0].Value.ToString(), out ProdId))
+            if (dgvAllProducts.CurrentRow != null)
             {
-                dtCurrentProduct = await getProductById(Convert.ToInt32(dgvAllProducts.CurrentRow.Cells[0].Value));
+                copyDGVProductToTextBoxes();
             }
 
-            //DataTable dtCurrentProduct = await getProductById(Convert.ToInt32(dgvAllProducts.CurrentRow.Cells[0].Value));
-
-            //Mesh Remove
-            //sql = "SELECT * FROM Config.Products WHERE ProductUniqueNo = " + ProductID ;
-            //DataTable dtCurrentProduct = Program.ExwoldDb.ExecuteQuery(sql);
-
-            tbCustomer.Text = dtCurrentProduct.Rows[0]["Customer"].ToString();
-            tbDetails.Text = dtCurrentProduct.Rows[0]["CustomerDetails"].ToString();
-            tbGMID.Text = dtCurrentProduct.Rows[0]["GMID"].ToString();
-            tbProdCode.Text = dtCurrentProduct.Rows[0]["ProductCode"].ToString();
-            tbProdName.Text = dtCurrentProduct.Rows[0]["ProductName"].ToString();
-            tbDefaultCartons.Text = dtCurrentProduct.Rows[0]["DefaultTotalNoOfCartons"].ToString();
-            tbCartsPerPallet.Text = dtCurrentProduct.Rows[0]["DefaultCartonsPerPallet"].ToString();
-            tbInnersPerCart.Text = dtCurrentProduct.Rows[0]["DefaultInnerPackPerCarton"].ToString();
-            tbInnerWeight.Text = dtCurrentProduct.Rows[0]["InnerPackWeightOrVolume"].ToString();
-            cboInnerUnit.Text = dtCurrentProduct.Rows[0]["UnitsOfMeasure"].ToString();
-            tbInnerPackStyle.Text = dtCurrentProduct.Rows[0]["PH2_InnerPackStylePackStyle"].ToString();
-            tbGTIN.Text = dtCurrentProduct.Rows[0]["GTIN"].ToString();
-            tbInnerGTIN.Text = dtCurrentProduct.Rows[0]["InnerGTIN"].ToString();
-            tbCompanyCode.Text = dtCurrentProduct.Rows[0]["SsccCompanyCode"].ToString();
-            tbClientCode.Text = dtCurrentProduct.Rows[0]["SsccProductionLineCustomerCode"].ToString();
-            tbNotes.Text = dtCurrentProduct.Rows[0]["AdditionalInfo"].ToString();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -129,7 +105,7 @@ namespace ITS.Exwold.Desktop
             // Copy the selected product
             if (dgvAllProducts.CurrentRow != null)
             {
-                copyProductToTextBoxes();
+                copyDGVProductToTextBoxes();
             }
         }        
         private async void getProducts()
@@ -144,14 +120,22 @@ namespace ITS.Exwold.Desktop
 
             try
             {
-                Helper.dgvColumnsVisible(dgvAllProducts, "ProductUniqueNo", false);
-                Helper.dgvColumnsVisible(dgvAllProducts, "Plant", false);
-                Helper.dgvColumnsVisible(dgvAllProducts, "ChangeUser", false);
-                Helper.dgvColumnsVisible(dgvAllProducts, "ChangeDTUTC", false);
-                Helper.dgvColumnsVisible(dgvAllProducts, "ChangeDTLocal", false);
-                Helper.dgvColumnsVisible(dgvAllProducts, "ChangeSqlUser", false);
-                Helper.dgvColumnsVisible(dgvAllProducts, "ChangeUId", false);
-                Helper.dgvColumnsVisible(dgvAllProducts, "ChangeAction", false);
+                foreach(DataRow row in dtAllProducts.Rows)
+                {
+                    Console.WriteLine($"{row["DateOfmanufacture"]}");
+                }
+                
+
+                Helper.dgvColumnVisible(dgvAllProducts, "ProductUniqueNo", false);
+                Helper.dgvColumnVisible(dgvAllProducts, "Plant", false);
+                Helper.dgvColumnVisible(dgvAllProducts, "ChangeUser", false);
+                Helper.dgvColumnVisible(dgvAllProducts, "ChangeDTUTC", false);
+                Helper.dgvColumnVisible(dgvAllProducts, "ChangeDTLocal", false);
+                Helper.dgvColumnVisible(dgvAllProducts, "ChangeSqlUser", false);
+                Helper.dgvColumnVisible(dgvAllProducts, "ChangeUId", false);
+                Helper.dgvColumnVisible(dgvAllProducts, "ChangeAction", false);
+                Helper.dgvColumnVisible(dgvAllProducts, "DateOfmanufacture", false);
+
             }
             catch 
             { 
@@ -162,7 +146,7 @@ namespace ITS.Exwold.Desktop
             btnEdit.Enabled = false;
             btnDelete.Enabled = false;
         }
-        private void copyProductToTextBoxes()
+        private void copyDGVProductToTextBoxes()
         {
             tbCustomer.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "Customer").ToString();
             tbDetails.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "CustomerDetails").ToString();
@@ -181,33 +165,87 @@ namespace ITS.Exwold.Desktop
             tbCompanyCode.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "SsccCompanyCode").ToString();
             tbClientCode.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "SsccProductionLineCustomerCode").ToString();
             tbNotes.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "AdditionalInfo").ToString();
+            tbDateOfManufacture.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "DoMDateOnly").ToString();
+            try
+            {
+                DateTime dt = getDate(Helper.dgvGetCurrentRowColumn(dgvAllProducts, "DoMDateOnly"));
+                dtpDateOfManufacture.Value = dt;
+                
+            }
+            catch { }
         }
 
-        private async Task<DataTable> getProductById(int productId)
+        private DateTime getDate(dynamic testDate)
         {
-            _db.QueryParameters.Clear();
-            _db.QueryParameters.Add("ProductId", ProductID.ToString());
-            DataTable dt = await _db.executeSP("[GUI].[getProductById]", true);
-
-            tbCustomer.Text = dt.Rows[0].Field<string>("Customer");
-            tbDetails.Text = dt.Rows[0].Field<string>("CustomerDetails");
-            tbGMID.Text = dt.Rows[0].Field<string>("GMID");
-            tbProdCode.Text = dt.Rows[0].Field<string>("ProductCode");
-            tbProdName.Text = dt.Rows[0].Field<string>("ProductName");
-            tbDefaultCartons.Text = Convert.ToString(dt.Rows[0].Field<int>("DefaultTotalNoOfCartons"));
-            tbCartsPerPallet.Text = Convert.ToString(dt.Rows[0].Field<int>("DefaultCartonsPerPallet"));
-            tbInnersPerCart.Text = Convert.ToString(dt.Rows[0].Field<int>("DefaultInnerPackPerCarton"));
-            tbInnerWeight.Text = Convert.ToString(dt.Rows[0].Field<double>("InnerPackWeightOrVolume"));
-            cboInnerUnit.Text = dt.Rows[0].Field<string>("UnitsOfMeasure");
-            tbInnerPackStyle.Text = dt.Rows[0].Field<string>("PH2_InnerPackStylePackStyle");
-            tbGTIN.Text = dt.Rows[0].Field<string>("GTIN");
-            tbInnerGTIN.Text = dt.Rows[0].Field<string>("InnerGTIN");
-            tbCompanyCode.Text = dt.Rows[0].Field<string>("SsccCompanyCode");
-            tbClientCode.Text = dt.Rows[0].Field<string>("SsccProductionLineCustomerCode");
-            tbNotes.Text = dt.Rows[0].Field<string>("AdditionalInfo");
-
+            DateTime dt;
+            if (testDate is System.DBNull || string.IsNullOrEmpty(testDate.ToString()))
+            {
+                dt = DateTime.Now;
+            }
+            else
+            {
+                try
+                {
+                    DateTime.TryParse(testDate, out dt);
+                }
+                catch
+                {
+                    dt = DateTime.Now;
+                }
+            }
             return dt;
         }
+
+        private void enableTextFields(bool status)
+        {
+            // disable text fields
+            tbCustomer.Enabled = status;
+            tbDetails.Enabled = status;
+            tbGMID.Enabled = status;
+            tbProdCode.Enabled = status;
+            tbProdName.Enabled = status;
+            tbDefaultCartons.Enabled = status;
+            tbCartsPerPallet.Enabled = status;
+            tbInnersPerCart.Enabled = status;
+            tbInnerWeight.Enabled = status;
+            cboInnerUnit.Enabled = status;
+            tbInnerPackStyle.Enabled = status;
+            tbGTIN.Enabled = status;
+            tbInnerGTIN.Enabled = status;
+            dtpDateOfManufacture.Enabled = status;
+            tbDateOfManufacture.Enabled = status;
+            tbCompanyCode.Enabled = status;
+            tbClientCode.Enabled = status;
+            tbNotes.Enabled = status;
+        }
+
+        //Mesh Remove
+        //private async Task<DataTable> getProductById(int productId)
+        //{
+        //    _db.QueryParameters.Clear();
+        //    _db.QueryParameters.Add("ProductId", ProductID.ToString());
+        //    DataTable dt = await _db.executeSP("[GUI].[getProductById]", true);
+
+        //    tbCustomer.Text = dt.Rows[0].Field<string>("Customer");
+        //    tbDetails.Text = dt.Rows[0].Field<string>("CustomerDetails");
+        //    tbGMID.Text = dt.Rows[0].Field<string>("GMID");
+        //    tbProdCode.Text = dt.Rows[0].Field<string>("ProductCode");
+        //    tbProdName.Text = dt.Rows[0].Field<string>("ProductName");
+        //    tbDefaultCartons.Text = Convert.ToString(dt.Rows[0].Field<Int32>("DefaultTotalNoOfCartons"));
+        //    tbCartsPerPallet.Text = Convert.ToString(dt.Rows[0].Field<int>("DefaultCartonsPerPallet"));
+        //    tbInnersPerCart.Text = Convert.ToString(dt.Rows[0].Field<int>("DefaultInnerPackPerCarton"));
+        //    tbInnerWeight.Text = Convert.ToString(dt.Rows[0].Field<double>("InnerPackWeightOrVolume"));
+        //    cboInnerUnit.Text = dt.Rows[0].Field<string>("UnitsOfMeasure");
+        //    tbInnerPackStyle.Text = dt.Rows[0].Field<string>("PH2_InnerPackStylePackStyle");
+        //    tbGTIN.Text = dt.Rows[0].Field<string>("GTIN");
+        //    tbInnerGTIN.Text = dt.Rows[0].Field<string>("InnerGTIN");
+        //    tbCompanyCode.Text = dt.Rows[0].Field<string>("SsccCompanyCode");
+        //    tbClientCode.Text = dt.Rows[0].Field<string>("SsccProductionLineCustomerCode");
+        //    tbNotes.Text = dt.Rows[0].Field<string>("AdditionalInfo");
+        //    tbDateOfManufacture.Text = dt.Rows[0].Field<DateTime>("DateOfManufacture").ToString(_cstDateFmt);
+
+        //    return dt;
+        //}
         private async void btnSave_Click(object sender, EventArgs e)
         {
             #region do Data Validation
@@ -288,6 +326,7 @@ namespace ITS.Exwold.Desktop
                         _db.QueryParameters.Add("SsccCustCode", tbClientCode.Text);
                         _db.QueryParameters.Add("ChangeAction", "Update");
                         _db.QueryParameters.Add("AddInfo", tbNotes.Text);
+                        _db.QueryParameters.Add("DateOfManufacture", dtpDateOfManufacture.Value.ToString(_cstDateFmt));
 
                         DataTable dtResult = await _db.executeSP("[GUI].[updateProducts]", true);
                         int rtnCode;
@@ -308,7 +347,6 @@ namespace ITS.Exwold.Desktop
                         {
                             NoRows = int.MinValue;
                         }
-
                         //Mesh Remove
                         //sql = "UPDATE Config.Products SET Customer = '" + tbCustomer.Text + "', " +
                         //    "CustomerDetails = '" + tbDetails.Text + "', " +
@@ -329,7 +367,6 @@ namespace ITS.Exwold.Desktop
                         //         " WHERE ProductUniqueNo = " + ProductID;
 
                         //NoRows = Program.ExwoldDb.ExecuteNonQuery(sql);
-
                         getProducts();
 
                         switch (NoRows)
@@ -352,8 +389,6 @@ namespace ITS.Exwold.Desktop
                         }
                     }
                     break;
-
-
                 case "Add":
                     //Validate input values and add data to Config.Products table
                     if (DoAdd != "no")
@@ -377,6 +412,7 @@ namespace ITS.Exwold.Desktop
                         _db.QueryParameters.Add("SsccCustCode", tbClientCode.Text);
                         _db.QueryParameters.Add("ChangeAction", "Insert");
                         _db.QueryParameters.Add("AddInfo", tbNotes.Text);
+                        _db.QueryParameters.Add("DateOfManufacture", dtpDateOfManufacture.Value.ToString(_cstDateFmt));
 
                         DataTable dtResult = await _db.executeSP("[GUI].[createProduct]", true);
                         int NewUId;
@@ -431,7 +467,6 @@ namespace ITS.Exwold.Desktop
                                 }
                         }
                     }
-
                     break;
 
                 case "Delete":
@@ -477,7 +512,7 @@ namespace ITS.Exwold.Desktop
                     break;
             }
         }
-        private async void btnDelete_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             {
                 //Set update type for save button, and open input panel
@@ -485,46 +520,8 @@ namespace ITS.Exwold.Desktop
                 this.pnlProductDetails.Visible = true;
                 this.btnSave.Text = "Delete";
 
-                DataTable dtCurrentProduct = await getProductById(Convert.ToInt32(dgvAllProducts.CurrentRow.Cells[0].Value));
-
-                //Mesh Remove
-                //sql = "SELECT * FROM Config.Products WHERE ProductUniqueNo = " + ProductID;
-                //DataTable dtCurrentProduct = Program.ExwoldDb.ExecuteQuery(sql);
-
-                tbCustomer.Text = dtCurrentProduct.Rows[0]["Customer"].ToString();
-                tbDetails.Text = dtCurrentProduct.Rows[0]["CustomerDetails"].ToString();
-                tbGMID.Text = dtCurrentProduct.Rows[0]["GMID"].ToString();
-                tbProdCode.Text = dtCurrentProduct.Rows[0]["ProductCode"].ToString();
-                tbProdName.Text = dtCurrentProduct.Rows[0]["ProductName"].ToString();
-                tbDefaultCartons.Text = dtCurrentProduct.Rows[0]["DefaultTotalNoOfCartons"].ToString();
-                tbCartsPerPallet.Text = dtCurrentProduct.Rows[0]["DefaultCartonsPerPallet"].ToString();
-                tbInnersPerCart.Text = dtCurrentProduct.Rows[0]["DefaultInnerPackPerCarton"].ToString();
-                tbInnerWeight.Text = dtCurrentProduct.Rows[0]["InnerPackWeightOrVolume"].ToString();
-                cboInnerUnit.Text = dtCurrentProduct.Rows[0]["UnitsOfMeasure"].ToString();
-                tbInnerPackStyle.Text = dtCurrentProduct.Rows[0]["PH2_InnerPackStylePackStyle"].ToString();
-                tbGTIN.Text = dtCurrentProduct.Rows[0]["GTIN"].ToString();
-                tbInnerGTIN.Text = dtCurrentProduct.Rows[0]["InnerGTIN"].ToString();
-                tbCompanyCode.Text = dtCurrentProduct.Rows[0]["SsccCompanyCode"].ToString();
-                tbClientCode.Text = dtCurrentProduct.Rows[0]["SsccProductionLineCustomerCode"].ToString();
-                tbNotes.Text = dtCurrentProduct.Rows[0]["AdditionalInfo"].ToString();
-
-                // disable text fields
-                tbCustomer.Enabled = false;
-                tbDetails.Enabled = false;
-                tbGMID.Enabled = false;
-                tbProdCode.Enabled = false;
-                tbProdName.Enabled = false;
-                tbDefaultCartons.Enabled = false;
-                tbCartsPerPallet.Enabled = false;
-                tbInnersPerCart.Enabled = false;
-                tbInnerWeight.Enabled = false;
-                cboInnerUnit.Enabled = false;
-                tbInnerPackStyle.Enabled = false; ;
-                tbGTIN.Enabled = false;
-                tbInnerGTIN.Enabled = false;
-                tbCompanyCode.Enabled = false;
-                tbClientCode.Enabled = false;
-                tbNotes.Enabled = false;
+                copyDGVProductToTextBoxes();
+                enableTextFields(false);
             }
         }
         private void btnCreateSalesOrder_Click(object sender, EventArgs e)
@@ -535,10 +532,10 @@ namespace ITS.Exwold.Desktop
                 //ProductID = Convert.ToInt32(dgvAllProducts.CurrentRow.Cells[0].Value);
 
                 // set batch ID globals and open palletBatch form
-                frmPallet fPallet = new frmPallet(_exwoldConfigSettings, _db);
-                fPallet.CreateBatchFlag = "Create";
-                fPallet.CreateBatchID = Convert.ToString(ProductID);
-                fPallet.ShowDialog();
+                frmSalesOrderDetails fSalesOrder = new frmSalesOrderDetails(_exwoldConfigSettings, _db);
+                fSalesOrder.CreateBatchFlag = "Create";
+                fSalesOrder.CreateBatchID = Convert.ToString(ProductID);
+                fSalesOrder.ShowDialog();
                 this.Close();
             }
         }
