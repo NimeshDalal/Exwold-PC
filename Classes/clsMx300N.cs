@@ -78,6 +78,9 @@ namespace ITS.Exwold.Desktop
         private ListBox _logControl;
         private Control _ctrlgoodreads;
         private Control _ctrlreads;
+
+        private int _palletBatchUId = 0;
+        private int _productionLineUId = 0;
         #endregion
         #region Properties
         public int Port
@@ -110,6 +113,17 @@ namespace ITS.Exwold.Desktop
             get { return _ctrlgoodreads; }
             set { _ctrlgoodreads = value; }
         }
+        public int PalletBatchUId
+        {
+            get { return _palletBatchUId; }
+            set { _palletBatchUId = value; }
+        }
+        public int ProductionLineUId
+        {
+            get { return _productionLineUId; }
+            set { _productionLineUId = value; }
+        }
+
         #endregion
         #region Constructor(s)
         public clsMx300NDataAsync() { }
@@ -118,9 +132,12 @@ namespace ITS.Exwold.Desktop
             _ipaddr = IPAddr;
             _port = Port;
             connectTcpClient();
-            this.ScannerRead += mx300n_ScannerRead;
-            this.ScannerReadStarted += mx300n_ScannerReadStarted;
-            this.ScannerReadStopped += mx300n_ScannerReadStopped;
+
+            // subscribe to the local events
+            // Generally not required
+            //this.ScannerRead += mx300n_ScannerRead;
+            //this.ScannerReadStarted += mx300n_ScannerReadStarted;
+            //this.ScannerReadStopped += mx300n_ScannerReadStopped;
         }
         #endregion
         #region Public Methods
@@ -279,6 +296,10 @@ namespace ITS.Exwold.Desktop
                     //Raise the start event
                     statusEventArgs.Status = true;
                     statusEventArgs.Message = "Connected to socket.  Start reading";
+                    statusEventArgs.IPAddr = _ipaddr;
+                    statusEventArgs.Port = _port;
+                    statusEventArgs.PalletBatchUId = _palletBatchUId;
+                    statusEventArgs.ProductionLineUId = _productionLineUId;
                     OnScannerReadStart(statusEventArgs);
 
                     //Loop until stopper
@@ -305,6 +326,8 @@ namespace ITS.Exwold.Desktop
                             readEventArgs.RawData = scannerRawData;
                             readEventArgs.ReadsTried = readstried;
                             readEventArgs.GoodReads = goodreads;
+                            readEventArgs.PalletBatchUId = _palletBatchUId;
+                            readEventArgs.ProductionLineUId = _productionLineUId;
                             //Raise the Read event
                             OnScannerRead(readEventArgs);
 
@@ -418,17 +441,23 @@ namespace ITS.Exwold.Desktop
         
         private void LogScannerReading(string msg, int scans, int reads)
         {
-            _logControl.BeginInvoke((Action)delegate ()
+            if (_logControl != null)
             {
-                _logControl.Items.Insert(0, $"{msg}, Total Scans {scans.ToString()}, Reads {reads.ToString()}");
-            });
+                _logControl.BeginInvoke((Action)delegate ()
+                {
+                    _logControl.Items.Insert(0, $"{msg}, Total Scans {scans.ToString()}, Reads {reads.ToString()}");
+                });
+            }
         }
         private void LogStatus(Control ctrl, int value)
         {
-            ctrl.BeginInvoke((Action)delegate ()
+            if (ctrl != null)
             {
-                ctrl.Text = value.ToString();
-            });
+                ctrl.BeginInvoke((Action)delegate ()
+                {
+                    ctrl.Text = value.ToString();
+                });
+            }
         }
 
         #endregion
@@ -464,15 +493,15 @@ namespace ITS.Exwold.Desktop
         /// <param name="a"></param>
         private void mx300n_ScannerRead(object sender, ScannerReadEventArgs a)
         {
-            Console.WriteLine("Scanner read event fired");
+            Console.WriteLine($"clsMx300N Scanner read event fired {a.IPAddr}");
         }
         private void mx300n_ScannerReadStarted(object sender, ScannerReadStatusEventArgs a)
         {
-            Console.WriteLine("Scanner read event fired");
+            Console.WriteLine($"clsMx300N Scanner read started {a.IPAddr}");
         }
         private void mx300n_ScannerReadStopped(object sender, ScannerReadStatusEventArgs a)
         {
-            Console.WriteLine("Scanner read event fired");
+            Console.WriteLine($"clsMx300N Scanner read stopped {a.IPAddr}");
         }
         #endregion
     }
@@ -483,10 +512,17 @@ namespace ITS.Exwold.Desktop
         public string RawData { get; set; }
         public int ReadsTried { get; set; }
         public int GoodReads { get; set; }
+        public int PalletBatchUId { get; set; }
+        public int ProductionLineUId { get; set; }
+
     }
     public class ScannerReadStatusEventArgs : EventArgs
     {
+        public IPAddress IPAddr { get; set; }
+        public int Port { get; set; }
         public bool Status { get; set; }
         public string Message { get; set; }
+        public int PalletBatchUId { get; set; }
+        public int ProductionLineUId { get; set; }
     }
 }

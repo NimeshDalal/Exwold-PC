@@ -115,7 +115,7 @@ namespace ITS.Exwold.Desktop
                 case 1:
                     _palletBatchID = Convert.ToInt32(dtPalletBatch.Rows[0].Field<Int64>("PalletBatchUniqueNo"));
                     //Mesh
-                    textBox1.Text = _palletBatchID.ToString();
+                    tbPalletBatch.Text = _palletBatchID.ToString();
 
                     _db.QueryParameters.Clear();
                     _db.QueryParameters.Add("PalletBatchId", _palletBatchID.ToString());
@@ -129,6 +129,9 @@ namespace ITS.Exwold.Desktop
                     txtProdName.Text = dtCurrentProduct.Rows[0]["ProductName"].ToString();
                     txtTotalCartons.Text = dtCurrentProduct.Rows[0]["TotalNoOfCartons"].ToString();
                     txtNotes.Text = dtCurrentProduct.Rows[0]["AdditionalInfo"].ToString();
+                    tbInnersRqd.Text = dtCurrentProduct.Rows[0]["InnerLabelsRqd"].ToString();
+                    
+
                     //convert Status to human readable , set colour and text
                     int status = -1;
                     int.TryParse(dtCurrentProduct.Rows[0]["Status"].ToString(), out status);

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button_setBatch = new System.Windows.Forms.Button();
             this.button_exitPalletTracking = new System.Windows.Forms.Button();
             this.btnSetProduct = new System.Windows.Forms.Button();
@@ -71,7 +71,7 @@
             this.button_setBatch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button_setBatch.AutoSize = true;
             this.button_setBatch.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_setBatch.Location = new System.Drawing.Point(493, 550);
+            this.button_setBatch.Location = new System.Drawing.Point(493, 561);
             this.button_setBatch.Name = "button_setBatch";
             this.button_setBatch.Size = new System.Drawing.Size(182, 32);
             this.button_setBatch.TabIndex = 16;
@@ -81,7 +81,7 @@
             // 
             // button_exitPalletTracking
             // 
-            this.button_exitPalletTracking.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button_exitPalletTracking.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_exitPalletTracking.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button_exitPalletTracking.Location = new System.Drawing.Point(1385, 3);
             this.button_exitPalletTracking.Name = "button_exitPalletTracking";
@@ -96,7 +96,7 @@
             this.btnSetProduct.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSetProduct.AutoSize = true;
             this.btnSetProduct.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetProduct.Location = new System.Drawing.Point(493, 588);
+            this.btnSetProduct.Location = new System.Drawing.Point(493, 599);
             this.btnSetProduct.Name = "btnSetProduct";
             this.btnSetProduct.Size = new System.Drawing.Size(182, 32);
             this.btnSetProduct.TabIndex = 58;
@@ -106,10 +106,9 @@
             // 
             // label13
             // 
-            this.label13.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(40, 3);
+            this.label13.Location = new System.Drawing.Point(13, 3);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(296, 32);
             this.label13.TabIndex = 87;
@@ -125,7 +124,7 @@
             this.buttonReports.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonReports.AutoSize = true;
             this.buttonReports.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReports.Location = new System.Drawing.Point(681, 550);
+            this.buttonReports.Location = new System.Drawing.Point(681, 561);
             this.buttonReports.Name = "buttonReports";
             this.buttonReports.Size = new System.Drawing.Size(182, 32);
             this.buttonReports.TabIndex = 88;
@@ -138,7 +137,7 @@
             this.AuditReportButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.AuditReportButton.AutoSize = true;
             this.AuditReportButton.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AuditReportButton.Location = new System.Drawing.Point(869, 588);
+            this.AuditReportButton.Location = new System.Drawing.Point(869, 599);
             this.AuditReportButton.Name = "AuditReportButton";
             this.AuditReportButton.Size = new System.Drawing.Size(182, 32);
             this.AuditReportButton.TabIndex = 90;
@@ -148,33 +147,36 @@
             // 
             // pnlPosn3
             // 
-            this.pnlPosn3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.pnlPosn3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlPosn3.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pnlPosn3.Location = new System.Drawing.Point(933, 71);
             this.pnlPosn3.Name = "pnlPosn3";
-            this.pnlPosn3.Size = new System.Drawing.Size(454, 457);
+            this.pnlPosn3.Size = new System.Drawing.Size(454, 474);
             this.pnlPosn3.TabIndex = 91;
             // 
             // pnlPosn2
             // 
-            this.pnlPosn2.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.pnlPosn2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlPosn2.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pnlPosn2.Location = new System.Drawing.Point(476, 71);
             this.pnlPosn2.Name = "pnlPosn2";
-            this.pnlPosn2.Size = new System.Drawing.Size(454, 457);
+            this.pnlPosn2.Size = new System.Drawing.Size(454, 474);
             this.pnlPosn2.TabIndex = 92;
             // 
             // pnlPosn1
             // 
-            this.pnlPosn1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.pnlPosn1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlPosn1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pnlPosn1.Location = new System.Drawing.Point(19, 71);
             this.pnlPosn1.Name = "pnlPosn1";
-            this.pnlPosn1.Size = new System.Drawing.Size(454, 457);
+            this.pnlPosn1.Size = new System.Drawing.Size(454, 474);
             this.pnlPosn1.TabIndex = 93;
             // 
             // panel4
             // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.tbLabelTest);
             this.panel4.Controls.Add(this.btnScannerTest_Stop);
             this.panel4.Controls.Add(this.btnScannerTest_Start);
@@ -197,11 +199,10 @@
             this.panel4.Controls.Add(this.btnSetProduct);
             this.panel4.Controls.Add(this.button_setBatch);
             this.panel4.Controls.Add(this.lblPlantName);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.panel4.Location = new System.Drawing.Point(0, 49);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1518, 623);
+            this.panel4.Size = new System.Drawing.Size(1518, 634);
             this.panel4.TabIndex = 94;
             // 
             // tbLabelTest
@@ -254,7 +255,7 @@
             // 
             // btnChangePage
             // 
-            this.btnChangePage.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnChangePage.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnChangePage.AutoSize = true;
             this.btnChangePage.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnChangePage.Location = new System.Drawing.Point(1205, 33);
@@ -270,7 +271,7 @@
             this.btnHardwareSettings.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnHardwareSettings.AutoSize = true;
             this.btnHardwareSettings.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHardwareSettings.Location = new System.Drawing.Point(869, 550);
+            this.btnHardwareSettings.Location = new System.Drawing.Point(869, 561);
             this.btnHardwareSettings.Name = "btnHardwareSettings";
             this.btnHardwareSettings.Size = new System.Drawing.Size(182, 32);
             this.btnHardwareSettings.TabIndex = 95;
@@ -283,7 +284,7 @@
             this.buttonReprintPalletLabels.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonReprintPalletLabels.AutoSize = true;
             this.buttonReprintPalletLabels.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReprintPalletLabels.Location = new System.Drawing.Point(681, 588);
+            this.buttonReprintPalletLabels.Location = new System.Drawing.Point(681, 599);
             this.buttonReprintPalletLabels.Name = "buttonReprintPalletLabels";
             this.buttonReprintPalletLabels.Size = new System.Drawing.Size(182, 32);
             this.buttonReprintPalletLabels.TabIndex = 97;
@@ -295,7 +296,7 @@
             // 
             this.picExwoldLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.picExwoldLogo.Image = global::ITS.Exwold.Desktop.Properties.Resources.Exwold_High_Res_Logo_No_Strapline___small;
-            this.picExwoldLogo.Location = new System.Drawing.Point(0, 550);
+            this.picExwoldLogo.Location = new System.Drawing.Point(0, 561);
             this.picExwoldLogo.Name = "picExwoldLogo";
             this.picExwoldLogo.Size = new System.Drawing.Size(319, 73);
             this.picExwoldLogo.TabIndex = 95;
@@ -305,7 +306,7 @@
             // 
             this.picITSLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picITSLogo.Image = global::ITS.Exwold.Desktop.Properties.Resources.ITS_logo_small1;
-            this.picITSLogo.Location = new System.Drawing.Point(1279, 537);
+            this.picITSLogo.Location = new System.Drawing.Point(1279, 548);
             this.picITSLogo.Name = "picITSLogo";
             this.picITSLogo.Size = new System.Drawing.Size(239, 86);
             this.picITSLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -314,27 +315,27 @@
             // 
             // dgvOnHold
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvOnHold.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.dgvOnHold.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dgvOnHold.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvOnHold.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dgvOnHold.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvOnHold.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvOnHold.CausesValidation = false;
             this.dgvOnHold.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvOnHold.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOnHold.ColumnHeadersVisible = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Palatino Linotype", 12F);
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOnHold.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOnHold.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvOnHold.Enabled = false;
             this.dgvOnHold.EnableHeadersVisualStyles = false;
             this.dgvOnHold.Location = new System.Drawing.Point(1390, 325);
@@ -343,32 +344,32 @@
             this.dgvOnHold.RowHeadersVisible = false;
             this.dgvOnHold.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvOnHold.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOnHold.Size = new System.Drawing.Size(119, 203);
+            this.dgvOnHold.Size = new System.Drawing.Size(119, 220);
             this.dgvOnHold.TabIndex = 96;
             // 
             // dgvReadyToPrint
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvReadyToPrint.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            this.dgvReadyToPrint.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dgvReadyToPrint.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgvReadyToPrint.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.dgvReadyToPrint.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvReadyToPrint.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvReadyToPrint.CausesValidation = false;
             this.dgvReadyToPrint.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvReadyToPrint.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReadyToPrint.ColumnHeadersVisible = false;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Palatino Linotype", 12F);
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvReadyToPrint.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvReadyToPrint.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvReadyToPrint.Enabled = false;
             this.dgvReadyToPrint.EnableHeadersVisualStyles = false;
             this.dgvReadyToPrint.Location = new System.Drawing.Point(1390, 71);
@@ -382,7 +383,7 @@
             // 
             // label30
             // 
-            this.label30.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label30.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.SystemColors.HotTrack;
@@ -394,7 +395,7 @@
             // 
             // label22
             // 
-            this.label22.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label22.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.SystemColors.HotTrack;
@@ -407,7 +408,7 @@
             // 
             // lblPlantName
             // 
-            this.lblPlantName.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lblPlantName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblPlantName.AutoSize = true;
             this.lblPlantName.Font = new System.Drawing.Font("Palatino Linotype", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlantName.ForeColor = System.Drawing.SystemColors.HotTrack;
@@ -421,7 +422,7 @@
             // MainStatusForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1518, 672);
+            this.ClientSize = new System.Drawing.Size(1518, 683);
             this.ControlBox = false;
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label13);

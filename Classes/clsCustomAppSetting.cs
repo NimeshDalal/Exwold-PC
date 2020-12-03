@@ -868,7 +868,7 @@ namespace ITS.Exwold.Desktop
         }
 
         [ConfigurationProperty("status", IsRequired = false, DefaultValue = "active")]
-        [StringValidator(InvalidCharacters = "  ~!@#$%^&*()[]{}/;’\"|\\", MinLength = 5, MaxLength = 6)]
+        [StringValidator(InvalidCharacters = "  ~!@#$%^&*()[]{}/;’\"|\\", MinLength = 5, MaxLength = 10)]
         [ConfigurationData("")]
         internal string Status
         {
