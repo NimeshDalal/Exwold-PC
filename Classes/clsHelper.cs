@@ -94,7 +94,6 @@ namespace ITS.Exwold.Desktop
                     else func(control.Controls);
             };
         }
-
         /// <summary>
         /// Copies the properties from the source to the target
         /// </summary>
@@ -127,7 +126,6 @@ namespace ITS.Exwold.Desktop
                 throw new Exception(Logging.ThisMethod().ToString(), ex);
             }
         }
-
         /// <summary>
         /// Removes all control of type T from a group box
         /// where the "Tag" property is null or is NOT tagToKeep
@@ -152,7 +150,6 @@ namespace ITS.Exwold.Desktop
                 }
             }
         }
-
         internal static int dgvHasColumn(DataGridView dgv, string colName)
         {
             if (dgv.Columns.Contains(colName))
@@ -188,7 +185,6 @@ namespace ITS.Exwold.Desktop
                 return false;
             }
         }
-
         internal static dynamic dgvGetCurrentRowColumn(DataGridView dgv, string colName)
         {
             int colIdx = int.MinValue;

@@ -36,7 +36,7 @@ namespace ITS.Exwold.Desktop
 {
     public partial class MainStatusForm : Form
     {
-        #region private variables
+        #region local variables
         const string _cstSecConnStr = "SecureStrings";
         private int _pageNumber = 0;
         private execFunction _db = null;
@@ -70,7 +70,6 @@ namespace ITS.Exwold.Desktop
         #endregion
 
         private string messageFromScanner;
-        private const string moduleName = "Line-Status:";
 
         public MainStatusForm()
         {      
@@ -88,7 +87,7 @@ namespace ITS.Exwold.Desktop
     
         private void MainStatusForm_Load(object sender, EventArgs e)
         {
-            const string methodName = moduleName + "MainStatusForm_Load(): ";
+            const string methodName = "MainStatusForm_Load(): ";
 
             //set fullscreen depending if we are debugging or not
 #if DEBUG 
@@ -111,9 +110,12 @@ namespace ITS.Exwold.Desktop
 
             //Mesh Come back to this
             #region initialise the scanner stuff
+
             try
             {
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Debug, moduleName + "NiceLabelSDKPath = " + _niceLabelSDKPath);
+                //Start the Stand Alone Scanners
+                InitScanners();
+
                 Program.ScannerServers = new List<TCPServer>();
 
                 //set up a list of servers, one for each scanner
@@ -130,7 +132,7 @@ namespace ITS.Exwold.Desktop
             }
             catch (Exception ex)
             {
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, moduleName + "EXCEPTION: Loading config error: " + ex.Message);
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), ex.Message);
             }
             #endregion
 
@@ -191,8 +193,6 @@ namespace ITS.Exwold.Desktop
             }
             return true;
         }
-
-
         private void SetPage()
         {
             btnChangePage.Visible = (_plantNumber == 1);
@@ -297,16 +297,24 @@ namespace ITS.Exwold.Desktop
             //Get the plant info from the ProductionLines collection (in the order they are in the config file)
             int LineId = _exwoldConfigSettings.ProductionLines[LineNumber].Id;
             string LineName = _exwoldConfigSettings.ProductionLines[LineNumber].Name;
+            //Pass in the scanner if one is configured for the line
+            foreach (StandAloneScanner scanner in Scanners)
+            {
+                if (scanner.ConfigData.ProductionLine == LineId)
+                {
+                    fLine.Scanner = scanner;
+                }
+            }
             fLine.LineId = LineId;
             fLine.LineName = LineName;
-            fLine.DB = _db;
             fLine.Visible = true;
-
 
             LinePanel.Controls.Clear();
             LinePanel.Controls.Add(fLine);
 
-            Console.WriteLine("{0}, {1}", _exwoldConfigSettings.ProductionLines[LineNumber].Id, _exwoldConfigSettings.ProductionLines[LineNumber].Name);
+            Console.WriteLine("{0}, {1}", 
+                _exwoldConfigSettings.ProductionLines[LineNumber].Id, 
+                _exwoldConfigSettings.ProductionLines[LineNumber].Name);
 
 
             return fLine;
@@ -469,42 +477,41 @@ namespace ITS.Exwold.Desktop
 
         private void BackgroundWorkerPrintLabel_DoWork(object sender, DoWorkEventArgs e)
         {
-          const string methodName = moduleName + "BackgroundWorkerPrintLabel_DoWork(): ";
           try
           {
             string BatchNumber;
 
             if (messageFromScanner.StartsWith("PRINT"))
             {
-              Program.Log.LogMessage(ThreadLog.DebugLevel.Message, methodName + "PRINT");
+              Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod() + " PRINT");
               //Open print form and pass ScannerPrint as flag
               BatchNumber = messageFromScanner.Split(':').Last();
               frmPrint frmPrint = new frmPrint(_db);
               frmPrint.PrintBatchFlag = "ScannerPrint";
               frmPrint.PrintBatchID = BatchNumber;
               frmPrint.ShowDialog();
-              Program.Log.LogMessage(ThreadLog.DebugLevel.Message, methodName + "PRINT - calling Application.Restart()");
+              Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod() + " PRINT - calling Application.Restart()");
               Program.Log.logSave();
               Application.Restart();
             }
 
             if (messageFromScanner.StartsWith("REPRINT"))
             {
-              Program.Log.LogMessage(ThreadLog.DebugLevel.Message, methodName + "REPRINT");
+              Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod() + " REPRINT");
               //Open print form and pass Reprint as flag
               BatchNumber = messageFromScanner.Split(':').Last();
               frmPrint frmPrint = new frmPrint(_db);
               frmPrint.PrintBatchFlag = "Reprint";
               frmPrint.PrintBatchID = BatchNumber;
               frmPrint.ShowDialog();
-              Program.Log.LogMessage(ThreadLog.DebugLevel.Message, methodName + "REPRINT - calling Application.Restart()");
+              Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod() + " REPRINT - calling Application.Restart()");
               Program.Log.logSave();
               Application.Restart();
             }
           }
           catch (Exception ex)
           {
-            Program.Log.LogMessage(ThreadLog.DebugLevel.Message, methodName + "EXCEPTION: " + ex.Message);
+            Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod() + " EXCEPTION: " + ex.Message);
             MessageBox.Show("Unable to initialise print page");
           }
         }
@@ -523,278 +530,44 @@ namespace ITS.Exwold.Desktop
 
         private void btnHardwareSettings_Click(object sender, EventArgs e)
         {
-            frmPlantHardware frmHW = new frmPlantHardware();
-            frmHW.ExwoldConfigSettings = _exwoldConfigSettings;
+            frmPlantHardware frmHW = new frmPlantHardware(_exwoldConfigSettings, Scanners);
             frmHW.ShowDialog();
-        }
-
-
-        #region Testing
-        private void SubscribeScannerEvents(StandAloneScanner scanner, bool subscribe)
-        {
-            if (subscribe)
+            if (frmHW.DialogResult == DialogResult.OK)
             {
-                scanner.MX300N.ScannerRead += mx300n_ScannerRead;
-                scanner.MX300N.ScannerReadStarted += mx300n_ScannerReadStarted;
-                scanner.MX300N.ScannerReadStopped += mx300n_ScannerReadStopped;
-            }
-            else
-            {
-                scanner.MX300N.ScannerRead -= mx300n_ScannerRead;
-                scanner.MX300N.ScannerReadStarted -= mx300n_ScannerReadStarted;
-                scanner.MX300N.ScannerReadStopped -= mx300n_ScannerReadStopped;
-            }
-        }
-        private void btnLabelTest_Click(object sender, EventArgs e)
-        {
-
-            frmOuterInnerLabels fLabel = new frmOuterInnerLabels(_db, int.Parse(tbLabelTest.Text), _exwoldConfigSettings);
-            fLabel.Show();
-        }
-        private void mx300n_ScannerRead(object sender, ScannerReadEventArgs a)
-        {
-            Console.WriteLine($"{Logging.ThisMethod()} Scanner:{a.IPAddr}, GoodReads:{a.GoodReads}, ReadsTried:{a.ReadsTried}, Data Length: {a.RawData.Length} Raw Data:{a.RawData}");
-            List<GS1Identifiers>scannedData = parseScannerData(a.RawData);
-
-            string GTIN = scannedData.Find(ele => ele.Name == "GTIN").DataValue; 
-            string ProdDate = scannedData.Find(ele => ele.Name == "ProdDate").DataValue; 
-            
-            string LotNo = scannedData.Find(ele => ele.Name == "LotNo").DataValue;
-            string ProdName1 = scannedData.Find(ele => ele.Name == "ProdName1").DataValue;
-            string ProdName2 = scannedData.Find(ele => ele.Name == "ProdName2").DataValue;
-
-            Console.WriteLine($"{GTIN}\n{LotNo}\n{ProdDate}\n{ProdName1}{ProdName2}");
-        }
-        private void mx300n_ScannerReadStarted(object sender, ScannerReadStatusEventArgs a)
-        {
-            Console.WriteLine($"Scanner read start {a.IPAddr}");
-            //tbS1Status.BeginInvoke((Action)delegate ()
-            //{
-            //    tbS1Status.Text = $"{a.Message},{a.Status.ToString()}";
-            //});
-        }
-
-        private void mx300n_ScannerReadStopped(object sender, ScannerReadStatusEventArgs a)
-        {
-            Console.WriteLine($"Scanner read stopped {a.IPAddr}");
-            //tbS1Status.Text = $"{a.Message},{a.Status.ToString()}";
-        }
-        internal List<StandAloneScanner> Scanners = new List<StandAloneScanner>();
-        private void btnScannerTest_Init_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine($"No of scanners : {_exwoldConfigSettings.StandAloneScanners.Count}");
-            Scanners.Clear();
-
-            foreach (StandAloneScannerConfigElement scannerConfig in _exwoldConfigSettings.StandAloneScanners)
-            {
-                Console.WriteLine($"Id:{scannerConfig.Id}, Name:{scannerConfig.Name}");
-                if (scannerConfig.Status == "active")
+                if (frmHW.DiscardChanges)
                 {
-                    StandAloneScanner scanner = new StandAloneScanner(scannerConfig, 1000, 5);
-                    Scanners.Add(scanner);
-                    SubscribeScannerEvents(scanner, true);
-                    scanner.MX300N.CancelMultiRead();
+                    //Re-Load data from the Plant Config file
+                    _exwoldConfigSettings = new ExwoldConfigSettings(_plantNumber);
                 }
-            }
-        }
-        private void btnScannerTest_Start_Click(object sender, EventArgs e)
-        {
-            foreach (StandAloneScanner scanner in Scanners)
-            {
-                scanner.MX300N.multiReadTcpSocket(5000);
-            }
-        }
-        private void btnScannerTest_Stop_Click(object sender, EventArgs e)
-        {
-            foreach (StandAloneScanner scanner in Scanners)
-            {
-                try
+                else
                 {
-                    scanner.MX300N.CancelMultiRead();
+                    _exwoldConfigSettings.Save();
                 }
-                catch(Exception ex)
-                {
-                    Logging.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex.Message);
-                }
-            }
-        }
-
-
-        private List<GS1Identifiers> parseScannerData(string rawData)
-        {
-            if (string.IsNullOrEmpty(rawData) || rawData.Length < 20)
-            { return null; }
-
-            List<GS1Identifiers> Identifiers = getOuterLabelIds();
-            int idxIdentifiers = 0;
-            //Convert the raw data to a byte array
-            byte[] bRawData = Encoding.ASCII.GetBytes(rawData);
-            
-
-            // The first character is <stx> (ascii 2)
-            // and the terminator is  <etx> (ascii 3)
-            if (bRawData[0] == (byte)(MDC_ASCII.Ascii.STX) &&
-                bRawData[bRawData.Length - 1] == (byte)(MDC_ASCII.Ascii.ETX))
-            {
-                //We have some data 
-                //check from the 2nd to the last but one character
-                for (int idx = 1; idx < bRawData.Length - 1; idx++)
-                {
-                    
-                    if (getStringFromBytes(bRawData, idx, Identifiers[idxIdentifiers].Identifier.Length) == Identifiers[idxIdentifiers].Identifier)
-                    {
-                        //We have the identifier. Now get the data
-                        idx = idx + Identifiers[idxIdentifiers].Identifier.Length;
-                        if (Identifiers[idxIdentifiers].FixedLength)
-                        {
-                            Identifiers[idxIdentifiers].DataValue = getStringFromBytes(bRawData, idx, Identifiers[idxIdentifiers].Length);
-                            idx = idx + Identifiers[idxIdentifiers].Length - 1;
-                            idxIdentifiers++;  //Go to the next Identifier
-                        }
-                        else
-                        {
-                            // Variable length data
-                            
-                            int posnGroupSeparator = Array.IndexOf(bRawData, (byte)MDC_ASCII.Ascii.GS, idx);
-                            int posnETX = Array.IndexOf(bRawData, (byte)MDC_ASCII.Ascii.ETX, idx);
-                            int iDatalength = 0;
-                            if (posnGroupSeparator == -1)
-                            {
-                                //This is the last data - Read to the end (less the ETX which is the terminator)
-                                iDatalength = bRawData.Length - idx - 1;
-                                Identifiers[idxIdentifiers].DataValue = getStringFromBytes(bRawData, idx, iDatalength);
-                            }
-                            else
-                            {
-                                // Read to the group separator
-                                iDatalength = posnGroupSeparator - idx;
-                                Identifiers[idxIdentifiers].DataValue = getStringFromBytes(bRawData, idx, iDatalength);
-                            }
-                            //Now move on the index
-                            idx = idx + Identifiers[idxIdentifiers].DataValue.Length - 1;  //This COULD end the loop
-                            idxIdentifiers++;
-                            if (idxIdentifiers == Identifiers.Count)
-                            {
-                                //There is nothing else to read
-                                break;
-                            }
-                        }
-                    }
-                }
+                if (frmHW.ReInitialiseScanners) { InitScanners(); }
                 
             }
-            return Identifiers;
+            frmHW.Dispose();
         }
-        private int getDataIndex(byte[] bBuffer, int AsciiCode, int startPosn)
+        private void btnScanner_Click(object sender, EventArgs e)
         {
-            int posn = Array.IndexOf(bBuffer, (byte)AsciiCode, startPosn);
-            return posn;
-        }
-
-
-        private string getStringFromBytes(byte[] bBuffer, int startIndex, int numBytes)
-        {
-            ASCIIEncoding ascii = new ASCIIEncoding();
-            if (bBuffer.Length >= (startIndex + numBytes))
-            {
-                string str = ascii.GetString(bBuffer, startIndex, numBytes);
-                return str;
-            }
-            else { return string.Empty; }
+            frmStandAloneScanners fScanners = new frmStandAloneScanners(Scanners);
+            fScanners.ShowDialog();
+            fScanners.Dispose();
         }
 
-
-        private List<GS1Identifiers> getInnerLabelIds()
+        private void btnScannerTest_Init_Click(object sender, EventArgs e)
         {
-            List<GS1Identifiers> innerlabel = new List<GS1Identifiers>();
-            innerlabel.Add(new GS1Identifiers("GTIN", "01", true, 14));
-            innerlabel.Add(new GS1Identifiers("ProdDate", "11", true, 6));
-            innerlabel.Add(new GS1Identifiers("LotNo", "10", false, 0));
 
-            return innerlabel;
         }
-        private List<GS1Identifiers> getOuterLabelIds()
+
+        private void btnScannerTest_Stop_Click(object sender, EventArgs e)
         {
-            List<GS1Identifiers> outerlabel = new List<GS1Identifiers>();
-            outerlabel.Add(new GS1Identifiers("GTIN", "01", true, 14));
-            outerlabel.Add(new GS1Identifiers("ProdDate", "11", true, 6));
-            outerlabel.Add(new GS1Identifiers("LotNo", "10", false, 20));
-            outerlabel.Add(new GS1Identifiers("ProdName1", "240", false, 30));
-            outerlabel.Add(new GS1Identifiers("ProdName2", "240", false, 30));
-            return outerlabel;
+
         }
-        #endregion
-    }
 
-    internal class GS1Identifiers
-    {
-        internal string Name { get; set; }
-        internal string Identifier { get; set; }
-        internal bool FixedLength { get; set; }
-        
-        //If Fixed length   = True, this is the length the data has to be
-        //                  = False, this is the MAX length of the data
-        internal int Length { get; set; }
-
-        internal string DataValue { get; set; }
-
-        internal GS1Identifiers() { }
-        internal GS1Identifiers(string name, string identifier, bool fixedlength, int length)
+        private void btnScannerTest_Start_Click(object sender, EventArgs e)
         {
-            Name = name;
-            Identifier = identifier;
-            FixedLength = fixedlength;
-            Length = length;
+
         }
     }
-
-    internal class StandAloneScanner
-    {
-        #region Local Variables
-        private StandAloneScannerConfigElement _configData = null;
-        //private CancellationTokenSource _cts = new CancellationTokenSource();
-        private clsMx300NDataAsync _mx300n = null;
-        private int _palletBatchUId = 0;
-        private int _productionLineUId = 0;
-        #endregion
-        #region Properties
-        public StandAloneScannerConfigElement ConfigData
-        {
-            get { return _configData; }
-            set { _configData = value; }
-        }
-        //public CancellationTokenSource CancellationSource
-        //{
-        //    get { return _cts; }
-        //    set { _cts = value; }
-        //}
-        public clsMx300NDataAsync MX300N
-        {
-            get { return _mx300n; }
-            set { _mx300n = value; }
-        }
-        internal int PalletBatchUId
-        {
-            get { return _palletBatchUId; }
-            set { _palletBatchUId = value; }
-        }
-        internal int ProductionLineUId
-        {
-            get { return _productionLineUId; }
-            set { _productionLineUId = value; }
-        }
-        #endregion
-        internal StandAloneScanner(StandAloneScannerConfigElement ConfigData, int palletBatchUId, int productionLineUId)
-        {
-            _configData = ConfigData;
-            _mx300n = new clsMx300NDataAsync(IPAddress.Parse(_configData.IpAddr), _configData.Port);
-            _mx300n.LogControl = null;
-            _mx300n.ctrlReads = null;
-            _mx300n.ctrlGoodReads = null;
-            _mx300n.LogControl = null;
-            _mx300n.PalletBatchUId = palletBatchUId;
-            _mx300n.ProductionLineUId = productionLineUId;
-        }
-    }
-
 }

@@ -45,9 +45,7 @@
             this.pnlPosn1 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.tbLabelTest = new System.Windows.Forms.TextBox();
-            this.btnScannerTest_Stop = new System.Windows.Forms.Button();
-            this.btnScannerTest_Start = new System.Windows.Forms.Button();
-            this.btnScannerTest_Init = new System.Windows.Forms.Button();
+            this.btnScanners = new System.Windows.Forms.Button();
             this.btnLabelTest = new System.Windows.Forms.Button();
             this.btnChangePage = new System.Windows.Forms.Button();
             this.btnHardwareSettings = new System.Windows.Forms.Button();
@@ -71,7 +69,7 @@
             this.button_setBatch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button_setBatch.AutoSize = true;
             this.button_setBatch.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_setBatch.Location = new System.Drawing.Point(493, 561);
+            this.button_setBatch.Location = new System.Drawing.Point(493, 737);
             this.button_setBatch.Name = "button_setBatch";
             this.button_setBatch.Size = new System.Drawing.Size(182, 32);
             this.button_setBatch.TabIndex = 16;
@@ -96,7 +94,7 @@
             this.btnSetProduct.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSetProduct.AutoSize = true;
             this.btnSetProduct.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetProduct.Location = new System.Drawing.Point(493, 599);
+            this.btnSetProduct.Location = new System.Drawing.Point(493, 772);
             this.btnSetProduct.Name = "btnSetProduct";
             this.btnSetProduct.Size = new System.Drawing.Size(182, 32);
             this.btnSetProduct.TabIndex = 58;
@@ -124,7 +122,7 @@
             this.buttonReports.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonReports.AutoSize = true;
             this.buttonReports.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReports.Location = new System.Drawing.Point(681, 561);
+            this.buttonReports.Location = new System.Drawing.Point(678, 737);
             this.buttonReports.Name = "buttonReports";
             this.buttonReports.Size = new System.Drawing.Size(182, 32);
             this.buttonReports.TabIndex = 88;
@@ -137,7 +135,7 @@
             this.AuditReportButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.AuditReportButton.AutoSize = true;
             this.AuditReportButton.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AuditReportButton.Location = new System.Drawing.Point(869, 599);
+            this.AuditReportButton.Location = new System.Drawing.Point(864, 772);
             this.AuditReportButton.Name = "AuditReportButton";
             this.AuditReportButton.Size = new System.Drawing.Size(182, 32);
             this.AuditReportButton.TabIndex = 90;
@@ -151,7 +149,7 @@
             this.pnlPosn3.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pnlPosn3.Location = new System.Drawing.Point(933, 71);
             this.pnlPosn3.Name = "pnlPosn3";
-            this.pnlPosn3.Size = new System.Drawing.Size(454, 474);
+            this.pnlPosn3.Size = new System.Drawing.Size(454, 630);
             this.pnlPosn3.TabIndex = 91;
             // 
             // pnlPosn2
@@ -160,7 +158,7 @@
             this.pnlPosn2.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pnlPosn2.Location = new System.Drawing.Point(476, 71);
             this.pnlPosn2.Name = "pnlPosn2";
-            this.pnlPosn2.Size = new System.Drawing.Size(454, 474);
+            this.pnlPosn2.Size = new System.Drawing.Size(454, 630);
             this.pnlPosn2.TabIndex = 92;
             // 
             // pnlPosn1
@@ -169,7 +167,7 @@
             this.pnlPosn1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pnlPosn1.Location = new System.Drawing.Point(19, 71);
             this.pnlPosn1.Name = "pnlPosn1";
-            this.pnlPosn1.Size = new System.Drawing.Size(454, 474);
+            this.pnlPosn1.Size = new System.Drawing.Size(454, 630);
             this.pnlPosn1.TabIndex = 93;
             // 
             // panel4
@@ -178,9 +176,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.tbLabelTest);
-            this.panel4.Controls.Add(this.btnScannerTest_Stop);
-            this.panel4.Controls.Add(this.btnScannerTest_Start);
-            this.panel4.Controls.Add(this.btnScannerTest_Init);
+            this.panel4.Controls.Add(this.btnScanners);
             this.panel4.Controls.Add(this.btnLabelTest);
             this.panel4.Controls.Add(this.btnChangePage);
             this.panel4.Controls.Add(this.btnHardwareSettings);
@@ -202,50 +198,30 @@
             this.panel4.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.panel4.Location = new System.Drawing.Point(0, 49);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1518, 634);
+            this.panel4.Size = new System.Drawing.Size(1518, 810);
             this.panel4.TabIndex = 94;
             // 
             // tbLabelTest
             // 
-            this.tbLabelTest.Location = new System.Drawing.Point(414, 15);
+            this.tbLabelTest.Location = new System.Drawing.Point(132, 9);
             this.tbLabelTest.Name = "tbLabelTest";
             this.tbLabelTest.Size = new System.Drawing.Size(100, 29);
             this.tbLabelTest.TabIndex = 99;
             this.tbLabelTest.Text = "858";
             // 
-            // btnScannerTest_Stop
+            // btnScanners
             // 
-            this.btnScannerTest_Stop.Location = new System.Drawing.Point(132, 35);
-            this.btnScannerTest_Stop.Name = "btnScannerTest_Stop";
-            this.btnScannerTest_Stop.Size = new System.Drawing.Size(122, 29);
-            this.btnScannerTest_Stop.TabIndex = 98;
-            this.btnScannerTest_Stop.Text = "Scanner Stop";
-            this.btnScannerTest_Stop.UseVisualStyleBackColor = true;
-            this.btnScannerTest_Stop.Click += new System.EventHandler(this.btnScannerTest_Stop_Click);
-            // 
-            // btnScannerTest_Start
-            // 
-            this.btnScannerTest_Start.Location = new System.Drawing.Point(132, 3);
-            this.btnScannerTest_Start.Name = "btnScannerTest_Start";
-            this.btnScannerTest_Start.Size = new System.Drawing.Size(122, 29);
-            this.btnScannerTest_Start.TabIndex = 98;
-            this.btnScannerTest_Start.Text = "Scanner Start";
-            this.btnScannerTest_Start.UseVisualStyleBackColor = true;
-            this.btnScannerTest_Start.Click += new System.EventHandler(this.btnScannerTest_Start_Click);
-            // 
-            // btnScannerTest_Init
-            // 
-            this.btnScannerTest_Init.Location = new System.Drawing.Point(19, 3);
-            this.btnScannerTest_Init.Name = "btnScannerTest_Init";
-            this.btnScannerTest_Init.Size = new System.Drawing.Size(107, 29);
-            this.btnScannerTest_Init.TabIndex = 98;
-            this.btnScannerTest_Init.Text = "Scanner Init";
-            this.btnScannerTest_Init.UseVisualStyleBackColor = true;
-            this.btnScannerTest_Init.Click += new System.EventHandler(this.btnScannerTest_Init_Click);
+            this.btnScanners.Location = new System.Drawing.Point(1048, 737);
+            this.btnScanners.Name = "btnScanners";
+            this.btnScanners.Size = new System.Drawing.Size(182, 32);
+            this.btnScanners.TabIndex = 98;
+            this.btnScanners.Text = "Scanners";
+            this.btnScanners.UseVisualStyleBackColor = true;
+            this.btnScanners.Click += new System.EventHandler(this.btnScanner_Click);
             // 
             // btnLabelTest
             // 
-            this.btnLabelTest.Location = new System.Drawing.Point(301, 15);
+            this.btnLabelTest.Location = new System.Drawing.Point(19, 9);
             this.btnLabelTest.Name = "btnLabelTest";
             this.btnLabelTest.Size = new System.Drawing.Size(107, 29);
             this.btnLabelTest.TabIndex = 98;
@@ -271,7 +247,7 @@
             this.btnHardwareSettings.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnHardwareSettings.AutoSize = true;
             this.btnHardwareSettings.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHardwareSettings.Location = new System.Drawing.Point(869, 561);
+            this.btnHardwareSettings.Location = new System.Drawing.Point(863, 737);
             this.btnHardwareSettings.Name = "btnHardwareSettings";
             this.btnHardwareSettings.Size = new System.Drawing.Size(182, 32);
             this.btnHardwareSettings.TabIndex = 95;
@@ -284,7 +260,7 @@
             this.buttonReprintPalletLabels.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonReprintPalletLabels.AutoSize = true;
             this.buttonReprintPalletLabels.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReprintPalletLabels.Location = new System.Drawing.Point(681, 599);
+            this.buttonReprintPalletLabels.Location = new System.Drawing.Point(678, 772);
             this.buttonReprintPalletLabels.Name = "buttonReprintPalletLabels";
             this.buttonReprintPalletLabels.Size = new System.Drawing.Size(182, 32);
             this.buttonReprintPalletLabels.TabIndex = 97;
@@ -296,7 +272,7 @@
             // 
             this.picExwoldLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.picExwoldLogo.Image = global::ITS.Exwold.Desktop.Properties.Resources.Exwold_High_Res_Logo_No_Strapline___small;
-            this.picExwoldLogo.Location = new System.Drawing.Point(0, 561);
+            this.picExwoldLogo.Location = new System.Drawing.Point(0, 737);
             this.picExwoldLogo.Name = "picExwoldLogo";
             this.picExwoldLogo.Size = new System.Drawing.Size(319, 73);
             this.picExwoldLogo.TabIndex = 95;
@@ -306,7 +282,7 @@
             // 
             this.picITSLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picITSLogo.Image = global::ITS.Exwold.Desktop.Properties.Resources.ITS_logo_small1;
-            this.picITSLogo.Location = new System.Drawing.Point(1279, 548);
+            this.picITSLogo.Location = new System.Drawing.Point(1279, 724);
             this.picITSLogo.Name = "picITSLogo";
             this.picITSLogo.Size = new System.Drawing.Size(239, 86);
             this.picITSLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -422,7 +398,7 @@
             // MainStatusForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1518, 683);
+            this.ClientSize = new System.Drawing.Size(1518, 859);
             this.ControlBox = false;
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label13);
@@ -466,9 +442,7 @@
         private System.Windows.Forms.Label lblPlantName;
         private System.Windows.Forms.Button btnLabelTest;
         private System.Windows.Forms.TextBox tbLabelTest;
-        private System.Windows.Forms.Button btnScannerTest_Init;
-        private System.Windows.Forms.Button btnScannerTest_Stop;
-        private System.Windows.Forms.Button btnScannerTest_Start;
+        private System.Windows.Forms.Button btnScanners;
     }
 }
 

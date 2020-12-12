@@ -30,16 +30,25 @@ namespace ITS.Exwold.Desktop
     {
         #region private variables
         private ExwoldConfigSettings _exwoldConfigSettings = null;
-        private Dictionary<string, Control> _ipadresses = new Dictionary<string, Control>();
+        private readonly Dictionary<string, Control> _ipadresses = new Dictionary<string, Control>();
+        private List<StandAloneScanner> _scanners = null;
+        private bool _discardChanges = false; 
+        private bool _reInitilaiseScanners = false;
+
         #endregion
+
+        internal bool ReInitialiseScanners { get { return _reInitilaiseScanners; } }
+        internal bool DiscardChanges { get { return _discardChanges; } }
         internal ExwoldConfigSettings ExwoldConfigSettings
         { 
             get { return _exwoldConfigSettings; }
             set { _exwoldConfigSettings = value; }
         }
-        public frmPlantHardware()
+        internal frmPlantHardware(ExwoldConfigSettings ConfigSettings, List<StandAloneScanner> Scanners)
         {
             InitializeComponent();
+            _exwoldConfigSettings = ConfigSettings;
+            _scanners = Scanners;
         }
 
         private void frmPlantHardware_Load(object sender, EventArgs e)
@@ -58,13 +67,13 @@ namespace ITS.Exwold.Desktop
             //Load the ProductionLine cbo with data
             cboPLPLineX.Items.Clear();
             cboSAScnLineX.Items.Clear();
-            cboMobScnLineX.Items.Clear();
+            txtHHScn_LineX.Items.Clear();
             foreach (ProductionLineConfigElement line in _exwoldConfigSettings.ProductionLines)
             {
                 //Console.WriteLine("{0}, {1}, {2}", line.ToString(), line.Id.ToString(), line.Name);
                 cboPLPLineX.Items.Add(line);
                 cboSAScnLineX.Items.Add(line);
-                cboMobScnLineX.Items.Add(line);
+                txtHHScn_LineX.Items.Add(line);
             }
             cboPLPLineX.ValueMember = "Id";
             cboPLPLineX.DisplayMember = "Name";
@@ -72,9 +81,9 @@ namespace ITS.Exwold.Desktop
             cboSAScnLineX.ValueMember = "Id";
             cboSAScnLineX.DisplayMember = "Name";
             cboSAScnLineX.SelectedIndex = 0;
-            cboMobScnLineX.ValueMember = "Id";
-            cboMobScnLineX.DisplayMember = "Name";
-            cboMobScnLineX.SelectedIndex = 0;
+            txtHHScn_LineX.ValueMember = "Id";
+            txtHHScn_LineX.DisplayMember = "Name";
+            txtHHScn_LineX.SelectedIndex = 0;
             #endregion
             #region Pallet Label Printers
             for (int count = 0;count < _exwoldConfigSettings.PalletLabelPrinters.Count;count++)
@@ -87,40 +96,41 @@ namespace ITS.Exwold.Desktop
                 TextBox txtStatus = addControl<TextBox>(txtPLPStatusX, count, "---", grpPalletLabelPrinters);
                 _ipadresses.Add(_exwoldConfigSettings.PalletLabelPrinters[count].IpAddr.ToString(), txtStatus);
 
-                ComboBox cbo = addCbo(cboPLPLineX, count, _exwoldConfigSettings.PalletLabelPrinters[count], grpPalletLabelPrinters);
+                ComboBox cbo = addPalletLabelPrinterCbo(cboPLPLineX, count, _exwoldConfigSettings.PalletLabelPrinters[count], grpPalletLabelPrinters);
             }
             #endregion
             #region Carton Label Printers
             for (int count = 0; count < _exwoldConfigSettings.OuterPackLabelPrinters.Count; count++)
             {
-                addControl<TextBox>(txtCLPIdX, count, _exwoldConfigSettings.OuterPackLabelPrinters[count].Id.ToString(), grpCartonLabelPrinters);
-                addControl<TextBox>(txtCLPNameX, count, _exwoldConfigSettings.OuterPackLabelPrinters[count].Name.ToString(), grpCartonLabelPrinters);
-                addControl<TextBox>(txtCLPIpAddrX, count, _exwoldConfigSettings.OuterPackLabelPrinters[count].IpAddr.ToString(), grpCartonLabelPrinters);
-                TextBox txtStatus = addControl<TextBox>(txtCLPStatusX, count, "---", grpCartonLabelPrinters);
+                addControl<TextBox>(txtOuterPckLP_IdX, count, _exwoldConfigSettings.OuterPackLabelPrinters[count].Id.ToString(), grpOuterPackLabelPrinters);
+                addControl<TextBox>(txtOuterPckLP_NameX, count, _exwoldConfigSettings.OuterPackLabelPrinters[count].Name.ToString(), grpOuterPackLabelPrinters);
+                addControl<TextBox>(txtOuterPckLP_IpAddrX, count, _exwoldConfigSettings.OuterPackLabelPrinters[count].IpAddr.ToString(), grpOuterPackLabelPrinters);
+                TextBox txtStatus = addControl<TextBox>(txtOuterPckLP_StatusX, count, "---", grpOuterPackLabelPrinters);
                 _ipadresses.Add(_exwoldConfigSettings.OuterPackLabelPrinters[count].IpAddr.ToString(), txtStatus);
             }
             #endregion
             #region Unit Label Printers
             for (int count = 0; count < _exwoldConfigSettings.InnerPackLabelPrinters.Count; count++)
             {
-                addControl<TextBox>(txtULPIdX, count, _exwoldConfigSettings.InnerPackLabelPrinters[count].Id.ToString(), grpUnitLabelPrinters);
-                addControl<TextBox>(txtULPNameX, count, _exwoldConfigSettings.InnerPackLabelPrinters[count].Name.ToString(), grpUnitLabelPrinters);
-                addControl<TextBox>(txtULPIpAddrX, count, _exwoldConfigSettings.InnerPackLabelPrinters[count].IpAddr.ToString(), grpUnitLabelPrinters);
-                TextBox txtStatus = addControl<TextBox>(txtULPStatusX, count, "---", grpUnitLabelPrinters);
+                addControl<TextBox>(txtInnerPckLP_IdX, count, _exwoldConfigSettings.InnerPackLabelPrinters[count].Id.ToString(), grpInnerPackLabelPrinters);
+                addControl<TextBox>(txtInnerPckLP_NameX, count, _exwoldConfigSettings.InnerPackLabelPrinters[count].Name.ToString(), grpInnerPackLabelPrinters);
+                addControl<TextBox>(txtInnerPckLP_IpAddrX, count, _exwoldConfigSettings.InnerPackLabelPrinters[count].IpAddr.ToString(), grpInnerPackLabelPrinters);
+                TextBox txtStatus = addControl<TextBox>(txtInnerPckLP_StatusX, count, "---", grpInnerPackLabelPrinters);
                 _ipadresses.Add(_exwoldConfigSettings.InnerPackLabelPrinters[count].IpAddr.ToString(), txtStatus);
             }
             #endregion
             #region Mobile Scanners
             for (int count = 0; count < _exwoldConfigSettings.HandHeldScanners.Count; count++)
             {
-                addControl<TextBox>(txtMobScnIdX, count, _exwoldConfigSettings.HandHeldScanners[count].Id.ToString(), grpMobileScanner);
-                addControl<TextBox>(txtMobScnNameX, count, _exwoldConfigSettings.HandHeldScanners[count].Name.ToString(), grpMobileScanner);
-                addControl<TextBox>(txtMobScnIpAddrX, count, _exwoldConfigSettings.HandHeldScanners[count].IpAddr.ToString(), grpMobileScanner);
-                addControl<TextBox>(txtMobScnPortX, count, _exwoldConfigSettings.HandHeldScanners[count].Port.ToString(), grpMobileScanner);
-                TextBox txtStatus = addControl<TextBox>(txtMobScnStatusX, count, "---", grpMobileScanner);
+                addControl<TextBox>(txtHHScn_IdX, count, _exwoldConfigSettings.HandHeldScanners[count].Id.ToString(), grpHandHeldScanner);
+                addControl<TextBox>(txtHHScn_NameX, count, _exwoldConfigSettings.HandHeldScanners[count].Name.ToString(), grpHandHeldScanner);
+                addControl<TextBox>(txtHHScn_IpAddrX, count, _exwoldConfigSettings.HandHeldScanners[count].IpAddr.ToString(), grpHandHeldScanner);
+                addControl<TextBox>(txtHHScn_PortX, count, _exwoldConfigSettings.HandHeldScanners[count].Port.ToString(), grpHandHeldScanner);
+                TextBox txtStatus = addControl<TextBox>(txtHHScn_StatusX, count, "---", grpHandHeldScanner);
                 _ipadresses.Add(_exwoldConfigSettings.HandHeldScanners[count].IpAddr.ToString(), txtStatus);
 
-                ComboBox cbo = addCbo(cboMobScnLineX, count, _exwoldConfigSettings.HandHeldScanners[count], grpMobileScanner);
+                ComboBox cbo = addProdLineCbo(txtHHScn_LineX, count, _exwoldConfigSettings.HandHeldScanners[count], grpHandHeldScanner);
+                cbo = addConditionCbo(cboHHScn_ConditionX, count, _exwoldConfigSettings.HandHeldScanners[count], grpHandHeldScanner);
             }
             #endregion
             #region Stand-alone Scanners
@@ -130,12 +140,14 @@ namespace ITS.Exwold.Desktop
                 addControl<TextBox>(txtSAScnNameX, count, _exwoldConfigSettings.StandAloneScanners[count].Name.ToString(), grpStandAloneScanners);
                 addControl<TextBox>(txtSAScnIpAddrX, count, _exwoldConfigSettings.StandAloneScanners[count].IpAddr.ToString(), grpStandAloneScanners);
                 addControl<TextBox>(txtSAScnPortX, count, _exwoldConfigSettings.StandAloneScanners[count].Port.ToString(), grpStandAloneScanners);
-                
+                addControl<TextBox>(txtSAScnScanRateX, count, _exwoldConfigSettings.StandAloneScanners[count].ScanRate.ToString(), grpStandAloneScanners);
+
                 TextBox txtStatus = addControl<TextBox>(txtSAScnStatusX, count, "---", grpStandAloneScanners);
                 _ipadresses.Add(_exwoldConfigSettings.StandAloneScanners[count].IpAddr.ToString(), txtStatus);
                 //PingAddress(_exwoldConfigSettings.StandAloneScanners[count].IpAddr.ToString(), txtStatus);
 
-                ComboBox cbo = addCbo(cboSAScnLineX, count, _exwoldConfigSettings.StandAloneScanners[count], grpStandAloneScanners);
+                ComboBox cbo = addProdLineCbo(cboSAScnLineX, count, _exwoldConfigSettings.StandAloneScanners[count], grpStandAloneScanners);
+                cbo = addConditionCbo(cboSAScnConditionX, count, _exwoldConfigSettings.StandAloneScanners[count], grpStandAloneScanners);
             }
             #endregion
         }
@@ -171,7 +183,7 @@ namespace ITS.Exwold.Desktop
         /// <param name="prodLine">the currently select line</param>
         /// <param name="container">place to put the cbo into</param>
         /// <returns></returns>
-        private ComboBox genericCbo(ComboBox sourceCbo, int index, int prodLine, GroupBox container)
+        private ComboBox genericProdLineCbo(ComboBox sourceCbo, int index, int prodLine, GroupBox container)
         {
             //Set the veritical increment step
             int verticalOffset = sourceCbo.Height;
@@ -198,6 +210,28 @@ namespace ITS.Exwold.Desktop
                     destCbo.SelectedIndex = destCbo.FindStringExact(line.Name);
                 }
             }
+
+            destCbo.KeyPress += (sender, e) => { e.Handled = true; };
+            return destCbo;
+        }
+        private ComboBox genericConditionCbo(ComboBox sourceCbo, int index, string condition, GroupBox container)
+        {
+            //Set the veritical increment step
+            int verticalOffset = sourceCbo.Height;
+            //Create a new combobox
+            ComboBox destCbo = new ComboBox();
+
+            //Copy the items from source to destination
+            destCbo.Items.AddRange(sourceCbo.Items.Cast<string>().ToArray());
+            destCbo.Size = sourceCbo.Size;
+            //Set the back colour of the control - For asthetics only
+            destCbo.BackColor = index % 2 == 0 ? Color.AliceBlue : Color.Aqua;
+            destCbo.Location = new Point(sourceCbo.Location.X, sourceCbo.Location.Y + (index * verticalOffset));
+            destCbo.Visible = true;
+            container.Controls.Add(destCbo);
+
+            //Select the Condition for the element
+            destCbo.SelectedIndex = destCbo.FindStringExact(condition);
 
             destCbo.KeyPress += (sender, e) => { e.Handled = true; };
             return destCbo;
@@ -237,6 +271,18 @@ namespace ITS.Exwold.Desktop
 
             element.ProductionLine = LineId;
         }
+        private void cboSAScnCondition_IndexChanged(object sender, EventArgs e, StandAloneScannerConfigElement element)
+        {
+            //Get the combobox
+            ComboBox cbo = (ComboBox)sender;
+            element.Condition = cbo.SelectedItem.ToString();
+        }
+        private void cboHHScnCondition_IndexChanged(object sender, EventArgs e, HandHeldScannerConfigElement element)
+        {
+            //Get the combobox
+            ComboBox cbo = (ComboBox)sender;
+            element.Condition = cbo.SelectedItem.ToString();
+        }
         private void cbo_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
@@ -252,30 +298,58 @@ namespace ITS.Exwold.Desktop
         /// <param name="element">Used to create the specific custom event</param>
         /// <param name="container">to be passed to the genericCbo method</param>
         /// <returns></returns>
-        private ComboBox addCbo(ComboBox sourceCbo, int index, PalletLabelPrinterConfigElement element, GroupBox container)
+
+        private ComboBox addPalletLabelPrinterCbo(ComboBox sourceCbo, int index, PalletLabelPrinterConfigElement element, GroupBox container)
+
         {
             //Build the generic CBO stuff
-            ComboBox destCbo = genericCbo(sourceCbo, index, element.ProductionLine, container);
+            ComboBox destCbo = genericProdLineCbo(sourceCbo, index, element.ProductionLine, container);
             #region Custom Events
             destCbo.SelectedIndexChanged += delegate (object sender, EventArgs e) { cboPalletLabelPrinter_IndexChanged(sender, e, element); };
             #endregion            
             return destCbo;
         }
-        private ComboBox addCbo(ComboBox sourceCbo, int index, HandHeldScannerConfigElement element, GroupBox container)
+
+        private ComboBox addProdLineCbo(ComboBox sourceCbo, int index, HandHeldScannerConfigElement element, GroupBox container)
+
         {
             //Build the generic CBO stuff
-            ComboBox destCbo = genericCbo(sourceCbo, index, element.ProductionLine, container);
+            ComboBox destCbo = genericProdLineCbo(sourceCbo, index, element.ProductionLine, container);
             #region Custom Events
             destCbo.SelectedIndexChanged += delegate (object sender, EventArgs e) { cboMobileScanner_IndexChanged(sender, e, element); };
             #endregion            
             return destCbo;
         }
-        private ComboBox addCbo(ComboBox sourceCbo, int index, StandAloneScannerConfigElement element, GroupBox container)
+
+        private ComboBox addProdLineCbo(ComboBox sourceCbo, int index, StandAloneScannerConfigElement element, GroupBox container)
+
         {
             //Build the generic CBO stuff
-            ComboBox destCbo = genericCbo(sourceCbo, index, element.ProductionLine, container);
+            ComboBox destCbo = genericProdLineCbo(sourceCbo, index, element.ProductionLine, container);
             #region Custom Events
             destCbo.SelectedIndexChanged += delegate (object sender, EventArgs e) { cboStandAloneScanner_IndexChanged(sender, e, element); };
+            #endregion            
+            return destCbo;
+        }
+
+        private ComboBox addConditionCbo(ComboBox sourceCbo, int index, StandAloneScannerConfigElement element, GroupBox container)
+
+        {
+            //Build the generic CBO stuff
+            ComboBox destCbo = genericConditionCbo(sourceCbo, index, element.Condition, container);
+            #region Custom Events
+            destCbo.SelectedIndexChanged += delegate (object sender, EventArgs e) { cboSAScnCondition_IndexChanged(sender, e, element); };
+            #endregion            
+            return destCbo;
+        }
+
+        private ComboBox addConditionCbo(ComboBox sourceCbo, int index, HandHeldScannerConfigElement element, GroupBox container)
+
+        {
+            //Build the generic CBO stuff
+            ComboBox destCbo = genericConditionCbo(sourceCbo, index, element.Condition, container);
+            #region Custom Events
+            destCbo.SelectedIndexChanged += delegate (object sender, EventArgs e) { cboHHScnCondition_IndexChanged(sender, e, element); };
             #endregion            
             return destCbo;
         }
@@ -319,10 +393,24 @@ namespace ITS.Exwold.Desktop
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
+            _discardChanges = true;
+            this.Close();
+        }
+
+        private void btnStandAloneScanners_Click(object sender, EventArgs e)
+        {
+            frmStandAloneScanners fScanners = new frmStandAloneScanners(_scanners);
+            fScanners.ShowDialog();
+        }
+
+        private void btnInitScanners_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
             //Save the settings
             _exwoldConfigSettings.Save();
-            this.Hide();
-            this.Dispose();
+            _reInitilaiseScanners = true;
+            this.Close();
         }
     }
 }

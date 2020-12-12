@@ -29,11 +29,13 @@
         private void InitializeComponent()
         {
             this.grpStandAloneScanners = new System.Windows.Forms.GroupBox();
+            this.cboSAScnConditionX = new System.Windows.Forms.ComboBox();
             this.cboSAScnLineX = new System.Windows.Forms.ComboBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.textBox12 = new System.Windows.Forms.TextBox();
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.txtSAScnStatusX = new System.Windows.Forms.TextBox();
+            this.txtSAScnScanRateX = new System.Windows.Forms.TextBox();
             this.txtSAScnPortX = new System.Windows.Forms.TextBox();
             this.lblSAScn_Status = new System.Windows.Forms.Label();
             this.lblSAScn_Port = new System.Windows.Forms.Label();
@@ -42,26 +44,28 @@
             this.txtSAScnNameX = new System.Windows.Forms.TextBox();
             this.lblSAScn_Name = new System.Windows.Forms.Label();
             this.txtSAScnIdX = new System.Windows.Forms.TextBox();
+            this.lblSAScn_Condition = new System.Windows.Forms.Label();
+            this.lblSAScn_ScanRate = new System.Windows.Forms.Label();
             this.lblSAScn_Line = new System.Windows.Forms.Label();
             this.lblSAScn_IpAddr = new System.Windows.Forms.Label();
-            this.grpUnitLabelPrinters = new System.Windows.Forms.GroupBox();
-            this.txtULPStatusX = new System.Windows.Forms.TextBox();
-            this.txtULPIpAddrX = new System.Windows.Forms.TextBox();
-            this.lblULP_Id = new System.Windows.Forms.Label();
-            this.txtULPNameX = new System.Windows.Forms.TextBox();
-            this.lblULP_Name = new System.Windows.Forms.Label();
-            this.txtULPIdX = new System.Windows.Forms.TextBox();
-            this.lblULP_Status = new System.Windows.Forms.Label();
-            this.lblULP_IpAddr = new System.Windows.Forms.Label();
-            this.grpCartonLabelPrinters = new System.Windows.Forms.GroupBox();
-            this.txtCLPStatusX = new System.Windows.Forms.TextBox();
-            this.txtCLPIpAddrX = new System.Windows.Forms.TextBox();
-            this.lblCLP_Id = new System.Windows.Forms.Label();
-            this.txtCLPNameX = new System.Windows.Forms.TextBox();
-            this.lblCLP_Name = new System.Windows.Forms.Label();
-            this.txtCLPIdX = new System.Windows.Forms.TextBox();
-            this.lblCLP_Status = new System.Windows.Forms.Label();
-            this.lblCLP_IpAddr = new System.Windows.Forms.Label();
+            this.grpInnerPackLabelPrinters = new System.Windows.Forms.GroupBox();
+            this.txtInnerPckLP_StatusX = new System.Windows.Forms.TextBox();
+            this.txtInnerPckLP_IpAddrX = new System.Windows.Forms.TextBox();
+            this.lblInnerPckLP_Id = new System.Windows.Forms.Label();
+            this.txtInnerPckLP_NameX = new System.Windows.Forms.TextBox();
+            this.lblInnerPckLP_Name = new System.Windows.Forms.Label();
+            this.txtInnerPckLP_IdX = new System.Windows.Forms.TextBox();
+            this.lblInnerPckLP_Status = new System.Windows.Forms.Label();
+            this.lblInnerPckLP_IpAddr = new System.Windows.Forms.Label();
+            this.grpOuterPackLabelPrinters = new System.Windows.Forms.GroupBox();
+            this.txtOuterPckLP_StatusX = new System.Windows.Forms.TextBox();
+            this.txtOuterPckLP_IpAddrX = new System.Windows.Forms.TextBox();
+            this.lblOuterPckLP_Id = new System.Windows.Forms.Label();
+            this.txtOuterPckLP_NameX = new System.Windows.Forms.TextBox();
+            this.lblOuterPckLP_Name = new System.Windows.Forms.Label();
+            this.txtOuterPckLP_IdX = new System.Windows.Forms.TextBox();
+            this.lblOuterPckLP_Status = new System.Windows.Forms.Label();
+            this.lblOuterPckLP_IpAddr = new System.Windows.Forms.Label();
             this.lblPLP_IpAddr = new System.Windows.Forms.Label();
             this.lblPLP_Line = new System.Windows.Forms.Label();
             this.lblPLP_Name = new System.Windows.Forms.Label();
@@ -79,41 +83,47 @@
             this.txtPLPIdX = new System.Windows.Forms.TextBox();
             this.lblPLP_Status = new System.Windows.Forms.Label();
             this.btnRetestIPAddresses = new System.Windows.Forms.Button();
-            this.grpMobileScanner = new System.Windows.Forms.GroupBox();
-            this.cboMobScnLineX = new System.Windows.Forms.ComboBox();
+            this.grpHandHeldScanner = new System.Windows.Forms.GroupBox();
+            this.cboHHScn_ConditionX = new System.Windows.Forms.ComboBox();
+            this.lblHHScn_Condition = new System.Windows.Forms.Label();
+            this.txtHHScn_LineX = new System.Windows.Forms.ComboBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
-            this.txtMobScnStatusX = new System.Windows.Forms.TextBox();
-            this.txtMobScnPortX = new System.Windows.Forms.TextBox();
-            this.txtMobScnIpAddrX = new System.Windows.Forms.TextBox();
-            this.lblMobScn_Id = new System.Windows.Forms.Label();
-            this.txtMobScnNameX = new System.Windows.Forms.TextBox();
-            this.lblMobScn_Name = new System.Windows.Forms.Label();
-            this.txtMobScnIdX = new System.Windows.Forms.TextBox();
-            this.lblMobScn_Status = new System.Windows.Forms.Label();
-            this.lblMobScn_Port = new System.Windows.Forms.Label();
-            this.lblMobScn_Line = new System.Windows.Forms.Label();
-            this.lblMobScn_IpAddr = new System.Windows.Forms.Label();
+            this.txtHHScn_StatusX = new System.Windows.Forms.TextBox();
+            this.txtHHScn_PortX = new System.Windows.Forms.TextBox();
+            this.txtHHScn_IpAddrX = new System.Windows.Forms.TextBox();
+            this.lblHHScn_Id = new System.Windows.Forms.Label();
+            this.txtHHScn_NameX = new System.Windows.Forms.TextBox();
+            this.lblHHScn_Name = new System.Windows.Forms.Label();
+            this.txtHHScn_IdX = new System.Windows.Forms.TextBox();
+            this.lblHHScn_Status = new System.Windows.Forms.Label();
+            this.lblHHScn_Port = new System.Windows.Forms.Label();
+            this.lblHHScn_Line = new System.Windows.Forms.Label();
+            this.lblHHScn_IpAddr = new System.Windows.Forms.Label();
             this.grpButtons = new System.Windows.Forms.GroupBox();
+            this.btnStandAloneScanners = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnInitScanners = new System.Windows.Forms.Button();
             this.grpStandAloneScanners.SuspendLayout();
-            this.grpUnitLabelPrinters.SuspendLayout();
-            this.grpCartonLabelPrinters.SuspendLayout();
+            this.grpInnerPackLabelPrinters.SuspendLayout();
+            this.grpOuterPackLabelPrinters.SuspendLayout();
             this.grpPalletLabelPrinters.SuspendLayout();
-            this.grpMobileScanner.SuspendLayout();
+            this.grpHandHeldScanner.SuspendLayout();
             this.grpButtons.SuspendLayout();
             this.SuspendLayout();
             // 
             // grpStandAloneScanners
             // 
+            this.grpStandAloneScanners.Controls.Add(this.cboSAScnConditionX);
             this.grpStandAloneScanners.Controls.Add(this.cboSAScnLineX);
             this.grpStandAloneScanners.Controls.Add(this.textBox11);
             this.grpStandAloneScanners.Controls.Add(this.textBox12);
             this.grpStandAloneScanners.Controls.Add(this.textBox13);
             this.grpStandAloneScanners.Controls.Add(this.txtSAScnStatusX);
+            this.grpStandAloneScanners.Controls.Add(this.txtSAScnScanRateX);
             this.grpStandAloneScanners.Controls.Add(this.txtSAScnPortX);
             this.grpStandAloneScanners.Controls.Add(this.lblSAScn_Status);
             this.grpStandAloneScanners.Controls.Add(this.lblSAScn_Port);
@@ -122,6 +132,8 @@
             this.grpStandAloneScanners.Controls.Add(this.txtSAScnNameX);
             this.grpStandAloneScanners.Controls.Add(this.lblSAScn_Name);
             this.grpStandAloneScanners.Controls.Add(this.txtSAScnIdX);
+            this.grpStandAloneScanners.Controls.Add(this.lblSAScn_Condition);
+            this.grpStandAloneScanners.Controls.Add(this.lblSAScn_ScanRate);
             this.grpStandAloneScanners.Controls.Add(this.lblSAScn_Line);
             this.grpStandAloneScanners.Controls.Add(this.lblSAScn_IpAddr);
             this.grpStandAloneScanners.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -129,16 +141,31 @@
             this.grpStandAloneScanners.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpStandAloneScanners.Name = "grpStandAloneScanners";
             this.grpStandAloneScanners.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grpStandAloneScanners.Size = new System.Drawing.Size(691, 175);
+            this.grpStandAloneScanners.Size = new System.Drawing.Size(933, 175);
             this.grpStandAloneScanners.TabIndex = 2;
             this.grpStandAloneScanners.TabStop = false;
             this.grpStandAloneScanners.Text = "Stand-Alone Scanners";
+            // 
+            // cboSAScnConditionX
+            // 
+            this.cboSAScnConditionX.CausesValidation = false;
+            this.cboSAScnConditionX.FormattingEnabled = true;
+            this.cboSAScnConditionX.Items.AddRange(new object[] {
+            "active",
+            "inactive",
+            "spare"});
+            this.cboSAScnConditionX.Location = new System.Drawing.Point(825, 47);
+            this.cboSAScnConditionX.Name = "cboSAScnConditionX";
+            this.cboSAScnConditionX.Size = new System.Drawing.Size(100, 30);
+            this.cboSAScnConditionX.Sorted = true;
+            this.cboSAScnConditionX.TabIndex = 31;
+            this.cboSAScnConditionX.Visible = false;
             // 
             // cboSAScnLineX
             // 
             this.cboSAScnLineX.CausesValidation = false;
             this.cboSAScnLineX.FormattingEnabled = true;
-            this.cboSAScnLineX.Location = new System.Drawing.Point(584, 47);
+            this.cboSAScnLineX.Location = new System.Drawing.Point(634, 47);
             this.cboSAScnLineX.Name = "cboSAScnLineX";
             this.cboSAScnLineX.Size = new System.Drawing.Size(100, 30);
             this.cboSAScnLineX.Sorted = true;
@@ -189,7 +216,7 @@
             // 
             // txtSAScnStatusX
             // 
-            this.txtSAScnStatusX.Location = new System.Drawing.Point(371, 48);
+            this.txtSAScnStatusX.Location = new System.Drawing.Point(421, 48);
             this.txtSAScnStatusX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSAScnStatusX.Name = "txtSAScnStatusX";
             this.txtSAScnStatusX.Size = new System.Drawing.Size(122, 29);
@@ -198,11 +225,25 @@
             this.txtSAScnStatusX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSAScnStatusX.Visible = false;
             // 
+            // txtSAScnScanRateX
+            // 
+            this.txtSAScnScanRateX.BackColor = System.Drawing.SystemColors.Control;
+            this.txtSAScnScanRateX.CausesValidation = false;
+            this.txtSAScnScanRateX.Location = new System.Drawing.Point(735, 48);
+            this.txtSAScnScanRateX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtSAScnScanRateX.Name = "txtSAScnScanRateX";
+            this.txtSAScnScanRateX.ReadOnly = true;
+            this.txtSAScnScanRateX.Size = new System.Drawing.Size(89, 29);
+            this.txtSAScnScanRateX.TabIndex = 25;
+            this.txtSAScnScanRateX.Text = "What???";
+            this.txtSAScnScanRateX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtSAScnScanRateX.Visible = false;
+            // 
             // txtSAScnPortX
             // 
             this.txtSAScnPortX.BackColor = System.Drawing.SystemColors.Control;
             this.txtSAScnPortX.CausesValidation = false;
-            this.txtSAScnPortX.Location = new System.Drawing.Point(494, 48);
+            this.txtSAScnPortX.Location = new System.Drawing.Point(544, 48);
             this.txtSAScnPortX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSAScnPortX.Name = "txtSAScnPortX";
             this.txtSAScnPortX.ReadOnly = true;
@@ -216,7 +257,7 @@
             // 
             this.lblSAScn_Status.AutoSize = true;
             this.lblSAScn_Status.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSAScn_Status.Location = new System.Drawing.Point(406, 25);
+            this.lblSAScn_Status.Location = new System.Drawing.Point(456, 25);
             this.lblSAScn_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSAScn_Status.Name = "lblSAScn_Status";
             this.lblSAScn_Status.Size = new System.Drawing.Size(52, 22);
@@ -228,7 +269,7 @@
             // 
             this.lblSAScn_Port.AutoSize = true;
             this.lblSAScn_Port.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSAScn_Port.Location = new System.Drawing.Point(519, 25);
+            this.lblSAScn_Port.Location = new System.Drawing.Point(569, 25);
             this.lblSAScn_Port.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSAScn_Port.Name = "lblSAScn_Port";
             this.lblSAScn_Port.Size = new System.Drawing.Size(39, 22);
@@ -240,7 +281,7 @@
             // 
             this.txtSAScnIpAddrX.BackColor = System.Drawing.SystemColors.Control;
             this.txtSAScnIpAddrX.CausesValidation = false;
-            this.txtSAScnIpAddrX.Location = new System.Drawing.Point(248, 48);
+            this.txtSAScnIpAddrX.Location = new System.Drawing.Point(298, 48);
             this.txtSAScnIpAddrX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSAScnIpAddrX.Name = "txtSAScnIpAddrX";
             this.txtSAScnIpAddrX.ReadOnly = true;
@@ -270,7 +311,7 @@
             this.txtSAScnNameX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtSAScnNameX.Name = "txtSAScnNameX";
             this.txtSAScnNameX.ReadOnly = true;
-            this.txtSAScnNameX.Size = new System.Drawing.Size(184, 29);
+            this.txtSAScnNameX.Size = new System.Drawing.Size(234, 29);
             this.txtSAScnNameX.TabIndex = 21;
             this.txtSAScnNameX.Text = "What???";
             this.txtSAScnNameX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -280,7 +321,7 @@
             // 
             this.lblSAScn_Name.AutoSize = true;
             this.lblSAScn_Name.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSAScn_Name.Location = new System.Drawing.Point(156, 25);
+            this.lblSAScn_Name.Location = new System.Drawing.Point(154, 25);
             this.lblSAScn_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSAScn_Name.Name = "lblSAScn_Name";
             this.lblSAScn_Name.Size = new System.Drawing.Size(52, 22);
@@ -302,11 +343,35 @@
             this.txtSAScnIdX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtSAScnIdX.Visible = false;
             // 
+            // lblSAScn_Condition
+            // 
+            this.lblSAScn_Condition.AutoSize = true;
+            this.lblSAScn_Condition.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSAScn_Condition.Location = new System.Drawing.Point(837, 25);
+            this.lblSAScn_Condition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSAScn_Condition.Name = "lblSAScn_Condition";
+            this.lblSAScn_Condition.Size = new System.Drawing.Size(77, 22);
+            this.lblSAScn_Condition.TabIndex = 16;
+            this.lblSAScn_Condition.Tag = "Header";
+            this.lblSAScn_Condition.Text = "Condition";
+            // 
+            // lblSAScn_ScanRate
+            // 
+            this.lblSAScn_ScanRate.AutoSize = true;
+            this.lblSAScn_ScanRate.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSAScn_ScanRate.Location = new System.Drawing.Point(741, 25);
+            this.lblSAScn_ScanRate.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblSAScn_ScanRate.Name = "lblSAScn_ScanRate";
+            this.lblSAScn_ScanRate.Size = new System.Drawing.Size(77, 22);
+            this.lblSAScn_ScanRate.TabIndex = 16;
+            this.lblSAScn_ScanRate.Tag = "Header";
+            this.lblSAScn_ScanRate.Text = "Scan Rate";
+            // 
             // lblSAScn_Line
             // 
             this.lblSAScn_Line.AutoSize = true;
             this.lblSAScn_Line.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSAScn_Line.Location = new System.Drawing.Point(604, 25);
+            this.lblSAScn_Line.Location = new System.Drawing.Point(664, 25);
             this.lblSAScn_Line.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSAScn_Line.Name = "lblSAScn_Line";
             this.lblSAScn_Line.Size = new System.Drawing.Size(40, 22);
@@ -318,7 +383,7 @@
             // 
             this.lblSAScn_IpAddr.AutoSize = true;
             this.lblSAScn_IpAddr.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSAScn_IpAddr.Location = new System.Drawing.Point(268, 25);
+            this.lblSAScn_IpAddr.Location = new System.Drawing.Point(318, 25);
             this.lblSAScn_IpAddr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSAScn_IpAddr.Name = "lblSAScn_IpAddr";
             this.lblSAScn_IpAddr.Size = new System.Drawing.Size(82, 22);
@@ -326,253 +391,253 @@
             this.lblSAScn_IpAddr.Tag = "Header";
             this.lblSAScn_IpAddr.Text = "IP Address";
             // 
-            // grpUnitLabelPrinters
+            // grpInnerPackLabelPrinters
             // 
-            this.grpUnitLabelPrinters.Controls.Add(this.txtULPStatusX);
-            this.grpUnitLabelPrinters.Controls.Add(this.txtULPIpAddrX);
-            this.grpUnitLabelPrinters.Controls.Add(this.lblULP_Id);
-            this.grpUnitLabelPrinters.Controls.Add(this.txtULPNameX);
-            this.grpUnitLabelPrinters.Controls.Add(this.lblULP_Name);
-            this.grpUnitLabelPrinters.Controls.Add(this.txtULPIdX);
-            this.grpUnitLabelPrinters.Controls.Add(this.lblULP_Status);
-            this.grpUnitLabelPrinters.Controls.Add(this.lblULP_IpAddr);
-            this.grpUnitLabelPrinters.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpUnitLabelPrinters.Location = new System.Drawing.Point(13, 356);
-            this.grpUnitLabelPrinters.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grpUnitLabelPrinters.Name = "grpUnitLabelPrinters";
-            this.grpUnitLabelPrinters.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grpUnitLabelPrinters.Size = new System.Drawing.Size(677, 92);
-            this.grpUnitLabelPrinters.TabIndex = 2;
-            this.grpUnitLabelPrinters.TabStop = false;
-            this.grpUnitLabelPrinters.Text = "Unit Label Printers";
+            this.grpInnerPackLabelPrinters.Controls.Add(this.txtInnerPckLP_StatusX);
+            this.grpInnerPackLabelPrinters.Controls.Add(this.txtInnerPckLP_IpAddrX);
+            this.grpInnerPackLabelPrinters.Controls.Add(this.lblInnerPckLP_Id);
+            this.grpInnerPackLabelPrinters.Controls.Add(this.txtInnerPckLP_NameX);
+            this.grpInnerPackLabelPrinters.Controls.Add(this.lblInnerPckLP_Name);
+            this.grpInnerPackLabelPrinters.Controls.Add(this.txtInnerPckLP_IdX);
+            this.grpInnerPackLabelPrinters.Controls.Add(this.lblInnerPckLP_Status);
+            this.grpInnerPackLabelPrinters.Controls.Add(this.lblInnerPckLP_IpAddr);
+            this.grpInnerPackLabelPrinters.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpInnerPackLabelPrinters.Location = new System.Drawing.Point(13, 356);
+            this.grpInnerPackLabelPrinters.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpInnerPackLabelPrinters.Name = "grpInnerPackLabelPrinters";
+            this.grpInnerPackLabelPrinters.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpInnerPackLabelPrinters.Size = new System.Drawing.Size(677, 92);
+            this.grpInnerPackLabelPrinters.TabIndex = 2;
+            this.grpInnerPackLabelPrinters.TabStop = false;
+            this.grpInnerPackLabelPrinters.Text = "Inner Pack Label Printers";
             // 
-            // txtULPStatusX
+            // txtInnerPckLP_StatusX
             // 
-            this.txtULPStatusX.Location = new System.Drawing.Point(371, 48);
-            this.txtULPStatusX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtULPStatusX.Name = "txtULPStatusX";
-            this.txtULPStatusX.Size = new System.Drawing.Size(122, 29);
-            this.txtULPStatusX.TabIndex = 27;
-            this.txtULPStatusX.Text = "Please wait...";
-            this.txtULPStatusX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtULPStatusX.Visible = false;
+            this.txtInnerPckLP_StatusX.Location = new System.Drawing.Point(421, 48);
+            this.txtInnerPckLP_StatusX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtInnerPckLP_StatusX.Name = "txtInnerPckLP_StatusX";
+            this.txtInnerPckLP_StatusX.Size = new System.Drawing.Size(122, 29);
+            this.txtInnerPckLP_StatusX.TabIndex = 27;
+            this.txtInnerPckLP_StatusX.Text = "Please wait...";
+            this.txtInnerPckLP_StatusX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtInnerPckLP_StatusX.Visible = false;
             // 
-            // txtULPIpAddrX
+            // txtInnerPckLP_IpAddrX
             // 
-            this.txtULPIpAddrX.BackColor = System.Drawing.SystemColors.Control;
-            this.txtULPIpAddrX.CausesValidation = false;
-            this.txtULPIpAddrX.Location = new System.Drawing.Point(248, 48);
-            this.txtULPIpAddrX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtULPIpAddrX.Name = "txtULPIpAddrX";
-            this.txtULPIpAddrX.ReadOnly = true;
-            this.txtULPIpAddrX.Size = new System.Drawing.Size(122, 29);
-            this.txtULPIpAddrX.TabIndex = 24;
-            this.txtULPIpAddrX.Text = "What???";
-            this.txtULPIpAddrX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtULPIpAddrX.Visible = false;
+            this.txtInnerPckLP_IpAddrX.BackColor = System.Drawing.SystemColors.Control;
+            this.txtInnerPckLP_IpAddrX.CausesValidation = false;
+            this.txtInnerPckLP_IpAddrX.Location = new System.Drawing.Point(298, 48);
+            this.txtInnerPckLP_IpAddrX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtInnerPckLP_IpAddrX.Name = "txtInnerPckLP_IpAddrX";
+            this.txtInnerPckLP_IpAddrX.ReadOnly = true;
+            this.txtInnerPckLP_IpAddrX.Size = new System.Drawing.Size(122, 29);
+            this.txtInnerPckLP_IpAddrX.TabIndex = 24;
+            this.txtInnerPckLP_IpAddrX.Text = "What???";
+            this.txtInnerPckLP_IpAddrX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtInnerPckLP_IpAddrX.Visible = false;
             // 
-            // lblULP_Id
+            // lblInnerPckLP_Id
             // 
-            this.lblULP_Id.AutoSize = true;
-            this.lblULP_Id.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblULP_Id.Location = new System.Drawing.Point(22, 25);
-            this.lblULP_Id.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblULP_Id.Name = "lblULP_Id";
-            this.lblULP_Id.Size = new System.Drawing.Size(24, 22);
-            this.lblULP_Id.TabIndex = 23;
-            this.lblULP_Id.Tag = "Header";
-            this.lblULP_Id.Text = "Id";
+            this.lblInnerPckLP_Id.AutoSize = true;
+            this.lblInnerPckLP_Id.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInnerPckLP_Id.Location = new System.Drawing.Point(22, 25);
+            this.lblInnerPckLP_Id.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblInnerPckLP_Id.Name = "lblInnerPckLP_Id";
+            this.lblInnerPckLP_Id.Size = new System.Drawing.Size(24, 22);
+            this.lblInnerPckLP_Id.TabIndex = 23;
+            this.lblInnerPckLP_Id.Tag = "Header";
+            this.lblInnerPckLP_Id.Text = "Id";
             // 
-            // txtULPNameX
+            // txtInnerPckLP_NameX
             // 
-            this.txtULPNameX.BackColor = System.Drawing.SystemColors.Control;
-            this.txtULPNameX.CausesValidation = false;
-            this.txtULPNameX.Location = new System.Drawing.Point(63, 48);
-            this.txtULPNameX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtULPNameX.Name = "txtULPNameX";
-            this.txtULPNameX.ReadOnly = true;
-            this.txtULPNameX.Size = new System.Drawing.Size(184, 29);
-            this.txtULPNameX.TabIndex = 25;
-            this.txtULPNameX.Text = "What???";
-            this.txtULPNameX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtULPNameX.Visible = false;
+            this.txtInnerPckLP_NameX.BackColor = System.Drawing.SystemColors.Control;
+            this.txtInnerPckLP_NameX.CausesValidation = false;
+            this.txtInnerPckLP_NameX.Location = new System.Drawing.Point(63, 48);
+            this.txtInnerPckLP_NameX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtInnerPckLP_NameX.Name = "txtInnerPckLP_NameX";
+            this.txtInnerPckLP_NameX.ReadOnly = true;
+            this.txtInnerPckLP_NameX.Size = new System.Drawing.Size(234, 29);
+            this.txtInnerPckLP_NameX.TabIndex = 25;
+            this.txtInnerPckLP_NameX.Text = "What???";
+            this.txtInnerPckLP_NameX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtInnerPckLP_NameX.Visible = false;
             // 
-            // lblULP_Name
+            // lblInnerPckLP_Name
             // 
-            this.lblULP_Name.AutoSize = true;
-            this.lblULP_Name.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblULP_Name.Location = new System.Drawing.Point(129, 25);
-            this.lblULP_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblULP_Name.Name = "lblULP_Name";
-            this.lblULP_Name.Size = new System.Drawing.Size(52, 22);
-            this.lblULP_Name.TabIndex = 21;
-            this.lblULP_Name.Tag = "Header";
-            this.lblULP_Name.Text = "Name";
+            this.lblInnerPckLP_Name.AutoSize = true;
+            this.lblInnerPckLP_Name.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInnerPckLP_Name.Location = new System.Drawing.Point(154, 25);
+            this.lblInnerPckLP_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblInnerPckLP_Name.Name = "lblInnerPckLP_Name";
+            this.lblInnerPckLP_Name.Size = new System.Drawing.Size(52, 22);
+            this.lblInnerPckLP_Name.TabIndex = 21;
+            this.lblInnerPckLP_Name.Tag = "Header";
+            this.lblInnerPckLP_Name.Text = "Name";
             // 
-            // txtULPIdX
+            // txtInnerPckLP_IdX
             // 
-            this.txtULPIdX.BackColor = System.Drawing.SystemColors.Control;
-            this.txtULPIdX.CausesValidation = false;
-            this.txtULPIdX.Location = new System.Drawing.Point(6, 48);
-            this.txtULPIdX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtULPIdX.Name = "txtULPIdX";
-            this.txtULPIdX.ReadOnly = true;
-            this.txtULPIdX.Size = new System.Drawing.Size(56, 29);
-            this.txtULPIdX.TabIndex = 26;
-            this.txtULPIdX.Text = "What???";
-            this.txtULPIdX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtULPIdX.Visible = false;
+            this.txtInnerPckLP_IdX.BackColor = System.Drawing.SystemColors.Control;
+            this.txtInnerPckLP_IdX.CausesValidation = false;
+            this.txtInnerPckLP_IdX.Location = new System.Drawing.Point(6, 48);
+            this.txtInnerPckLP_IdX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtInnerPckLP_IdX.Name = "txtInnerPckLP_IdX";
+            this.txtInnerPckLP_IdX.ReadOnly = true;
+            this.txtInnerPckLP_IdX.Size = new System.Drawing.Size(56, 29);
+            this.txtInnerPckLP_IdX.TabIndex = 26;
+            this.txtInnerPckLP_IdX.Text = "What???";
+            this.txtInnerPckLP_IdX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtInnerPckLP_IdX.Visible = false;
             // 
-            // lblULP_Status
+            // lblInnerPckLP_Status
             // 
-            this.lblULP_Status.AutoSize = true;
-            this.lblULP_Status.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblULP_Status.Location = new System.Drawing.Point(406, 25);
-            this.lblULP_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblULP_Status.Name = "lblULP_Status";
-            this.lblULP_Status.Size = new System.Drawing.Size(52, 22);
-            this.lblULP_Status.TabIndex = 22;
-            this.lblULP_Status.Tag = "Header";
-            this.lblULP_Status.Text = "Status";
+            this.lblInnerPckLP_Status.AutoSize = true;
+            this.lblInnerPckLP_Status.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInnerPckLP_Status.Location = new System.Drawing.Point(456, 25);
+            this.lblInnerPckLP_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblInnerPckLP_Status.Name = "lblInnerPckLP_Status";
+            this.lblInnerPckLP_Status.Size = new System.Drawing.Size(52, 22);
+            this.lblInnerPckLP_Status.TabIndex = 22;
+            this.lblInnerPckLP_Status.Tag = "Header";
+            this.lblInnerPckLP_Status.Text = "Status";
             // 
-            // lblULP_IpAddr
+            // lblInnerPckLP_IpAddr
             // 
-            this.lblULP_IpAddr.AutoSize = true;
-            this.lblULP_IpAddr.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblULP_IpAddr.Location = new System.Drawing.Point(268, 25);
-            this.lblULP_IpAddr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblULP_IpAddr.Name = "lblULP_IpAddr";
-            this.lblULP_IpAddr.Size = new System.Drawing.Size(82, 22);
-            this.lblULP_IpAddr.TabIndex = 22;
-            this.lblULP_IpAddr.Tag = "Header";
-            this.lblULP_IpAddr.Text = "IP Address";
+            this.lblInnerPckLP_IpAddr.AutoSize = true;
+            this.lblInnerPckLP_IpAddr.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInnerPckLP_IpAddr.Location = new System.Drawing.Point(318, 25);
+            this.lblInnerPckLP_IpAddr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblInnerPckLP_IpAddr.Name = "lblInnerPckLP_IpAddr";
+            this.lblInnerPckLP_IpAddr.Size = new System.Drawing.Size(82, 22);
+            this.lblInnerPckLP_IpAddr.TabIndex = 22;
+            this.lblInnerPckLP_IpAddr.Tag = "Header";
+            this.lblInnerPckLP_IpAddr.Text = "IP Address";
             // 
-            // grpCartonLabelPrinters
+            // grpOuterPackLabelPrinters
             // 
-            this.grpCartonLabelPrinters.Controls.Add(this.txtCLPStatusX);
-            this.grpCartonLabelPrinters.Controls.Add(this.txtCLPIpAddrX);
-            this.grpCartonLabelPrinters.Controls.Add(this.lblCLP_Id);
-            this.grpCartonLabelPrinters.Controls.Add(this.txtCLPNameX);
-            this.grpCartonLabelPrinters.Controls.Add(this.lblCLP_Name);
-            this.grpCartonLabelPrinters.Controls.Add(this.txtCLPIdX);
-            this.grpCartonLabelPrinters.Controls.Add(this.lblCLP_Status);
-            this.grpCartonLabelPrinters.Controls.Add(this.lblCLP_IpAddr);
-            this.grpCartonLabelPrinters.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpCartonLabelPrinters.Location = new System.Drawing.Point(13, 256);
-            this.grpCartonLabelPrinters.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grpCartonLabelPrinters.Name = "grpCartonLabelPrinters";
-            this.grpCartonLabelPrinters.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grpCartonLabelPrinters.Size = new System.Drawing.Size(677, 90);
-            this.grpCartonLabelPrinters.TabIndex = 2;
-            this.grpCartonLabelPrinters.TabStop = false;
-            this.grpCartonLabelPrinters.Text = "Carton Label Printers";
+            this.grpOuterPackLabelPrinters.Controls.Add(this.txtOuterPckLP_StatusX);
+            this.grpOuterPackLabelPrinters.Controls.Add(this.txtOuterPckLP_IpAddrX);
+            this.grpOuterPackLabelPrinters.Controls.Add(this.lblOuterPckLP_Id);
+            this.grpOuterPackLabelPrinters.Controls.Add(this.txtOuterPckLP_NameX);
+            this.grpOuterPackLabelPrinters.Controls.Add(this.lblOuterPckLP_Name);
+            this.grpOuterPackLabelPrinters.Controls.Add(this.txtOuterPckLP_IdX);
+            this.grpOuterPackLabelPrinters.Controls.Add(this.lblOuterPckLP_Status);
+            this.grpOuterPackLabelPrinters.Controls.Add(this.lblOuterPckLP_IpAddr);
+            this.grpOuterPackLabelPrinters.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpOuterPackLabelPrinters.Location = new System.Drawing.Point(13, 256);
+            this.grpOuterPackLabelPrinters.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpOuterPackLabelPrinters.Name = "grpOuterPackLabelPrinters";
+            this.grpOuterPackLabelPrinters.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpOuterPackLabelPrinters.Size = new System.Drawing.Size(677, 90);
+            this.grpOuterPackLabelPrinters.TabIndex = 2;
+            this.grpOuterPackLabelPrinters.TabStop = false;
+            this.grpOuterPackLabelPrinters.Text = "Outer Pack Label Printers";
             // 
-            // txtCLPStatusX
+            // txtOuterPckLP_StatusX
             // 
-            this.txtCLPStatusX.Location = new System.Drawing.Point(371, 48);
-            this.txtCLPStatusX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCLPStatusX.Name = "txtCLPStatusX";
-            this.txtCLPStatusX.Size = new System.Drawing.Size(122, 29);
-            this.txtCLPStatusX.TabIndex = 21;
-            this.txtCLPStatusX.Text = "Please wait...";
-            this.txtCLPStatusX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtCLPStatusX.Visible = false;
+            this.txtOuterPckLP_StatusX.Location = new System.Drawing.Point(421, 48);
+            this.txtOuterPckLP_StatusX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtOuterPckLP_StatusX.Name = "txtOuterPckLP_StatusX";
+            this.txtOuterPckLP_StatusX.Size = new System.Drawing.Size(122, 29);
+            this.txtOuterPckLP_StatusX.TabIndex = 21;
+            this.txtOuterPckLP_StatusX.Text = "Please wait...";
+            this.txtOuterPckLP_StatusX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtOuterPckLP_StatusX.Visible = false;
             // 
-            // txtCLPIpAddrX
+            // txtOuterPckLP_IpAddrX
             // 
-            this.txtCLPIpAddrX.BackColor = System.Drawing.SystemColors.Control;
-            this.txtCLPIpAddrX.CausesValidation = false;
-            this.txtCLPIpAddrX.Location = new System.Drawing.Point(248, 48);
-            this.txtCLPIpAddrX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCLPIpAddrX.Name = "txtCLPIpAddrX";
-            this.txtCLPIpAddrX.ReadOnly = true;
-            this.txtCLPIpAddrX.Size = new System.Drawing.Size(122, 29);
-            this.txtCLPIpAddrX.TabIndex = 18;
-            this.txtCLPIpAddrX.Text = "What???";
-            this.txtCLPIpAddrX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtCLPIpAddrX.Visible = false;
+            this.txtOuterPckLP_IpAddrX.BackColor = System.Drawing.SystemColors.Control;
+            this.txtOuterPckLP_IpAddrX.CausesValidation = false;
+            this.txtOuterPckLP_IpAddrX.Location = new System.Drawing.Point(298, 48);
+            this.txtOuterPckLP_IpAddrX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtOuterPckLP_IpAddrX.Name = "txtOuterPckLP_IpAddrX";
+            this.txtOuterPckLP_IpAddrX.ReadOnly = true;
+            this.txtOuterPckLP_IpAddrX.Size = new System.Drawing.Size(122, 29);
+            this.txtOuterPckLP_IpAddrX.TabIndex = 18;
+            this.txtOuterPckLP_IpAddrX.Text = "What???";
+            this.txtOuterPckLP_IpAddrX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtOuterPckLP_IpAddrX.Visible = false;
             // 
-            // lblCLP_Id
+            // lblOuterPckLP_Id
             // 
-            this.lblCLP_Id.AutoSize = true;
-            this.lblCLP_Id.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCLP_Id.Location = new System.Drawing.Point(22, 25);
-            this.lblCLP_Id.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCLP_Id.Name = "lblCLP_Id";
-            this.lblCLP_Id.Size = new System.Drawing.Size(24, 22);
-            this.lblCLP_Id.TabIndex = 17;
-            this.lblCLP_Id.Tag = "Header";
-            this.lblCLP_Id.Text = "Id";
+            this.lblOuterPckLP_Id.AutoSize = true;
+            this.lblOuterPckLP_Id.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOuterPckLP_Id.Location = new System.Drawing.Point(22, 25);
+            this.lblOuterPckLP_Id.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOuterPckLP_Id.Name = "lblOuterPckLP_Id";
+            this.lblOuterPckLP_Id.Size = new System.Drawing.Size(24, 22);
+            this.lblOuterPckLP_Id.TabIndex = 17;
+            this.lblOuterPckLP_Id.Tag = "Header";
+            this.lblOuterPckLP_Id.Text = "Id";
             // 
-            // txtCLPNameX
+            // txtOuterPckLP_NameX
             // 
-            this.txtCLPNameX.BackColor = System.Drawing.SystemColors.Control;
-            this.txtCLPNameX.CausesValidation = false;
-            this.txtCLPNameX.Location = new System.Drawing.Point(63, 48);
-            this.txtCLPNameX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCLPNameX.Name = "txtCLPNameX";
-            this.txtCLPNameX.ReadOnly = true;
-            this.txtCLPNameX.Size = new System.Drawing.Size(184, 29);
-            this.txtCLPNameX.TabIndex = 19;
-            this.txtCLPNameX.Text = "What???";
-            this.txtCLPNameX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtCLPNameX.Visible = false;
+            this.txtOuterPckLP_NameX.BackColor = System.Drawing.SystemColors.Control;
+            this.txtOuterPckLP_NameX.CausesValidation = false;
+            this.txtOuterPckLP_NameX.Location = new System.Drawing.Point(63, 48);
+            this.txtOuterPckLP_NameX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtOuterPckLP_NameX.Name = "txtOuterPckLP_NameX";
+            this.txtOuterPckLP_NameX.ReadOnly = true;
+            this.txtOuterPckLP_NameX.Size = new System.Drawing.Size(234, 29);
+            this.txtOuterPckLP_NameX.TabIndex = 19;
+            this.txtOuterPckLP_NameX.Text = "What???";
+            this.txtOuterPckLP_NameX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtOuterPckLP_NameX.Visible = false;
             // 
-            // lblCLP_Name
+            // lblOuterPckLP_Name
             // 
-            this.lblCLP_Name.AutoSize = true;
-            this.lblCLP_Name.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCLP_Name.Location = new System.Drawing.Point(129, 24);
-            this.lblCLP_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCLP_Name.Name = "lblCLP_Name";
-            this.lblCLP_Name.Size = new System.Drawing.Size(52, 22);
-            this.lblCLP_Name.TabIndex = 15;
-            this.lblCLP_Name.Tag = "Header";
-            this.lblCLP_Name.Text = "Name";
+            this.lblOuterPckLP_Name.AutoSize = true;
+            this.lblOuterPckLP_Name.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOuterPckLP_Name.Location = new System.Drawing.Point(154, 24);
+            this.lblOuterPckLP_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOuterPckLP_Name.Name = "lblOuterPckLP_Name";
+            this.lblOuterPckLP_Name.Size = new System.Drawing.Size(52, 22);
+            this.lblOuterPckLP_Name.TabIndex = 15;
+            this.lblOuterPckLP_Name.Tag = "Header";
+            this.lblOuterPckLP_Name.Text = "Name";
             // 
-            // txtCLPIdX
+            // txtOuterPckLP_IdX
             // 
-            this.txtCLPIdX.BackColor = System.Drawing.SystemColors.Control;
-            this.txtCLPIdX.CausesValidation = false;
-            this.txtCLPIdX.Location = new System.Drawing.Point(6, 48);
-            this.txtCLPIdX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtCLPIdX.Name = "txtCLPIdX";
-            this.txtCLPIdX.ReadOnly = true;
-            this.txtCLPIdX.Size = new System.Drawing.Size(56, 29);
-            this.txtCLPIdX.TabIndex = 20;
-            this.txtCLPIdX.Text = "What???";
-            this.txtCLPIdX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtCLPIdX.Visible = false;
+            this.txtOuterPckLP_IdX.BackColor = System.Drawing.SystemColors.Control;
+            this.txtOuterPckLP_IdX.CausesValidation = false;
+            this.txtOuterPckLP_IdX.Location = new System.Drawing.Point(6, 48);
+            this.txtOuterPckLP_IdX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtOuterPckLP_IdX.Name = "txtOuterPckLP_IdX";
+            this.txtOuterPckLP_IdX.ReadOnly = true;
+            this.txtOuterPckLP_IdX.Size = new System.Drawing.Size(56, 29);
+            this.txtOuterPckLP_IdX.TabIndex = 20;
+            this.txtOuterPckLP_IdX.Text = "What???";
+            this.txtOuterPckLP_IdX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtOuterPckLP_IdX.Visible = false;
             // 
-            // lblCLP_Status
+            // lblOuterPckLP_Status
             // 
-            this.lblCLP_Status.AutoSize = true;
-            this.lblCLP_Status.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCLP_Status.Location = new System.Drawing.Point(406, 25);
-            this.lblCLP_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCLP_Status.Name = "lblCLP_Status";
-            this.lblCLP_Status.Size = new System.Drawing.Size(52, 22);
-            this.lblCLP_Status.TabIndex = 16;
-            this.lblCLP_Status.Tag = "Header";
-            this.lblCLP_Status.Text = "Status";
+            this.lblOuterPckLP_Status.AutoSize = true;
+            this.lblOuterPckLP_Status.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOuterPckLP_Status.Location = new System.Drawing.Point(456, 25);
+            this.lblOuterPckLP_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOuterPckLP_Status.Name = "lblOuterPckLP_Status";
+            this.lblOuterPckLP_Status.Size = new System.Drawing.Size(52, 22);
+            this.lblOuterPckLP_Status.TabIndex = 16;
+            this.lblOuterPckLP_Status.Tag = "Header";
+            this.lblOuterPckLP_Status.Text = "Status";
             // 
-            // lblCLP_IpAddr
+            // lblOuterPckLP_IpAddr
             // 
-            this.lblCLP_IpAddr.AutoSize = true;
-            this.lblCLP_IpAddr.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCLP_IpAddr.Location = new System.Drawing.Point(268, 25);
-            this.lblCLP_IpAddr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCLP_IpAddr.Name = "lblCLP_IpAddr";
-            this.lblCLP_IpAddr.Size = new System.Drawing.Size(82, 22);
-            this.lblCLP_IpAddr.TabIndex = 16;
-            this.lblCLP_IpAddr.Tag = "Header";
-            this.lblCLP_IpAddr.Text = "IP Address";
+            this.lblOuterPckLP_IpAddr.AutoSize = true;
+            this.lblOuterPckLP_IpAddr.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOuterPckLP_IpAddr.Location = new System.Drawing.Point(318, 25);
+            this.lblOuterPckLP_IpAddr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblOuterPckLP_IpAddr.Name = "lblOuterPckLP_IpAddr";
+            this.lblOuterPckLP_IpAddr.Size = new System.Drawing.Size(82, 22);
+            this.lblOuterPckLP_IpAddr.TabIndex = 16;
+            this.lblOuterPckLP_IpAddr.Tag = "Header";
+            this.lblOuterPckLP_IpAddr.Text = "IP Address";
             // 
             // lblPLP_IpAddr
             // 
             this.lblPLP_IpAddr.AutoSize = true;
             this.lblPLP_IpAddr.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPLP_IpAddr.Location = new System.Drawing.Point(268, 25);
+            this.lblPLP_IpAddr.Location = new System.Drawing.Point(318, 25);
             this.lblPLP_IpAddr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPLP_IpAddr.Name = "lblPLP_IpAddr";
             this.lblPLP_IpAddr.Size = new System.Drawing.Size(82, 22);
@@ -584,7 +649,7 @@
             // 
             this.lblPLP_Line.AutoSize = true;
             this.lblPLP_Line.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPLP_Line.Location = new System.Drawing.Point(518, 25);
+            this.lblPLP_Line.Location = new System.Drawing.Point(574, 25);
             this.lblPLP_Line.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPLP_Line.Name = "lblPLP_Line";
             this.lblPLP_Line.Size = new System.Drawing.Size(40, 22);
@@ -596,7 +661,7 @@
             // 
             this.lblPLP_Name.AutoSize = true;
             this.lblPLP_Name.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPLP_Name.Location = new System.Drawing.Point(129, 25);
+            this.lblPLP_Name.Location = new System.Drawing.Point(154, 25);
             this.lblPLP_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPLP_Name.Name = "lblPLP_Name";
             this.lblPLP_Name.Size = new System.Drawing.Size(52, 22);
@@ -648,7 +713,7 @@
             this.cboPLPLineX.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPLPLineX.FormattingEnabled = true;
             this.cboPLPLineX.ItemHeight = 22;
-            this.cboPLPLineX.Location = new System.Drawing.Point(494, 47);
+            this.cboPLPLineX.Location = new System.Drawing.Point(544, 47);
             this.cboPLPLineX.Margin = new System.Windows.Forms.Padding(2);
             this.cboPLPLineX.Name = "cboPLPLineX";
             this.cboPLPLineX.Size = new System.Drawing.Size(100, 30);
@@ -727,7 +792,7 @@
             // 
             // txtPLPStatusX
             // 
-            this.txtPLPStatusX.Location = new System.Drawing.Point(371, 48);
+            this.txtPLPStatusX.Location = new System.Drawing.Point(421, 48);
             this.txtPLPStatusX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPLPStatusX.Name = "txtPLPStatusX";
             this.txtPLPStatusX.Size = new System.Drawing.Size(122, 29);
@@ -740,7 +805,7 @@
             // 
             this.txtPLPIpAddrX.BackColor = System.Drawing.SystemColors.Control;
             this.txtPLPIpAddrX.CausesValidation = false;
-            this.txtPLPIpAddrX.Location = new System.Drawing.Point(248, 48);
+            this.txtPLPIpAddrX.Location = new System.Drawing.Point(298, 48);
             this.txtPLPIpAddrX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPLPIpAddrX.Name = "txtPLPIpAddrX";
             this.txtPLPIpAddrX.ReadOnly = true;
@@ -758,7 +823,7 @@
             this.txtPLPNameX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtPLPNameX.Name = "txtPLPNameX";
             this.txtPLPNameX.ReadOnly = true;
-            this.txtPLPNameX.Size = new System.Drawing.Size(184, 29);
+            this.txtPLPNameX.Size = new System.Drawing.Size(234, 29);
             this.txtPLPNameX.TabIndex = 13;
             this.txtPLPNameX.Text = "What???";
             this.txtPLPNameX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -782,7 +847,7 @@
             // 
             this.lblPLP_Status.AutoSize = true;
             this.lblPLP_Status.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPLP_Status.Location = new System.Drawing.Point(406, 25);
+            this.lblPLP_Status.Location = new System.Drawing.Point(456, 25);
             this.lblPLP_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPLP_Status.Name = "lblPLP_Status";
             this.lblPLP_Status.Size = new System.Drawing.Size(52, 22);
@@ -801,45 +866,74 @@
             this.btnRetestIPAddresses.UseVisualStyleBackColor = true;
             this.btnRetestIPAddresses.Click += new System.EventHandler(this.btnRetestIPAddresses_Click);
             // 
-            // grpMobileScanner
+            // grpHandHeldScanner
             // 
-            this.grpMobileScanner.Controls.Add(this.cboMobScnLineX);
-            this.grpMobileScanner.Controls.Add(this.textBox6);
-            this.grpMobileScanner.Controls.Add(this.textBox7);
-            this.grpMobileScanner.Controls.Add(this.textBox8);
-            this.grpMobileScanner.Controls.Add(this.textBox9);
-            this.grpMobileScanner.Controls.Add(this.textBox10);
-            this.grpMobileScanner.Controls.Add(this.txtMobScnStatusX);
-            this.grpMobileScanner.Controls.Add(this.txtMobScnPortX);
-            this.grpMobileScanner.Controls.Add(this.txtMobScnIpAddrX);
-            this.grpMobileScanner.Controls.Add(this.lblMobScn_Id);
-            this.grpMobileScanner.Controls.Add(this.txtMobScnNameX);
-            this.grpMobileScanner.Controls.Add(this.lblMobScn_Name);
-            this.grpMobileScanner.Controls.Add(this.txtMobScnIdX);
-            this.grpMobileScanner.Controls.Add(this.lblMobScn_Status);
-            this.grpMobileScanner.Controls.Add(this.lblMobScn_Port);
-            this.grpMobileScanner.Controls.Add(this.lblMobScn_Line);
-            this.grpMobileScanner.Controls.Add(this.lblMobScn_IpAddr);
-            this.grpMobileScanner.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpMobileScanner.Location = new System.Drawing.Point(13, 635);
-            this.grpMobileScanner.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grpMobileScanner.Name = "grpMobileScanner";
-            this.grpMobileScanner.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grpMobileScanner.Size = new System.Drawing.Size(691, 232);
-            this.grpMobileScanner.TabIndex = 2;
-            this.grpMobileScanner.TabStop = false;
-            this.grpMobileScanner.Text = "Mobile Scanners";
+            this.grpHandHeldScanner.Controls.Add(this.cboHHScn_ConditionX);
+            this.grpHandHeldScanner.Controls.Add(this.lblHHScn_Condition);
+            this.grpHandHeldScanner.Controls.Add(this.txtHHScn_LineX);
+            this.grpHandHeldScanner.Controls.Add(this.textBox6);
+            this.grpHandHeldScanner.Controls.Add(this.textBox7);
+            this.grpHandHeldScanner.Controls.Add(this.textBox8);
+            this.grpHandHeldScanner.Controls.Add(this.textBox9);
+            this.grpHandHeldScanner.Controls.Add(this.textBox10);
+            this.grpHandHeldScanner.Controls.Add(this.txtHHScn_StatusX);
+            this.grpHandHeldScanner.Controls.Add(this.txtHHScn_PortX);
+            this.grpHandHeldScanner.Controls.Add(this.txtHHScn_IpAddrX);
+            this.grpHandHeldScanner.Controls.Add(this.lblHHScn_Id);
+            this.grpHandHeldScanner.Controls.Add(this.txtHHScn_NameX);
+            this.grpHandHeldScanner.Controls.Add(this.lblHHScn_Name);
+            this.grpHandHeldScanner.Controls.Add(this.txtHHScn_IdX);
+            this.grpHandHeldScanner.Controls.Add(this.lblHHScn_Status);
+            this.grpHandHeldScanner.Controls.Add(this.lblHHScn_Port);
+            this.grpHandHeldScanner.Controls.Add(this.lblHHScn_Line);
+            this.grpHandHeldScanner.Controls.Add(this.lblHHScn_IpAddr);
+            this.grpHandHeldScanner.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpHandHeldScanner.Location = new System.Drawing.Point(13, 635);
+            this.grpHandHeldScanner.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpHandHeldScanner.Name = "grpHandHeldScanner";
+            this.grpHandHeldScanner.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.grpHandHeldScanner.Size = new System.Drawing.Size(963, 232);
+            this.grpHandHeldScanner.TabIndex = 2;
+            this.grpHandHeldScanner.TabStop = false;
+            this.grpHandHeldScanner.Text = "Hand-Held Scanners";
             // 
-            // cboMobScnLineX
+            // cboHHScn_ConditionX
             // 
-            this.cboMobScnLineX.CausesValidation = false;
-            this.cboMobScnLineX.FormattingEnabled = true;
-            this.cboMobScnLineX.Location = new System.Drawing.Point(584, 47);
-            this.cboMobScnLineX.Name = "cboMobScnLineX";
-            this.cboMobScnLineX.Size = new System.Drawing.Size(100, 30);
-            this.cboMobScnLineX.Sorted = true;
-            this.cboMobScnLineX.TabIndex = 32;
-            this.cboMobScnLineX.Visible = false;
+            this.cboHHScn_ConditionX.CausesValidation = false;
+            this.cboHHScn_ConditionX.FormattingEnabled = true;
+            this.cboHHScn_ConditionX.Items.AddRange(new object[] {
+            "active",
+            "inactive",
+            "spare"});
+            this.cboHHScn_ConditionX.Location = new System.Drawing.Point(735, 47);
+            this.cboHHScn_ConditionX.Name = "cboHHScn_ConditionX";
+            this.cboHHScn_ConditionX.Size = new System.Drawing.Size(100, 30);
+            this.cboHHScn_ConditionX.Sorted = true;
+            this.cboHHScn_ConditionX.TabIndex = 34;
+            this.cboHHScn_ConditionX.Visible = false;
+            // 
+            // lblHHScn_Condition
+            // 
+            this.lblHHScn_Condition.AutoSize = true;
+            this.lblHHScn_Condition.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHHScn_Condition.Location = new System.Drawing.Point(747, 25);
+            this.lblHHScn_Condition.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHHScn_Condition.Name = "lblHHScn_Condition";
+            this.lblHHScn_Condition.Size = new System.Drawing.Size(77, 22);
+            this.lblHHScn_Condition.TabIndex = 33;
+            this.lblHHScn_Condition.Tag = "Header";
+            this.lblHHScn_Condition.Text = "Condition";
+            // 
+            // txtHHScn_LineX
+            // 
+            this.txtHHScn_LineX.CausesValidation = false;
+            this.txtHHScn_LineX.FormattingEnabled = true;
+            this.txtHHScn_LineX.Location = new System.Drawing.Point(634, 47);
+            this.txtHHScn_LineX.Name = "txtHHScn_LineX";
+            this.txtHHScn_LineX.Size = new System.Drawing.Size(100, 30);
+            this.txtHHScn_LineX.Sorted = true;
+            this.txtHHScn_LineX.TabIndex = 32;
+            this.txtHHScn_LineX.Visible = false;
             // 
             // textBox6
             // 
@@ -911,162 +1005,175 @@
             this.textBox10.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox10.Visible = false;
             // 
-            // txtMobScnStatusX
+            // txtHHScn_StatusX
             // 
-            this.txtMobScnStatusX.Location = new System.Drawing.Point(371, 48);
-            this.txtMobScnStatusX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtMobScnStatusX.Name = "txtMobScnStatusX";
-            this.txtMobScnStatusX.Size = new System.Drawing.Size(122, 29);
-            this.txtMobScnStatusX.TabIndex = 24;
-            this.txtMobScnStatusX.Text = "Please wait...";
-            this.txtMobScnStatusX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtMobScnStatusX.Visible = false;
+            this.txtHHScn_StatusX.Location = new System.Drawing.Point(421, 48);
+            this.txtHHScn_StatusX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtHHScn_StatusX.Name = "txtHHScn_StatusX";
+            this.txtHHScn_StatusX.Size = new System.Drawing.Size(122, 29);
+            this.txtHHScn_StatusX.TabIndex = 24;
+            this.txtHHScn_StatusX.Text = "Please wait...";
+            this.txtHHScn_StatusX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHHScn_StatusX.Visible = false;
             // 
-            // txtMobScnPortX
+            // txtHHScn_PortX
             // 
-            this.txtMobScnPortX.BackColor = System.Drawing.SystemColors.Control;
-            this.txtMobScnPortX.CausesValidation = false;
-            this.txtMobScnPortX.Location = new System.Drawing.Point(494, 48);
-            this.txtMobScnPortX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtMobScnPortX.Name = "txtMobScnPortX";
-            this.txtMobScnPortX.ReadOnly = true;
-            this.txtMobScnPortX.Size = new System.Drawing.Size(89, 29);
-            this.txtMobScnPortX.TabIndex = 23;
-            this.txtMobScnPortX.Text = "What???";
-            this.txtMobScnPortX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtMobScnPortX.Visible = false;
+            this.txtHHScn_PortX.BackColor = System.Drawing.SystemColors.Control;
+            this.txtHHScn_PortX.CausesValidation = false;
+            this.txtHHScn_PortX.Location = new System.Drawing.Point(544, 48);
+            this.txtHHScn_PortX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtHHScn_PortX.Name = "txtHHScn_PortX";
+            this.txtHHScn_PortX.ReadOnly = true;
+            this.txtHHScn_PortX.Size = new System.Drawing.Size(89, 29);
+            this.txtHHScn_PortX.TabIndex = 23;
+            this.txtHHScn_PortX.Text = "What???";
+            this.txtHHScn_PortX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHHScn_PortX.Visible = false;
             // 
-            // txtMobScnIpAddrX
+            // txtHHScn_IpAddrX
             // 
-            this.txtMobScnIpAddrX.BackColor = System.Drawing.SystemColors.Control;
-            this.txtMobScnIpAddrX.CausesValidation = false;
-            this.txtMobScnIpAddrX.Location = new System.Drawing.Point(248, 48);
-            this.txtMobScnIpAddrX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtMobScnIpAddrX.Name = "txtMobScnIpAddrX";
-            this.txtMobScnIpAddrX.ReadOnly = true;
-            this.txtMobScnIpAddrX.Size = new System.Drawing.Size(122, 29);
-            this.txtMobScnIpAddrX.TabIndex = 20;
-            this.txtMobScnIpAddrX.Text = "What???";
-            this.txtMobScnIpAddrX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtMobScnIpAddrX.Visible = false;
+            this.txtHHScn_IpAddrX.BackColor = System.Drawing.SystemColors.Control;
+            this.txtHHScn_IpAddrX.CausesValidation = false;
+            this.txtHHScn_IpAddrX.Location = new System.Drawing.Point(298, 48);
+            this.txtHHScn_IpAddrX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtHHScn_IpAddrX.Name = "txtHHScn_IpAddrX";
+            this.txtHHScn_IpAddrX.ReadOnly = true;
+            this.txtHHScn_IpAddrX.Size = new System.Drawing.Size(122, 29);
+            this.txtHHScn_IpAddrX.TabIndex = 20;
+            this.txtHHScn_IpAddrX.Text = "What???";
+            this.txtHHScn_IpAddrX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHHScn_IpAddrX.Visible = false;
             // 
-            // lblMobScn_Id
+            // lblHHScn_Id
             // 
-            this.lblMobScn_Id.AutoSize = true;
-            this.lblMobScn_Id.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMobScn_Id.Location = new System.Drawing.Point(22, 25);
-            this.lblMobScn_Id.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMobScn_Id.Name = "lblMobScn_Id";
-            this.lblMobScn_Id.Size = new System.Drawing.Size(24, 22);
-            this.lblMobScn_Id.TabIndex = 18;
-            this.lblMobScn_Id.Tag = "Header";
-            this.lblMobScn_Id.Text = "Id";
+            this.lblHHScn_Id.AutoSize = true;
+            this.lblHHScn_Id.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHHScn_Id.Location = new System.Drawing.Point(22, 25);
+            this.lblHHScn_Id.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHHScn_Id.Name = "lblHHScn_Id";
+            this.lblHHScn_Id.Size = new System.Drawing.Size(24, 22);
+            this.lblHHScn_Id.TabIndex = 18;
+            this.lblHHScn_Id.Tag = "Header";
+            this.lblHHScn_Id.Text = "Id";
             // 
-            // txtMobScnNameX
+            // txtHHScn_NameX
             // 
-            this.txtMobScnNameX.BackColor = System.Drawing.SystemColors.Control;
-            this.txtMobScnNameX.CausesValidation = false;
-            this.txtMobScnNameX.Location = new System.Drawing.Point(63, 48);
-            this.txtMobScnNameX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtMobScnNameX.Name = "txtMobScnNameX";
-            this.txtMobScnNameX.ReadOnly = true;
-            this.txtMobScnNameX.Size = new System.Drawing.Size(184, 29);
-            this.txtMobScnNameX.TabIndex = 21;
-            this.txtMobScnNameX.Text = "What???";
-            this.txtMobScnNameX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtMobScnNameX.Visible = false;
+            this.txtHHScn_NameX.BackColor = System.Drawing.SystemColors.Control;
+            this.txtHHScn_NameX.CausesValidation = false;
+            this.txtHHScn_NameX.Location = new System.Drawing.Point(63, 48);
+            this.txtHHScn_NameX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtHHScn_NameX.Name = "txtHHScn_NameX";
+            this.txtHHScn_NameX.ReadOnly = true;
+            this.txtHHScn_NameX.Size = new System.Drawing.Size(234, 29);
+            this.txtHHScn_NameX.TabIndex = 21;
+            this.txtHHScn_NameX.Text = "What???";
+            this.txtHHScn_NameX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHHScn_NameX.Visible = false;
             // 
-            // lblMobScn_Name
+            // lblHHScn_Name
             // 
-            this.lblMobScn_Name.AutoSize = true;
-            this.lblMobScn_Name.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMobScn_Name.Location = new System.Drawing.Point(157, 25);
-            this.lblMobScn_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMobScn_Name.Name = "lblMobScn_Name";
-            this.lblMobScn_Name.Size = new System.Drawing.Size(52, 22);
-            this.lblMobScn_Name.TabIndex = 15;
-            this.lblMobScn_Name.Tag = "Header";
-            this.lblMobScn_Name.Text = "Name";
+            this.lblHHScn_Name.AutoSize = true;
+            this.lblHHScn_Name.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHHScn_Name.Location = new System.Drawing.Point(154, 25);
+            this.lblHHScn_Name.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHHScn_Name.Name = "lblHHScn_Name";
+            this.lblHHScn_Name.Size = new System.Drawing.Size(52, 22);
+            this.lblHHScn_Name.TabIndex = 15;
+            this.lblHHScn_Name.Tag = "Header";
+            this.lblHHScn_Name.Text = "Name";
             // 
-            // txtMobScnIdX
+            // txtHHScn_IdX
             // 
-            this.txtMobScnIdX.BackColor = System.Drawing.SystemColors.Control;
-            this.txtMobScnIdX.CausesValidation = false;
-            this.txtMobScnIdX.Location = new System.Drawing.Point(6, 48);
-            this.txtMobScnIdX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtMobScnIdX.Name = "txtMobScnIdX";
-            this.txtMobScnIdX.ReadOnly = true;
-            this.txtMobScnIdX.Size = new System.Drawing.Size(56, 29);
-            this.txtMobScnIdX.TabIndex = 22;
-            this.txtMobScnIdX.Text = "What???";
-            this.txtMobScnIdX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtMobScnIdX.Visible = false;
+            this.txtHHScn_IdX.BackColor = System.Drawing.SystemColors.Control;
+            this.txtHHScn_IdX.CausesValidation = false;
+            this.txtHHScn_IdX.Location = new System.Drawing.Point(6, 48);
+            this.txtHHScn_IdX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtHHScn_IdX.Name = "txtHHScn_IdX";
+            this.txtHHScn_IdX.ReadOnly = true;
+            this.txtHHScn_IdX.Size = new System.Drawing.Size(56, 29);
+            this.txtHHScn_IdX.TabIndex = 22;
+            this.txtHHScn_IdX.Text = "What???";
+            this.txtHHScn_IdX.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtHHScn_IdX.Visible = false;
             // 
-            // lblMobScn_Status
+            // lblHHScn_Status
             // 
-            this.lblMobScn_Status.AutoSize = true;
-            this.lblMobScn_Status.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMobScn_Status.Location = new System.Drawing.Point(406, 25);
-            this.lblMobScn_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMobScn_Status.Name = "lblMobScn_Status";
-            this.lblMobScn_Status.Size = new System.Drawing.Size(52, 22);
-            this.lblMobScn_Status.TabIndex = 16;
-            this.lblMobScn_Status.Tag = "Header";
-            this.lblMobScn_Status.Text = "Status";
+            this.lblHHScn_Status.AutoSize = true;
+            this.lblHHScn_Status.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHHScn_Status.Location = new System.Drawing.Point(456, 25);
+            this.lblHHScn_Status.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHHScn_Status.Name = "lblHHScn_Status";
+            this.lblHHScn_Status.Size = new System.Drawing.Size(52, 22);
+            this.lblHHScn_Status.TabIndex = 16;
+            this.lblHHScn_Status.Tag = "Header";
+            this.lblHHScn_Status.Text = "Status";
             // 
-            // lblMobScn_Port
+            // lblHHScn_Port
             // 
-            this.lblMobScn_Port.AutoSize = true;
-            this.lblMobScn_Port.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMobScn_Port.Location = new System.Drawing.Point(519, 25);
-            this.lblMobScn_Port.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMobScn_Port.Name = "lblMobScn_Port";
-            this.lblMobScn_Port.Size = new System.Drawing.Size(39, 22);
-            this.lblMobScn_Port.TabIndex = 16;
-            this.lblMobScn_Port.Tag = "Header";
-            this.lblMobScn_Port.Text = "Port";
+            this.lblHHScn_Port.AutoSize = true;
+            this.lblHHScn_Port.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHHScn_Port.Location = new System.Drawing.Point(569, 25);
+            this.lblHHScn_Port.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHHScn_Port.Name = "lblHHScn_Port";
+            this.lblHHScn_Port.Size = new System.Drawing.Size(39, 22);
+            this.lblHHScn_Port.TabIndex = 16;
+            this.lblHHScn_Port.Tag = "Header";
+            this.lblHHScn_Port.Text = "Port";
             // 
-            // lblMobScn_Line
+            // lblHHScn_Line
             // 
-            this.lblMobScn_Line.AutoSize = true;
-            this.lblMobScn_Line.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMobScn_Line.Location = new System.Drawing.Point(604, 25);
-            this.lblMobScn_Line.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMobScn_Line.Name = "lblMobScn_Line";
-            this.lblMobScn_Line.Size = new System.Drawing.Size(40, 22);
-            this.lblMobScn_Line.TabIndex = 16;
-            this.lblMobScn_Line.Tag = "Header";
-            this.lblMobScn_Line.Text = "Line";
+            this.lblHHScn_Line.AutoSize = true;
+            this.lblHHScn_Line.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHHScn_Line.Location = new System.Drawing.Point(664, 25);
+            this.lblHHScn_Line.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHHScn_Line.Name = "lblHHScn_Line";
+            this.lblHHScn_Line.Size = new System.Drawing.Size(40, 22);
+            this.lblHHScn_Line.TabIndex = 16;
+            this.lblHHScn_Line.Tag = "Header";
+            this.lblHHScn_Line.Text = "Line";
             // 
-            // lblMobScn_IpAddr
+            // lblHHScn_IpAddr
             // 
-            this.lblMobScn_IpAddr.AutoSize = true;
-            this.lblMobScn_IpAddr.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMobScn_IpAddr.Location = new System.Drawing.Point(268, 25);
-            this.lblMobScn_IpAddr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblMobScn_IpAddr.Name = "lblMobScn_IpAddr";
-            this.lblMobScn_IpAddr.Size = new System.Drawing.Size(82, 22);
-            this.lblMobScn_IpAddr.TabIndex = 17;
-            this.lblMobScn_IpAddr.Tag = "Header";
-            this.lblMobScn_IpAddr.Text = "IP Address";
+            this.lblHHScn_IpAddr.AutoSize = true;
+            this.lblHHScn_IpAddr.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHHScn_IpAddr.Location = new System.Drawing.Point(318, 25);
+            this.lblHHScn_IpAddr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblHHScn_IpAddr.Name = "lblHHScn_IpAddr";
+            this.lblHHScn_IpAddr.Size = new System.Drawing.Size(82, 22);
+            this.lblHHScn_IpAddr.TabIndex = 17;
+            this.lblHHScn_IpAddr.Tag = "Header";
+            this.lblHHScn_IpAddr.Text = "IP Address";
             // 
             // grpButtons
             // 
             this.grpButtons.BackColor = System.Drawing.SystemColors.Control;
+            this.grpButtons.Controls.Add(this.btnInitScanners);
+            this.grpButtons.Controls.Add(this.btnStandAloneScanners);
             this.grpButtons.Controls.Add(this.btnClose);
             this.grpButtons.Controls.Add(this.btnRetestIPAddresses);
             this.grpButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpButtons.Location = new System.Drawing.Point(0, 867);
             this.grpButtons.Name = "grpButtons";
-            this.grpButtons.Size = new System.Drawing.Size(754, 54);
+            this.grpButtons.Size = new System.Drawing.Size(1111, 54);
             this.grpButtons.TabIndex = 4;
             this.grpButtons.TabStop = false;
+            // 
+            // btnStandAloneScanners
+            // 
+            this.btnStandAloneScanners.Location = new System.Drawing.Point(207, 18);
+            this.btnStandAloneScanners.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnStandAloneScanners.Name = "btnStandAloneScanners";
+            this.btnStandAloneScanners.Size = new System.Drawing.Size(193, 34);
+            this.btnStandAloneScanners.TabIndex = 5;
+            this.btnStandAloneScanners.Text = "StandAloneScanners";
+            this.btnStandAloneScanners.UseVisualStyleBackColor = true;
+            this.btnStandAloneScanners.Click += new System.EventHandler(this.btnStandAloneScanners_Click);
             // 
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(633, 18);
+            this.btnClose.Location = new System.Drawing.Point(990, 18);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(116, 34);
             this.btnClose.TabIndex = 4;
@@ -1074,16 +1181,27 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnInitScanners
+            // 
+            this.btnInitScanners.Location = new System.Drawing.Point(408, 18);
+            this.btnInitScanners.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnInitScanners.Name = "btnInitScanners";
+            this.btnInitScanners.Size = new System.Drawing.Size(193, 34);
+            this.btnInitScanners.TabIndex = 6;
+            this.btnInitScanners.Text = "Init Scanners";
+            this.btnInitScanners.UseVisualStyleBackColor = true;
+            this.btnInitScanners.Click += new System.EventHandler(this.btnInitScanners_Click);
+            // 
             // frmPlantHardware
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(754, 921);
+            this.ClientSize = new System.Drawing.Size(1111, 921);
             this.Controls.Add(this.grpButtons);
-            this.Controls.Add(this.grpMobileScanner);
-            this.Controls.Add(this.grpUnitLabelPrinters);
-            this.Controls.Add(this.grpCartonLabelPrinters);
+            this.Controls.Add(this.grpHandHeldScanner);
+            this.Controls.Add(this.grpInnerPackLabelPrinters);
+            this.Controls.Add(this.grpOuterPackLabelPrinters);
             this.Controls.Add(this.grpStandAloneScanners);
             this.Controls.Add(this.grpPalletLabelPrinters);
             this.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1093,14 +1211,14 @@
             this.Load += new System.EventHandler(this.frmPlantHardware_Load);
             this.grpStandAloneScanners.ResumeLayout(false);
             this.grpStandAloneScanners.PerformLayout();
-            this.grpUnitLabelPrinters.ResumeLayout(false);
-            this.grpUnitLabelPrinters.PerformLayout();
-            this.grpCartonLabelPrinters.ResumeLayout(false);
-            this.grpCartonLabelPrinters.PerformLayout();
+            this.grpInnerPackLabelPrinters.ResumeLayout(false);
+            this.grpInnerPackLabelPrinters.PerformLayout();
+            this.grpOuterPackLabelPrinters.ResumeLayout(false);
+            this.grpOuterPackLabelPrinters.PerformLayout();
             this.grpPalletLabelPrinters.ResumeLayout(false);
             this.grpPalletLabelPrinters.PerformLayout();
-            this.grpMobileScanner.ResumeLayout(false);
-            this.grpMobileScanner.PerformLayout();
+            this.grpHandHeldScanner.ResumeLayout(false);
+            this.grpHandHeldScanner.PerformLayout();
             this.grpButtons.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -1108,8 +1226,8 @@
 
         #endregion
         private System.Windows.Forms.GroupBox grpStandAloneScanners;
-        private System.Windows.Forms.GroupBox grpUnitLabelPrinters;
-        private System.Windows.Forms.GroupBox grpCartonLabelPrinters;
+        private System.Windows.Forms.GroupBox grpInnerPackLabelPrinters;
+        private System.Windows.Forms.GroupBox grpOuterPackLabelPrinters;
         private System.Windows.Forms.Label lblPLP_IpAddr;
         private System.Windows.Forms.Label lblPLP_Line;
         private System.Windows.Forms.Label lblPLP_Name;
@@ -1120,22 +1238,22 @@
         private System.Windows.Forms.TextBox txtPLPIpAddrX;
         private System.Windows.Forms.TextBox txtPLPNameX;
         private System.Windows.Forms.TextBox txtPLPIdX;
-        private System.Windows.Forms.TextBox txtULPIpAddrX;
-        private System.Windows.Forms.Label lblULP_Id;
-        private System.Windows.Forms.TextBox txtULPNameX;
-        private System.Windows.Forms.Label lblULP_Name;
-        private System.Windows.Forms.TextBox txtULPIdX;
-        private System.Windows.Forms.Label lblULP_IpAddr;
-        private System.Windows.Forms.TextBox txtCLPIpAddrX;
-        private System.Windows.Forms.Label lblCLP_Id;
-        private System.Windows.Forms.TextBox txtCLPNameX;
-        private System.Windows.Forms.Label lblCLP_Name;
-        private System.Windows.Forms.TextBox txtCLPIdX;
-        private System.Windows.Forms.Label lblCLP_IpAddr;
-        private System.Windows.Forms.GroupBox grpMobileScanner;
+        private System.Windows.Forms.TextBox txtInnerPckLP_IpAddrX;
+        private System.Windows.Forms.Label lblInnerPckLP_Id;
+        private System.Windows.Forms.TextBox txtInnerPckLP_NameX;
+        private System.Windows.Forms.Label lblInnerPckLP_Name;
+        private System.Windows.Forms.TextBox txtInnerPckLP_IdX;
+        private System.Windows.Forms.Label lblInnerPckLP_IpAddr;
+        private System.Windows.Forms.TextBox txtOuterPckLP_IpAddrX;
+        private System.Windows.Forms.Label lblOuterPckLP_Id;
+        private System.Windows.Forms.TextBox txtOuterPckLP_NameX;
+        private System.Windows.Forms.Label lblOuterPckLP_Name;
+        private System.Windows.Forms.TextBox txtOuterPckLP_IdX;
+        private System.Windows.Forms.Label lblOuterPckLP_IpAddr;
+        private System.Windows.Forms.GroupBox grpHandHeldScanner;
         private System.Windows.Forms.Label lblPLP_Status;
-        private System.Windows.Forms.Label lblCLP_Status;
-        private System.Windows.Forms.Label lblULP_Status;
+        private System.Windows.Forms.Label lblOuterPckLP_Status;
+        private System.Windows.Forms.Label lblInnerPckLP_Status;
         private System.Windows.Forms.TextBox txtSAScnPortX;
         private System.Windows.Forms.Label lblSAScn_Port;
         private System.Windows.Forms.TextBox txtSAScnIpAddrX;
@@ -1145,21 +1263,21 @@
         private System.Windows.Forms.TextBox txtSAScnIdX;
         private System.Windows.Forms.Label lblSAScn_Line;
         private System.Windows.Forms.Label lblSAScn_IpAddr;
-        private System.Windows.Forms.TextBox txtMobScnPortX;
-        private System.Windows.Forms.TextBox txtMobScnIpAddrX;
-        private System.Windows.Forms.Label lblMobScn_Id;
-        private System.Windows.Forms.TextBox txtMobScnNameX;
-        private System.Windows.Forms.Label lblMobScn_Name;
-        private System.Windows.Forms.TextBox txtMobScnIdX;
-        private System.Windows.Forms.Label lblMobScn_Port;
-        private System.Windows.Forms.Label lblMobScn_Line;
-        private System.Windows.Forms.Label lblMobScn_IpAddr;
+        private System.Windows.Forms.TextBox txtHHScn_PortX;
+        private System.Windows.Forms.TextBox txtHHScn_IpAddrX;
+        private System.Windows.Forms.Label lblHHScn_Id;
+        private System.Windows.Forms.TextBox txtHHScn_NameX;
+        private System.Windows.Forms.Label lblHHScn_Name;
+        private System.Windows.Forms.TextBox txtHHScn_IdX;
+        private System.Windows.Forms.Label lblHHScn_Port;
+        private System.Windows.Forms.Label lblHHScn_Line;
+        private System.Windows.Forms.Label lblHHScn_IpAddr;
         private System.Windows.Forms.TextBox txtSAScnStatusX;
         private System.Windows.Forms.Label lblSAScn_Status;
-        private System.Windows.Forms.TextBox txtULPStatusX;
-        private System.Windows.Forms.TextBox txtCLPStatusX;
-        private System.Windows.Forms.TextBox txtMobScnStatusX;
-        private System.Windows.Forms.Label lblMobScn_Status;
+        private System.Windows.Forms.TextBox txtInnerPckLP_StatusX;
+        private System.Windows.Forms.TextBox txtOuterPckLP_StatusX;
+        private System.Windows.Forms.TextBox txtHHScn_StatusX;
+        private System.Windows.Forms.Label lblHHScn_Status;
         private System.Windows.Forms.GroupBox grpButtons;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.TextBox textBox5;
@@ -1177,6 +1295,14 @@
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.ComboBox cboPLPLineX;
         private System.Windows.Forms.ComboBox cboSAScnLineX;
-        private System.Windows.Forms.ComboBox cboMobScnLineX;
+        private System.Windows.Forms.ComboBox txtHHScn_LineX;
+        private System.Windows.Forms.ComboBox cboSAScnConditionX;
+        private System.Windows.Forms.TextBox txtSAScnScanRateX;
+        private System.Windows.Forms.Label lblSAScn_Condition;
+        private System.Windows.Forms.Label lblSAScn_ScanRate;
+        private System.Windows.Forms.ComboBox cboHHScn_ConditionX;
+        private System.Windows.Forms.Label lblHHScn_Condition;
+        private System.Windows.Forms.Button btnStandAloneScanners;
+        private System.Windows.Forms.Button btnInitScanners;
     }
 }

@@ -40,6 +40,7 @@ namespace ITS.Exwold.Desktop
         //Data variables
         private DataInterface.execFunction _db = null;
         private ExwoldConfigSettings _exwoldConfigSettings = null;
+        private StandAloneScanner _scanner = null;
         private int _plantNumber = 0;
         private int _lineId = 0;
         private string _lineName = string.Empty;
@@ -68,6 +69,12 @@ namespace ITS.Exwold.Desktop
             get { return _db; }
             set { _db = value; }
         }
+        internal StandAloneScanner Scanner
+        {
+            get { return _scanner; }
+            set { _scanner = value; }
+        }
+        
         #endregion
         private void WriteTitle()
         {
@@ -83,6 +90,7 @@ namespace ITS.Exwold.Desktop
         {
             InitializeComponent();
             _db = database;
+            _scanner = Scanner;
             if (int.TryParse(System.Configuration.ConfigurationManager.AppSettings["plantNumber"], out _plantNumber))
             {
                 _exwoldConfigSettings = new ExwoldConfigSettings(_plantNumber);
@@ -91,10 +99,13 @@ namespace ITS.Exwold.Desktop
             {
                 _exwoldConfigSettings = null;
             }
-
-    }
+            
+        }
         public async void GetLineData()
         {
+            grpScanner.Enabled = (_scanner != null);
+            CheckScannerStatus();
+            SetScannerStartStop();
             //Collect the line information
             _db.QueryParameters.Clear();
             _db.QueryParameters.Add("status", ((int)Helper.BatchStatus.InProgress).ToString());
@@ -117,24 +128,24 @@ namespace ITS.Exwold.Desktop
                     //Mesh
                     tbPalletBatch.Text = _palletBatchID.ToString();
 
-                    _db.QueryParameters.Clear();
-                    _db.QueryParameters.Add("PalletBatchId", _palletBatchID.ToString());
-                    DataTable dtCurrentProduct = await _db.executeSP("[GUI].[getPalletBatchById]", true);
+                    //_db.QueryParameters.Clear();
+                    //_db.QueryParameters.Add("PalletBatchId", _palletBatchID.ToString());
+                    //DataTable dtCurrentProduct = await _db.executeSP("[GUI].[getPalletBatchById]", true);
 
                     //sql = "SELECT * FROM data.PalletBatch WHERE PalletBatchUniqueNo = " + Line1BatchID;
                     //DataTable dtCurrentProduct = Program.ExwoldDb.ExecuteQuery(sql);
 
-                    txtPalletBatchNo.Text = dtCurrentProduct.Rows[0]["PalletBatchNo"].ToString();
-                    txtCustomer.Text = dtCurrentProduct.Rows[0]["Customer"].ToString();
-                    txtProdName.Text = dtCurrentProduct.Rows[0]["ProductName"].ToString();
-                    txtTotalCartons.Text = dtCurrentProduct.Rows[0]["TotalNoOfCartons"].ToString();
-                    txtNotes.Text = dtCurrentProduct.Rows[0]["AdditionalInfo"].ToString();
-                    tbInnersRqd.Text = dtCurrentProduct.Rows[0]["InnerLabelsRqd"].ToString();
+                    txtPalletBatchNo.Text = dtPalletBatch.Rows[0]["PalletBatchNo"].ToString();
+                    txtCustomer.Text = dtPalletBatch.Rows[0]["Customer"].ToString();
+                    txtProdName.Text = dtPalletBatch.Rows[0]["ProductName"].ToString();
+                    txtTotalCartons.Text = dtPalletBatch.Rows[0]["TotalNoOfCartons"].ToString();
+                    txtNotes.Text = dtPalletBatch.Rows[0]["AdditionalInfo"].ToString();
+                    tbInnersRqd.Text = dtPalletBatch.Rows[0]["InnerLabelsRqd"].ToString();
                     
 
                     //convert Status to human readable , set colour and text
                     int status = -1;
-                    int.TryParse(dtCurrentProduct.Rows[0]["Status"].ToString(), out status);
+                    int.TryParse(dtPalletBatch.Rows[0]["Status"].ToString(), out status);
 
                     #region Set the Message Colour and Button visibility
                     lblStatusMessage.Text = Helper.LineStatus[status];
@@ -257,6 +268,83 @@ namespace ITS.Exwold.Desktop
 
             frmOuterInnerLabels fLabel = new frmOuterInnerLabels(_db, _palletBatchID, _exwoldConfigSettings);
             fLabel.Show();
+        }
+
+        private void btnScannerStatus_Click(object sender, EventArgs e)
+        {
+            CheckScannerStatus();
+        }
+
+        private void btnScannerStartStop_Click(object sender, EventArgs e)
+        {
+            SetScannerStartStop();
+        }
+
+        private async void CheckScannerStatus()
+        {
+            if (_scanner != null && _scanner.MX300N != null)
+            {
+                btnScannerStatus.Enabled = true;
+                if (await _scanner.MX300N.IsAvailable())
+                { 
+                    tbScannerStatus.Text = "On-Line";
+                    btnScannerStartStop.Enabled = true;
+                }
+                else
+                { 
+                    tbScannerStatus.Text = "Off-Line";
+                    btnScannerStartStop.Enabled = false;
+                }
+            }
+            else
+            {
+                btnScannerStatus.Enabled = false;
+            }
+        }
+        private async void SetScannerStartStop()
+        {
+            if (_scanner == null)
+            {
+                btnScannerStartStop.Text = "No Scanner";
+                btnScannerStartStop.Enabled = false;
+            }
+            else
+            {
+                try
+                {
+                    bool bPing = await _scanner.MX300N.IsConnected();
+                    if (bPing)
+                    {
+                        if (_scanner.MX300N.IsScanning())
+                        {
+                            _scanner.MX300N.StopScanning();
+                            btnScannerStartStop.Text = "Start";
+                        }
+                        else
+                        {
+                            try
+                            {
+                                _scanner.MX300N.StartScanning(_scanner.ConfigData.ScanRate);
+                            }
+                            catch { }
+                            btnScannerStartStop.Text = "Stop";
+                        }
+                    }
+                }
+                catch { }
+            }
+        }
+
+        private void btnShowDetails_Click(object sender, EventArgs e)
+        {
+            frmScannerDetail fscannerDetail = new frmScannerDetail(_scanner)
+            {
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                BackColor = Color.AliceBlue
+            };
+            
+            fscannerDetail.ShowDialog();
+            fscannerDetail.Dispose();
         }
     }
 }

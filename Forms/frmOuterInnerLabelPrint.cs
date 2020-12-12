@@ -102,17 +102,20 @@ namespace ITS.Exwold.Desktop
         {
             bool bRes = false;
             #region Outer Label Printer
-            this.cboOuterPrinters.SelectedIndexChanged -= new System.EventHandler(this.cboOuterPrinters_SelectedIndexChanged);
+            cboOuterPrinters.SelectedIndexChanged -= new System.EventHandler(this.cboOuterPrinters_SelectedIndexChanged);
             cboOuterPrinters.DataSource = niceLabel.LabelPrinters;
             cboOuterPrinters.DisplayMember = "Name";
-            this.cboOuterPrinters.SelectedIndexChanged += new System.EventHandler(this.cboOuterPrinters_SelectedIndexChanged);
+            cboOuterPrinters.SelectedIndexChanged += new System.EventHandler(this.cboOuterPrinters_SelectedIndexChanged);
             bRes = validatePrinter(tbOuterPrinter, tbOuterPrinter.Text);
             btnOuterPrint.Enabled = bRes;
             grpOuterAvailPrinters.Visible = !bRes;
             #endregion
             #region Inner Label Printer
+            cboInnerPrinters.SelectedIndexChanged -= new System.EventHandler(this.cboInnerPrinters_SelectedIndexChanged);
             cboInnerPrinters.DataSource = niceLabel.LabelPrinters;
             cboInnerPrinters.DisplayMember = "Name";
+            cboInnerPrinters.SelectedIndexChanged += new System.EventHandler(this.cboInnerPrinters_SelectedIndexChanged);
+
             bRes = validatePrinter(tbInnerPrinter, tbInnerPrinter.Text);
             btnInnerPrint.Enabled = bRes;
             grpInnerAvailPrinters.Visible = !bRes;
@@ -304,6 +307,7 @@ namespace ITS.Exwold.Desktop
                 DataTable dt = await _db.executeSP("[GUI].[updateInnerLabelsPrinted]", true);
 
                 //Done with the printing - Need to set new parameters
+
                 tbInnerQtyToPrint.Text = "0";
                 btnInnerPrint.Enabled = false;
             }

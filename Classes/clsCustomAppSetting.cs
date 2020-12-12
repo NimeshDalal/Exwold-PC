@@ -867,14 +867,25 @@ namespace ITS.Exwold.Desktop
             set { this["prodline"] = value; }
         }
 
-        [ConfigurationProperty("status", IsRequired = false, DefaultValue = "active")]
+        [ConfigurationProperty("condition", IsRequired = false, DefaultValue = "active")]
         [StringValidator(InvalidCharacters = "  ~!@#$%^&*()[]{}/;’\"|\\", MinLength = 5, MaxLength = 10)]
         [ConfigurationData("")]
-        internal string Status
+        internal string Condition
         {
-            get { return (string)this["status"]; }
-            set { this["status"] = value; }
+            get { return (string)this["condition"]; }
+            set { this["condition"] = value; }
         }
+        [ConfigurationProperty("scanrate", IsRequired = false, DefaultValue = 1000)]
+        [IntegerValidator(MinValue = 50, MaxValue = 10000)]
+        [ConfigurationData("")]
+        internal int ScanRate
+        {
+            get { return (int)this["scanrate"]; }
+            set { this["scanrate"] = value; }
+        }
+
+
+
     }
     internal class HandHeldScannerConfigElement : baseConfigElement
     {
@@ -915,13 +926,13 @@ namespace ITS.Exwold.Desktop
             set { this["prodline"] = value; }
         }
 
-        [ConfigurationProperty("status", IsRequired = false, DefaultValue = "active")]
+        [ConfigurationProperty("condition", IsRequired = false, DefaultValue = "active")]
         [StringValidator(InvalidCharacters = "  ~!@#$%^&*()[]{}/;’\"|\\",MinLength = 5, MaxLength = 6)]
         [ConfigurationData("")]
-        internal string Status
+        internal string Condition
         {
-            get { return (string)this["status"]; }
-            set { this["status"] = value; }
+            get { return (string)this["condition"]; }
+            set { this["condition"] = value; }
         }
     }
     #endregion

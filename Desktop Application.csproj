@@ -128,6 +128,9 @@
     <Compile Include="Classes\clsCustomAppSetting.cs" />
     <Compile Include="Classes\clsDataInterface.cs" />
     <Compile Include="Classes\clsLogging.cs" />
+    <Compile Include="Classes\clsMainFormScannerMethods.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Classes\clsMx300N.cs" />
     <Compile Include="Classes\clsNiceLabel.cs" />
     <Compile Include="Classes\clsValidation.cs" />
@@ -150,6 +153,24 @@
     </Compile>
     <Compile Include="Forms\frmOuterInnerLabelPrint.Designer.cs">
       <DependentUpon>frmOuterInnerLabelPrint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmScannerDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmScannerDetail.Designer.cs">
+      <DependentUpon>frmScannerDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmScannerMsg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmScannerMsg.Designer.cs">
+      <DependentUpon>frmScannerMsg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmStandAloneScanners.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmStandAloneScanners.Designer.cs">
+      <DependentUpon>frmStandAloneScanners.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\dsAuditOpAction.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -265,6 +286,15 @@
     <EmbeddedResource Include="Forms\frmMainStatus.resx">
       <DependentUpon>frmMainStatus.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmScannerDetail.resx">
+      <DependentUpon>frmScannerDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmScannerMsg.resx">
+      <DependentUpon>frmScannerMsg.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmStandAloneScanners.resx">
+      <DependentUpon>frmStandAloneScanners.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptBatch.rdlc" />
     <EmbeddedResource Include="Reports\frmReportDisplay.resx">
       <DependentUpon>frmReportDisplay.cs</DependentUpon>
@@ -302,7 +332,6 @@
     <EmbeddedResource Include="Forms\frmUserAuthentication.resx">
       <DependentUpon>frmUserAuthentication.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include=".editorconfig" />
     <None Include="Labels\InnerLabel.nlbl">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

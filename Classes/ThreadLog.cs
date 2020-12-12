@@ -66,8 +66,12 @@ namespace ITS.Exwold.Desktop
         public void LogMessage(ThreadLog.DebugLevel level, string methodName, Exception ex)
         {
             StringBuilder msg = new StringBuilder();
-            msg.AppendLine(methodName);
-            msg.AppendLine(ex.ToString());
+            msg.AppendLine(ex.Message);
+            if (ex.InnerException != null) 
+            {
+                msg.AppendLine("Inner Exception");
+                msg.AppendLine(ex.InnerException.Message);
+            }
             LogMessage(level, msg.ToString());
             DialogResult res = MessageBox.Show(msg.ToString(), methodName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -76,7 +80,12 @@ namespace ITS.Exwold.Desktop
             StringBuilder msg = new StringBuilder();
             msg.AppendLine(methodName);
             msg.AppendLine(message);
-            msg.AppendLine(ex.ToString());
+            msg.AppendLine(ex.Message);
+            if (ex.InnerException != null)
+            {
+                msg.AppendLine("Inner Exception");
+                msg.AppendLine(ex.InnerException.Message);
+            }
             LogMessage(level, msg.ToString());
             DialogResult res = MessageBox.Show(msg.ToString(), methodName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }

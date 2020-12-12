@@ -399,7 +399,7 @@ namespace ITS.Exwold.Desktop
                 {
                     sv.Validate(GTIN);
                 }
-                catch (ArgumentException ex)
+                catch (ArgumentException)
                 {
                     ErrorStr = $"GTIN 14 Alpha Numeric Characters\n\'{GTIN}\' Is Invalid";
                     return false;
@@ -425,7 +425,7 @@ namespace ITS.Exwold.Desktop
                 {
                     sv.Validate(GTIN);
                 }
-                catch (ArgumentException ex)
+                catch (ArgumentException)
                 {
                     ErrorStr = $"LotNo 3-20 Alpha Numeric Characters\n\'{LotNo}\' Is Invalid";
                     return false;
@@ -540,7 +540,7 @@ namespace ITS.Exwold.Desktop
                 {
                     sv.Validate(ProductName);
                 }
-                catch (ArgumentException ex)
+                catch (ArgumentException)
                 {
                     ErrorStr = $"Product Name is 6-50 Alpha Numeric Characters\n\'{ProductName}\' Is Invalid";
                     return false;

@@ -52,7 +52,7 @@ namespace ITS.Exwold.Desktop
             _db = database;
             _exwoldConfigSettings = ExwoldConfigSettings;
         }
-        private async void PalletDetailsForm_Load(object sender, EventArgs e)
+        private void PalletDetailsForm_Load(object sender, EventArgs e)
         {
             //set fullscreen
 #if DEBUG

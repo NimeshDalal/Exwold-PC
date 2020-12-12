@@ -1,0 +1,39 @@
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\Exwold PC - Product Maintenance.exe.config
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\PC.xml
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\App.config
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\Exwold PC - Product Maintenance.exe.manifest
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\Exwold PC - Product Maintenance.application
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\Exwold PC - Product Maintenance.exe
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\Exwold PC - Product Maintenance.pdb
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\Microsoft.ReportViewer.WinForms.dll
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\Microsoft.SqlServer.Types.dll
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\de\Microsoft.SqlServer.Types.resources.dll
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\es\Microsoft.SqlServer.Types.resources.dll
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\fr\Microsoft.SqlServer.Types.resources.dll
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\it\Microsoft.SqlServer.Types.resources.dll
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\ja\Microsoft.SqlServer.Types.resources.dll
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\ko\Microsoft.SqlServer.Types.resources.dll
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\pt\Microsoft.SqlServer.Types.resources.dll
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\ru\Microsoft.SqlServer.Types.resources.dll
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\bin\Release\zh-Hant\Microsoft.SqlServer.Types.resources.dll
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\ExwoldPcInterface.BatchReportForm.resources
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\ExwoldPcInterface.DatabaseMaintenance.resources
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\ExwoldPcInterface.ProductForm.resources
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\ExwoldPcInterface.PalletForm.resources
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\ExwoldPcInterface.MainStatusForm.resources
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\ExwoldPcInterface.ReportProductAudit.resources
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\ExwoldPcInterface.SSCCReportForm.resources
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\ExwoldPcInterface.ReportsForm.resources
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\ExwoldPcInterface.BatchDetailsForm.resources
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\ExwoldPcInterface.PalletReportForm.resources
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\ExwoldPcInterface.PrintForm1.resources
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\ExwoldPcInterface.Properties.Resources.resources
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\ExwoldPcInterface.UserAuthentication.resources
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\Exwold PC - Product Maintenance.csproj.GenerateResource.Cache
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\RdlCompile.cache
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\RdlCompile.compiled
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\Exwold PC - Product Maintenance.exe.manifest
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\Exwold PC - Product Maintenance.application
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\Exwold PC - Product Maintenance.exe
+C:\Transfer\Exwold\Exwold PC.v1.03.00.00 (CAS02262) 20180130\obj\Release\Exwold PC - Product Maintenance.pdb

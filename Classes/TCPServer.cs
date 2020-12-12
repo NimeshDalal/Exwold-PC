@@ -463,7 +463,6 @@ namespace ITS.Exwold.Desktop
 
         }
 
-        private bool lastPingSuccessful = false;
         //--------------------------------------------------------------------------------
         //   CheckConnection()
         // Routine to disconnect a broken connection

@@ -29,7 +29,14 @@ namespace ITS.Exwold.Desktop
             //Application.Run(new MainStatusForm());
 
             MainStatusForm mainForm = new MainStatusForm();
-            mainForm.ShowDialog();
+            try
+            {
+                mainForm.ShowDialog();
+            }
+            catch(Exception ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex);
+            }
         }
     }
 }

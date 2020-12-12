@@ -1,0 +1,438 @@
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.BatchReportForm.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.ProductForm.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.PalletForm.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.MainStatusForm.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.ReportProductAudit.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.ReprintPalletLabels.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.SSCCReportForm.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.BatchDetailsForm.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.PalletReportForm.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.PrintForm1.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.Properties.Resources.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.UserAuthentication.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\Desktop Application.csproj.GenerateResource.cache
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\Desktop Application.csproj.CoreCompileInputs.cache
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\App.config
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\ExwoldDesktop.exe.config
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\ExwoldDesktop.exe.manifest
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\ExwoldDesktop.application
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\ExwoldDesktop.exe
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\ExwoldDesktop.pdb
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\SDK.NET.Interface.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\Microsoft.SqlServer.Types.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\de\Microsoft.SqlServer.Types.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\es\Microsoft.SqlServer.Types.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\fr\Microsoft.SqlServer.Types.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\it\Microsoft.SqlServer.Types.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\ja\Microsoft.SqlServer.Types.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\ko\Microsoft.SqlServer.Types.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\pt\Microsoft.SqlServer.Types.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\ru\Microsoft.SqlServer.Types.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\zh-Hant\Microsoft.SqlServer.Types.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ExwoldDesktop.exe.manifest
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ExwoldDesktop.application
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\Desktop Application.csproj.CopyComplete
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ExwoldDesktop.exe
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ExwoldDesktop.pdb
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\Desktop Application.csprojAssemblyReference.cache
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.Forms.frmPlantHardware.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\Config Files\ExwoldPlant.config
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\ITS.DAL.Http.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\ITS.DAL.SQL.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\Newtonsoft.Json.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\ITS.DAL.Http.pdb
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\ITS.DAL.SQL.pdb
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\bin\Debug\Newtonsoft.Json.xml
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.frmLineInfo.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.05\obj\Debug\ITS.Exwold.Desktop.frmReports.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\Desktop Application.csprojAssemblyReference.cache
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ITS.Exwold.Desktop.frmLineInfo.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ITS.Exwold.Desktop.Forms.frmPlantHardware.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ITS.Exwold.Desktop.MainStatusForm.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ITS.Exwold.Desktop.Properties.Resources.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ITS.Exwold.Desktop.UserAuthentication.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\Desktop Application.csproj.GenerateResource.cache
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\RdlCompile.cache
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\RdlCompile.compiled
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\Desktop Application.csproj.CoreCompileInputs.cache
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ExwoldDesktop.exe
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ExwoldDesktop.pdb
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\App.config
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Config Files\ExwoldPlant.config
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ExwoldDesktop.exe.config
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ExwoldDesktop.exe.manifest
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ExwoldDesktop.application
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ExwoldDesktop.exe
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ExwoldDesktop.pdb
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ITS.DAL.Http.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ITS.DAL.SQL.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Microsoft.ReportViewer.Common.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.DLL
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Newtonsoft.Json.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\SDK.NET.Interface.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Microsoft.SqlServer.Types.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ITS.DAL.Http.pdb
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ITS.DAL.SQL.pdb
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Newtonsoft.Json.xml
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ExwoldDesktop.exe.manifest
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ExwoldDesktop.application
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\Desktop Application.csproj.CopyComplete
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Microsoft.ReportViewer.DataVisualization.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Microsoft.ReportViewer.Design.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\EnvDTE.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Microsoft.VisualStudio.Shell.Interop.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\stdole.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\Microsoft.MSXML.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\de\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\es\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\fr\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\it\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ja\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ko\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\pt\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ru\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\de\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\es\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\fr\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\it\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ja\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ko\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\pt\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ru\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\SqlServerTypes\x64\msvcr120.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\SqlServerTypes\x86\msvcr120.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ITS.Exwold.Desktop.frmReportDisplay.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ITS.Exwold.Desktop.frmPallet.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ITS.Exwold.Desktop.frmAuditReports.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ITS.Exwold.Desktop.frmReprintPalletLabels.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ITS.Exwold.Desktop.frmReportSelector.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ITS.Exwold.Desktop.frmBatchDetails.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ITS.Exwold.Desktop.frmPrint.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\008768 Exwold PC\008768 Exwold PC.v2.00.00.06\obj\Debug\ITS.Exwold.Desktop.frmProduct.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\Desktop Application.csprojAssemblyReference.cache
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmLineInfo.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmProduct.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.MainStatusForm.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReportDisplay.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmAuditReports.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReprintPalletLabels.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReportSelector.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmBatchDetails.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmPrint.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.Properties.Resources.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.UserAuthentication.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\Desktop Application.csproj.GenerateResource.cache
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\RdlCompile.cache
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\RdlCompile.compiled
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\Desktop Application.csproj.CoreCompileInputs.cache
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ExwoldDesktop.exe
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ExwoldDesktop.pdb
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\SqlServerTypes\x64\msvcr120.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\SqlServerTypes\x86\msvcr120.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\App.config
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ExwoldDesktop.exe.config
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ExwoldDesktop.exe.manifest
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ExwoldDesktop.application
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ExwoldDesktop.exe
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ExwoldDesktop.pdb
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ITS.Security.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Microsoft.ReportViewer.Common.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Microsoft.ReportViewer.DataVisualization.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Microsoft.ReportViewer.Design.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Microsoft.SqlServer.Types.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Newtonsoft.Json.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\RestSharp.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\SDK.NET.Interface.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\EnvDTE.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Microsoft.VisualStudio.Shell.Interop.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\stdole.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Microsoft.MSXML.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ITS.Security.pdb
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Newtonsoft.Json.xml
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\RestSharp.xml
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\de\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\es\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\fr\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\it\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ja\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ko\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\pt\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ru\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\de\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\es\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\fr\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\it\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ja\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ko\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\pt\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ru\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmPlantHardware.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ExwoldDesktop.exe.manifest
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ExwoldDesktop.application
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\Desktop Application.csproj.CopyComplete
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmOuterInnerLabels.resources
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Labels\InnerLabel.nlbl
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\Labels\OuterLabel.nlbl
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\bin\Debug\SDK.NET.Interface.xml
+X:\ITS\008768.Exwold_Technology_Ltd.Phase_2_CUI\software\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmSalesOrderDetails.resources
+C:\Exwold-Source\Exwold PC\bin\Debug\SqlServerTypes\x64\msvcr120.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\SqlServerTypes\x86\msvcr120.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Labels\InnerLabel.nlbl
+C:\Exwold-Source\Exwold PC\bin\Debug\Labels\OuterLabel.nlbl
+C:\Exwold-Source\Exwold PC\bin\Debug\App.config
+C:\Exwold-Source\Exwold PC\bin\Debug\ExwoldDesktop.exe.config
+C:\Exwold-Source\Exwold PC\bin\Debug\ExwoldDesktop.exe.manifest
+C:\Exwold-Source\Exwold PC\bin\Debug\ExwoldDesktop.application
+C:\Exwold-Source\Exwold PC\bin\Debug\ExwoldDesktop.exe
+C:\Exwold-Source\Exwold PC\bin\Debug\ExwoldDesktop.pdb
+C:\Exwold-Source\Exwold PC\bin\Debug\ITS.Security.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Microsoft.ReportViewer.Common.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Microsoft.ReportViewer.DataVisualization.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Microsoft.ReportViewer.Design.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Microsoft.SqlServer.Types.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Newtonsoft.Json.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\RestSharp.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\SDK.NET.Interface.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\EnvDTE.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Microsoft.VisualStudio.Shell.Interop.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\stdole.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\Microsoft.MSXML.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\ITS.Security.pdb
+C:\Exwold-Source\Exwold PC\bin\Debug\Newtonsoft.Json.xml
+C:\Exwold-Source\Exwold PC\bin\Debug\RestSharp.xml
+C:\Exwold-Source\Exwold PC\bin\Debug\SDK.NET.Interface.xml
+C:\Exwold-Source\Exwold PC\bin\Debug\de\Microsoft.ReportViewer.Common.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\es\Microsoft.ReportViewer.Common.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\fr\Microsoft.ReportViewer.Common.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\it\Microsoft.ReportViewer.Common.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\ja\Microsoft.ReportViewer.Common.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\ko\Microsoft.ReportViewer.Common.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\pt\Microsoft.ReportViewer.Common.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\ru\Microsoft.ReportViewer.Common.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\de\Microsoft.ReportViewer.Design.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\es\Microsoft.ReportViewer.Design.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\fr\Microsoft.ReportViewer.Design.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\it\Microsoft.ReportViewer.Design.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\ja\Microsoft.ReportViewer.Design.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\ko\Microsoft.ReportViewer.Design.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\pt\Microsoft.ReportViewer.Design.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\ru\Microsoft.ReportViewer.Design.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Exwold-Source\Exwold PC\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+C:\Exwold-Source\Exwold PC\obj\Debug\Desktop Application.csprojAssemblyReference.cache
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmLineInfo.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmPlantHardware.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmOuterInnerLabels.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmProduct.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmSalesOrderDetails.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.MainStatusForm.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReportDisplay.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmAuditReports.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReprintPalletLabels.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReportSelector.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmBatchDetails.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmPrint.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.Properties.Resources.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\ITS.Exwold.Desktop.UserAuthentication.resources
+C:\Exwold-Source\Exwold PC\obj\Debug\Desktop Application.csproj.GenerateResource.cache
+C:\Exwold-Source\Exwold PC\obj\Debug\Desktop Application.csproj.CoreCompileInputs.cache
+C:\Exwold-Source\Exwold PC\obj\Debug\ExwoldDesktop.exe.manifest
+C:\Exwold-Source\Exwold PC\obj\Debug\ExwoldDesktop.application
+C:\Exwold-Source\Exwold PC\obj\Debug\Desktop Application.csproj.CopyComplete
+C:\Exwold-Source\Exwold PC\obj\Debug\ExwoldDesktop.exe
+C:\Exwold-Source\Exwold PC\obj\Debug\ExwoldDesktop.pdb
+E:\991018-Exwold\Exwold PC\bin\Debug\SqlServerTypes\x64\msvcr120.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\SqlServerTypes\x64\SqlServerSpatial140.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\SqlServerTypes\x86\msvcr120.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\SqlServerTypes\x86\SqlServerSpatial140.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Labels\InnerLabel.nlbl
+E:\991018-Exwold\Exwold PC\bin\Debug\App.config
+E:\991018-Exwold\Exwold PC\bin\Debug\Labels\OuterLabel.nlbl
+E:\991018-Exwold\Exwold PC\bin\Debug\ITS.Security.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Microsoft.ReportViewer.Common.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Microsoft.ReportViewer.DataVisualization.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Microsoft.ReportViewer.Design.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Microsoft.ReportViewer.ProcessingObjectModel.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Microsoft.SqlServer.Types.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Newtonsoft.Json.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\RestSharp.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\SDK.NET.Interface.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\EnvDTE.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Microsoft.VisualStudio.Shell.Interop.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Microsoft.VisualStudio.Shell.Interop.8.0.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\stdole.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Microsoft.VisualStudio.OLE.Interop.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Microsoft.VisualStudio.TextManager.Interop.8.0.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\Microsoft.MSXML.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\ITS.Security.pdb
+E:\991018-Exwold\Exwold PC\bin\Debug\Newtonsoft.Json.xml
+E:\991018-Exwold\Exwold PC\bin\Debug\RestSharp.xml
+E:\991018-Exwold\Exwold PC\bin\Debug\SDK.NET.Interface.xml
+E:\991018-Exwold\Exwold PC\bin\Debug\de\Microsoft.ReportViewer.Common.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\es\Microsoft.ReportViewer.Common.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\fr\Microsoft.ReportViewer.Common.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\it\Microsoft.ReportViewer.Common.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\ja\Microsoft.ReportViewer.Common.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\ko\Microsoft.ReportViewer.Common.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\pt\Microsoft.ReportViewer.Common.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\ru\Microsoft.ReportViewer.Common.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\zh-CHS\Microsoft.ReportViewer.Common.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\zh-CHT\Microsoft.ReportViewer.Common.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\de\Microsoft.ReportViewer.DataVisualization.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\es\Microsoft.ReportViewer.DataVisualization.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\fr\Microsoft.ReportViewer.DataVisualization.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\it\Microsoft.ReportViewer.DataVisualization.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\ja\Microsoft.ReportViewer.DataVisualization.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\ko\Microsoft.ReportViewer.DataVisualization.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\pt\Microsoft.ReportViewer.DataVisualization.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\ru\Microsoft.ReportViewer.DataVisualization.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\zh-CHS\Microsoft.ReportViewer.DataVisualization.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\zh-CHT\Microsoft.ReportViewer.DataVisualization.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\de\Microsoft.ReportViewer.Design.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\es\Microsoft.ReportViewer.Design.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\fr\Microsoft.ReportViewer.Design.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\it\Microsoft.ReportViewer.Design.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\ja\Microsoft.ReportViewer.Design.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\ko\Microsoft.ReportViewer.Design.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\pt\Microsoft.ReportViewer.Design.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\ru\Microsoft.ReportViewer.Design.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\zh-CHS\Microsoft.ReportViewer.Design.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\zh-CHT\Microsoft.ReportViewer.Design.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+E:\991018-Exwold\Exwold PC\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+E:\991018-Exwold\Exwold PC\obj\Debug\Desktop Application.csprojAssemblyReference.cache
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmLineInfo.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmPlantHardware.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmOuterInnerLabels.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmProduct.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmSalesOrderDetails.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.MainStatusForm.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmStandAloneScanners.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReportDisplay.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmAuditReports.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReprintPalletLabels.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReportSelector.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmBatchDetails.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmPrint.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.Properties.Resources.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.UserAuthentication.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\Desktop Application.csproj.GenerateResource.cache
+E:\991018-Exwold\Exwold PC\obj\Debug\RdlCompile.cache
+E:\991018-Exwold\Exwold PC\obj\Debug\RdlCompile.compiled
+E:\991018-Exwold\Exwold PC\obj\Debug\Desktop Application.csproj.CoreCompileInputs.cache
+E:\991018-Exwold\Exwold PC\obj\Debug\ExwoldDesktop.exe.manifest
+E:\991018-Exwold\Exwold PC\obj\Debug\ExwoldDesktop.application
+E:\991018-Exwold\Exwold PC\obj\Debug\Desktop Application.csproj.CopyComplete
+E:\991018-Exwold\Exwold PC\obj\Debug\ExwoldDesktop.exe
+E:\991018-Exwold\Exwold PC\obj\Debug\ExwoldDesktop.pdb
+E:\991018-Exwold\Exwold PC\bin\Debug\ExwoldDesktop.exe.config
+E:\991018-Exwold\Exwold PC\bin\Debug\ExwoldDesktop.exe.manifest
+E:\991018-Exwold\Exwold PC\bin\Debug\ExwoldDesktop.application
+E:\991018-Exwold\Exwold PC\bin\Debug\ExwoldDesktop.exe
+E:\991018-Exwold\Exwold PC\bin\Debug\ExwoldDesktop.pdb
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmScannerDetail.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmScannerMsg.resources
