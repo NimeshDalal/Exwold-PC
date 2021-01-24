@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\ExwoldApp.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="ExwoldDesktop" version="2.0.7651.35111" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="ExwoldDesktop" version="2.0.7694.32669" language="neutral" processorArchitecture="msil" />
     <commandLine file="ExwoldDesktop.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExwoldDesktop.exe" size="1216000">
-      <assemblyIdentity name="ExwoldDesktop" version="2.0.7651.35111" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExwoldDesktop.exe" size="1248768">
+      <assemblyIdentity name="ExwoldDesktop" version="2.0.7694.32669" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dtY2NOBoWIlqhx+gUcVhIiCruX9ruQ1JxlGmFtAEXIw=</dsig:DigestValue>
+        <dsig:DigestValue>V8Be/ljJi998sJ9owZewud5JbXzOzCjEZV1DHFQHAdc=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

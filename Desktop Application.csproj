@@ -124,6 +124,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncTcp\AsyncTcpClient.cs" />
+    <Compile Include="AsyncTcp\AsyncTcpListener.cs" />
+    <Compile Include="AsyncTcp\AsyncTcpTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AsyncTcp\AsyncTcpTest.Designer.cs">
+      <DependentUpon>AsyncTcpTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AsyncTcp\ByteBuffer.cs" />
+    <Compile Include="AsyncTcp\tcpListener.cs" />
     <Compile Include="Classes\clsAzureHelper.cs" />
     <Compile Include="Classes\clsCustomAppSetting.cs" />
     <Compile Include="Classes\clsDataInterface.cs" />
@@ -268,6 +278,9 @@
       <DependentUpon>frmUserAuthentication.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="AsyncTcp\AsyncTcpTest.resx">
+      <DependentUpon>AsyncTcpTest.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmLineInfo.resx">
       <DependentUpon>frmLineInfo.cs</DependentUpon>
     </EmbeddedResource>

@@ -436,3 +436,4 @@ E:\991018-Exwold\Exwold PC\bin\Debug\ExwoldDesktop.exe
 E:\991018-Exwold\Exwold PC\bin\Debug\ExwoldDesktop.pdb
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmScannerDetail.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmScannerMsg.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.AsyncTcp.AsyncTcpTest.resources
