@@ -181,8 +181,7 @@ namespace ITS.Exwold.Desktop.AsyncTcp
 	/// Listens asynchronously for connections from TCP network clients.
 	/// </summary>
 	/// <typeparam name="TClient">The type to instantiate for accepted connection requests.</typeparam>
-	public class AsyncTcpListener<TClient>
-		: AsyncTcpListener
+	public class AsyncTcpListener<TClient> : AsyncTcpListener
 		where TClient : AsyncTcpClient, new()
 	{
 		#region Constructors

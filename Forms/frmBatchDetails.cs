@@ -32,7 +32,7 @@ namespace ITS.Exwold.Desktop
         private DataInterface.execFunction _db = null;
         private ExwoldConfigSettings _exwoldConfigSettings = null;
 
-        int _palletLabelID;
+        int _palletUId;
         bool _viewBatch = false;
         int _palletBatchId;
 
@@ -104,49 +104,6 @@ namespace ITS.Exwold.Desktop
                             labelStatus.Text = Helper.LineStatus[status];
                             labelStatus.ForeColor = Helper.LineStatusColour[status];
 
-                            //Mesh Remove
-                            //textBoxPalletBatchNo.Text = dtCurrentProduct.Rows[0].Field<string>("PalletBatchNo");
-                            //textBoxCustomer.Text = dtCurrentProduct.Rows[0].Field<string>("Customer");
-                            //textBoxProdCode.Text = dtCurrentProduct.Rows[0].Field<string>("ProductCode");
-                            //textBoxProdName.Text = dtCurrentProduct.Rows[0].Field<string>("ProductName");
-                            //textBoxTotalCartons.Text = Convert.ToString(dtCurrentProduct.Rows[0].Field<int>("TotalNoOfCartons"));
-                            //textBoxCartsPerPallet.Text = Convert.ToString(dtCurrentProduct.Rows[0].Field<int>("CartonsPerPallet"));
-                            //textBoxInnersPerCart.Text = Convert.ToString(dtCurrentProduct.Rows[0].Field<int>("InnerPacksPerCarton"));
-                            //textBoxInnerWeight.Text = Convert.ToString(dtCurrentProduct.Rows[0].Field<double>("InnerPackWeightOrVolume"));
-                            //comboBoxInnerUnit.Text = dtCurrentProduct.Rows[0].Field<string>("UnitsOfMeasure");
-                            //textBoxNotes.Text = dtCurrentProduct.Rows[0].Field<string>("AdditionalInfo");
-                            //textBoxProdLine.Text = Convert.ToString(dtCurrentProduct.Rows[0].Field<int>("ProductionLineNo"));
-
-                            //convert Status to human readable , set colour                        
-                            //switch (status)
-                            //{
-                            //    case 0:
-                            //        statusText = "Available";
-                            //        labelStatus.ForeColor = System.Drawing.Color.Black;
-                            //        break;
-                            //    case 1:
-                            //        statusText = "In-Progress";
-                            //        labelStatus.ForeColor = System.Drawing.Color.Green;
-                            //        break;
-                            //    case 2:
-                            //        statusText = "On-Hold";
-                            //        labelStatus.ForeColor = System.Drawing.Color.Black;
-                            //        break;
-                            //    case 3:
-                            //        statusText = "Ready to Print";
-                            //        labelStatus.ForeColor = System.Drawing.Color.Green;
-                            //        break;
-                            //    case 4:
-                            //        statusText = "Completed";
-                            //        labelStatus.ForeColor = System.Drawing.Color.Black;
-                            //        break;
-                            //    case 5:
-                            //        statusText = "Stopped";
-                            //        labelStatus.ForeColor = System.Drawing.Color.Black;
-                            //        break;
-                            //}
-                            //labelStatus.Text = statusText;
-
                             //Get batches/carton number on Pallet
                             _db.QueryParameters.Clear();
                             _db.QueryParameters.Add("PalletBatchId", _palletBatchId.ToString());
@@ -163,11 +120,11 @@ namespace ITS.Exwold.Desktop
                                 int LastRow = dtCurrentPallet.Rows.Count - 1;
 
 
-                                _palletLabelID = Convert.ToInt32(dtCurrentPallet.Rows[LastRow].Field<Int64>("PalletUniqueNo"));
+                                _palletUId = Convert.ToInt32(dtCurrentPallet.Rows[LastRow].Field<Int64>("PalletUniqueNo"));
                                 textBoxCurrentPallet.Text = Convert.ToString(dtCurrentPallet.Rows.Count);
 
                                 _db.QueryParameters.Clear();
-                                _db.QueryParameters.Add("@PalletLabelId", _palletLabelID.ToString());
+                                _db.QueryParameters.Add("@PalletLabelId", _palletUId.ToString());
                                 //Get the data
                                 dtCurrentPallet = await _db.executeSP("[GUI].[getCartonByPalletLabelId]", true);
 
@@ -182,11 +139,17 @@ namespace ITS.Exwold.Desktop
                                 sumObject = dtCurrentPallet.Compute("Sum(CartonsOnPallet)", "");
                                 textBoxCartonsOnPallet.Text = sumObject.ToString();
                             }
+                            // See if we have any labels to print.
+                            PalletLabelMethods plMethods = new PalletLabelMethods(_db);
+                            List<PalletLabelData> labels = await plMethods.fetchLabelsByPallet(_palletUId);
+                            btnPrintLabel.Enabled = (labels != null && labels.Count > 0);
+
+
                         }
                         else
                         {
                             const string methodName = moduleName + "viewBatchData(): ";
-                            Program.Log.LogMessage(ThreadLog.DebugLevel.Message, methodName + "Failed to get data for batch " + _palletLabelID);
+                            Program.Log.LogMessage(ThreadLog.DebugLevel.Message, methodName + "Failed to get data for batch " + _palletUId);
                         }
                     break;
                     }
@@ -213,11 +176,11 @@ namespace ITS.Exwold.Desktop
                 fSalesOrderDetails.CreateBatchID = Convert.ToString(_palletBatchId);
                 fSalesOrderDetails.ShowDialog();
                 const string methodName = moduleName + "buttonEdit_Click(): ";
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, methodName + "User clicked Edit for batch " + _palletLabelID);
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, methodName + "User clicked Edit for batch " + _palletUId);
             }
         }
 
-        private void buttonPrintLabel_Click(object sender, EventArgs e)
+        private void btnPrintLabel_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("This option is only to re-print pallet labels. \n\rPlease make sure the old label is destryoyed before re-printing.\n\r\n\rOld Label Destroyed?", "", MessageBoxButtons.YesNo);
 
@@ -225,12 +188,8 @@ namespace ITS.Exwold.Desktop
             {
                 frmPrint frmPrint = new frmPrint(_db);
                 frmPrint.PrintBatchFlag = "Reprint";
-                frmPrint.PrintBatchID = Convert.ToString(_palletLabelID);
+                frmPrint.PrintBatchID = Convert.ToString(_palletUId);
                 frmPrint.ShowDialog();
-                const string methodName = moduleName + "buttonPrintLabel_Click(): ";
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, methodName + "User clicked Re-print for batch " + _palletLabelID);
-                Program.Log.logSave();
-                Application.Restart();
             }
         }
     }

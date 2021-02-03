@@ -37,13 +37,13 @@ namespace ITS.Exwold.Desktop
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnReprint_Click(object sender, EventArgs e)
+        private async void btnReprint_Click(object sender, EventArgs e)
         {
             MainStatusForm mainStatusForm = (MainStatusForm)Application.OpenForms[0];
             DialogResult answer = MessageBox.Show("Please confirm that the original Pallet Label(s) have been destroyed.", "Old Labels destroyed?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (answer == DialogResult.Yes)
             {
-                mainStatusForm.ReprintPalletLabel((long)cmbSSCCs.SelectedValue);
+                bool bRtn = await mainStatusForm.PrintLabelBackground("REPRINT", cmbSSCCs.SelectedValue.ToString());
             }
             else
             {

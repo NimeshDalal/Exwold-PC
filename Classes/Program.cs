@@ -13,8 +13,6 @@ namespace ITS.Exwold.Desktop
     static class Program
     {
         static public ThreadLog Log;
-        static public List<TCPServer> ScannerServers;
-        static public ScannerCommunications ScannerComms = new ScannerCommunications();
 
         /// <summary>
         /// The main entry point for the application.

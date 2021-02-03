@@ -1,15 +1,17 @@
 ﻿using System;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Linq;
-using System.Text;
-using System.Net;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace ITS.Exwold.Desktop.AsyncTcp
 {
     public class tcpListener
     {
         #region Property fields
+        private DataInterface.execFunction _db = null;
         private int _serverPort;
         private AsyncTcpListener _server;
         private Task serverTask;
@@ -54,8 +56,9 @@ namespace ITS.Exwold.Desktop.AsyncTcp
         }
         #endregion
         #region Constructor
-        public tcpListener(int Port)
+        public tcpListener(int Port, DataInterface.execFunction database)
         {
+            _db = database;
             _serverPort = Port;
         }
         #endregion
@@ -72,8 +75,11 @@ namespace ITS.Exwold.Desktop.AsyncTcp
                 _server = getListener(_serverPort);
                 _server.Message += (s, a) => ServerMessage(s, a);
                 serverTask = _server.RunAsync();
-                await serverTask;
-
+                try
+                {
+                    await serverTask;
+                }
+                catch { }
                 Running = ServerRunning();
 
                 if (_chkRunning != null)
@@ -125,7 +131,7 @@ namespace ITS.Exwold.Desktop.AsyncTcp
 						{
 							byte[] bytes = serverClient.ByteBuffer.Dequeue(count);
 							string message = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
-							string reply = await ReplyMsgAsync(message);
+							string reply = await tcpListenerReplyMsgAsync(message);
 
 							Console.WriteLine($"Sending reply {reply}");
 
@@ -143,44 +149,77 @@ namespace ITS.Exwold.Desktop.AsyncTcp
 			};
 			return listener;
 		}
-        private async Task<string> ReplyMsgAsync(string Message)
+        /// <summary>
+        /// Actions the messages send by the hand held scanner
+        /// </summary>
+        /// <param name="Message">Message body send by the scanner</param>
+        /// <returns></returns>
+        private async Task<string> tcpListenerReplyMsgAsync(string Message)
         {
-            //txtServerMsgIn.BeginInvoke((Action)delegate ()
-            //{
-            //    txtServerMsgIn.Text = Message;
-            //});
-            RxMessage = Message; 
+            // Get a pointer to the MainForm
+            MainStatusForm mainStatusForm = (MainStatusForm)Application.OpenForms[0];
+            RxMessage = string.Empty;        // The reply we are going to determine
             string sRtn = string.Empty;
-            await Task.Delay(1000);
-            switch (Message)
+
+            // Break up the message contents to determine the instruction and the data payload
+            string[] msgContents = Message.Split(':');
+            if (msgContents.Length != 2) { throw new ArgumentException("Invalid TCP Message"); }
+            await Task.Delay(100);
+
+            if (Message.StartsWith("UPDATE"))
             {
-                case "Mesh":
-                    sRtn = "Reply with Mesh";
-                    break;
-                case "Hello":
-                    sRtn = "Hi there";
-                    break;
-                case "Print":
-                    sRtn = "What to print";
-                    break;
-                default:
-                    sRtn = "Whaaaaaat...";
-                    break;
+                sRtn = await mainStatusForm.RefreshLineInfo() ? "OK" : "ERROR";
             }
-            if (txtServerMsgIn != null)
+            else if (Message.StartsWith("PRINT") || Message.StartsWith("REPRINT"))
             {
-                txtServerMsgIn.BeginInvoke((Action)delegate ()
+                // We have some print message
+
+                // Get the Pallet number
+                string PalletUId = msgContents[1];
+
+                // Get the PalletBatch data for this pallet
+                // We should have 1 PalletBatch, and the status should be in progress
+                _db.QueryParameters.Clear();
+                _db.QueryParameters.Add("PalletId", PalletUId);
+                DataTable dtCurrentBatch = await _db.executeSP("[GUI].[getBatchesOnPalletByPalletId]", true);
+                int rows = dtCurrentBatch.Rows.Count;
+
+                if (rows == 1)  //Whould have only 1 PalletBatch record
                 {
-                    txtServerMsgIn.Text = sRtn;
-                });
+                    int myAction = int.MinValue;
+                    int.TryParse(dtCurrentBatch.Rows[0]["Status"].ToString(), out myAction);
+                    if (myAction != 1)  // THe status must be 1, In-Progress
+                    {
+                        sRtn =  "CANCELLED";
+                    }
+                    else
+                    {
+                        //Run the print 
+                        sRtn = await mainStatusForm.PrintLabelBackground(msgContents[0], PalletUId) ? "OK" : "ERROR";
+                    }
+                }
+                else sRtn = "ERROR";
+                
             }
-            if (txtServerMsgOut != null)
+            else
             {
-                txtServerMsgOut.BeginInvoke((Action)delegate ()
-                {
-                    txtServerMsgOut.Text = sRtn;
-                });
+                sRtn = "ERROR";
             }
+
+            //if (txtServerMsgIn != null)
+            //{
+            //    txtServerMsgIn.BeginInvoke((Action)delegate ()
+            //    {
+            //        txtServerMsgIn.Text = sRtn;
+            //    });
+            //}
+            //if (txtServerMsgOut != null)
+            //{
+            //    txtServerMsgOut.BeginInvoke((Action)delegate ()
+            //    {
+            //        txtServerMsgOut.Text = sRtn;
+            //    });
+            //}
             TxMessage = sRtn;
             Console.WriteLine($"Message in:{Message}, Reply:{sRtn}");
 

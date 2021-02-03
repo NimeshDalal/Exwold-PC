@@ -36,7 +36,7 @@ namespace ITS.Exwold.Desktop
         }
         private void SubscribeScannerEvents(StandAloneScanner scanner, bool subscribe)
         {
-            if (scanner.MX300N == null) throw new ArgumentNullException(Logging.ThisMethod(), "scanner.MX300N");
+            if (scanner.MX300N == null) return;
 
             if (subscribe)
             {
@@ -132,7 +132,11 @@ namespace ITS.Exwold.Desktop
                     scanner.OrderData = orderData;
                     Scanners.Add(scanner);
                     bool bScanning = await scanner.MX300N.TryStart();
-                    SubscribeScannerEvents(scanner, true);
+                    try
+                    {
+                        SubscribeScannerEvents(scanner, true);
+                    }
+                    catch { }
                 }
                 catch (Exception ex)
                 {
@@ -144,7 +148,11 @@ namespace ITS.Exwold.Desktop
                 try
                 {
                     Scanners.Add(scanner);
-                    SubscribeScannerEvents(scanner, false);
+                    try
+                    {
+                        SubscribeScannerEvents(scanner, false);
+                    }
+                    catch { }
                 }
                 catch (Exception ex)
                 {
@@ -184,15 +192,7 @@ namespace ITS.Exwold.Desktop
 
         #endregion
 
-        #region Button events
-        private void btnLabelTest_Click(object sender, EventArgs e)
-        {
 
-            frmOuterInnerLabels fLabel = new frmOuterInnerLabels(_db, int.Parse(tbLabelTest.Text), _exwoldConfigSettings);
-            fLabel.Show();
-        }
-
-        #endregion 
     }
 
     internal class ScannerOrderData

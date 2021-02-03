@@ -208,28 +208,9 @@ namespace ITS.Exwold.Desktop
             string str = Helper.dgvGetCurrentRowColumn(dgvOrders, "UnitsOfMeasure").ToString().Trim();
             cboInnerUnit.SelectedIndex = cboInnerUnit.FindString(Helper.dgvGetCurrentRowColumn(dgvOrders, "UnitsOfMeasure").ToString().Trim());
 
-
-
             //DataTable dtCurrentProduct = await GetPalletBatch(BatchID);
 
-            ////Mesh Remove
-            ////sql = "SELECT * FROM Data.PalletBatch WHERE PalletBatchUniqueNo = " + BatchID;
-            ////DataTable dtCurrentProduct = Program.ExwoldDb.ExecuteQuery(sql);
-
-            //tbCustomer.Text = dtCurrentProduct.Rows[0]["Customer"].ToString();
-            //tbProdCode.Text = dtCurrentProduct.Rows[0]["ProductCode"].ToString();
-            //tbProdName.Text = dtCurrentProduct.Rows[0]["ProductName"].ToString();
-            //tbTotalCartons.Text = dtCurrentProduct.Rows[0]["TotalNoOfCartons"].ToString();
-            //tbCartonsPerPallet.Text = dtCurrentProduct.Rows[0]["CartonsPerPallet"].ToString();
-            //tbInnersPerCart.Text = dtCurrentProduct.Rows[0]["InnerPacksPerCarton"].ToString();
-            //tbInnerWeight.Text = dtCurrentProduct.Rows[0]["InnerPackWeightOrVolume"].ToString();
-            //cboInnerUnit.Text = dtCurrentProduct.Rows[0]["UnitsOfMeasure"].ToString();
-            //TextBoxPalletBatchNo.Text = dtCurrentProduct.Rows[0]["PalletBatchNo"].ToString();
-            //cboProdLine.Text = dtCurrentProduct.Rows[0]["ProductionLineNo"].ToString();
-
-            //tbNotes.Text = dtCurrentProduct.Rows[0]["AdditionalInfo"].ToString();
-            //cboStatus.SelectedValue = dtCurrentProduct.Rows[0]["Status"].ToString();
-
+            
             //Warn user if batch is In-Progress
             if (Convert.ToString(cboStatus.SelectedValue) == "1")
             {
@@ -238,37 +219,11 @@ namespace ITS.Exwold.Desktop
 
                 cboStatus.Enabled = false;
                 EnableTextBoxes(false);
-
-                //Mesh Remove
-                //cboStatus.Enabled = false;
-                //tbCustomer.Enabled = false;
-                //tbProdCode.Enabled = false;
-                //tbProdName.Enabled = false;
-                //tbTotalCartons.Enabled = false;
-                //tbCartonsPerPallet.Enabled = false;
-                //tbInnersPerCart.Enabled = false;
-                //tbInnerWeight.Enabled = false;
-                //cboInnerUnit.Enabled = false;
-                //TextBoxPalletBatchNo.Enabled = false;
-                //cboProdLine.Enabled = false;
-                //tbNotes.Enabled = false;
             }
             else
             {
                 cboStatus.Enabled = false;
                 EnableTextBoxes(true);
-                //Mesh Remove
-                //tbCustomer.Enabled = true;
-                //tbProdCode.Enabled = true;
-                //tbProdName.Enabled = true;
-                //tbTotalCartons.Enabled = true;
-                //tbCartonsPerPallet.Enabled = true;
-                //tbInnersPerCart.Enabled = true;
-                //tbInnerWeight.Enabled = true;
-                //cboInnerUnit.Enabled = true;
-                //TextBoxPalletBatchNo.Enabled = true;
-                //cboProdLine.Enabled = true;
-                //tbNotes.Enabled = true;
             }
         }
         private async void btnDelete_Click(object sender, EventArgs e)
@@ -385,7 +340,7 @@ namespace ITS.Exwold.Desktop
                     {
                         _db.QueryParameters.Clear();
                         _db.QueryParameters.Add("@BatchId", BatchID.ToString());
-                        _db.QueryParameters.Add("@ProductionLineNo", cboProdLine.Text);
+                        _db.QueryParameters.Add("@ProductionLineNo", cboProdLine.SelectedValue.ToString());
                         _db.QueryParameters.Add("@PalletBatchNo", TextBoxPalletBatchNo.Text);
                         _db.QueryParameters.Add("@TotalNoOfCartons", tbTotalCartons.Text);
                         _db.QueryParameters.Add("@CartonsPerPallet", tbCartonsPerPallet.Text);
@@ -421,27 +376,23 @@ namespace ITS.Exwold.Desktop
                         {
                             case 1:
                                 {
-                                    MessageBox.Show("Sales Order updated.");
-                                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Batch Edited " + TextBoxPalletBatchNo.Text);
+                                    //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), $"Sales {TextBoxPalletBatchNo.Text} Order updated. ");
                                     break;
                                 }
                             case 0:
                                 {
-                                    MessageBox.Show("Edit Failed - Please check data and try again.");
-                                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Batch Edit Failed " + TextBoxPalletBatchNo.Text);
+                                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Edit of {TextBoxPalletBatchNo.Text} Failed\nPlease check data and try again.");
                                     break;
                                 }
                             default:
                                 {
-                                    MessageBox.Show("Edit Failed - Unknown Error. Please check data and try again.");
-                                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Edit Failed - Unknown Error. Pallet Batch Edit returned too many rows " + TextBoxPalletBatchNo.Text);
+                                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), 
+                                        $"Unknown Error for {TextBoxPalletBatchNo.Text}");
                                     break;
                                 }
                         }
                     }
                     break;
-
-
                 case "Add":                   
                     if (await chk.ValidateInput(TextBoxPalletBatchNo.Text, "Sales Order", "SalesOrderAdd"))
                     {
@@ -489,21 +440,6 @@ namespace ITS.Exwold.Desktop
                             NoRows = int.MinValue;
                         }
 
-                        //Mesh Remove
-                        //string values = "'" + TextBoxPalletBatchNo.Text + "', '" + cboProdLine.Text + "', '" + ProductID + "', '" + 
-                        //    tbProdCode.Text + "', '" + tbProdName.Text + "', '" + tbCustomer.Text + "', '" + 
-                        //    tbDetails.Text + "', '" + tbGMID.Text + "', '" + tbTotalCartons.Text + "', '" +
-                        //        tbCartonsPerPallet.Text + "', '" + tbInnersPerCart.Text + "', '" + tbInnerWeight.Text + "', '" + 
-                        //        cboInnerUnit.Text + "', '" + tbGTIN.Text + "', '" + tbCompanyCode.Text + "', '" +
-                        //            tbClientCode.Text + "', '" + tbNotes.Text + "', 0, " +
-                        //            "'Insert'";
-                        //sql = "INSERT INTO Data.PalletBatch (PalletBatchNo, ProductionLineNo, ProductUniqueNo, ProductCode, ProductName, Customer, CustomerDetails, GMID," +
-                        //             "TotalNoOfCartons, CartonsPerPallet, InnerPacksPerCarton, InnerPackWeightOrVolume," +
-                        //             "UnitsOfMeasure, GTIN, SsccCompanyCode, SsccProductionLineCustomerCode, AdditionalInfo, Status, ChangeAction) " +
-                        //             "VALUES (" + values + ")";
-
-                        //NoRows = Program.ExwoldDb.ExecuteNonQuery(sql);
-
                         // Re-Populate Datagrid                        
                         getIncompleteOrders();
                         this.pnlTextBoxes.Visible = false;
@@ -542,15 +478,7 @@ namespace ITS.Exwold.Desktop
                         _db.QueryParameters.Clear();
                         _db.QueryParameters.Add("@PalletBatchUId", BatchID.ToString());
                         DataTable dtResult = await _db.executeSP("deletePalletBatch", true);
-
                         int.TryParse(dtResult.Rows[0].ItemArray[0].ToString(), out NoRows);
-
-                        //Mesh Remove
-                        ////delete record
-                        //sql = "UPDATE data.PalletBatch SET ChangeAction = 'Delete', status = 5 " +
-                        //        " WHERE PalletBatchUniqueNo = " + BatchID;
-
-                        //NoRows = Program.ExwoldDb.ExecuteNonQuery(sql);
 
                         // Re-Populate Datagrid                        
                         getIncompleteOrders();
@@ -609,7 +537,7 @@ namespace ITS.Exwold.Desktop
             {
                 //enable status change dialogue
                 cboStatus.Enabled = true;
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "User chose to update batch status " + dgvOrders.CurrentRow.Cells[1].Value);
+                //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "User chose to update batch status " + dgvOrders.CurrentRow.Cells[1].Value);
             }
 
             else if (dialogResult == DialogResult.No)
@@ -625,7 +553,7 @@ namespace ITS.Exwold.Desktop
             lblStatus.Visible = true;
             this.buttonEnableStatus.Visible = true;
             CreateBatchFlag = "Reset";
-            Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "User cancelled batch edit " + dgvOrders.CurrentRow.Cells[1].Value);
+            //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "User cancelled batch edit " + dgvOrders.CurrentRow.Cells[1].Value);
         }
         #endregion
 

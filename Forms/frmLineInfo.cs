@@ -284,7 +284,18 @@ namespace ITS.Exwold.Desktop
         {
             if (_scanner != null && _scanner.MX300N != null)
             {
+                bool bConnected;
                 btnScannerStatus.Enabled = true;
+                try
+                {
+                    bConnected = await _scanner.MX300N.IsConnected();
+                }
+                catch
+                {
+                    tbScannerStatus.Text = "Invalid Socket";
+                    btnScannerStartStop.Enabled = false;
+                    return;
+                }
                 if (await _scanner.MX300N.IsAvailable())
                 { 
                     tbScannerStatus.Text = "On-Line";

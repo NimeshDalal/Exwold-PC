@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCurrentPallet = new System.Windows.Forms.DataGridView();
             this.txtNotes = new System.Windows.Forms.RichTextBox();
             this.lblNotes = new System.Windows.Forms.Label();
@@ -70,12 +70,12 @@
             // 
             // dgvCurrentPallet
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvCurrentPallet.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dgvCurrentPallet.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvCurrentPallet.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCurrentPallet.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvCurrentPallet.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -83,14 +83,14 @@
             this.dgvCurrentPallet.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dgvCurrentPallet.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvCurrentPallet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCurrentPallet.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCurrentPallet.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgvCurrentPallet.Enabled = false;
             this.dgvCurrentPallet.EnableHeadersVisualStyles = false;
             this.dgvCurrentPallet.Location = new System.Drawing.Point(225, 219);
@@ -132,7 +132,7 @@
             // 
             this.btnPalletDetails.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPalletDetails.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPalletDetails.Location = new System.Drawing.Point(6, 18);
+            this.btnPalletDetails.Location = new System.Drawing.Point(6, 16);
             this.btnPalletDetails.Name = "btnPalletDetails";
             this.btnPalletDetails.Size = new System.Drawing.Size(140, 30);
             this.btnPalletDetails.TabIndex = 60;
@@ -411,7 +411,7 @@
             // 
             this.btnPackLabels.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPackLabels.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPackLabels.Location = new System.Drawing.Point(308, 16);
+            this.btnPackLabels.Location = new System.Drawing.Point(308, 14);
             this.btnPackLabels.Name = "btnPackLabels";
             this.btnPackLabels.Size = new System.Drawing.Size(140, 30);
             this.btnPackLabels.TabIndex = 60;
@@ -423,11 +423,10 @@
             // 
             this.grpButtons.Controls.Add(this.btnPalletDetails);
             this.grpButtons.Controls.Add(this.btnPackLabels);
-            this.grpButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpButtons.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpButtons.Location = new System.Drawing.Point(0, 576);
+            this.grpButtons.Location = new System.Drawing.Point(0, 529);
             this.grpButtons.Name = "grpButtons";
-            this.grpButtons.Size = new System.Drawing.Size(454, 54);
+            this.grpButtons.Size = new System.Drawing.Size(454, 52);
             this.grpButtons.TabIndex = 81;
             this.grpButtons.TabStop = false;
             // 
@@ -495,7 +494,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(454, 630);
+            this.ClientSize = new System.Drawing.Size(454, 587);
             this.ControlBox = false;
             this.Controls.Add(this.grpScanner);
             this.Controls.Add(this.grpButtons);

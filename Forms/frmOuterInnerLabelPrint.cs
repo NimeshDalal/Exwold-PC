@@ -42,9 +42,6 @@ namespace ITS.Exwold.Desktop
         private NiceLabel niceLabel = new NiceLabel(System.Configuration.ConfigurationManager.AppSettings["NiceLabelSDKPath"]);
         private ExwoldConfigSettings _exwoldConfigSettings = null;
         #endregion
-
-        
-
         #region Properties
         internal DataInterface.execFunction DB
         {
@@ -343,7 +340,7 @@ namespace ITS.Exwold.Desktop
 
             if (labelData.CanPrintLabel(out ErrorMsg))
             {
-                niceLabel.PrintOuterLabel(labelData, tbOuterPrinter.Text);
+                await niceLabel.PrintOuterLabel(labelData, tbOuterPrinter.Text);
 
                 //Update the user Interface with the updated values
                 _outerQtyPrinted = _outerQtyPrinted + iPrintQty;

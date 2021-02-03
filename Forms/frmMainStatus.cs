@@ -29,6 +29,7 @@ using System.Windows.Forms;
 using System.Configuration;
 using System.Drawing.Text;
 using ITS.Exwold.Desktop.DataInterface;
+using ITS.Exwold.Desktop.AsyncTcp;
 using System.Threading;
 using System.Net;
 
@@ -56,6 +57,10 @@ namespace ITS.Exwold.Desktop
         private string _assemblyName = string.Empty;
         private string _debugConnStr = string.Empty;
         private ExwoldConfigSettings _exwoldConfigSettings = null;
+        
+        private int _tcpListenPort = 0;
+        private tcpListener _listener = null;
+
         //Instances of the Line Info form
         frmLineInfo fLineInfo1 = null;
         frmLineInfo fLineInfo2 = null;
@@ -107,6 +112,12 @@ namespace ITS.Exwold.Desktop
 
             //Set the plant name
             lblPlantName.Text = _plantName;
+             
+            //Create the TCP Listener
+            _listener = new tcpListener(_tcpListenPort, _db);
+            // Start the listener running
+            _listener.StartServer();
+
 
             //Mesh Come back to this
             #region initialise the scanner stuff
@@ -116,19 +127,12 @@ namespace ITS.Exwold.Desktop
                 //Start the Stand Alone Scanners
                 InitScanners();
 
-                Program.ScannerServers = new List<TCPServer>();
-
                 //set up a list of servers, one for each scanner
                 //Mesh Sort this out later
-                string ScannerPortStart = ConfigurationManager.AppSettings["ScannerPortStart"];
-                int localPort = Convert.ToUInt16(ScannerPortStart);
-                int numberOfScanners = Convert.ToUInt16(ConfigurationManager.AppSettings["NumberOfScanners"]);
-                for (int port = localPort; port < localPort + numberOfScanners; port++)
-                {
-                    TCPServer server = new TCPServer(ref Program.Log, port);
-                    Program.ScannerServers.Add(server);
-                }
-                timerScannerMessages.Enabled = true;
+                //string ScannerPortStart = ConfigurationManager.AppSettings["ScannerPortStart"];
+                //int localPort = Convert.ToUInt16(ScannerPortStart);
+                //int numberOfScanners = Convert.ToUInt16(ConfigurationManager.AppSettings["NumberOfScanners"]);
+
             }
             catch (Exception ex)
             {
@@ -161,30 +165,24 @@ namespace ITS.Exwold.Desktop
                 //Encrypt the setting if not already done so         
                 bRtn = AzureHelper.enctryptionConnectivitySettings(_secParams);
 
-
-
                 // Load data from the app.config file
                 int.TryParse(ConfigurationManager.AppSettings["plantNumber"], out _plantNumber);
                 int.TryParse(ConfigurationManager.AppSettings["logLevel"], out _logLevel);
                 _logPath = ConfigurationManager.AppSettings["logPath"];
                 _niceLabelSDKPath = ConfigurationManager.AppSettings["NiceLabelSDKPath"];
+                int.TryParse(ConfigurationManager.AppSettings["tcpListenPort"], out _tcpListenPort);
 
                 //Load data from the Plant Config file
                 _exwoldConfigSettings = new ExwoldConfigSettings(_plantNumber);
 
                 //Get the assembly name
                 _assemblyName = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-                _plantName = _exwoldConfigSettings.PlantName;
+                _plantName = _exwoldConfigSettings.PlantName;                
                 
 
                 //Create an instance of the data access class (used throught this app)
                 _db = new execFunction(_pAzure);
-            //Mesh Remove
-            //"CartonProcName" spAcceptCartonTable
-            //"LogProcName" spAcceptLogTable
-            //"PalletProcName" spAcceptPalletTable
-            //"BatchesProcName" spGetBatchesTable
-            //"PalletDetailsProcName" spCollectPalletDetails
+
             }
             catch (Exception ex)
             {
@@ -193,7 +191,7 @@ namespace ITS.Exwold.Desktop
             }
             return true;
         }
-        private void SetPage()
+        private async void SetPage()
         {
             btnChangePage.Visible = (_plantNumber == 1);
             if (_plantNumber == 1)
@@ -209,9 +207,22 @@ namespace ITS.Exwold.Desktop
                     btnChangePage.Text = "Next Page (" + _pageNumber.ToString() + ") >>";
                 }
             }
-            LoadLineInfo(_plantNumber, _pageNumber);
+            await LoadLineInfo(_plantNumber, _pageNumber);
         }
-        private async void LoadLineInfo(int PlantNumber, int PageNumber)
+        // Refresh (UPDATE) the line infomration displayed
+        // using the current settings
+        public async Task<bool> RefreshLineInfo()
+        {
+            try
+            {
+                await LoadLineInfo(_plantNumber, _pageNumber);
+                return true;
+            }
+            catch(Exception ex)
+            { }
+            return false;
+        }
+        private async Task LoadLineInfo(int PlantNumber, int PageNumber)
         {
             const int cstNumInfoForms = 3;
 
@@ -403,126 +414,43 @@ namespace ITS.Exwold.Desktop
 
         #endregion
 
-        private async void timerScannerMessages_Tick(object sender, EventArgs e)
-        {
-            int scannerNumber = 1;
-            foreach (TCPServer server in Program.ScannerServers)
-            {
-                if (server.response.Count > 0)
-                {
-                    string scannerMessage = Encoding.Default.GetString(server.response.ToArray(), 0, server.response.Count);
-                    server.response.Clear();
-                    Program.Log.LogMessage(ThreadLog.DebugLevel.Debug, "timerScannerMessages_Tick() Handling scanner " + scannerNumber.ToString() + "   message  = " + scannerMessage.Substring(0, scannerMessage.Length - 2));
-                    string response = await HandleMessage(scannerNumber, scannerMessage.Substring(0, scannerMessage.Length - 2));
-                    Program.Log.LogMessage(ThreadLog.DebugLevel.Debug, "timerScannerMessages_Tick() Handling scanner " + scannerNumber.ToString() + "   response = " + response);
-                    server.WinsockSend(response + Environment.NewLine);
-                }
-                scannerNumber++;
-            }
-        }
-        public async Task<string> HandleMessage(int ScannerNumber, string message)
+
+        public async Task<bool> PrintLabelBackground(string PrintAction, string strPalletUId)
         {
             try
             {
-                messageFromScanner = message;
-                if (messageFromScanner.StartsWith("UPDATE"))
-                {
-                    //do update code
-                    GetLineData();
-                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Update - run GetLineData");
-                    return "OK";
-                }
-                else if (messageFromScanner.StartsWith("PRINT") || messageFromScanner.StartsWith("REPRINT"))
-                {
-                    string PalletNumber = messageFromScanner.Split(':').Last();
-                    _db.QueryParameters.Clear();
-                    _db.QueryParameters.Add("PalletId", PalletNumber);
-                    DataTable dtCurrentBatch = await _db.executeSP("[GUI].[getBatchesOnPalletBy PalletId]", true);
+                PalletLabelMethods plMethods = new PalletLabelMethods(_db);
+                List<PalletLabelData> plData = new List<PalletLabelData>();
+                List<string> plPrinters;
+                int PalletUId = int.MinValue;
 
-                    //Mesh Remove
-                    //string BatchNumber = messageFromScanner.Split(':').Last();
-                    //sql = "SELECT * " +
-                    //"FROM   data.PalletBatch " +
-                    //"INNER JOIN data.Pallet " +
-                    //"ON     Data.PalletBatch.PalletBatchUniqueNo = Pallet.PalletBatchUniqueNo " +
-                    //"WHERE  Pallet.PalletUniqueNo = " + BatchNumber;
-                    //DataTable dtCurrentBatch = Program.ExwoldDb.ExecuteQuery(sql);
-                    int rows = dtCurrentBatch.Rows.Count;
+                int.TryParse(strPalletUId, out PalletUId);
 
-                    if (rows == 1)
-                    {
-                        int myAction = dtCurrentBatch.Rows[0].Field<int>("Status");
-                        if (myAction != 1)
-                        {
-                            return "CANCELLED";
-                        }
-                        else
-                        {
-                            System.ComponentModel.BackgroundWorker backgroundWorkerPrintLabel = new BackgroundWorker();
-                            backgroundWorkerPrintLabel.DoWork += BackgroundWorkerPrintLabel_DoWork;
-                            backgroundWorkerPrintLabel.RunWorkerAsync();
-                            return "OK";
-                        }
-                    }
-                    else return "ERROR";
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod() + $" {PrintAction}");
+                //Open print form and pass ScannerPrint as flag
+                //frmPrint frmPrint = new frmPrint(_db);
+                
+                switch (PrintAction)
+                {
+                    case "PRINT":
+                    case "REPRINT":
+                        plData = await plMethods.fetchLabelsByPallet(PalletUId);
+                        plPrinters = plMethods.GetPalletLabelPrinters();
+                        plMethods.SendLabelToPrinter(plData, plPrinters[0], 1);
+                        //frmPrint.PrintBatchFlag = "ScannerPrint";
+                        break;
+                        //frmPrint.PrintBatchFlag = "Reprint";
+                    default:
+                        break;
                 }
-                else return "ERROR";
             }
             catch (Exception ex)
             {
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, "EXCEPTION: " + ex.ToString());
-                return "";
+
             }
+            return false;
         }
 
-        private void BackgroundWorkerPrintLabel_DoWork(object sender, DoWorkEventArgs e)
-        {
-          try
-          {
-            string BatchNumber;
-
-            if (messageFromScanner.StartsWith("PRINT"))
-            {
-              Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod() + " PRINT");
-              //Open print form and pass ScannerPrint as flag
-              BatchNumber = messageFromScanner.Split(':').Last();
-              frmPrint frmPrint = new frmPrint(_db);
-              frmPrint.PrintBatchFlag = "ScannerPrint";
-              frmPrint.PrintBatchID = BatchNumber;
-              frmPrint.ShowDialog();
-              Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod() + " PRINT - calling Application.Restart()");
-              Program.Log.logSave();
-              Application.Restart();
-            }
-
-            if (messageFromScanner.StartsWith("REPRINT"))
-            {
-              Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod() + " REPRINT");
-              //Open print form and pass Reprint as flag
-              BatchNumber = messageFromScanner.Split(':').Last();
-              frmPrint frmPrint = new frmPrint(_db);
-              frmPrint.PrintBatchFlag = "Reprint";
-              frmPrint.PrintBatchID = BatchNumber;
-              frmPrint.ShowDialog();
-              Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod() + " REPRINT - calling Application.Restart()");
-              Program.Log.logSave();
-              Application.Restart();
-            }
-          }
-          catch (Exception ex)
-          {
-            Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod() + " EXCEPTION: " + ex.Message);
-            MessageBox.Show("Unable to initialise print page");
-          }
-        }
-
-        public void ReprintPalletLabel(long PalletNumber)
-        {
-          messageFromScanner = String.Format("REPRINT:{0}", PalletNumber);
-          System.ComponentModel.BackgroundWorker backgroundWorkerPrintLabel = new BackgroundWorker();
-          backgroundWorkerPrintLabel.DoWork += BackgroundWorkerPrintLabel_DoWork;
-          backgroundWorkerPrintLabel.RunWorkerAsync();
-        }
         private void btnChangePage_Click(object sender, EventArgs e)
         {
             SetPage();
@@ -555,18 +483,20 @@ namespace ITS.Exwold.Desktop
             fScanners.Dispose();
         }
 
-        private void btnScannerTest_Init_Click(object sender, EventArgs e)
+        private void btnTCPListener_Click(object sender, EventArgs e)
         {
-
+            ITS.Exwold.Desktop.AsyncTcp.AsyncTcpTest listener = new AsyncTcpTest(_db);
+            listener.Show();
         }
 
-        private void btnScannerTest_Stop_Click(object sender, EventArgs e)
+        private async void btnLabelTest_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnScannerTest_Start_Click(object sender, EventArgs e)
-        {
+            frmPrint fPrint = new frmPrint(_db);
+            fPrint.PrintBatchFlag = "Print";
+            fPrint.PrintBatchID = "1942";
+            fPrint.Show();
+            //GetPalletLabelData plData = new GetPalletLabelData(_db);
+            //List<PalletLabelInfo> plInfo = await plData.getPalletBatchLabels(1942);
 
         }
     }

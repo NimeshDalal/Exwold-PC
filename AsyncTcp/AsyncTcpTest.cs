@@ -14,10 +14,10 @@ namespace ITS.Exwold.Desktop.AsyncTcp
     {
         private tcpListener _listener;
         private int _serverPort = 1500;
-        public AsyncTcpTest()
+        public AsyncTcpTest(DataInterface.execFunction database)
         {
             InitializeComponent();
-            _listener = new tcpListener(1500);
+            _listener = new tcpListener(1500, database);
             _listener.txtConnectMessage = txtConnectMessage;
             _listener.txtServerMsgIn = txtServerMsgIn;
             _listener.txtServerMsgOut = txtServerMsgOut;
@@ -49,5 +49,6 @@ namespace ITS.Exwold.Desktop.AsyncTcp
         {
             _listener.StopServer();
         }
+
     }
 }

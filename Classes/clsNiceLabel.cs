@@ -10,9 +10,11 @@
  * ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.IO;
 using System.Configuration;
@@ -21,7 +23,7 @@ using NiceLabel.SDK;
 
 namespace ITS.Exwold.Desktop
 {
-    internal class NiceLabel :IDisposable
+    internal class NiceLabel : IDisposable
     {
         #region IDisposable code
         // Pointer to an external unmanaged resource.
@@ -88,91 +90,29 @@ namespace ITS.Exwold.Desktop
         #endregion region
 
         #region local variables
+        private const int cstPrintTimeout = 5000;
+
         private string _niceLabelSDKPath = string.Empty;
+        private bool _printEngineAvailable = false;
+        private CancellationTokenSource ctsPrinting;
         private IPrintRequest printRequest;
         private IList<IPrinter> printers;
         #endregion
         #region Properties
         internal IList<IPrinter> LabelPrinters
         { get { return printers; } }
+        
+        internal bool PrintEngineAvailable
+        { get => _printEngineAvailable; }
+        
         #endregion
         #region Constructor
         internal NiceLabel(string NiceLabelSDKPath)
         {
             _niceLabelSDKPath = NiceLabelSDKPath;
-            InitPrintEngine(_niceLabelSDKPath);
+            _printEngineAvailable = InitPrintEngine(_niceLabelSDKPath);
         }
         #endregion
-
-        internal bool PrintInnerLabel(InnerLabelData innerLabelData, string printerName)
-        {
-            if (innerLabelData == null) throw new ArgumentNullException("innerLabelData");
-            try
-            {
-                DisposePrintRequest();
-                ILabel label = PrintEngineFactory.PrintEngine.OpenLabel(innerLabelData.LabelPath);
-
-                // Enable MonitorSpoolJobStatus to raise SpoolJobStatusChanged events.
-                label.PrintSettings.MonitorSpoolJobStatus = true;
-
-                label.Variables["GTIN"].SetValue(innerLabelData.GTIN);
-                label.Variables["LotNo"].SetValue(innerLabelData.LotNo);
-                label.Variables["ProdDate"].SetValue(innerLabelData.ProdDateForLabel);
-
-                //Set the printer to print to
-                label.PrintSettings.PrinterName = printerName;
-                //Number of labels to print
-                printRequest = label.PrintAsync(innerLabelData.PrintQty);
-
-                // Add handler for the PrintRequest's PrintJobStatusChanged event
-                this.printRequest.PrintJobStatusChanged += this.PrintRequest_PrintJobStatusChanged;
-
-                // Add handler for the PrintRequest's SpoolJobStatusChanged event
-                this.printRequest.SpoolJobStatusChanged += this.PrintRequest_SpoolJobStatusChanged;
-            }
-            catch (Exception ex)
-            {
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex);
-            }
-            return false;
-        }
-        internal bool PrintOuterLabel(OuterLabelData outerLabelData, string printerName)
-        {
-            if (outerLabelData == null) throw new ArgumentNullException("outerLabelData");
-
-            try
-            {
-                DisposePrintRequest();
-                ILabel label = PrintEngineFactory.PrintEngine.OpenLabel(outerLabelData.LabelPath);
-
-                // Enable MonitorSpoolJobStatus to raise SpoolJobStatusChanged events.
-                label.PrintSettings.MonitorSpoolJobStatus = true;
-
-                label.Variables["GTIN"].SetValue(outerLabelData.GTIN);
-                label.Variables["LotNo"].SetValue(outerLabelData.LotNo);
-                label.Variables["ProdDate"].SetValue(outerLabelData.ProdDateForLabel);
-                label.Variables["ProdName1"].SetValue(outerLabelData.ProdName1);
-                label.Variables["ProdName2"].SetValue(outerLabelData.ProdName2);
-
-                //Set the printer to print to
-                label.PrintSettings.PrinterName = printerName;
-                //Number of labels to print
-                printRequest = label.Print(outerLabelData.PrintQty);
-                //printRequest = label.PrintAsync(outerLabelData.PrintQty);
-
-                // Add handler for the PrintRequest's PrintJobStatusChanged event
-                this.printRequest.PrintJobStatusChanged += this.PrintRequest_PrintJobStatusChanged;
-
-                // Add handler for the PrintRequest's SpoolJobStatusChanged event
-                this.printRequest.SpoolJobStatusChanged += this.PrintRequest_SpoolJobStatusChanged;
-            }
-            catch (Exception ex)
-            {
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex);
-            }
-            return false;
-        }
-
         private bool InitPrintEngine(string SDKPath)
         {
             if (string.IsNullOrEmpty(SDKPath))
@@ -200,6 +140,195 @@ namespace ITS.Exwold.Desktop
                 return false;
             }
             return true;
+        }
+        internal async Task<bool> PrintInnerLabel(InnerLabelData innerLabelData, string printerName)
+        {
+            if (innerLabelData == null) throw new ArgumentNullException("innerLabelData");
+            try
+            {
+                DisposePrintRequest();
+                ILabel label = PrintEngineFactory.PrintEngine.OpenLabel(innerLabelData.LabelPath);
+
+                // Enable MonitorSpoolJobStatus to raise SpoolJobStatusChanged events.
+                label.PrintSettings.MonitorSpoolJobStatus = true;
+
+                label.Variables["GTIN"].SetValue(innerLabelData.GTIN);
+                label.Variables["LotNo"].SetValue(innerLabelData.LotNo);
+                label.Variables["ProdDate"].SetValue(innerLabelData.ProdDateForLabel);
+
+                //Set the printer to print to
+                label.PrintSettings.PrinterName = printerName;
+                //Print the number of labels requested
+                await PrintLabel(label, innerLabelData.PrintQty, cstPrintTimeout);
+            }
+            catch (Exception ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex);
+            }
+            return false;
+        }
+        internal async Task<bool> PrintOuterLabel(OuterLabelData outerLabelData, string printerName)
+        {
+            if (outerLabelData == null) throw new ArgumentNullException("outerLabelData");
+
+            try
+            {
+                DisposePrintRequest();
+                ILabel label = PrintEngineFactory.PrintEngine.OpenLabel(outerLabelData.LabelPath);
+
+                // Enable MonitorSpoolJobStatus to raise SpoolJobStatusChanged events.
+                label.PrintSettings.MonitorSpoolJobStatus = true;
+
+                label.Variables["GTIN"].SetValue(outerLabelData.GTIN);
+                label.Variables["LotNo"].SetValue(outerLabelData.LotNo);
+                label.Variables["ProdDate"].SetValue(outerLabelData.ProdDateForLabel);
+                label.Variables["ProdName1"].SetValue(outerLabelData.ProdName1);
+                label.Variables["ProdName2"].SetValue(outerLabelData.ProdName2);
+
+                //Set the printer to print to
+                label.PrintSettings.PrinterName = printerName;
+                //Print the number of labels requested
+                await PrintLabel(label, outerLabelData.PrintQty, cstPrintTimeout);
+            }
+            catch (Exception ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex);
+            }
+            return false;
+        }
+        internal async Task<bool> PrintPalletLabel(PalletLabelData palletLabelData, string printerName)
+        {
+            if (palletLabelData == null) throw new ArgumentNullException("palletLabelData");
+
+            try
+            {
+                DisposePrintRequest();
+                ILabel label = PrintEngineFactory.PrintEngine.OpenLabel(palletLabelData.LabelPath);
+
+                // Enable MonitorSpoolJobStatus to raise SpoolJobStatusChanged events.
+                label.PrintSettings.MonitorSpoolJobStatus = true;
+
+                label.Variables["GMID"].SetValue(palletLabelData.GMID);
+                label.Variables["Count"].SetValue(palletLabelData.Count);
+                label.Variables["NetUnits"].SetValue(palletLabelData.NetUnits);
+                label.Variables["NetVolume"].SetValue(palletLabelData.NetVolume);
+                label.Variables["NetUnits_AI"].SetValue(palletLabelData.NetUnits_AI);
+                label.Variables["BatchNumber"].SetValue(palletLabelData.BatchNumber);
+                label.Variables["ProductionDate"].SetValue(palletLabelData.ProductionDate);
+                label.Variables["SSCC"].SetValue(palletLabelData.SSCC);
+                label.Variables["GTIN"].SetValue(palletLabelData.GTIN);
+                label.Variables["LabelNumber"].SetValue(palletLabelData.LabelNumber);
+                label.Variables["TotalLabels"].SetValue(palletLabelData.TotalLabels);
+                //label.Variables["ProductName"].SetValue(palletLabelData.ProductName);
+
+
+                //Set the printer to print to
+                label.PrintSettings.PrinterName = printerName;
+                //Print the number of labels requested
+                await PrintLabel(label, palletLabelData.PrintQty, cstPrintTimeout);
+            }
+            catch(SDKException ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex.DetailedMessage);
+
+            }
+            catch (Exception ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex);
+            }
+            return false;
+        }
+        internal void CancelPrint()
+        {
+            // Cancelled the print task
+            if (ctsPrinting != null)
+            {
+                ctsPrinting.Cancel();
+            }
+        }
+        private async Task<bool> PrintLabel(ILabel labelToPrint, int PrintQty, int PrintTimeout = 5000)
+        {
+            if (ctsPrinting != null) ctsPrinting.Dispose();
+            ctsPrinting = new CancellationTokenSource();
+            printRequest = await ActionPrintGetRequest(labelToPrint, PrintQty, PrintTimeout);
+
+            if (printRequest != null)
+            {
+                // Add handler for the PrintRequest's PrintJobStatusChanged event
+                printRequest.PrintJobStatusChanged += PrintRequest_PrintJobStatusChanged;
+
+                // Add handler for the PrintRequest's SpoolJobStatusChanged event
+                printRequest.SpoolJobStatusChanged += PrintRequest_SpoolJobStatusChanged;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private Task<IPrintRequest> ActionPrintGetRequest(ILabel labelToPrint, int PrintQty, int PrintTimeout = 5000)
+        {
+            IPrintRequest printRequest;
+            int printStatus = int.MinValue;
+            var statusHandler = new Progress<int>(value =>
+            {
+                printStatus = value;
+            });
+            var status = statusHandler as IProgress<int>;
+
+            // Reset the cancellation token
+            ctsPrinting.Dispose();
+            ctsPrinting = new CancellationTokenSource();
+
+            //Set the cancellation after the given timeout
+            ctsPrinting.CancelAfter(PrintTimeout);
+
+            CancellationToken CancelToken = ctsPrinting.Token;
+            ctsPrinting.CancelAfter(PrintTimeout);
+
+            //Defin the print task
+            return Task.Run(() =>
+            {
+                printRequest = null;
+                try
+                {
+                    try
+                    {
+                        printRequest = labelToPrint.Print(PrintQty);
+                    }
+                    catch (SDKException ex)
+                    {
+                        Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), ex.DetailedErrorCode);
+                    }
+                    catch (Exception ex)
+                    {
+                        Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), ex.Message);
+                    }
+                    CancelToken.ThrowIfCancellationRequested();
+                }
+                catch (TaskCanceledException)
+                {
+                    status.Report(-3);
+                    return null;
+                    //tbProgress.BeginInvoke((Action)delegate ()
+                    //{
+                    //    tbProgress.Text = "Task Timed-out";
+                    //});
+                }
+                catch (OperationCanceledException)
+                {
+                    status.Report(-1);
+                    return null;
+                }
+                catch (OperationAbortedException)
+                {
+                    status.Report(-2);
+                    return null;
+                }
+                // Task completed
+                return printRequest;
+            });
         }
 
         private bool ValidatePath(string dirPath)
@@ -247,41 +376,133 @@ namespace ITS.Exwold.Desktop
         /// </summary>
         private void DisposePrintRequest()
         {
-            if (this.printRequest != null)
+            if (printRequest != null)
             {
-                this.printRequest.PrintJobStatusChanged -= this.PrintRequest_PrintJobStatusChanged;
-                this.printRequest.SpoolJobStatusChanged -= this.PrintRequest_SpoolJobStatusChanged;
-                this.printRequest.Dispose();
-                this.printRequest = null;
+                printRequest.PrintJobStatusChanged -= PrintRequest_PrintJobStatusChanged;
+                printRequest.SpoolJobStatusChanged -= PrintRequest_SpoolJobStatusChanged;
+                printRequest.Dispose();
+                printRequest = null;
             }
         }
     }
 
-    public interface IBasePackLabel
-    {
-        string LabelPath { get; set; }
-        int PrintQty { get; set; }
-        string GTIN { get; set; }
-        string LotNo { get; set; }
-        DateTime ProductionDate { get; set; }
 
-        bool CanPrintLabel(out StringBuilder Errors);
-    }
-    internal interface IPackLabelIProductName
+    public class ValidatePrintData
     {
-        string ProductName { get; set; }
+        /// <summary>
+        /// Check the label file exists
+        /// </summary>
+        /// <param name="LabelPath">Path of the label file</param>
+        /// <param name="ErrorStr">Error message to collate</param>
+        /// <returns></returns>
+        private protected bool validateLabelPath(string LabelPath, out string ErrorStr)
+        {
+            ErrorStr = string.Empty;
+            bool bRes = File.Exists(LabelPath);
+            if (!bRes)
+            {
+                ErrorStr = $"Label Path Does not exist\n\'{LabelPath}\'";
+            }
+            return bRes;
+        }
+        /// <summary>
+        /// GTIN must be 14 Alpha numeric characters
+        /// </summary>
+        /// <param name="GTIN">GTIN to print</param>
+        /// <param name="ErrorStr">Error message to collate</param>
+        /// <returns>true/false</returns>
+        private protected bool validateGTIN(string GTIN, out string ErrorStr)
+        {
+            ErrorStr = string.Empty;
+            StringValidator sv = new StringValidator(14, 14, "[a-z][A-Z]  ~!@#$%^&*()[]{}/;’\"|\\");
+            if (sv.CanValidate(GTIN.GetType()))
+            {
+                try
+                {
+                    sv.Validate(GTIN);
+                }
+                catch (ArgumentException)
+                {
+                    ErrorStr = $"GTIN 14 Alpha Numeric Characters\n\'{GTIN}\' Is Invalid";
+                    return false;
+                    //Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), "GTIN 14 Alpha Numeric Characters", ex);
+                }
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// Lot Number must be 3-20 Alpha numeric characters
+        /// </summary>
+        /// <param name="LotNo">Lot No to print</param>
+        /// <param name="ErrorStr">Error message to collate</param>
+        /// <returns>true/false</returns>
+        private protected bool validateLotNo(string LotNo, out string ErrorStr)
+        {
+            ErrorStr = string.Empty;
+            StringValidator sv = new StringValidator(3, 20, "  ~!@#$%^&*()[]{}/;’\"|\\");
+            if (sv.CanValidate(LotNo.GetType()))
+            {
+                try
+                {
+                    sv.Validate(LotNo);
+                }
+                catch (ArgumentException)
+                {
+                    ErrorStr = $"LotNo 3-20 Alpha Numeric Characters\n\'{LotNo}\' Is Invalid";
+                    return false;
+                    //Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), "LotNo 3-20 Alpha Numeric Characters", ex);
+                }
+                return true;
+            }
+            return false;
+        }
+        /// <summary>
+        /// The number of labels to print, must be greater than 0
+        /// </summary>
+        /// <param name="PrintQty">Number of labels to print</param>
+        /// <param name="ErrorStr">Error message to collate</param>
+        /// <returns>true/false</returns>
+        private protected bool validatePrintQty(int PrintQty, out string ErrorStr)
+        {
+            ErrorStr = string.Empty;
+            if (PrintQty <= 0)
+            {
+                ErrorStr = $"Print Quantity must be greater than zero\n\'{PrintQty}\' Is Invalid";
+                return false;
+            }
+            return true;
+        }
+        /// <summary>
+        /// The Production Data (Date of Manufacture)
+        /// </summary>
+        /// <param name="ProdDate">Prod Date for the label</param>
+        /// <param name="ErrorStr">Error message to collate</param>
+        /// <returns>true/false</returns>
+        private protected bool validateProductionData(DateTime ProdDate, out string ErrorStr)
+        {
+            ErrorStr = string.Empty;
+            if (ProdDate == null || ProdDate == DateTime.MinValue)
+            {
+                ErrorStr = $"The Production Date is Invalid\n\'{ProdDate.ToString()}\' Is Invalid";
+                return false;
+            }
+            else
+            { return true; }
+        }
+
     }
 
-    public class InnerLabelData : IBasePackLabel
+    public class InnerLabelData : ValidatePrintData, IBaseLabel, IInnerLabel 
     {
-        #region Private Variables
+        #region Backing Fields
         private string _labelPath;
         private int _printQty;
         private string _GTIN;
         private string _lotNo;
         private DateTime _prodDate;
         #endregion
-        #region Properties
+        #region Base Properties
         /// <summary>
         /// Path for the label to print
         /// </summary>
@@ -298,41 +519,6 @@ namespace ITS.Exwold.Desktop
             get { return _printQty; } 
             set { _printQty = value; } 
         }
-        /// <summary>
-        /// Label GTIN (14 characters)
-        /// </summary>
-        public string GTIN 
-        { 
-            get { return _GTIN; } 
-            set { _GTIN = value; } 
-        }
-        /// <summary>
-        /// Label Lot Number (==Batch Number) (3-20 chars)
-        /// </summary>
-        public string LotNo 
-        { 
-            get { return _lotNo; } 
-            set { _lotNo = value; } 
-        }
-        /// <summary>
-        /// Label Production Date (Date of Manufacture)
-        /// </summary>
-        public DateTime ProductionDate 
-        { 
-            get { return _prodDate; } 
-            set { _prodDate = value; } 
-        }
-        /// <summary>
-        /// The date written to the label 'YYMMDD'
-        /// </summary>
-        public string ProdDateForLabel
-        {
-            get { return _prodDate.ToString("yyMMdd"); }
-        }
-        #endregion
-        #region Constructor(s)
-        public InnerLabelData(){ }
-        #endregion
         public virtual bool CanPrintLabel(out StringBuilder Errors)
         {
             Errors = new StringBuilder();
@@ -366,113 +552,149 @@ namespace ITS.Exwold.Desktop
 
             return true;
         }
+        #endregion
+        #region InnerLabel Properties
+        /// <summary>
+        /// Label GTIN (14 characters)
+        /// </summary>
+        public string GTIN 
+        { 
+            get { return _GTIN; } 
+            set { _GTIN = value; } 
+        }
+        /// <summary>
+        /// Label Lot Number (==Batch Number) (3-20 chars)
+        /// </summary>
+        public string LotNo 
+        { 
+            get { return _lotNo; } 
+            set { _lotNo = value; } 
+        }
+        /// <summary>
+        /// Label Production Date (Date of Manufacture)
+        /// </summary>
+        public DateTime ProductionDate 
+        { 
+            get { return _prodDate; } 
+            set { _prodDate = value; } 
+        }
+        #endregion
+        /// <summary>
+        /// The date written to the label 'YYMMDD'
+        /// </summary>
+        public string ProdDateForLabel
+        {
+            get { return _prodDate.ToString("yyMMdd"); }
+        }
 
+        #region Constructor(s)
+        public InnerLabelData(){ }
+        #endregion
+
+
+    }
+
+    public class OuterLabelData : ValidatePrintData, IBaseLabel, IOuterLabel
+    {
+        #region Backing Fields
+        private string _labelPath;
+        private int _printQty;
+        private string _GTIN;
+        private string _lotNo;
+        private DateTime _prodDate;
+        private string _productName;        
+        #endregion
+        #region Constructor(s)
+        public OuterLabelData() { }
+        #endregion
+        #region Base Properties
         /// <summary>
-        /// Check the label file exists
+        /// Path for the label to print
         /// </summary>
-        /// <param name="LabelPath">Path of the label file</param>
-        /// <param name="ErrorStr">Error message to collate</param>
-        /// <returns></returns>
-        private bool validateLabelPath(string LabelPath, out string ErrorStr)
+        public string LabelPath
         {
-            ErrorStr = string.Empty;
-            bool bRes = File.Exists(LabelPath);
-            if (!bRes) 
-            {
-                ErrorStr = $"Label Path Does not exist\n\'{LabelPath}\'";
-            }
-            return bRes;
+            get { return _labelPath; }
+            set { _labelPath = value; }
         }
         /// <summary>
-        /// GTIN must be 14 Alpha numeric characters
+        /// Number of labels to print
         /// </summary>
-        /// <param name="GTIN">GTIN to print</param>
-        /// <param name="ErrorStr">Error message to collate</param>
-        /// <returns>true/false</returns>
-        private bool validateGTIN(string GTIN, out string ErrorStr)
+        public int PrintQty
         {
-            ErrorStr = string.Empty;
-            StringValidator sv = new StringValidator(14, 14, "[a-z][A-Z]  ~!@#$%^&*()[]{}/;’\"|\\");
-            if (sv.CanValidate(GTIN.GetType()))
-            {
-                try
-                {
-                    sv.Validate(GTIN);
-                }
-                catch (ArgumentException)
-                {
-                    ErrorStr = $"GTIN 14 Alpha Numeric Characters\n\'{GTIN}\' Is Invalid";
-                    return false;
-                    //Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), "GTIN 14 Alpha Numeric Characters", ex);
-                }
-                return true;
-            }
-            return false;
+            get { return _printQty; }
+            set { _printQty = value; }
         }
-        /// <summary>
-        /// Lot Number must be 3-20 Alpha numeric characters
-        /// </summary>
-        /// <param name="LotNo">Lot No to print</param>
-        /// <param name="ErrorStr">Error message to collate</param>
-        /// <returns>true/false</returns>
-        private bool validateLotNo(string LotNo, out string ErrorStr)
+        public bool CanPrintLabel(out StringBuilder Errors)
         {
-            ErrorStr = string.Empty;
-            StringValidator sv = new StringValidator(3, 20, "  ~!@#$%^&*()[]{}/;’\"|\\");
-            if (sv.CanValidate(GTIN.GetType()))
+            Errors = new StringBuilder();
+            string ErrorStr = string.Empty;
+
+            if (!validateLabelPath(_labelPath, out ErrorStr))
             {
-                try
-                {
-                    sv.Validate(GTIN);
-                }
-                catch (ArgumentException)
-                {
-                    ErrorStr = $"LotNo 3-20 Alpha Numeric Characters\n\'{LotNo}\' Is Invalid";
-                    return false;
-                    //Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), "LotNo 3-20 Alpha Numeric Characters", ex);
-                }
-                return true;
-            }
-            return false;
-        }
-        /// <summary>
-        /// The number of labels to print, must be greater than 0
-        /// </summary>
-        /// <param name="PrintQty">Number of labels to print</param>
-        /// <param name="ErrorStr">Error message to collate</param>
-        /// <returns>true/false</returns>
-        private bool validatePrintQty(int PrintQty, out string ErrorStr)
-        {
-            ErrorStr = string.Empty;
-            if (PrintQty <= 0)
-            {
-                ErrorStr = $"Print Quantity must be greater than zero\n\'{PrintQty}\' Is Invalid";
+                Errors.AppendLine(ErrorStr);
                 return false;
+            }
+            if (!validatePrintQty(_printQty, out ErrorStr))
+            {
+                Errors.AppendLine(ErrorStr);
+                return false;
+            }
+            if (!validateGTIN(_GTIN, out ErrorStr))
+            {
+                Errors.AppendLine(ErrorStr);
+                return false;
+            }
+            if (!validateLotNo(_lotNo, out ErrorStr))
+            {
+                Errors.AppendLine(ErrorStr);
+                return false;
+            }
+            if (!validateProductionData(_prodDate, out ErrorStr))
+            {
+                Errors.AppendLine(ErrorStr);
+                return false;
+            }
+            //Validate the Productname
+            if (!validateProductName(_productName, out ErrorStr))
+            {
+                Errors.AppendLine(ErrorStr);
             }
             return true;
         }
-        /// <summary>
-        /// The Production Data (Date of Manufacture)
-        /// </summary>
-        /// <param name="ProdDate">Prod Date for the label</param>
-        /// <param name="ErrorStr">Error message to collate</param>
-        /// <returns>true/false</returns>
-        private bool validateProductionData(DateTime ProdDate, out string ErrorStr)
-        {
-            ErrorStr = string.Empty;
-            if (ProdDate == null || ProdDate == DateTime.MinValue)
-            {
-                ErrorStr = $"The Production Date is Invalid\n\'{ProdDate.ToString()}\' Is Invalid";
-                return false;
-            }
-            else
-            { return true; }
-        }
-    }
 
-    public class OuterLabelData : InnerLabelData, IPackLabelIProductName
-    {
-        private string _productName;
+        #endregion
+        #region OuterLabel Properties
+        /// <summary>
+        /// Label GTIN (14 characters)
+        /// </summary>
+        public string GTIN
+        {
+            get { return _GTIN; }
+            set { _GTIN = value; }
+        }
+        /// <summary>
+        /// Label Lot Number (==Batch Number) (3-20 chars)
+        /// </summary>
+        public string LotNo
+        {
+            get { return _lotNo; }
+            set { _lotNo = value; }
+        }
+        /// <summary>
+        /// Label Production Date (Date of Manufacture)
+        /// </summary>
+        public DateTime ProductionDate
+        {
+            get { return _prodDate; }
+            set { _prodDate = value; }
+        }
+        /// <summary>
+        /// The date written to the label 'YYMMDD'
+        /// </summary>
+        public string ProdDateForLabel
+        {
+            get { return _prodDate.ToString("yyMMdd"); }
+        }
         public string ProductName
         {
             get { return _productName; }
@@ -481,6 +703,7 @@ namespace ITS.Exwold.Desktop
                 _productName = value;
             }
         }
+        #endregion
         public string ProdName1
         {
             get
@@ -508,20 +731,6 @@ namespace ITS.Exwold.Desktop
                     return string.Empty;
                 }
             }
-        }
-        public override bool CanPrintLabel(out StringBuilder Errors)
-        {
-            Errors = new StringBuilder();
-            string ErrorStr = string.Empty;
-            //Validate from the base
-            bool bBaseRtn = base.CanPrintLabel(out Errors);
-            //Validate the Productname
-            bool bAdditionalRtn = validateProductName(_productName, out ErrorStr);
-            if (!bAdditionalRtn)
-            {
-                Errors.AppendLine(ErrorStr);
-            }
-            return (bBaseRtn & bAdditionalRtn);
         }
 
         /// <summary>
@@ -551,5 +760,177 @@ namespace ITS.Exwold.Desktop
             return false;
         }
     }
+
+    public class PalletLabelData : ValidatePrintData, IBaseLabel, IPalletLabel
+    {
+        #region Backing Fields
+        private string _labelPath; 
+        private int _printQty;
+        private string _GMID;
+        private string _Count;
+        private string _NetUnits;
+        private string _NetVolume;
+        private string _NetUnits_AI;
+        private string _BatchNumber;
+        private string _ProductionDate;
+        private string _SSCC;
+        private string _GTIN;
+        private string _LabelNumber;
+        private string _TotalLabels;
+        private string _ProductName;
+        private string _ProductionLineNo;
+        #endregion
+        #region Constructor(s)
+        public PalletLabelData() { }
+        #endregion
+        #region Base Properties
+        /// <summary>
+        /// Path for the label to print
+        /// </summary>
+        public string LabelPath
+        {
+            get { return _labelPath; }
+            set { _labelPath = value; }
+        }
+        /// <summary>
+        /// Number of labels to print
+        /// </summary>
+        public int PrintQty
+        {
+            get { return _printQty; }
+            set { _printQty = value; }
+        }
+        public bool CanPrintLabel(out StringBuilder Errors)
+        {
+            Errors = new StringBuilder();
+            string ErrorStr = string.Empty;
+
+            if (!validateLabelPath(_labelPath, out ErrorStr))
+            {
+                Errors.AppendLine(ErrorStr);
+                return false;
+            }
+            if (!validatePrintQty(_printQty, out ErrorStr))
+            {
+                Errors.AppendLine(ErrorStr);
+                return false;
+            }
+            return true;
+        }
+        #endregion
+        #region Pallet Label Properties
+        public string GMID
+        {
+            get { return _GMID; }
+            set { _GMID = value; }
+        }
+        public string Count
+        {
+            get { return _Count; }
+            set { _Count = value; }
+        }
+        public string NetUnits
+        {
+            get { return _NetUnits; }
+            set { _NetUnits = value; }
+        }
+        public string NetVolume
+        {
+            get { return _NetVolume; }
+            set { _NetVolume = value; }
+        }
+        public string NetUnits_AI
+        {
+            get { return _NetUnits_AI; }
+            set { _NetUnits_AI = value; }
+        }
+        public string BatchNumber
+        {
+            get { return _BatchNumber; }
+            set { _BatchNumber = value; }
+        }
+        public string ProductionDate
+        {
+            get { return _ProductionDate; }
+            set { _ProductionDate = value; }
+        }
+        public string ProdDateForLabel
+        {
+            get => _ProductionDate; 
+        }
+        public string SSCC
+        {
+            get { return _SSCC; }
+            set { _SSCC = value; }
+        }
+        public string GTIN
+        {
+            get { return _GTIN; }
+            set { _GTIN = value; }
+        }
+        public string LabelNumber
+        {
+            get { return _LabelNumber; }
+            set { _LabelNumber = value; }
+        }
+        public string TotalLabels
+        {
+            get { return _TotalLabels; }
+            set { _TotalLabels = value; }
+        }
+        public string ProductName
+        {
+            get { return _ProductName; }
+            set { _ProductName = value; }
+        }
+        public string ProductionLineNo
+        {
+            get { return _ProductionLineNo; }
+            set { _ProductionLineNo = value; }
+        }
+        #endregion
+    }
+
+
+
+    public interface IBaseLabel
+    {
+        string LabelPath { get; set; }
+        int PrintQty { get; set; }
+        bool CanPrintLabel(out StringBuilder Errors);
+    }
+    public interface IInnerLabel
+    {
+        string GTIN { get; set; }
+        string LotNo { get; set; }
+        DateTime ProductionDate { get; set; }
+        string ProdDateForLabel { get; }
+    }
+    public interface IOuterLabel
+    {
+        string GTIN { get; set; }
+        string LotNo { get; set; }
+        DateTime ProductionDate { get; set; }
+        string ProdDateForLabel { get; }
+        string ProductName { get; set; }
+    }
+    public interface IPalletLabel
+    {
+        string GMID { get; set; }
+        string Count { get; set; }
+        string NetUnits { get; set; }
+        string NetVolume { get; set; }
+        string NetUnits_AI { get; set; }
+        string BatchNumber { get; set; }
+        string ProductionDate { get; set; }
+        string ProdDateForLabel { get; }
+        string SSCC { get; set; }
+        string GTIN { get; set; }
+        string LabelNumber { get; set; }
+        string TotalLabels { get; set; }
+        string ProductName { get; set; }
+        string ProductionLineNo { get; set; }
+    }
+
 }
 

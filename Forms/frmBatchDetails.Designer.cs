@@ -38,7 +38,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.labelStatus = new System.Windows.Forms.Label();
             this.buttonClose = new System.Windows.Forms.Button();
-            this.buttonPrintLabel = new System.Windows.Forms.Button();
+            this.btnPrintLabel = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -173,16 +173,16 @@
             this.buttonClose.UseVisualStyleBackColor = true;
             this.buttonClose.Click += new System.EventHandler(this.buttonClose_Click);
             // 
-            // buttonPrintLabel
+            // btnPrintLabel
             // 
-            this.buttonPrintLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonPrintLabel.Location = new System.Drawing.Point(898, 557);
-            this.buttonPrintLabel.Name = "buttonPrintLabel";
-            this.buttonPrintLabel.Size = new System.Drawing.Size(182, 23);
-            this.buttonPrintLabel.TabIndex = 58;
-            this.buttonPrintLabel.Text = "Print Label";
-            this.buttonPrintLabel.UseVisualStyleBackColor = true;
-            this.buttonPrintLabel.Click += new System.EventHandler(this.buttonPrintLabel_Click);
+            this.btnPrintLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintLabel.Location = new System.Drawing.Point(898, 557);
+            this.btnPrintLabel.Name = "btnPrintLabel";
+            this.btnPrintLabel.Size = new System.Drawing.Size(182, 23);
+            this.btnPrintLabel.TabIndex = 58;
+            this.btnPrintLabel.Text = "Print Label";
+            this.btnPrintLabel.UseVisualStyleBackColor = true;
+            this.btnPrintLabel.Click += new System.EventHandler(this.btnPrintLabel_Click);
             // 
             // buttonEdit
             // 
@@ -472,7 +472,7 @@
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.buttonEdit);
-            this.panel2.Controls.Add(this.buttonPrintLabel);
+            this.panel2.Controls.Add(this.btnPrintLabel);
             this.panel2.Controls.Add(this.labelStatus);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.label11);
@@ -510,7 +510,7 @@
             this.label12.TabIndex = 107;
             this.label12.Text = "Current Pallet";
             // 
-            // BatchDetailsForm
+            // frmBatchDetails
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -519,7 +519,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.label15);
-            this.Name = "BatchDetailsForm";
+            this.Name = "frmBatchDetails";
             this.Text = "EXWOLD PALLET TRACKING";
             this.Load += new System.EventHandler(this.BatchDetailsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCartonsOnPallet)).EndInit();
@@ -540,7 +540,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelStatus;
         private System.Windows.Forms.Button buttonClose;
-        private System.Windows.Forms.Button buttonPrintLabel;
+        private System.Windows.Forms.Button btnPrintLabel;
         private System.Windows.Forms.Button buttonEdit;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;

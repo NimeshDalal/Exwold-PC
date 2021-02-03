@@ -978,7 +978,6 @@ namespace ITS.Exwold.Desktop
     public static class Mx300NLogging
     {
         internal static string currMethod()
-
         {
             return new StackTrace().GetFrame(1).GetMethod().currMethod();
         }

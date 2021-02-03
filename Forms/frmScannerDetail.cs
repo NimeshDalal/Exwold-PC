@@ -70,7 +70,14 @@ namespace ITS.Exwold.Desktop
             {
                 grpScannerStatus.Enabled = true;
                 tbStatusAvailable.Text = (await Scanner.MX300N.IsAvailable()).ToString();
-                tbStatusConnected.Text = (await Scanner.MX300N.IsConnected()).ToString();
+                try
+                {
+                    tbStatusConnected.Text = (await Scanner.MX300N.IsConnected()).ToString();
+                }
+                catch
+                {
+                    tbStatusConnected.Text = "Error";
+                }
                 tbStatusScanning.Text = Scanner.MX300N.IsScanning().ToString();
             }
         }
