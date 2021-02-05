@@ -33,6 +33,8 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
+            this.dtpDateOfManufacture = new System.Windows.Forms.DateTimePicker();
+            this.lblDoM = new System.Windows.Forms.Label();
             this.lblInnerGTIN = new System.Windows.Forms.Label();
             this.tbInnerGTIN = new System.Windows.Forms.MaskedTextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -76,9 +78,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.lblDoM = new System.Windows.Forms.Label();
-            this.tbDateOfManufacture = new System.Windows.Forms.MaskedTextBox();
-            this.dtpDateOfManufacture = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllProducts)).BeginInit();
             this.pnlProductDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource)).BeginInit();
@@ -130,7 +129,6 @@
             this.pnlProductDetails.Controls.Add(this.dtpDateOfManufacture);
             this.pnlProductDetails.Controls.Add(this.lblDoM);
             this.pnlProductDetails.Controls.Add(this.lblInnerGTIN);
-            this.pnlProductDetails.Controls.Add(this.tbDateOfManufacture);
             this.pnlProductDetails.Controls.Add(this.tbInnerGTIN);
             this.pnlProductDetails.Controls.Add(this.label18);
             this.pnlProductDetails.Controls.Add(this.tbInnerPackStyle);
@@ -165,10 +163,30 @@
             this.pnlProductDetails.Controls.Add(this.tbProdCode);
             this.pnlProductDetails.Controls.Add(this.btnCancel);
             this.pnlProductDetails.Controls.Add(this.btnSave);
-            this.pnlProductDetails.Location = new System.Drawing.Point(96, 500);
+            this.pnlProductDetails.Location = new System.Drawing.Point(96, 471);
             this.pnlProductDetails.Name = "pnlProductDetails";
-            this.pnlProductDetails.Size = new System.Drawing.Size(1308, 267);
+            this.pnlProductDetails.Size = new System.Drawing.Size(1308, 290);
             this.pnlProductDetails.TabIndex = 3;
+            // 
+            // dtpDateOfManufacture
+            // 
+            this.dtpDateOfManufacture.CustomFormat = "dd-MMM-yyyy";
+            this.dtpDateOfManufacture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDateOfManufacture.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDateOfManufacture.Location = new System.Drawing.Point(1132, 108);
+            this.dtpDateOfManufacture.Name = "dtpDateOfManufacture";
+            this.dtpDateOfManufacture.Size = new System.Drawing.Size(133, 22);
+            this.dtpDateOfManufacture.TabIndex = 41;
+            // 
+            // lblDoM
+            // 
+            this.lblDoM.AutoSize = true;
+            this.lblDoM.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDoM.Location = new System.Drawing.Point(945, 110);
+            this.lblDoM.Name = "lblDoM";
+            this.lblDoM.Size = new System.Drawing.Size(140, 17);
+            this.lblDoM.TabIndex = 40;
+            this.lblDoM.Text = "Date Of Manufacture";
             // 
             // lblInnerGTIN
             // 
@@ -220,9 +238,9 @@
             // tbNotes
             // 
             this.tbNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNotes.Location = new System.Drawing.Point(1132, 185);
+            this.tbNotes.Location = new System.Drawing.Point(948, 211);
             this.tbNotes.Name = "tbNotes";
-            this.tbNotes.Size = new System.Drawing.Size(133, 23);
+            this.tbNotes.Size = new System.Drawing.Size(317, 23);
             this.tbNotes.TabIndex = 35;
             // 
             // label14
@@ -484,7 +502,7 @@
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Location = new System.Drawing.Point(1166, 226);
+            this.btnCancel.Location = new System.Drawing.Point(1166, 247);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(99, 32);
             this.btnCancel.TabIndex = 5;
@@ -495,7 +513,7 @@
             // btnSave
             // 
             this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(1064, 226);
+            this.btnSave.Location = new System.Drawing.Point(1064, 247);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(99, 32);
             this.btnSave.TabIndex = 4;
@@ -531,7 +549,7 @@
             this.btnCreateSalesOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateSalesOrder.Location = new System.Drawing.Point(1028, 0);
             this.btnCreateSalesOrder.Name = "btnCreateSalesOrder";
-            this.btnCreateSalesOrder.Size = new System.Drawing.Size(237, 55);
+            this.btnCreateSalesOrder.Size = new System.Drawing.Size(237, 32);
             this.btnCreateSalesOrder.TabIndex = 9;
             this.btnCreateSalesOrder.Text = "Create Sales Order for this product";
             this.btnCreateSalesOrder.UseVisualStyleBackColor = true;
@@ -567,7 +585,7 @@
             this.panel3.Controls.Add(this.btnAdd);
             this.panel3.Location = new System.Drawing.Point(96, 415);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1308, 58);
+            this.panel3.Size = new System.Drawing.Size(1308, 37);
             this.panel3.TabIndex = 11;
             // 
             // btnRefresh
@@ -581,36 +599,6 @@
             this.btnRefresh.Text = "Refresh";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
-            // 
-            // lblDoM
-            // 
-            this.lblDoM.AutoSize = true;
-            this.lblDoM.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDoM.Location = new System.Drawing.Point(945, 110);
-            this.lblDoM.Name = "lblDoM";
-            this.lblDoM.Size = new System.Drawing.Size(140, 17);
-            this.lblDoM.TabIndex = 40;
-            this.lblDoM.Text = "Date Of Manufacture";
-            // 
-            // tbDateOfManufacture
-            // 
-            this.tbDateOfManufacture.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDateOfManufacture.Location = new System.Drawing.Point(1132, 107);
-            this.tbDateOfManufacture.Mask = "00/00/0000";
-            this.tbDateOfManufacture.Name = "tbDateOfManufacture";
-            this.tbDateOfManufacture.Size = new System.Drawing.Size(133, 23);
-            this.tbDateOfManufacture.TabIndex = 32;
-            this.tbDateOfManufacture.ValidatingType = typeof(System.DateTime);
-            // 
-            // dtpDateOfManufacture
-            // 
-            this.dtpDateOfManufacture.CustomFormat = "dd-MMM-yyyy";
-            this.dtpDateOfManufacture.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpDateOfManufacture.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDateOfManufacture.Location = new System.Drawing.Point(1132, 20);
-            this.dtpDateOfManufacture.Name = "dtpDateOfManufacture";
-            this.dtpDateOfManufacture.Size = new System.Drawing.Size(133, 22);
-            this.dtpDateOfManufacture.TabIndex = 41;
             // 
             // frmProduct
             // 
@@ -687,7 +675,6 @@
         private System.Windows.Forms.MaskedTextBox tbInnerGTIN;
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Label lblDoM;
-        private System.Windows.Forms.MaskedTextBox tbDateOfManufacture;
         private System.Windows.Forms.DateTimePicker dtpDateOfManufacture;
     }
 }

@@ -75,14 +75,14 @@ namespace ITS.Exwold.Desktop
                     {
                         ProductID = int.Parse(CreateBatchID);
                         btnAdd.PerformClick();
-                        Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Form Loaded from Create Pallet Batch Button");
+                        //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Form Loaded from Create Pallet Batch Button");
                         break;
                     }
                 case "Edit":    // Called from the Batch details form
                     {
                         BatchID = int.Parse(CreateBatchID);
                         btnEdit.PerformClick();
-                        Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Form Loaded from Edit Pallet Batch Button");
+                        //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Form Loaded from Edit Pallet Batch Button");
                         break;
                     }
                 default:
@@ -173,7 +173,7 @@ namespace ITS.Exwold.Desktop
             CreateBatchFlag = "";
 
             DataTable dtCurrentProduct = await GetPalletBatch(BatchID);
-            //dgvOrders.DataSource = dtCurrentProduct;
+            dgvOrders.DataSource = dtCurrentProduct;
 
             tbCustomer.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "Customer").ToString();
             tbProdCode.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "ProductCode").ToString();
@@ -402,7 +402,8 @@ namespace ITS.Exwold.Desktop
                     {
                         _db.QueryParameters.Clear();
                         _db.QueryParameters.Add("@PalletBatchNo", TextBoxPalletBatchNo.Text);
-                        _db.QueryParameters.Add("@ProdLineNo", cboProdLine.Text);
+                        _db.QueryParameters.Add("@Plant", tbPlant.Text);
+                        _db.QueryParameters.Add("@ProdLineNo", cboProdLine.SelectedValue.ToString());
                         _db.QueryParameters.Add("@ProductID", ProductID.ToString());
                         _db.QueryParameters.Add("@ProdCode", tbProdCode.Text);
                         _db.QueryParameters.Add("@ProdName", tbProdName.Text);
@@ -415,8 +416,21 @@ namespace ITS.Exwold.Desktop
                         _db.QueryParameters.Add("@InnerWeight", tbInnerWeight.Text);
                         _db.QueryParameters.Add("@UoM", cboInnerUnit.Text);
                         _db.QueryParameters.Add("@GTIN", tbGTIN.Text);
-                        _db.QueryParameters.Add("@SsccCompanyCode", tbCompanyCode.Text);
-                        _db.QueryParameters.Add("@SccCustCode", tbClientCode.Text);
+                        _db.QueryParameters.Add("@InnerGTIN", tbInnerGTIN.Text);
+
+                        DateTime dtDoM;
+                        if (string.IsNullOrWhiteSpace(tbDateOfManufacture.Text))
+                        {
+                            dtDoM = DateTime.Now;
+                        }
+                        else
+                        {
+                            DateTime.TryParse(tbDateOfManufacture.Text, out dtDoM);
+                        }
+                        string strDoM = dtDoM.ToString("yyyy-MMM-dd HH:mm:ss");
+                        _db.QueryParameters.Add("@DateOfManufacture", strDoM);
+                        _db.QueryParameters.Add("@SsccCompanyCode", tbCompanyCode.Text.Trim());
+                        _db.QueryParameters.Add("@SSccCustCode", tbClientCode.Text.Trim());
                         _db.QueryParameters.Add("@AddInfo", tbNotes.Text);
                         _db.QueryParameters.Add("@Status", "0");
                         _db.QueryParameters.Add("@ChangeAction", "Insert");
@@ -450,19 +464,19 @@ namespace ITS.Exwold.Desktop
                             case 1:
                                 {
                                     MessageBox.Show("New Sales Order created");
-                                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Added " + TextBoxPalletBatchNo.Text);
+                                    //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Added " + TextBoxPalletBatchNo.Text);
                                     break;
                                 }
                             case 0:
                                 {
                                     MessageBox.Show("Failed to add Sales Order - Please check data and try again.");
-                                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Add Failed " + TextBoxPalletBatchNo.Text);
+                                    //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Add Failed " + TextBoxPalletBatchNo.Text);
                                     break;
                                 }
                             default:
                                 {
                                     MessageBox.Show("Failed to add Sales Order - Unknown Error, Please check data and try again.");
-                                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Add Failed - too many rows returned " + TextBoxPalletBatchNo.Text);
+                                    //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Add Failed - too many rows returned " + TextBoxPalletBatchNo.Text);
                                     break;
                                 }
                         }
@@ -490,14 +504,14 @@ namespace ITS.Exwold.Desktop
                             case 1:
                                 {
                                 MessageBox.Show("Sales Order deleted.");
-                                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Deleted " + TextBoxPalletBatchNo.Text);
+                                //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Deleted " + TextBoxPalletBatchNo.Text);
                                 break;
                             }
 
                             default:
                                 {
                                 MessageBox.Show("Failed to Delete Sales Order - Please check data and try again.");
-                                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Batch Delete Failed " + TextBoxPalletBatchNo.Text);
+                                //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Batch Delete Failed " + TextBoxPalletBatchNo.Text);
                                 break;
                             }
                         }

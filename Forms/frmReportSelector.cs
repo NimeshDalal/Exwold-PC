@@ -73,18 +73,46 @@ namespace ITS.Exwold.Desktop
             {
                 Cursor.Current = Cursors.Default;
             }
-            cboSalesOrderRpt.DataSource = _dtSalesOrders;
-            cboSalesOrderRpt.DisplayMember = "PalletBatchNo";
-            cboSalesOrderRpt.ValueMember = "PalletBatchUniqueNo";
-
-            cboSSCCRpt.DataSource = _dtSSCCRpt;
-            cboSSCCRpt.DisplayMember = "SSCC"; 
-            cboSSCCRpt.ValueMember = "SSCC";
-
-            cboBatchRpt.DataSource = _dtBatchRpt;
-            cboBatchRpt.DisplayMember = "BatchNo"; 
-            cboBatchRpt.ValueMember = "BatchNo";
-
+            if (_dtSalesOrders != null && _dtSalesOrders.Rows.Count > 0)
+            {
+                
+                cboSalesOrderRpt.DataSource = _dtSalesOrders;
+                cboSalesOrderRpt.DisplayMember = "PalletBatchNo";
+                cboSalesOrderRpt.ValueMember = "PalletBatchUniqueNo";
+                cboSalesOrderRpt.Enabled = true;
+                btnRunSalesOrderRpt.Enabled = true;
+            }
+            else
+            {
+                cboSalesOrderRpt.Enabled = false;
+                btnRunSalesOrderRpt.Enabled = false;
+            }
+            if (_dtSSCCRpt != null && _dtSSCCRpt.Rows.Count > 0)
+            {
+                cboSSCCRpt.DataSource = _dtSSCCRpt;
+                cboSSCCRpt.DisplayMember = "SSCC";
+                cboSSCCRpt.ValueMember = "SSCC";
+                cboSSCCRpt.Enabled = true;
+                btnRunSSCCReport.Enabled = true;
+            }
+            else
+            {
+                cboSSCCRpt.Enabled = false;
+                btnRunSSCCReport.Enabled = false;
+            }
+            if (_dtBatchRpt != null && _dtBatchRpt.Rows.Count > 0)
+            {
+                cboBatchRpt.DataSource = _dtBatchRpt;
+                cboBatchRpt.DisplayMember = "BatchNo";
+                cboBatchRpt.ValueMember = "BatchNo";
+                cboBatchRpt.Enabled = true;
+                btnRunBatchRpt.Enabled = true;
+            }
+            else
+            {
+                cboBatchRpt.Enabled = false;
+                btnRunBatchRpt.Enabled = false;
+            }
         }
 
         private void buttonClose_Click(object sender, EventArgs e)

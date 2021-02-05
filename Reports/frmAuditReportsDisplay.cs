@@ -83,7 +83,7 @@ namespace ITS.Exwold.Desktop
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void RunProductReportButton_Click(object sender, EventArgs e)
+        private async void RunProductReportButton_Click(object sender, EventArgs e)
         {
             // set the report layout to use
             string rdlcFile = "ITS.Exwold.Desktop.Reports.rptAuditProduct.rdlc";
@@ -101,7 +101,7 @@ namespace ITS.Exwold.Desktop
             _db.QueryParameters.Clear();
             _db.QueryParameters.Add("StartDateTime", StartDatePicker.Value.ToString("yyyy-MM-dd"));
             _db.QueryParameters.Add("EndDateTime", EndDatePicker.Value.ToString("yyyy-MM-dd"));
-            DataTable dt = _db.executeSP("[dbo].[Report_AuditReportProduct]", true).Result;
+            DataTable dt = await _db.executeSP("[dbo].[Report_AuditReportProduct]", true);
 
             dt.TableName = "ReportData";
             // Create a report data source for the sales order data  
@@ -117,7 +117,7 @@ namespace ITS.Exwold.Desktop
         }
 
 
-        private void RunPalletBatchReportButton_Click(object sender, EventArgs e)
+        private async void RunPalletBatchReportButton_Click(object sender, EventArgs e)
         {
             // set the report layout to use
             string rdlcFile = "ITS.Exwold.Desktop.Reports.rptAuditPalletBatch.rdlc";
@@ -138,7 +138,7 @@ namespace ITS.Exwold.Desktop
             _db.QueryParameters.Clear();
             _db.QueryParameters.Add("StartDateTime", StartDatePicker.Value.ToString("yyyy-MM-dd"));
             _db.QueryParameters.Add("EndDateTime", EndDatePicker.Value.ToString("yyyy-MM-dd"));
-            DataTable dt = _db.executeSP("[dbo].[Report_AuditReportPalletBatches]", true).Result;
+            DataTable dt = await _db.executeSP("[dbo].[Report_AuditReportPalletBatches]", true);
 
             dt.TableName = "ReportData";
             // Create a report data source for the sales order data  
@@ -154,7 +154,7 @@ namespace ITS.Exwold.Desktop
         }
 
 
-        private void RunGeneralReportButton_Click(object sender, EventArgs e)
+        private async void RunGeneralReportButton_Click(object sender, EventArgs e)
         {
             // set the report layout to use
             string rdlcFile = "ITS.Exwold.Desktop.Reports.rptAuditOpAction.rdlc";
@@ -173,7 +173,7 @@ namespace ITS.Exwold.Desktop
             _db.QueryParameters.Clear();
             _db.QueryParameters.Add("StartDateTime", StartDatePicker.Value.ToString("yyyy-MM-dd"));
             _db.QueryParameters.Add("EndDateTime", EndDatePicker.Value.ToString("yyyy-MM-dd"));
-            DataTable dt = _db.executeSP("[dbo].[Report_AuditReportOperatorActions]", true).Result;
+            DataTable dt = await _db.executeSP("[dbo].[Report_AuditReportOperatorActions]", true);
 
             dt.TableName = "ReportData";
             // Create a report data source for the sales order data  

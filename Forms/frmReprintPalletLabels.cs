@@ -18,19 +18,15 @@ namespace ITS.Exwold.Desktop
   {
         #region Local variables
         //Data variables
-        private DataInterface.execFunction _db = null;
+        private readonly DataInterface.execFunction _db = null;
         #endregion
 
         #region Properties
-        internal DataInterface.execFunction DB
-        {
-            get { return _db; }
-            set { _db = value; }
-        }
         #endregion
         public frmReprintPalletLabels(DataInterface.execFunction database)
         {
             InitializeComponent();
+            _db = database;
         }
         /// <summary>
         /// Call function in MainStatusForm to call the reprint backgroundworker
@@ -66,10 +62,10 @@ namespace ITS.Exwold.Desktop
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void frmReprintPalletLabels_Load(object sender, EventArgs e)
+        private async void frmReprintPalletLabels_Load(object sender, EventArgs e)
         {
             _db.QueryParameters.Clear();
-            DataTable dtSalesBatches = _db.executeSP("[GUI].[getBatchesThisYear]", false).Result;
+            DataTable dtSalesBatches = await _db.executeSP("[GUI].[getBatchesThisYear]", false);
 
             //Mesh Remove
             //string sql = "SELECT PalletBatchUniqueNo, PalletBatchNo " +
@@ -77,7 +73,7 @@ namespace ITS.Exwold.Desktop
             //"WHERE StartDT > DATEADD(YEAR, -1, GETDATE()) " +
             //"ORDER BY StartDT DESC";
             //DataTable dtSalesBatches = Program.ExwoldDb.ExecuteQuery(sql);
-            if (dtSalesBatches.Rows.Count > 0)
+            if (dtSalesBatches != null && dtSalesBatches.Rows.Count > 0)
             {
                 cmbSalesBatches.DisplayMember = "PalletBatchNo";
                 cmbSalesBatches.ValueMember = "PalletBatchUniqueNo";
@@ -89,13 +85,13 @@ namespace ITS.Exwold.Desktop
         /// <summary>
         /// Takes the selected value of cmbSalesBatches and fills cmbSSCCs for that sales batch
         /// </summary>
-        private void fillSsccCombo()
+        private async void fillSsccCombo()
         {
             cmbSSCCs.DataSource = null;
 
             _db.QueryParameters.Clear();
             _db.QueryParameters.Add("PalletBatchId", cmbSalesBatches.SelectedValue.ToString());
-            DataTable dtSSCCs = _db.executeSP("[GUI].[getPalletByPalletBatchId]", true).Result;
+            DataTable dtSSCCs = await _db.executeSP("[GUI].[getPalletByPalletBatchId]", true);
 
             //Mesh Remove
             //string sql = String.Format("SELECT PalletUniqueNo, SSCC " +

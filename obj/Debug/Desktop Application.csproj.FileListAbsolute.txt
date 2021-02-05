@@ -538,3 +538,8 @@ E:\991018-Exwold\Exwold PC\bin\Debug\Labels\ExwoldPalletLabel1K.nlbl
 E:\991018-Exwold\Exwold PC\bin\Debug\Labels\ExwoldPalletLabel1K_additional.nlbl
 E:\991018-Exwold\Exwold PC\bin\Debug\Labels\ExwoldPalletLabel1L.nlbl
 E:\991018-Exwold\Exwold PC\bin\Debug\Labels\ExwoldPalletLabel1L_additional.nlbl
+C:\991018-Exwold\Exwold PC\bin\Debug\Labels\ExwoldPalletLabel1K.nlbl
+C:\991018-Exwold\Exwold PC\bin\Debug\Labels\ExwoldPalletLabel1K_additional.nlbl
+C:\991018-Exwold\Exwold PC\bin\Debug\Labels\ExwoldPalletLabel1L.nlbl
+C:\991018-Exwold\Exwold PC\bin\Debug\Labels\ExwoldPalletLabel1L_additional.nlbl
+E:\991018-Exwold\Exwold PC\bin\Debug\SDK.NET.Interface.xml

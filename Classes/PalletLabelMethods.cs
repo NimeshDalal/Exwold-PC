@@ -124,7 +124,8 @@ namespace ITS.Exwold.Desktop
         /// <returns></returns>
         public async Task<List<PalletLabelData>> fetchLabelsByPalletBatch(int PalletBatchUId)
         {
-            int NoOfBatches = int.MinValue;
+            int NoOfBatchesOnPallet = int.MinValue;
+            int NoOfLabelsOnPallet = int.MinValue;
             int PalletUId = int.MinValue;
             DataTable dtPalletBatch = null;
             DataTable dtBatchesOnPallet = null;
@@ -142,8 +143,8 @@ namespace ITS.Exwold.Desktop
                 dtBatchesOnPallet = await getBatchesOnPallet(PalletBatchUId);
                 if (dtBatchesOnPallet != null)
                 {
-                    NoOfBatches = dtBatchesOnPallet.Rows.Count;
-                    if (NoOfBatches > 0) //some pallet data exists, set label numbers and calculate batch data
+                    NoOfBatchesOnPallet = dtBatchesOnPallet.Rows.Count;
+                    if (NoOfBatchesOnPallet > 0) //some pallet data exists, set label numbers and calculate batch data
                     {
                         //Get the PalletUId of the first returned
                         PalletUId = int.Parse(dtBatchesOnPallet.Rows[0].Field<Int64>("PalletUniqueNo").ToString());
@@ -151,6 +152,10 @@ namespace ITS.Exwold.Desktop
                 }
                 // Get the Labels for this Pallet
                 dtPalletLabels = await getPalletLabels(PalletUId);
+                if (dtPalletLabels != null)
+                {
+                    NoOfLabelsOnPallet = dtPalletLabels.Rows.Count;
+                }
             }
             catch(Exception ex)
             {
@@ -162,9 +167,9 @@ namespace ITS.Exwold.Desktop
                 _labelData.GMID = dtPalletBatch.Rows[0]["GMID"].ToString();
                 _labelData.ProductionLineNo = dtPalletBatch.Rows[0]["ProductionLineNo"].ToString();
 
-                _labelData.TotalLabels = NoOfBatches.ToString();
+                _labelData.TotalLabels = NoOfBatchesOnPallet.ToString();
 
-                for (int i = 0; i < NoOfBatches; i++)
+                for (int i = 0; i < NoOfLabelsOnPallet; i++)
                 {
                     _labelData.Count = dtPalletLabels.Rows[i]["CartonsOnPallet"].ToString();
                     _labelData.NetUnits = dtPalletLabels.Rows[i]["QtyInner"].ToString();

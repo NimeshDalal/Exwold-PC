@@ -29,19 +29,16 @@ namespace ITS.Exwold.Desktop
         }
         #endregion
         
-        private async Task<DataTable> getIncompleteOrders(string productId)
+        private async Task<DataTable> checkIncompleteOrders(string PalletBatchNo)
         {
-            //Check the ProductID is a number
-            int Id;
-            if (int.TryParse(productId, out Id))
-            {
-                //Get Incomplete orders
+            try
+            {            
+                //checking for Incomplete orders
                 _db.QueryParameters.Clear();
-                _db.QueryParameters.Add("ProductId", productId);
-                return await _db.executeSP("[GUI].[getProductById]", true);
+                _db.QueryParameters.Add("PalletBatchNo", PalletBatchNo);
+                return await _db.executeSP("[GUI].[checkIncompleteOrders]", true);
             }
-            else
-            { return null;  }
+            catch { return null;  }
         }
 
 
@@ -98,7 +95,7 @@ namespace ITS.Exwold.Desktop
                 //Mesh Remove
                 //string sql = "SELECT * FROM data.PalletBatch WHERE PalletBatchNo = '" + CheckString + "' AND (Status <> '4' AND Status <> '5')";
                 //DataTable CheckRows = Program.ExwoldDb.ExecuteQuery(sql);
-                DataTable CheckRows = await getIncompleteOrders(CheckString);
+                DataTable CheckRows = await checkIncompleteOrders(CheckString);
                 if (CheckRows.Rows.Count > 0)
                 {
                     MessageBox.Show(DisplayString + " '" + CheckString + "' is already in progress");
@@ -117,7 +114,7 @@ namespace ITS.Exwold.Desktop
                         return true;
                     }
                     //Get Incomplete orders
-                    CheckRows = await getIncompleteOrders(CheckString);
+                    CheckRows = await checkIncompleteOrders(CheckString);
 
                     //Mesh Remove
                     //sql = "SELECT * FROM data.PalletBatch WHERE PalletBatchNo = '" + CheckString + "' AND (Status <> '4' AND Status <> '5')";

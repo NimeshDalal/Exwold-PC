@@ -169,6 +169,7 @@ namespace ITS.Exwold.Desktop
 
         private void writeOuterLabelData(DataTable dt)
         {
+            tbOuterCustomer.Enabled = dt.Rows.Count > 0;
             tbOuterUId.Enabled = dt.Rows.Count > 0;
             tbOuterProductName.Enabled = dt.Rows.Count > 0;
             tbOuterGTIN.Enabled = dt.Rows.Count > 0;
@@ -185,6 +186,8 @@ namespace ITS.Exwold.Desktop
                 // Get the UId for later
                 int.TryParse(dt.Rows[0]["UId"].ToString(), out _outerPackUId);
                 tbOuterUId.Text = dt.Rows[0]["UId"].ToString();
+                tbOuterCustomer.Text = dt.Rows[0]["Customer"].ToString();
+
                 tbOuterProductName.Text = dt.Rows[0]["ProductName"].ToString();
                 tbOuterGTIN.Text = dt.Rows[0]["GTIN"].ToString();
                 tbOuterDateOfMan.Text = dt.Rows[0]["ManufactureDate"].ToString();
@@ -202,6 +205,7 @@ namespace ITS.Exwold.Desktop
             else
             {
                 tbOuterUId.Text = string.Empty;
+                tbOuterCustomer.Text = string.Empty;
                 tbOuterProductName.Text = string.Empty;
                 tbOuterGTIN.Text = string.Empty;
                 tbOuterDateOfMan.Text = string.Empty;
@@ -219,6 +223,7 @@ namespace ITS.Exwold.Desktop
             int.TryParse(dt.Rows[0]["UId"].ToString(), out _innerPackUId);
             
             tbInnerUId.Enabled = dt.Rows.Count > 0;
+            tbInnerCustomer.Enabled = dt.Rows.Count > 0;
             tbInnerProductName.Enabled = dt.Rows.Count > 0;
             tbInnerGTIN.Enabled = dt.Rows.Count > 0;
             tbInnerDateOfMan.Enabled = dt.Rows.Count > 0;
@@ -232,6 +237,7 @@ namespace ITS.Exwold.Desktop
             if (dt.Rows.Count > 0)
             {
                 tbInnerUId.Text = dt.Rows[0]["UId"].ToString();
+                tbInnerCustomer.Text = dt.Rows[0]["Customer"].ToString();
                 tbInnerGTIN.Text = dt.Rows[0]["GTIN"].ToString();
                 tbInnerDateOfMan.Text = dt.Rows[0]["ManufactureDate"].ToString();
                 tbInnerLotNumber.Text = dt.Rows[0]["LotNo"].ToString();
@@ -248,6 +254,7 @@ namespace ITS.Exwold.Desktop
             else
             {
                 tbInnerUId.Text = string.Empty;
+                tbInnerCustomer.Text = string.Empty;
                 tbInnerGTIN.Text = string.Empty;
                 tbInnerDateOfMan.Text = string.Empty;
                 tbInnerLotNumber.Text = string.Empty;

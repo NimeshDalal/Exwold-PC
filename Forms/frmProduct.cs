@@ -31,7 +31,7 @@ namespace ITS.Exwold.Desktop
 
         // Define Class variables
         private const string _cstbtnSalesOrderText          = "Create Sales Order";
-        private const string _cstDateFmt                    = "dd/MM/yyyy";
+        private const string _cstDateFmt                    = "yyyy-MMM-dd HH:mm:ss";
         public string CreateBatchID;
         public string CreateBatchFlag;
         string UpdateType;
@@ -148,24 +148,32 @@ namespace ITS.Exwold.Desktop
         }
         private void copyDGVProductToTextBoxes()
         {
-            tbCustomer.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "Customer").ToString();
-            tbDetails.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "CustomerDetails").ToString();
-            tbGMID.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "GMID").ToString();
-            tbProdCode.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "ProductCode").ToString();
-            tbProdName.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "ProductName").ToString();
-            tbDefaultCartons.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "DefaultTotalNoOfCartons").ToString();
-            tbCartsPerPallet.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "DefaultCartonsPerPallet").ToString();
-            tbInnersPerCart.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "DefaultInnerPackPerCarton").ToString();
-            tbInnerWeight.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "InnerPackWeightOrVolume").ToString();
-            cboInnerUnit.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "UnitsOfMeasure").ToString();
-            tbInnerPackStyle.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "PH2_InnerPackStylePackStyle").ToString();
+            try
+            {
+                ProductID = int.Parse(Helper.dgvGetCurrentRowColumn(dgvAllProducts, "ProductUniqueNo").ToString());
+                tbCustomer.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "Customer").ToString();
+                tbDetails.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "CustomerDetails").ToString();
+                tbGMID.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "GMID").ToString();
+                tbProdCode.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "ProductCode").ToString();
+                tbProdName.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "ProductName").ToString();
+                tbDefaultCartons.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "DefaultTotalNoOfCartons").ToString();
+                tbCartsPerPallet.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "DefaultCartonsPerPallet").ToString();
+                tbInnersPerCart.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "DefaultInnerPackPerCarton").ToString();
+                tbInnerWeight.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "InnerPackWeightOrVolume").ToString();
+                cboInnerUnit.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "UnitsOfMeasure").ToString();
+                tbInnerPackStyle.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "PH2_InnerPackStylePackStyle").ToString();
 
-            tbGTIN.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "GTIN").ToString();
-            tbInnerGTIN.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "InnerGTIN").ToString();
-            tbCompanyCode.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "SsccCompanyCode").ToString();
-            tbClientCode.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "SsccProductionLineCustomerCode").ToString();
-            tbNotes.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "AdditionalInfo").ToString();
-            tbDateOfManufacture.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "DoMDateOnly").ToString();
+                tbGTIN.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "GTIN").ToString();
+                tbInnerGTIN.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "InnerGTIN").ToString();
+                tbCompanyCode.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "SsccCompanyCode").ToString();
+                tbClientCode.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "SsccProductionLineCustomerCode").ToString();
+                tbNotes.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "AdditionalInfo").ToString();
+                dtpDateOfManufacture.Value = DateTime.Parse(Helper.dgvGetCurrentRowColumn(dgvAllProducts, "DoMDateOnly"));
+            }
+            catch(Exception ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Error, Logging.ThisMethod(), "Error copying data to the form");
+            }
             try
             {
                 DateTime dt = getDate(Helper.dgvGetCurrentRowColumn(dgvAllProducts, "DoMDateOnly"));
@@ -213,39 +221,13 @@ namespace ITS.Exwold.Desktop
             tbGTIN.Enabled = status;
             tbInnerGTIN.Enabled = status;
             dtpDateOfManufacture.Enabled = status;
-            tbDateOfManufacture.Enabled = status;
+            dtpDateOfManufacture.Enabled = status;
             tbCompanyCode.Enabled = status;
             tbClientCode.Enabled = status;
             tbNotes.Enabled = status;
         }
 
-        //Mesh Remove
-        //private async Task<DataTable> getProductById(int productId)
-        //{
-        //    _db.QueryParameters.Clear();
-        //    _db.QueryParameters.Add("ProductId", ProductID.ToString());
-        //    DataTable dt = await _db.executeSP("[GUI].[getProductById]", true);
 
-        //    tbCustomer.Text = dt.Rows[0].Field<string>("Customer");
-        //    tbDetails.Text = dt.Rows[0].Field<string>("CustomerDetails");
-        //    tbGMID.Text = dt.Rows[0].Field<string>("GMID");
-        //    tbProdCode.Text = dt.Rows[0].Field<string>("ProductCode");
-        //    tbProdName.Text = dt.Rows[0].Field<string>("ProductName");
-        //    tbDefaultCartons.Text = Convert.ToString(dt.Rows[0].Field<Int32>("DefaultTotalNoOfCartons"));
-        //    tbCartsPerPallet.Text = Convert.ToString(dt.Rows[0].Field<int>("DefaultCartonsPerPallet"));
-        //    tbInnersPerCart.Text = Convert.ToString(dt.Rows[0].Field<int>("DefaultInnerPackPerCarton"));
-        //    tbInnerWeight.Text = Convert.ToString(dt.Rows[0].Field<double>("InnerPackWeightOrVolume"));
-        //    cboInnerUnit.Text = dt.Rows[0].Field<string>("UnitsOfMeasure");
-        //    tbInnerPackStyle.Text = dt.Rows[0].Field<string>("PH2_InnerPackStylePackStyle");
-        //    tbGTIN.Text = dt.Rows[0].Field<string>("GTIN");
-        //    tbInnerGTIN.Text = dt.Rows[0].Field<string>("InnerGTIN");
-        //    tbCompanyCode.Text = dt.Rows[0].Field<string>("SsccCompanyCode");
-        //    tbClientCode.Text = dt.Rows[0].Field<string>("SsccProductionLineCustomerCode");
-        //    tbNotes.Text = dt.Rows[0].Field<string>("AdditionalInfo");
-        //    tbDateOfManufacture.Text = dt.Rows[0].Field<DateTime>("DateOfManufacture").ToString(_cstDateFmt);
-
-        //    return dt;
-        //}
         private async void btnSave_Click(object sender, EventArgs e)
         {
             #region do Data Validation
@@ -478,7 +460,7 @@ namespace ITS.Exwold.Desktop
                         _db.QueryParameters.Clear();
                         _db.QueryParameters.Add("ProductId", ProductID.ToString());
                         _db.QueryParameters.Add("ChangeAction", "Delete");
-                        DataTable dtRtn = _db.executeSP("[GUI].[updateProductChangeAction]", true).Result;
+                        DataTable dtRtn = await _db.executeSP("[GUI].[updateProductChangeAction]", true);
                         NoRows = dtRtn.Rows[0].Field<int>("RowsUpdated");
 
                         //Mesh Remove
