@@ -405,15 +405,12 @@ E:\991018-Exwold\Exwold PC\bin\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.reso
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmLineInfo.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmPlantHardware.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmOuterInnerLabels.resources
-E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmProduct.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmSalesOrderDetails.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.MainStatusForm.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmStandAloneScanners.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReportDisplay.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmAuditReports.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReprintPalletLabels.resources
-E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReportSelector.resources
-E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmBatchDetails.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmPrint.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.Properties.Resources.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.UserAuthentication.resources
@@ -433,7 +430,6 @@ E:\991018-Exwold\Exwold PC\bin\Debug\ExwoldDesktop.exe
 E:\991018-Exwold\Exwold PC\bin\Debug\ExwoldDesktop.pdb
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmScannerDetail.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmScannerMsg.resources
-E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.AsyncTcp.AsyncTcpTest.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\Desktop Application.csprojAssemblyReference.cache
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.AsyncTcp.AsyncTcpTest.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmLineInfo.resources
@@ -543,3 +539,7 @@ C:\991018-Exwold\Exwold PC\bin\Debug\Labels\ExwoldPalletLabel1K_additional.nlbl
 C:\991018-Exwold\Exwold PC\bin\Debug\Labels\ExwoldPalletLabel1L.nlbl
 C:\991018-Exwold\Exwold PC\bin\Debug\Labels\ExwoldPalletLabel1L_additional.nlbl
 E:\991018-Exwold\Exwold PC\bin\Debug\SDK.NET.Interface.xml
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.Product.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.ReportSelector.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmSalesOrders.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.AsyncTcp.frmAsyncTcpTest.resources

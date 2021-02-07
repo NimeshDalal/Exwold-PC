@@ -778,7 +778,7 @@ namespace ITS.Exwold.Desktop
         private string _LabelNumber;
         private string _TotalLabels;
         private string _ProductName;
-        private string _ProductionLineNo;
+        private int _ProductionLineNo;
         #endregion
         #region Constructor(s)
         public PalletLabelData() { }
@@ -883,7 +883,7 @@ namespace ITS.Exwold.Desktop
             get { return _ProductName; }
             set { _ProductName = value; }
         }
-        public string ProductionLineNo
+        public int ProductionLineNo
         {
             get { return _ProductionLineNo; }
             set { _ProductionLineNo = value; }
@@ -929,7 +929,7 @@ namespace ITS.Exwold.Desktop
         string LabelNumber { get; set; }
         string TotalLabels { get; set; }
         string ProductName { get; set; }
-        string ProductionLineNo { get; set; }
+        int ProductionLineNo { get; set; }
     }
 
 }

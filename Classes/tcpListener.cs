@@ -156,70 +156,57 @@ namespace ITS.Exwold.Desktop.AsyncTcp
         /// <returns></returns>
         private async Task<string> tcpListenerReplyMsgAsync(string Message)
         {
-            // Get a pointer to the MainForm
-            MainStatusForm mainStatusForm = (MainStatusForm)Application.OpenForms[0];
             RxMessage = string.Empty;        // The reply we are going to determine
             string sRtn = string.Empty;
 
             // Break up the message contents to determine the instruction and the data payload
             string[] msgContents = Message.Split(':');
             if (msgContents.Length != 2) { throw new ArgumentException("Invalid TCP Message"); }
-            await Task.Delay(100);
 
-            if (Message.StartsWith("UPDATE"))
+            // Get the messge contents
+            string ScannerAction = msgContents[0];
+            int PalletUId = int.Parse(msgContents[1]);
+
+
+            /*
+             * Process the message from the scanner
+             */
+            if (ScannerAction == "UPDATE")
             {
+                // Get a pointer to the MainForm
+                MainStatusForm mainStatusForm = (MainStatusForm)Application.OpenForms[0];
                 sRtn = await mainStatusForm.RefreshLineInfo() ? "OK" : "ERROR";
             }
-            else if (Message.StartsWith("PRINT") || Message.StartsWith("REPRINT"))
+            else if (ScannerAction == "PRINT" || ScannerAction =="REPRINT")
             {
-                // We have some print message
-
-                // Get the Pallet number
-                string PalletUId = msgContents[1];
+                int PalletBatchCount = int.MinValue;
+                PalletLabelMethods plMethods = new PalletLabelMethods(_db);
 
                 // Get the PalletBatch data for this pallet
                 // We should have 1 PalletBatch, and the status should be in progress
-                _db.QueryParameters.Clear();
-                _db.QueryParameters.Add("PalletId", PalletUId);
-                DataTable dtCurrentBatch = await _db.executeSP("[GUI].[getBatchesOnPalletByPalletId]", true);
-                int rows = dtCurrentBatch.Rows.Count;
+                DataTable dtBatchesOnPallet = await _db.executeSP("[GUI].[getBatchesOnPalletByPalletId]", true);
+                PalletBatchCount = (dtBatchesOnPallet != null) ? dtBatchesOnPallet.Rows.Count : int.MinValue;
 
-                if (rows == 1)  //Whould have only 1 PalletBatch record
+                if (PalletBatchCount == 1)  //Should have only 1 PalletBatch record
                 {
-                    int myAction = int.MinValue;
-                    int.TryParse(dtCurrentBatch.Rows[0]["Status"].ToString(), out myAction);
-                    if (myAction != 1)  // THe status must be 1, In-Progress
+                    int BatchStatus = int.MinValue;
+                    int.TryParse(dtBatchesOnPallet.Rows[0]["Status"].ToString(), out BatchStatus);
+                    if (BatchStatus != 1)  // The status must be 1, In-Progress
                     {
                         sRtn =  "CANCELLED";
                     }
                     else
                     {
                         //Run the print 
-                        sRtn = await mainStatusForm.PrintLabelBackground(msgContents[0], PalletUId) ? "OK" : "ERROR";
+                        sRtn =  await plMethods.PrintPalletLabels(PalletUId) ? "OK" : "ERROR";
                     }
                 }
-                else sRtn = "ERROR";
-                
+                else sRtn = "ERROR";  
             }
             else
             {
                 sRtn = "ERROR";
             }
-
-            //if (txtServerMsgIn != null)
-            //{
-            //    txtServerMsgIn.BeginInvoke((Action)delegate ()
-            //    {
-            //        txtServerMsgIn.Text = sRtn;
-            //    });
-            //}
-            //if (txtServerMsgOut != null)
-            //{
-            //    txtServerMsgOut.BeginInvoke((Action)delegate ()
-            //    {
-            //        txtServerMsgOut.Text = sRtn;
-            //    });
-            //}
             TxMessage = sRtn;
             Console.WriteLine($"Message in:{Message}, Reply:{sRtn}");
 

@@ -92,9 +92,7 @@ namespace ITS.Exwold.Desktop
 
                     return true;
                 }
-                //Mesh Remove
-                //string sql = "SELECT * FROM data.PalletBatch WHERE PalletBatchNo = '" + CheckString + "' AND (Status <> '4' AND Status <> '5')";
-                //DataTable CheckRows = Program.ExwoldDb.ExecuteQuery(sql);
+
                 DataTable CheckRows = await checkIncompleteOrders(CheckString);
                 if (CheckRows.Rows.Count > 0)
                 {
@@ -116,9 +114,6 @@ namespace ITS.Exwold.Desktop
                     //Get Incomplete orders
                     CheckRows = await checkIncompleteOrders(CheckString);
 
-                    //Mesh Remove
-                    //sql = "SELECT * FROM data.PalletBatch WHERE PalletBatchNo = '" + CheckString + "' AND (Status <> '4' AND Status <> '5')";
-                    //CheckRows = Program.ExwoldDb.ExecuteQuery(sql);
                     if (CheckRows.Rows.Count > 1)
                     {
                         MessageBox.Show(DisplayString + " '" + CheckString + "' is already in progress");

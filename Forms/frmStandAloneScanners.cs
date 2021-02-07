@@ -16,7 +16,20 @@ namespace ITS.Exwold.Desktop
         internal frmStandAloneScanners(List<StandAloneScanner> Scanners)
         {
             InitializeComponent();
+            // Set the form parameters
+            StartPosition = FormStartPosition.CenterParent;
+            ShowIcon = true;
+            Icon = Properties.Resources.ExwoldApp;
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            MaximizeBox = false;
+            MinimizeBox = false;
+            ShowInTaskbar = false;
+            TopMost = true;
+            ControlBox = true;
+            HelpButton = false;
+
             _scanners = Scanners;
+            
         }
 
         private void frmStandAloneScanners_Load(object sender, EventArgs e)
@@ -30,8 +43,10 @@ namespace ITS.Exwold.Desktop
 
                 //Add a new tab
                 TabPage tabPageScanner = new TabPage(scanner.ConfigData.Name);
+                //tabPageScanner.BackColor = Color.Green;
                 //Create a panel to put the form into
                 Panel pnlScanner = new Panel();
+
 
                 pnlScanner.SuspendLayout();
                 tabPageScanner.SuspendLayout();
@@ -47,6 +62,8 @@ namespace ITS.Exwold.Desktop
                 fScannerDetail.Name = $"frm{scanner.ConfigData.Name.Replace(" ", "")}";
                 fScannerDetail.FormBorderStyle = FormBorderStyle.None;
                 fScannerDetail.Show();
+//Set the form height
+//this.Height = fScannerDetail.Height + grpButtons.Height + 30;
                 //
                 // pnlScanner
                 //
@@ -72,6 +89,11 @@ namespace ITS.Exwold.Desktop
                 this.ResumeLayout(false);
 
             }
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            this.Dispose();
         }
     }
 }

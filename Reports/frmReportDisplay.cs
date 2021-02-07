@@ -115,19 +115,6 @@ namespace ITS.Exwold.Desktop
             _db.QueryParameters.Add("@PalletBatchNo", PalletBatchNo);
             //Get the report Data
             DataTable dtData = await _db.executeSP("Report_PalletReport", true);
-            
-            //Mesh Remove
-            //string sql = "SELECT * FROM data.PalletBatch WHERE PalletBatchUniqueNo = " + PalletBatchNo;
-            //DataTable dtCurrentBatch = Program.ExwoldDb.ExecuteQuery(sql);
-
-            //if (dtCurrentBatch.Rows[0].Field<Int16>("Status") == 3)
-            //{
-            //    //change Status to Completed
-            //    sql = "UPDATE Data.PalletBatch SET Status = 4 " +
-            //        " WHERE PalletBatchUniqueNo = " + PalletBatchNo;
-
-            //    Program.ExwoldDb.ExecuteNonQuery(sql);
-            //}
 
             //Set the location of the report definition
             rvDisplay.LocalReport.ReportEmbeddedResource = rdlcFile;

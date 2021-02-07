@@ -27,19 +27,40 @@ namespace ITS.Exwold.Desktop
         {
             InitializeComponent();
             _db = database;
+
+            // Set the form parameters
+            this.StartPosition = FormStartPosition.CenterParent;
+            this.ShowIcon = true;
+            this.Icon = Properties.Resources.ExwoldApp;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.ShowInTaskbar = false;
+            this.TopMost = true;
+            this.ControlBox = true;
+            this.HelpButton = false;
+
+
         }
         /// <summary>
         /// Call function in MainStatusForm to call the reprint backgroundworker
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private async void btnReprint_Click(object sender, EventArgs e)
+        private void btnReprint_Click(object sender, EventArgs e)
         {
             MainStatusForm mainStatusForm = (MainStatusForm)Application.OpenForms[0];
             DialogResult answer = MessageBox.Show("Please confirm that the original Pallet Label(s) have been destroyed.", "Old Labels destroyed?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (answer == DialogResult.Yes)
             {
-                bool bRtn = await mainStatusForm.PrintLabelBackground("REPRINT", cmbSSCCs.SelectedValue.ToString());
+                /*
+                //Print without showing the form
+                PalletLabelMethods plMethods = new PalletLabelMethods(_db);
+                await plMethods.PrintPalletLabels(int.Parse(cmbSSCCs.SelectedValue.ToString()));
+                */
+                // Print via the print form
+                frmPrint fPrint = new frmPrint(_db, int.Parse(cmbSSCCs.SelectedValue.ToString()));
+                fPrint.ShowDialog();
             }
             else
             {
@@ -67,12 +88,6 @@ namespace ITS.Exwold.Desktop
             _db.QueryParameters.Clear();
             DataTable dtSalesBatches = await _db.executeSP("[GUI].[getBatchesThisYear]", false);
 
-            //Mesh Remove
-            //string sql = "SELECT PalletBatchUniqueNo, PalletBatchNo " +
-            //"FROM [ExwoldTracking].[Data].[PalletBatch] " +
-            //"WHERE StartDT > DATEADD(YEAR, -1, GETDATE()) " +
-            //"ORDER BY StartDT DESC";
-            //DataTable dtSalesBatches = Program.ExwoldDb.ExecuteQuery(sql);
             if (dtSalesBatches != null && dtSalesBatches.Rows.Count > 0)
             {
                 cmbSalesBatches.DisplayMember = "PalletBatchNo";
@@ -93,13 +108,6 @@ namespace ITS.Exwold.Desktop
             _db.QueryParameters.Add("PalletBatchId", cmbSalesBatches.SelectedValue.ToString());
             DataTable dtSSCCs = await _db.executeSP("[GUI].[getPalletByPalletBatchId]", true);
 
-            //Mesh Remove
-            //string sql = String.Format("SELECT PalletUniqueNo, SSCC " +
-            //"FROM [ExwoldTracking].[Data].[Pallet] " +
-            //"WHERE PalletBatchUniqueNo = {0}",
-            //cmbSalesBatches.SelectedValue);
-            //DataTable dtSSCCs = Program.ExwoldDb.ExecuteQuery(sql);
-            
             if (dtSSCCs.Rows.Count > 0)
             {
                 cmbSSCCs.DisplayMember = "SSCC";

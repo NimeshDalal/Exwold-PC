@@ -297,7 +297,7 @@ namespace ITS.Exwold.Desktop
 
             if (labelData.CanPrintLabel(out ErrorMsg))
             {
-                niceLabel.PrintInnerLabel(labelData, tbInnerPrinter.Text);
+                bool bRtn = await niceLabel.PrintInnerLabel(labelData, tbInnerPrinter.Text);
 
                 //Update the user Interface with the updated values
                 _innerQtyPrinted = _innerQtyPrinted + iPrintQty;

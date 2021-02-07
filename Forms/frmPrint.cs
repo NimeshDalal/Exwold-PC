@@ -27,6 +27,7 @@ using NiceLabel.SDK;
 using System.Data;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace ITS.Exwold.Desktop
 {
@@ -38,14 +39,10 @@ namespace ITS.Exwold.Desktop
         #region Local variables
         //Data variables
         private readonly DataInterface.execFunction _db = null;
-        private PalletLabelMethods palletLabelMethods = null;
-        List<PalletLabelData> plInfo;
+        private readonly PalletLabelMethods _palletLabelMethods = null;
+        private int _palletUId = int.MinValue;
+        List<PalletLabelData> plData = null;
         #endregion
-
-        public string PrintBatchFlag { get; set; }
-        public string PrintBatchID { get; set; }
-
-        private int PalletBatchID;
 
 
         #region Properties
@@ -56,88 +53,48 @@ namespace ITS.Exwold.Desktop
         /// Initializes a new instance of the <see cref="frmPrint"/> class.
         /// </summary>
         /// 
-        public frmPrint(DataInterface.execFunction database)
+        public frmPrint(DataInterface.execFunction database, int PalletUId)
         {
             InitializeComponent();
             _db = database;
-            palletLabelMethods = new PalletLabelMethods(_db);
-        }
+            _palletLabelMethods = new PalletLabelMethods(_db);
+            _palletUId = PalletUId;
+            InitialiseData();
 
-        //private async void tabPrintForms_Enter(object sender, EventArgs e)
-        //{
-        //    GetPalletLabelData plData = new GetPalletLabelData(_db, 1);
-        //    List<PalletLabelInfo> plInfo = await plData.getPalletBatchLabels(1942);
-
-        //    if (plInfo != null && plInfo.Count > 0)
-        //    {
-        //        DisplayData(plInfo[0]);
-        //    }
-
-
-        //}
-        private async void PrintForm_Load(object sender, EventArgs e)
-        {
-            //set top
+            // Set the form parameters
+            this.StartPosition = FormStartPosition.CenterParent;
+            this.ShowIcon = true;
+            this.Icon = Properties.Resources.ExwoldApp;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.ShowInTaskbar = false;
             this.TopMost = true;
-            /*
-             * Populated the printer combobox
-             */
-            cboPalletPrinter.DataSource = palletLabelMethods.GetPalletLabelPrinters();
+            this.ControlBox = true;
+            this.HelpButton = false;
 
-            if (PrintBatchFlag == "Print")
-            {
-                try
-                {
-                    plInfo = await palletLabelMethods.fetchLabelsByPalletBatch(int.Parse(PrintBatchID));
-                    if (plInfo != null && plInfo.Count > 0)
-                    {
-                        DisplayData(plInfo[0]);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "EXCEPTION: Print:", ex);
-
-                }
-            }
-            if (PrintBatchFlag == "ScannerPrint")
-            {
-                try
-                {
-                    plInfo = await palletLabelMethods.fetchLabelsByPallet(int.Parse(PrintBatchID));
-                    if (plInfo != null && plInfo.Count > 0)
-                    {
-                        DisplayData(plInfo[0]);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "EXCEPTION: ScannerPrint: ", ex);
-                }
-            }
-
-
-            /// <summary>
-            /// Handles the Click event of the PrintButton control.
-            /// </summary>
-            if (PrintBatchFlag == "Reprint")
-            {
-                try
-                {
-                    plInfo = await palletLabelMethods.fetchLabelsByPallet(int.Parse(PrintBatchID));
-                    if (plInfo != null && plInfo.Count > 0)
-                    {
-                        DisplayData(plInfo[0]);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("RePrint: Failed to get data from DB (Incorrect data?)");
-
-                }
-            }
         }
 
+        private async void InitialiseData()
+        {
+            plData = await _palletLabelMethods.PalletLabelData(_palletUId);
+            if (plData != null && plData.Count > 0)
+            {
+                // Display the data we have collected
+                DisplayData(plData[0]);
+
+                // Get the printer data
+                cboPalletPrinter.DataSource = _palletLabelMethods.PalletLabelPrinters();
+                cboPalletPrinter.SelectedItem = _palletLabelMethods.PalletLabelPrinterForLine(plData[0].ProductionLineNo);
+            }
+        }
+        public static DateTime LabelDate(string LabelDateString)
+        {
+            System.Globalization.CultureInfo provider = System.Globalization.CultureInfo.InvariantCulture;
+            DateTime dtConverted = default(DateTime);
+            DateTime.TryParseExact(LabelDateString, "yyMMdd", provider, System.Globalization.DateTimeStyles.None, out dtConverted);
+            return dtConverted;
+        }
         private void DisplayData(PalletLabelData plData)
         {
 
@@ -147,12 +104,13 @@ namespace ITS.Exwold.Desktop
             tbPalletNetVolume.Text = plData == null ? string.Empty : plData.NetVolume;
             tbPalletNetUnits_AI.Text = plData == null ? string.Empty : plData.NetUnits_AI;
             tbPalletBatchNumber.Text = plData == null ? string.Empty : plData.BatchNumber;
-            tbPalletProductionDate.Text = plData == null ? string.Empty : plData.ProductionDate;
+            
+            tbPalletProductionDate.Text = plData == null ? string.Empty : LabelDate(plData.ProductionDate).ToString("dd/MM/yyyy");
             tbPalletSSCC.Text = plData == null ? string.Empty : plData.SSCC;
             tbPalletGTIN.Text = plData == null ? string.Empty : plData.GTIN;
             tbPalletLabelNumber.Text = plData == null ? string.Empty : plData.LabelNumber;
             tbPalletTotalLabels.Text = plData == null ? string.Empty : plData.TotalLabels;
-            tbPalletProductionLineNumber.Text = plData == null ? string.Empty : plData.ProductionLineNo;
+            tbPalletProductionLineNumber.Text = plData == null ? string.Empty : plData.ProductionLineNo.ToString();
         }
 
 
@@ -165,11 +123,11 @@ namespace ITS.Exwold.Desktop
                 // Set the print Qty to at least 1
                 PrintQty = PrintQty < 1 ? 1 : PrintQty;
 
-                palletLabelMethods.SendLabelToPrinter(plInfo, cboPalletPrinter.Text, PrintQty);           
+                _palletLabelMethods.SendLabelToPrinter(plData, cboPalletPrinter.Text, PrintQty);           
             }
             catch (Exception ex)
             {
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "EXCEPTION: RePrint: ", ex);
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "EXCEPTION: Print: ", ex);
                 Program.Log.logSave();
                 this.Close();
             }

@@ -783,7 +783,7 @@ namespace ITS.Exwold.Desktop
             set { this["ipaddr"] = value; }
         }
         [ConfigurationProperty("prodline", IsRequired = false, DefaultValue = 1)]
-        [IntegerValidator(MinValue = 0, MaxValue = 4)]
+        [IntegerValidator(MinValue = 0, MaxValue = 6)]
         [ConfigurationData("")]
         internal int ProductionLine
         {
@@ -809,6 +809,14 @@ namespace ITS.Exwold.Desktop
             get { return (string)this["ipaddr"]; }
             set { this["ipaddr"] = value; }
         }
+        [ConfigurationProperty("prodline", IsRequired = false, DefaultValue = 1)]
+        [IntegerValidator(MinValue = 0, MaxValue = 6)]
+        [ConfigurationData("")]
+        internal int ProductionLine
+        {
+            get { return (int)this["prodline"]; }
+            set { this["prodline"] = value; }
+        }
     }
     internal class InnerPackLabelPrinterConfigElement : baseConfigElement
     {
@@ -827,6 +835,14 @@ namespace ITS.Exwold.Desktop
         {
             get { return (string)this["ipaddr"]; }
             set { this["ipaddr"] = value; }
+        }
+        [ConfigurationProperty("prodline", IsRequired = false, DefaultValue = 1)]
+        [IntegerValidator(MinValue = 0, MaxValue = 6)]
+        [ConfigurationData("")]
+        internal int ProductionLine
+        {
+            get { return (int)this["prodline"]; }
+            set { this["prodline"] = value; }
         }
     }
     internal class StandAloneScannerConfigElement : baseConfigElement

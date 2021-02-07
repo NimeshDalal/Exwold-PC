@@ -43,6 +43,17 @@ namespace ITS.Exwold.Desktop
         public UserAuthentication()
         {
             InitializeComponent();
+            // Set the form parameters
+            this.StartPosition = FormStartPosition.CenterParent;
+            this.ShowIcon = true;
+            this.Icon = Properties.Resources.ExwoldApp;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.ShowInTaskbar = false;
+            this.TopMost = true;
+            this.ControlBox = true;
+            this.HelpButton = false;
         }
 
         /// <summary>

@@ -28,631 +28,598 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvOrders = new System.Windows.Forms.DataGridView();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.pnlTextBoxes = new System.Windows.Forms.Panel();
-            this.tbProdCode = new System.Windows.Forms.MaskedTextBox();
-            this.buttonEnableStatus = new System.Windows.Forms.Button();
-            this.cboStatus = new System.Windows.Forms.ComboBox();
-            this.lblStatus = new System.Windows.Forms.Label();
-            this.tbInnerPackStyle = new System.Windows.Forms.MaskedTextBox();
-            this.tbClientCode = new System.Windows.Forms.MaskedTextBox();
-            this.tbCompanyCode = new System.Windows.Forms.MaskedTextBox();
-            this.tbGTIN = new System.Windows.Forms.MaskedTextBox();
-            this.label9 = new System.Windows.Forms.Label();
-            this.TextBoxPalletBatchNo = new System.Windows.Forms.MaskedTextBox();
-            this.tbGMID = new System.Windows.Forms.MaskedTextBox();
-            this.tbDetails = new System.Windows.Forms.MaskedTextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.tbCustomer = new System.Windows.Forms.MaskedTextBox();
-            this.cboProdLine = new System.Windows.Forms.ComboBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbNotes = new System.Windows.Forms.MaskedTextBox();
-            this.cboInnerUnit = new System.Windows.Forms.ComboBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.tbInnerWeight = new System.Windows.Forms.MaskedTextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.tbInnersPerCart = new System.Windows.Forms.MaskedTextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.tbCartonsPerPallet = new System.Windows.Forms.MaskedTextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.tbTotalCartons = new System.Windows.Forms.MaskedTextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tbProdName = new System.Windows.Forms.MaskedTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button_cancel = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.button_close = new System.Windows.Forms.Button();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label15 = new System.Windows.Forms.Label();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.buttonSetStatus = new System.Windows.Forms.Button();
-            this.pnlForm = new System.Windows.Forms.Panel();
-            this.pnlButtons = new System.Windows.Forms.Panel();
-            this.tbInnerGTIN = new System.Windows.Forms.MaskedTextBox();
-            this.tbPlant = new System.Windows.Forms.MaskedTextBox();
-            this.tbDateOfManufacture = new System.Windows.Forms.MaskedTextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
-            this.pnlTextBoxes.SuspendLayout();
-            this.pnlForm.SuspendLayout();
-            this.pnlButtons.SuspendLayout();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelStatus = new System.Windows.Forms.Label();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnPrintLabel = new System.Windows.Forms.Button();
+            this.buttonEdit = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.textBoxPalletBatchNo = new System.Windows.Forms.Label();
+            this.textBoxCustomer = new System.Windows.Forms.Label();
+            this.textBoxInnersPerCart = new System.Windows.Forms.Label();
+            this.textBoxCartsPerPallet = new System.Windows.Forms.Label();
+            this.textBoxProdName = new System.Windows.Forms.Label();
+            this.textBoxProdCode = new System.Windows.Forms.Label();
+            this.comboBoxInnerUnit = new System.Windows.Forms.Label();
+            this.textBoxInnerWeight = new System.Windows.Forms.Label();
+            this.textBoxTotalCartons = new System.Windows.Forms.Label();
+            this.textBoxProdLine = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxCartonsOnPallet = new System.Windows.Forms.Label();
+            this.dgvCartonsOnPallet = new System.Windows.Forms.DataGridView();
+            this.textBoxNotes = new System.Windows.Forms.RichTextBox();
+            this.textBoxCurrentPallet = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.grpButtons = new System.Windows.Forms.GroupBox();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCartonsOnPallet)).BeginInit();
+            this.grpButtons.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // dgvOrders
-            // 
-            this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvOrders.Location = new System.Drawing.Point(3, 0);
-            this.dgvOrders.MultiSelect = false;
-            this.dgvOrders.Name = "dgvOrders";
-            this.dgvOrders.ReadOnly = true;
-            this.dgvOrders.RowHeadersVisible = false;
-            this.dgvOrders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOrders.ShowCellErrors = false;
-            this.dgvOrders.ShowCellToolTips = false;
-            this.dgvOrders.ShowEditingIcon = false;
-            this.dgvOrders.ShowRowErrors = false;
-            this.dgvOrders.Size = new System.Drawing.Size(1469, 400);
-            this.dgvOrders.TabIndex = 0;
-            this.dgvOrders.TabStop = false;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Location = new System.Drawing.Point(0, 0);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(99, 32);
-            this.btnAdd.TabIndex = 1;
-            this.btnAdd.Text = "Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Location = new System.Drawing.Point(105, 0);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(99, 32);
-            this.btnEdit.TabIndex = 2;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // pnlTextBoxes
-            // 
-            this.pnlTextBoxes.Controls.Add(this.tbProdCode);
-            this.pnlTextBoxes.Controls.Add(this.buttonEnableStatus);
-            this.pnlTextBoxes.Controls.Add(this.cboStatus);
-            this.pnlTextBoxes.Controls.Add(this.lblStatus);
-            this.pnlTextBoxes.Controls.Add(this.tbInnerPackStyle);
-            this.pnlTextBoxes.Controls.Add(this.tbClientCode);
-            this.pnlTextBoxes.Controls.Add(this.tbCompanyCode);
-            this.pnlTextBoxes.Controls.Add(this.tbPlant);
-            this.pnlTextBoxes.Controls.Add(this.tbDateOfManufacture);
-            this.pnlTextBoxes.Controls.Add(this.tbInnerGTIN);
-            this.pnlTextBoxes.Controls.Add(this.tbGTIN);
-            this.pnlTextBoxes.Controls.Add(this.label9);
-            this.pnlTextBoxes.Controls.Add(this.TextBoxPalletBatchNo);
-            this.pnlTextBoxes.Controls.Add(this.tbGMID);
-            this.pnlTextBoxes.Controls.Add(this.tbDetails);
-            this.pnlTextBoxes.Controls.Add(this.label8);
-            this.pnlTextBoxes.Controls.Add(this.tbCustomer);
-            this.pnlTextBoxes.Controls.Add(this.cboProdLine);
-            this.pnlTextBoxes.Controls.Add(this.label14);
-            this.pnlTextBoxes.Controls.Add(this.label13);
-            this.pnlTextBoxes.Controls.Add(this.label10);
-            this.pnlTextBoxes.Controls.Add(this.label7);
-            this.pnlTextBoxes.Controls.Add(this.tbNotes);
-            this.pnlTextBoxes.Controls.Add(this.cboInnerUnit);
-            this.pnlTextBoxes.Controls.Add(this.label6);
-            this.pnlTextBoxes.Controls.Add(this.tbInnerWeight);
-            this.pnlTextBoxes.Controls.Add(this.label5);
-            this.pnlTextBoxes.Controls.Add(this.tbInnersPerCart);
-            this.pnlTextBoxes.Controls.Add(this.label4);
-            this.pnlTextBoxes.Controls.Add(this.tbCartonsPerPallet);
-            this.pnlTextBoxes.Controls.Add(this.label3);
-            this.pnlTextBoxes.Controls.Add(this.tbTotalCartons);
-            this.pnlTextBoxes.Controls.Add(this.label2);
-            this.pnlTextBoxes.Controls.Add(this.tbProdName);
-            this.pnlTextBoxes.Controls.Add(this.label1);
-            this.pnlTextBoxes.Controls.Add(this.button_cancel);
-            this.pnlTextBoxes.Controls.Add(this.btnSave);
-            this.pnlTextBoxes.Location = new System.Drawing.Point(96, 500);
-            this.pnlTextBoxes.Name = "pnlTextBoxes";
-            this.pnlTextBoxes.Size = new System.Drawing.Size(1308, 264);
-            this.pnlTextBoxes.TabIndex = 3;
-            this.pnlTextBoxes.Visible = false;
-            // 
-            // tbProdCode
-            // 
-            this.tbProdCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbProdCode.Location = new System.Drawing.Point(133, 75);
-            this.tbProdCode.Name = "tbProdCode";
-            this.tbProdCode.ReadOnly = true;
-            this.tbProdCode.Size = new System.Drawing.Size(155, 23);
-            this.tbProdCode.TabIndex = 50;
-            // 
-            // buttonEnableStatus
-            // 
-            this.buttonEnableStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonEnableStatus.Location = new System.Drawing.Point(1103, 155);
-            this.buttonEnableStatus.Name = "buttonEnableStatus";
-            this.buttonEnableStatus.Size = new System.Drawing.Size(172, 25);
-            this.buttonEnableStatus.TabIndex = 49;
-            this.buttonEnableStatus.Text = "Change Status";
-            this.buttonEnableStatus.UseVisualStyleBackColor = true;
-            this.buttonEnableStatus.Click += new System.EventHandler(this.btnEnableStatus_Click);
-            // 
-            // cboStatus
-            // 
-            this.cboStatus.Enabled = false;
-            this.cboStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboStatus.FormattingEnabled = true;
-            this.cboStatus.Location = new System.Drawing.Point(1103, 128);
-            this.cboStatus.Name = "cboStatus";
-            this.cboStatus.Size = new System.Drawing.Size(172, 24);
-            this.cboStatus.TabIndex = 48;
-            this.cboStatus.ValueMember = "StatusNo";
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(960, 128);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(48, 17);
-            this.lblStatus.TabIndex = 47;
-            this.lblStatus.Text = "Status";
-            // 
-            // tbInnerPackStyle
-            // 
-            this.tbInnerPackStyle.Location = new System.Drawing.Point(87, 242);
-            this.tbInnerPackStyle.Name = "tbInnerPackStyle";
-            this.tbInnerPackStyle.Size = new System.Drawing.Size(27, 20);
-            this.tbInnerPackStyle.TabIndex = 46;
-            this.tbInnerPackStyle.Visible = false;
-            // 
-            // tbClientCode
-            // 
-            this.tbClientCode.Location = new System.Drawing.Point(54, 242);
-            this.tbClientCode.Name = "tbClientCode";
-            this.tbClientCode.Size = new System.Drawing.Size(27, 20);
-            this.tbClientCode.TabIndex = 45;
-            this.tbClientCode.Visible = false;
-            // 
-            // tbCompanyCode
-            // 
-            this.tbCompanyCode.Location = new System.Drawing.Point(54, 216);
-            this.tbCompanyCode.Name = "tbCompanyCode";
-            this.tbCompanyCode.Size = new System.Drawing.Size(27, 20);
-            this.tbCompanyCode.TabIndex = 44;
-            this.tbCompanyCode.Visible = false;
-            // 
-            // tbGTIN
-            // 
-            this.tbGTIN.Location = new System.Drawing.Point(87, 216);
-            this.tbGTIN.Name = "tbGTIN";
-            this.tbGTIN.Size = new System.Drawing.Size(27, 20);
-            this.tbGTIN.TabIndex = 43;
-            this.tbGTIN.Visible = false;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(960, 75);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(138, 17);
-            this.label9.TabIndex = 42;
-            this.label9.Text = "Sales Order Number";
-            // 
-            // TextBoxPalletBatchNo
-            // 
-            this.TextBoxPalletBatchNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TextBoxPalletBatchNo.Location = new System.Drawing.Point(1103, 75);
-            this.TextBoxPalletBatchNo.Name = "TextBoxPalletBatchNo";
-            this.TextBoxPalletBatchNo.Size = new System.Drawing.Size(172, 23);
-            this.TextBoxPalletBatchNo.TabIndex = 41;
-            // 
-            // tbGMID
-            // 
-            this.tbGMID.Location = new System.Drawing.Point(21, 242);
-            this.tbGMID.Name = "tbGMID";
-            this.tbGMID.Size = new System.Drawing.Size(27, 20);
-            this.tbGMID.TabIndex = 40;
-            this.tbGMID.Visible = false;
-            // 
-            // tbDetails
-            // 
-            this.tbDetails.Location = new System.Drawing.Point(21, 216);
-            this.tbDetails.Name = "tbDetails";
-            this.tbDetails.Size = new System.Drawing.Size(27, 20);
-            this.tbDetails.TabIndex = 39;
-            this.tbDetails.Visible = false;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(18, 128);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(109, 17);
-            this.label8.TabIndex = 37;
-            this.label8.Text = "Customer Name";
-            // 
-            // tbCustomer
-            // 
-            this.tbCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCustomer.Location = new System.Drawing.Point(133, 128);
-            this.tbCustomer.Name = "tbCustomer";
-            this.tbCustomer.ReadOnly = true;
-            this.tbCustomer.Size = new System.Drawing.Size(155, 23);
-            this.tbCustomer.TabIndex = 36;
-            // 
-            // cboProdLine
-            // 
-            this.cboProdLine.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboProdLine.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboProdLine.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboProdLine.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboProdLine.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboProdLine.FormattingEnabled = true;
-            this.cboProdLine.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3"});
-            this.cboProdLine.Location = new System.Drawing.Point(1103, 101);
-            this.cboProdLine.Name = "cboProdLine";
-            this.cboProdLine.Size = new System.Drawing.Size(172, 24);
-            this.cboProdLine.TabIndex = 35;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(490, 39);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(131, 17);
-            this.label14.TabIndex = 34;
-            this.label14.Text = "Sales Order Details";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(18, 39);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(300, 17);
-            this.label13.TabIndex = 33;
-            this.label13.Text = "Product Details (cannot be changed for batch)";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(18, 75);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(94, 17);
-            this.label10.TabIndex = 28;
-            this.label10.Text = "Product Code";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(490, 182);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 17);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "Notes";
-            // 
-            // tbNotes
-            // 
-            this.tbNotes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNotes.Location = new System.Drawing.Point(633, 179);
-            this.tbNotes.Name = "tbNotes";
-            this.tbNotes.Size = new System.Drawing.Size(261, 23);
-            this.tbNotes.TabIndex = 21;
-            // 
-            // cboInnerUnit
-            // 
-            this.cboInnerUnit.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboInnerUnit.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboInnerUnit.BackColor = System.Drawing.SystemColors.Window;
-            this.cboInnerUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboInnerUnit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cboInnerUnit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cboInnerUnit.FormattingEnabled = true;
-            this.cboInnerUnit.Items.AddRange(new object[] {
-            "Kg",
-            "L"});
-            this.cboInnerUnit.Location = new System.Drawing.Point(811, 152);
-            this.cboInnerUnit.Name = "cboInnerUnit";
-            this.cboInnerUnit.Size = new System.Drawing.Size(43, 24);
-            this.cboInnerUnit.TabIndex = 20;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(490, 153);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(133, 17);
-            this.label6.TabIndex = 17;
-            this.label6.Text = "Inner weight/volume";
-            // 
-            // tbInnerWeight
-            // 
-            this.tbInnerWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerWeight.Location = new System.Drawing.Point(633, 153);
-            this.tbInnerWeight.Name = "tbInnerWeight";
-            this.tbInnerWeight.Size = new System.Drawing.Size(172, 23);
-            this.tbInnerWeight.TabIndex = 16;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(490, 127);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(118, 17);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Inners per Carton";
-            // 
-            // tbInnersPerCart
-            // 
-            this.tbInnersPerCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnersPerCart.Location = new System.Drawing.Point(633, 127);
-            this.tbInnersPerCart.Name = "tbInnersPerCart";
-            this.tbInnersPerCart.Size = new System.Drawing.Size(172, 23);
-            this.tbInnersPerCart.TabIndex = 14;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(490, 101);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(121, 17);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Cartons per Pallet";
-            // 
-            // tbCartonsPerPallet
-            // 
-            this.tbCartonsPerPallet.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCartonsPerPallet.Location = new System.Drawing.Point(633, 101);
-            this.tbCartonsPerPallet.Name = "tbCartonsPerPallet";
-            this.tbCartonsPerPallet.Size = new System.Drawing.Size(172, 23);
-            this.tbCartonsPerPallet.TabIndex = 12;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(490, 75);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 17);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Number of Cartons";
-            // 
-            // tbTotalCartons
-            // 
-            this.tbTotalCartons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTotalCartons.Location = new System.Drawing.Point(633, 75);
-            this.tbTotalCartons.Name = "tbTotalCartons";
-            this.tbTotalCartons.Size = new System.Drawing.Size(172, 23);
-            this.tbTotalCartons.TabIndex = 10;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(18, 102);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(98, 17);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "Product Name";
-            // 
-            // tbProdName
-            // 
-            this.tbProdName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbProdName.Location = new System.Drawing.Point(133, 102);
-            this.tbProdName.Name = "tbProdName";
-            this.tbProdName.ReadOnly = true;
-            this.tbProdName.Size = new System.Drawing.Size(325, 23);
-            this.tbProdName.TabIndex = 8;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(960, 101);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 17);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Production Line";
-            // 
-            // button_cancel
-            // 
-            this.button_cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_cancel.Location = new System.Drawing.Point(1190, 226);
-            this.button_cancel.Name = "button_cancel";
-            this.button_cancel.Size = new System.Drawing.Size(99, 32);
-            this.button_cancel.TabIndex = 5;
-            this.button_cancel.Text = "Cancel";
-            this.button_cancel.UseVisualStyleBackColor = true;
-            this.button_cancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // button_save
-            // 
-            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(1085, 226);
-            this.btnSave.Name = "button_save";
-            this.btnSave.Size = new System.Drawing.Size(99, 32);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // button_close
-            // 
-            this.button_close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button_close.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_close.Location = new System.Drawing.Point(1342, 15);
-            this.button_close.Name = "button_close";
-            this.button_close.Size = new System.Drawing.Size(130, 25);
-            this.button_close.TabIndex = 6;
-            this.button_close.Text = "Close";
-            this.button_close.UseVisualStyleBackColor = true;
-            this.button_close.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label15
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(31, 16);
+            this.label15.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label15.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label15.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(0, 0);
+            this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(143, 20);
+            this.label15.Size = new System.Drawing.Size(513, 34);
             this.label15.TabIndex = 7;
-            this.label15.Text = "Sales Order details";
+            this.label15.Text = "Sales Order Details";
+            this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnDelete
+            // label6
             // 
-            this.btnDelete.Location = new System.Drawing.Point(210, 0);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(99, 32);
-            this.btnDelete.TabIndex = 10;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.label6.BackColor = System.Drawing.SystemColors.Control;
+            this.label6.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.label6.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label6.Location = new System.Drawing.Point(3, 110);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(135, 29);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Customer";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // buttonSetStatus
+            // label8
             // 
-            this.buttonSetStatus.Location = new System.Drawing.Point(870, 0);
-            this.buttonSetStatus.Name = "buttonSetStatus";
-            this.buttonSetStatus.Size = new System.Drawing.Size(217, 32);
-            this.buttonSetStatus.TabIndex = 12;
-            this.buttonSetStatus.Text = "View details for this Sales Order";
-            this.buttonSetStatus.UseVisualStyleBackColor = true;
-            this.buttonSetStatus.Click += new System.EventHandler(this.btnSetStatus_Click);
+            this.label8.BackColor = System.Drawing.SystemColors.Control;
+            this.label8.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label8.Location = new System.Drawing.Point(3, 41);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(135, 29);
+            this.label8.TabIndex = 21;
+            this.label8.Text = "Sales Order No";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pnlForm
+            // label9
             // 
-            this.pnlForm.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pnlForm.Controls.Add(this.pnlButtons);
-            this.pnlForm.Controls.Add(this.pnlTextBoxes);
-            this.pnlForm.Controls.Add(this.dgvOrders);
-            this.pnlForm.Location = new System.Drawing.Point(0, 175);
-            this.pnlForm.Name = "pnlForm";
-            this.pnlForm.Size = new System.Drawing.Size(1472, 764);
-            this.pnlForm.TabIndex = 13;
+            this.label9.BackColor = System.Drawing.SystemColors.Control;
+            this.label9.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.label9.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label9.Location = new System.Drawing.Point(3, 140);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(135, 29);
+            this.label9.TabIndex = 22;
+            this.label9.Text = "Product Code";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pnlButtons
+            // label10
             // 
-            this.pnlButtons.Controls.Add(this.buttonSetStatus);
-            this.pnlButtons.Controls.Add(this.btnDelete);
-            this.pnlButtons.Controls.Add(this.btnEdit);
-            this.pnlButtons.Controls.Add(this.btnAdd);
-            this.pnlButtons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pnlButtons.Location = new System.Drawing.Point(206, 415);
-            this.pnlButtons.Name = "pnlButtons";
-            this.pnlButtons.Size = new System.Drawing.Size(1088, 33);
-            this.pnlButtons.TabIndex = 13;
+            this.label10.BackColor = System.Drawing.SystemColors.Control;
+            this.label10.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label10.Location = new System.Drawing.Point(318, 200);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(135, 29);
+            this.label10.TabIndex = 29;
+            this.label10.Text = "Cartons Required";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tbInnerGTIN
+            // label11
             // 
-            this.tbInnerGTIN.Location = new System.Drawing.Point(120, 216);
-            this.tbInnerGTIN.Name = "tbInnerGTIN";
-            this.tbInnerGTIN.Size = new System.Drawing.Size(27, 20);
-            this.tbInnerGTIN.TabIndex = 43;
-            this.tbInnerGTIN.Visible = false;
+            this.label11.BackColor = System.Drawing.SystemColors.Control;
+            this.label11.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label11.Location = new System.Drawing.Point(318, 291);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(191, 29);
+            this.label11.TabIndex = 31;
+            this.label11.Text = "Product batches on Pallet";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tbPlant
+            // label1
             // 
-            this.tbPlant.Location = new System.Drawing.Point(21, 190);
-            this.tbPlant.Name = "tbPlant";
-            this.tbPlant.Size = new System.Drawing.Size(27, 20);
-            this.tbPlant.TabIndex = 43;
-            this.tbPlant.Visible = false;
+            this.label1.BackColor = System.Drawing.SystemColors.Control;
+            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Location = new System.Drawing.Point(3, 71);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(135, 29);
+            this.label1.TabIndex = 35;
+            this.label1.Text = "Status ";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // tbDateOfManufacture
+            // labelStatus
             // 
-            this.tbDateOfManufacture.Location = new System.Drawing.Point(120, 242);
-            this.tbDateOfManufacture.Name = "tbDateOfManufacture";
-            this.tbDateOfManufacture.Size = new System.Drawing.Size(27, 20);
-            this.tbDateOfManufacture.TabIndex = 43;
-            this.tbDateOfManufacture.Visible = false;
+            this.labelStatus.BackColor = System.Drawing.SystemColors.Window;
+            this.labelStatus.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelStatus.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelStatus.ForeColor = System.Drawing.Color.Green;
+            this.labelStatus.Location = new System.Drawing.Point(139, 71);
+            this.labelStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelStatus.Name = "labelStatus";
+            this.labelStatus.Size = new System.Drawing.Size(177, 29);
+            this.labelStatus.TabIndex = 36;
+            this.labelStatus.Text = "...";
+            this.labelStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.btnClose.Location = new System.Drawing.Point(358, 20);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(148, 39);
+            this.btnClose.TabIndex = 57;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.buttonClose_Click);
+            // 
+            // btnPrintLabel
+            // 
+            this.btnPrintLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintLabel.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.btnPrintLabel.Location = new System.Drawing.Point(210, 20);
+            this.btnPrintLabel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnPrintLabel.Name = "btnPrintLabel";
+            this.btnPrintLabel.Size = new System.Drawing.Size(148, 39);
+            this.btnPrintLabel.TabIndex = 58;
+            this.btnPrintLabel.Text = "Print Label";
+            this.btnPrintLabel.UseVisualStyleBackColor = true;
+            this.btnPrintLabel.Click += new System.EventHandler(this.btnPrintLabel_Click);
+            // 
+            // buttonEdit
+            // 
+            this.buttonEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonEdit.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.buttonEdit.Location = new System.Drawing.Point(62, 20);
+            this.buttonEdit.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.buttonEdit.Name = "buttonEdit";
+            this.buttonEdit.Size = new System.Drawing.Size(148, 39);
+            this.buttonEdit.TabIndex = 60;
+            this.buttonEdit.Text = "Edit";
+            this.buttonEdit.UseVisualStyleBackColor = true;
+            this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.SystemColors.Control;
+            this.label3.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.label3.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label3.Location = new System.Drawing.Point(318, 71);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(135, 29);
+            this.label3.TabIndex = 61;
+            this.label3.Text = "Production Line";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label4
+            // 
+            this.label4.BackColor = System.Drawing.SystemColors.Control;
+            this.label4.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label4.Location = new System.Drawing.Point(3, 200);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(135, 29);
+            this.label4.TabIndex = 64;
+            this.label4.Text = "Outers per pallet";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label5
+            // 
+            this.label5.BackColor = System.Drawing.SystemColors.Control;
+            this.label5.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.label5.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label5.Location = new System.Drawing.Point(3, 170);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(135, 29);
+            this.label5.TabIndex = 63;
+            this.label5.Text = "Product Name";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label14
+            // 
+            this.label14.BackColor = System.Drawing.SystemColors.Control;
+            this.label14.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.label14.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label14.Location = new System.Drawing.Point(3, 291);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(135, 29);
+            this.label14.TabIndex = 86;
+            this.label14.Text = "Notes";
+            this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label19
+            // 
+            this.label19.BackColor = System.Drawing.SystemColors.Control;
+            this.label19.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.label19.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label19.Location = new System.Drawing.Point(3, 261);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(135, 29);
+            this.label19.TabIndex = 87;
+            this.label19.Text = "Unit weight/volume";
+            this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // label21
+            // 
+            this.label21.BackColor = System.Drawing.SystemColors.Control;
+            this.label21.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.label21.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label21.Location = new System.Drawing.Point(3, 231);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(135, 29);
+            this.label21.TabIndex = 88;
+            this.label21.Text = "Inners per outer";
+            this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBoxPalletBatchNo
+            // 
+            this.textBoxPalletBatchNo.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxPalletBatchNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxPalletBatchNo.Font = new System.Drawing.Font("Palatino Linotype", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxPalletBatchNo.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.textBoxPalletBatchNo.Location = new System.Drawing.Point(139, 41);
+            this.textBoxPalletBatchNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textBoxPalletBatchNo.Name = "textBoxPalletBatchNo";
+            this.textBoxPalletBatchNo.Size = new System.Drawing.Size(177, 29);
+            this.textBoxPalletBatchNo.TabIndex = 90;
+            this.textBoxPalletBatchNo.Text = "...";
+            this.textBoxPalletBatchNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBoxCustomer
+            // 
+            this.textBoxCustomer.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxCustomer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxCustomer.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.textBoxCustomer.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.textBoxCustomer.Location = new System.Drawing.Point(139, 110);
+            this.textBoxCustomer.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textBoxCustomer.Name = "textBoxCustomer";
+            this.textBoxCustomer.Size = new System.Drawing.Size(177, 29);
+            this.textBoxCustomer.TabIndex = 91;
+            this.textBoxCustomer.Text = "...";
+            this.textBoxCustomer.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBoxInnersPerCart
+            // 
+            this.textBoxInnersPerCart.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxInnersPerCart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxInnersPerCart.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.textBoxInnersPerCart.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.textBoxInnersPerCart.Location = new System.Drawing.Point(139, 231);
+            this.textBoxInnersPerCart.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textBoxInnersPerCart.Name = "textBoxInnersPerCart";
+            this.textBoxInnersPerCart.Size = new System.Drawing.Size(46, 29);
+            this.textBoxInnersPerCart.TabIndex = 92;
+            this.textBoxInnersPerCart.Text = "...";
+            this.textBoxInnersPerCart.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxCartsPerPallet
+            // 
+            this.textBoxCartsPerPallet.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxCartsPerPallet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxCartsPerPallet.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.textBoxCartsPerPallet.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.textBoxCartsPerPallet.Location = new System.Drawing.Point(139, 200);
+            this.textBoxCartsPerPallet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textBoxCartsPerPallet.Name = "textBoxCartsPerPallet";
+            this.textBoxCartsPerPallet.Size = new System.Drawing.Size(46, 29);
+            this.textBoxCartsPerPallet.TabIndex = 93;
+            this.textBoxCartsPerPallet.Text = "...";
+            this.textBoxCartsPerPallet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxProdName
+            // 
+            this.textBoxProdName.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxProdName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxProdName.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.textBoxProdName.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.textBoxProdName.Location = new System.Drawing.Point(139, 170);
+            this.textBoxProdName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textBoxProdName.Name = "textBoxProdName";
+            this.textBoxProdName.Size = new System.Drawing.Size(177, 29);
+            this.textBoxProdName.TabIndex = 94;
+            this.textBoxProdName.Text = "...";
+            this.textBoxProdName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBoxProdCode
+            // 
+            this.textBoxProdCode.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxProdCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxProdCode.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.textBoxProdCode.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.textBoxProdCode.Location = new System.Drawing.Point(139, 140);
+            this.textBoxProdCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textBoxProdCode.Name = "textBoxProdCode";
+            this.textBoxProdCode.Size = new System.Drawing.Size(177, 29);
+            this.textBoxProdCode.TabIndex = 95;
+            this.textBoxProdCode.Text = "...";
+            this.textBoxProdCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // comboBoxInnerUnit
+            // 
+            this.comboBoxInnerUnit.BackColor = System.Drawing.SystemColors.Window;
+            this.comboBoxInnerUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.comboBoxInnerUnit.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.comboBoxInnerUnit.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.comboBoxInnerUnit.Location = new System.Drawing.Point(187, 261);
+            this.comboBoxInnerUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.comboBoxInnerUnit.Name = "comboBoxInnerUnit";
+            this.comboBoxInnerUnit.Size = new System.Drawing.Size(46, 29);
+            this.comboBoxInnerUnit.TabIndex = 96;
+            this.comboBoxInnerUnit.Text = "...";
+            this.comboBoxInnerUnit.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxInnerWeight
+            // 
+            this.textBoxInnerWeight.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxInnerWeight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxInnerWeight.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.textBoxInnerWeight.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.textBoxInnerWeight.Location = new System.Drawing.Point(139, 261);
+            this.textBoxInnerWeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textBoxInnerWeight.Name = "textBoxInnerWeight";
+            this.textBoxInnerWeight.Size = new System.Drawing.Size(46, 29);
+            this.textBoxInnerWeight.TabIndex = 97;
+            this.textBoxInnerWeight.Text = "...";
+            this.textBoxInnerWeight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxTotalCartons
+            // 
+            this.textBoxTotalCartons.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxTotalCartons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxTotalCartons.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.textBoxTotalCartons.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.textBoxTotalCartons.Location = new System.Drawing.Point(463, 200);
+            this.textBoxTotalCartons.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textBoxTotalCartons.Name = "textBoxTotalCartons";
+            this.textBoxTotalCartons.Size = new System.Drawing.Size(46, 29);
+            this.textBoxTotalCartons.TabIndex = 103;
+            this.textBoxTotalCartons.Text = "...";
+            this.textBoxTotalCartons.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // textBoxProdLine
+            // 
+            this.textBoxProdLine.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxProdLine.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxProdLine.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.textBoxProdLine.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.textBoxProdLine.Location = new System.Drawing.Point(463, 71);
+            this.textBoxProdLine.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textBoxProdLine.Name = "textBoxProdLine";
+            this.textBoxProdLine.Size = new System.Drawing.Size(46, 29);
+            this.textBoxProdLine.TabIndex = 104;
+            this.textBoxProdLine.Text = "...";
+            this.textBoxProdLine.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.SystemColors.Control;
+            this.label7.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label7.Location = new System.Drawing.Point(318, 231);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(135, 29);
+            this.label7.TabIndex = 20;
+            this.label7.Text = "Cartons on Pallet";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // textBoxCartonsOnPallet
+            // 
+            this.textBoxCartonsOnPallet.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxCartonsOnPallet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxCartonsOnPallet.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.textBoxCartonsOnPallet.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.textBoxCartonsOnPallet.Location = new System.Drawing.Point(463, 231);
+            this.textBoxCartonsOnPallet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textBoxCartonsOnPallet.Name = "textBoxCartonsOnPallet";
+            this.textBoxCartonsOnPallet.Size = new System.Drawing.Size(46, 29);
+            this.textBoxCartonsOnPallet.TabIndex = 102;
+            this.textBoxCartonsOnPallet.Text = "...";
+            this.textBoxCartonsOnPallet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // dgvCartonsOnPallet
+            // 
+            this.dgvCartonsOnPallet.AllowUserToAddRows = false;
+            this.dgvCartonsOnPallet.AllowUserToDeleteRows = false;
+            this.dgvCartonsOnPallet.AllowUserToResizeColumns = false;
+            this.dgvCartonsOnPallet.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.DodgerBlue;
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            this.dgvCartonsOnPallet.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvCartonsOnPallet.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dgvCartonsOnPallet.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.dgvCartonsOnPallet.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
+            this.dgvCartonsOnPallet.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgvCartonsOnPallet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvCartonsOnPallet.Enabled = false;
+            this.dgvCartonsOnPallet.EnableHeadersVisualStyles = false;
+            this.dgvCartonsOnPallet.Location = new System.Drawing.Point(318, 321);
+            this.dgvCartonsOnPallet.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvCartonsOnPallet.MultiSelect = false;
+            this.dgvCartonsOnPallet.Name = "dgvCartonsOnPallet";
+            this.dgvCartonsOnPallet.RowHeadersVisible = false;
+            this.dgvCartonsOnPallet.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.dgvCartonsOnPallet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvCartonsOnPallet.Size = new System.Drawing.Size(191, 140);
+            this.dgvCartonsOnPallet.TabIndex = 105;
+            this.dgvCartonsOnPallet.TabStop = false;
+            this.dgvCartonsOnPallet.Tag = "";
+            // 
+            // textBoxNotes
+            // 
+            this.textBoxNotes.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxNotes.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.textBoxNotes.Location = new System.Drawing.Point(3, 321);
+            this.textBoxNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.textBoxNotes.Name = "textBoxNotes";
+            this.textBoxNotes.ReadOnly = true;
+            this.textBoxNotes.Size = new System.Drawing.Size(313, 140);
+            this.textBoxNotes.TabIndex = 106;
+            this.textBoxNotes.Text = "This is the notes field which have a max number of characters";
+            // 
+            // textBoxCurrentPallet
+            // 
+            this.textBoxCurrentPallet.BackColor = System.Drawing.SystemColors.Window;
+            this.textBoxCurrentPallet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxCurrentPallet.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.textBoxCurrentPallet.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.textBoxCurrentPallet.Location = new System.Drawing.Point(463, 261);
+            this.textBoxCurrentPallet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.textBoxCurrentPallet.Name = "textBoxCurrentPallet";
+            this.textBoxCurrentPallet.Size = new System.Drawing.Size(46, 29);
+            this.textBoxCurrentPallet.TabIndex = 108;
+            this.textBoxCurrentPallet.Text = "...";
+            this.textBoxCurrentPallet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label12
+            // 
+            this.label12.BackColor = System.Drawing.SystemColors.Control;
+            this.label12.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.label12.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label12.Location = new System.Drawing.Point(318, 261);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(135, 29);
+            this.label12.TabIndex = 107;
+            this.label12.Text = "Current Pallet";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // grpButtons
+            // 
+            this.grpButtons.Controls.Add(this.btnPrintLabel);
+            this.grpButtons.Controls.Add(this.buttonEdit);
+            this.grpButtons.Controls.Add(this.btnClose);
+            this.grpButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.grpButtons.Location = new System.Drawing.Point(0, 460);
+            this.grpButtons.Name = "grpButtons";
+            this.grpButtons.Size = new System.Drawing.Size(513, 67);
+            this.grpButtons.TabIndex = 109;
+            this.grpButtons.TabStop = false;
             // 
             // frmSalesOrderDetails
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1484, 961);
+            this.CancelButton = this.btnClose;
+            this.ClientSize = new System.Drawing.Size(513, 527);
             this.ControlBox = false;
-            this.Controls.Add(this.pnlForm);
+            this.Controls.Add(this.grpButtons);
+            this.Controls.Add(this.textBoxCurrentPallet);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.textBoxNotes);
+            this.Controls.Add(this.dgvCartonsOnPallet);
             this.Controls.Add(this.label15);
-            this.Controls.Add(this.button_close);
+            this.Controls.Add(this.textBoxProdLine);
+            this.Controls.Add(this.textBoxTotalCartons);
+            this.Controls.Add(this.textBoxCartonsOnPallet);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.textBoxInnerWeight);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.comboBoxInnerUnit);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.textBoxProdCode);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.textBoxProdName);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.textBoxCartsPerPallet);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.textBoxInnersPerCart);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBoxCustomer);
+            this.Controls.Add(this.labelStatus);
+            this.Controls.Add(this.textBoxPalletBatchNo);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label21);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label19);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label14);
+            this.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "frmSalesOrderDetails";
             this.Text = "EXWOLD PALLET TRACKING";
-            this.Load += new System.EventHandler(this.PalletDetailsForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).EndInit();
-            this.pnlTextBoxes.ResumeLayout(false);
-            this.pnlTextBoxes.PerformLayout();
-            this.pnlForm.ResumeLayout(false);
-            this.pnlButtons.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.BatchDetailsForm_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvCartonsOnPallet)).EndInit();
+            this.grpButtons.ResumeLayout(false);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button btnEdit;
-        private System.Windows.Forms.Panel pnlTextBoxes;
-        private System.Windows.Forms.Button button_cancel;
-        private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button button_close;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.MaskedTextBox tbProdName;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.MaskedTextBox tbCartonsPerPallet;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.MaskedTextBox tbTotalCartons;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.MaskedTextBox tbInnersPerCart;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.MaskedTextBox tbInnerWeight;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.MaskedTextBox tbNotes;
-        private System.Windows.Forms.ComboBox cboInnerUnit;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.ComboBox cboProdLine;
+        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.MaskedTextBox tbCustomer;
-        private System.Windows.Forms.MaskedTextBox tbGMID;
-        private System.Windows.Forms.MaskedTextBox tbDetails;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.MaskedTextBox TextBoxPalletBatchNo;
-        private System.Windows.Forms.MaskedTextBox tbClientCode;
-        private System.Windows.Forms.MaskedTextBox tbCompanyCode;
-        private System.Windows.Forms.MaskedTextBox tbGTIN;
-        private System.Windows.Forms.MaskedTextBox tbInnerPackStyle;
-        private System.Windows.Forms.Button buttonSetStatus;
-        private System.Windows.Forms.ComboBox cboStatus;
-        private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Button buttonEnableStatus;
-        private System.Windows.Forms.DataGridView dgvOrders;
-        private System.Windows.Forms.MaskedTextBox tbProdCode;
-        private System.Windows.Forms.Panel pnlForm;
-        private System.Windows.Forms.Panel pnlButtons;
-        private System.Windows.Forms.MaskedTextBox tbPlant;
-        private System.Windows.Forms.MaskedTextBox tbDateOfManufacture;
-        private System.Windows.Forms.MaskedTextBox tbInnerGTIN;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelStatus;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnPrintLabel;
+        private System.Windows.Forms.Button buttonEdit;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label textBoxPalletBatchNo;
+        private System.Windows.Forms.Label textBoxCustomer;
+        private System.Windows.Forms.Label textBoxInnersPerCart;
+        private System.Windows.Forms.Label textBoxCartsPerPallet;
+        private System.Windows.Forms.Label textBoxProdName;
+        private System.Windows.Forms.Label textBoxProdCode;
+        private System.Windows.Forms.Label comboBoxInnerUnit;
+        private System.Windows.Forms.Label textBoxInnerWeight;
+        private System.Windows.Forms.Label textBoxTotalCartons;
+        private System.Windows.Forms.Label textBoxProdLine;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label textBoxCartonsOnPallet;
+        private System.Windows.Forms.DataGridView dgvCartonsOnPallet;
+        private System.Windows.Forms.RichTextBox textBoxNotes;
+        private System.Windows.Forms.Label textBoxCurrentPallet;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.GroupBox grpButtons;
     }
 }
 

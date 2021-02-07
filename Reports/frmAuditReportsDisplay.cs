@@ -28,17 +28,10 @@ namespace ITS.Exwold.Desktop
     {
         #region Local Variables
         //Date variables
-        private DataInterface.execFunction _db = null;
+        private readonly DataInterface.execFunction _db = null;
         #endregion
-        
-        //Mesh Remove
-        //string dbConnStr = "";
         #region Properties
-        internal DataInterface.execFunction DB
-        {
-            get { return _db; }
-            set { _db = value; }
-        }
+
         #endregion
 
         /// <summary>
@@ -49,17 +42,6 @@ namespace ITS.Exwold.Desktop
             InitializeComponent();
             _db = database;
         }
-        
-        //Mesh Remove
-        /// <summary>
-        /// Constructor
-        /// </summary>
-        /// <param name="dbConnectionString">Database Connection string to use.</param>
-        //public frmAuditReports(string dbConnectionString)
-        //{
-        //    InitializeComponent();
-        //    this.dbConnStr = dbConnectionString;
-        //}
 
         /// <summary>
         /// OnLoad: Set form to max size
@@ -88,20 +70,11 @@ namespace ITS.Exwold.Desktop
             // set the report layout to use
             string rdlcFile = "ITS.Exwold.Desktop.Reports.rptAuditProduct.rdlc";
             rvDisplay.LocalReport.ReportEmbeddedResource = rdlcFile;
-
-            //Mesh Remove
-            //reportViewer.LocalReport.ReportPath = "ReportProductAudit.rdlc";
-            //Database db = new Database(dbConnStr);
-            //db.OpenConnection();
-            //DataTable dt = db.ExecuteQuery(" EXEC ExwoldTracking.dbo.Report_AuditReportProducts '" + 
-            //StartDatePicker.Value.ToString("yyyy-MM-dd")
-            //+ "', '" + EndDatePicker.Value.ToString("yyyy-MM-dd") + "' ");
-
             // get the data
             _db.QueryParameters.Clear();
             _db.QueryParameters.Add("StartDateTime", StartDatePicker.Value.ToString("yyyy-MM-dd"));
             _db.QueryParameters.Add("EndDateTime", EndDatePicker.Value.ToString("yyyy-MM-dd"));
-            DataTable dt = await _db.executeSP("[dbo].[Report_AuditReportProduct]", true);
+            DataTable dt = await _db.executeSP("[dbo].[Report_AuditReportProducts]", true);
 
             dt.TableName = "ReportData";
             // Create a report data source for the sales order data  
@@ -122,17 +95,6 @@ namespace ITS.Exwold.Desktop
             // set the report layout to use
             string rdlcFile = "ITS.Exwold.Desktop.Reports.rptAuditPalletBatch.rdlc";
             rvDisplay.LocalReport.ReportEmbeddedResource = rdlcFile;
-
-            //Mesh Remove
-            //reportViewer.LocalReport.ReportPath = "ReportPalletBatchAudit.rdlc";
-
-            //Mesh Remove
-            //// get the data
-            //Database db = new Database(dbConnStr);
-            //db.OpenConnection();
-            //DataTable dt = db.ExecuteQuery(" EXEC ExwoldTracking.dbo.Report_AuditReportPalletBatches '" 
-            //    + StartDatePicker.Value.ToString("yyyy-MM-dd")
-            //    + "', '" + EndDatePicker.Value.ToString("yyyy-MM-dd") + "' ");
 
             // get the data
             _db.QueryParameters.Clear();
@@ -159,15 +121,6 @@ namespace ITS.Exwold.Desktop
             // set the report layout to use
             string rdlcFile = "ITS.Exwold.Desktop.Reports.rptAuditOpAction.rdlc";
             rvDisplay.LocalReport.ReportEmbeddedResource = rdlcFile;
-
-            //Mesh Remove
-            //reportViewer.LocalReport.ReportPath = "ReportOperatorActionsAudit.rdlc";
-            //// get the data
-            //Database db = new Database(dbConnStr);
-            //db.OpenConnection();
-            //DataTable dt = db.ExecuteQuery(" EXEC ExwoldTracking.dbo.Report_AuditReportOperatorActions '" 
-            //    + StartDatePicker.Value.ToString("yyyy-MM-dd")
-            //    + "', '" + EndDatePicker.Value.ToString("yyyy-MM-dd") + "' ");
 
             // get the data
             _db.QueryParameters.Clear();

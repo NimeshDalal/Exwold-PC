@@ -126,11 +126,11 @@
   <ItemGroup>
     <Compile Include="AsyncTcp\AsyncTcpClient.cs" />
     <Compile Include="AsyncTcp\AsyncTcpListener.cs" />
-    <Compile Include="AsyncTcp\AsyncTcpTest.cs">
+    <Compile Include="AsyncTcp\frmAsyncTcpTest.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AsyncTcp\AsyncTcpTest.Designer.cs">
-      <DependentUpon>AsyncTcpTest.cs</DependentUpon>
+    <Compile Include="AsyncTcp\frmAsyncTcpTest.Designer.cs">
+      <DependentUpon>frmAsyncTcpTest.cs</DependentUpon>
     </Compile>
     <Compile Include="AsyncTcp\ByteBuffer.cs" />
     <Compile Include="Classes\tcpListener.cs" />
@@ -216,23 +216,23 @@
     <Compile Include="Reports\frmReportDisplay.Designer.cs">
       <DependentUpon>frmReportDisplay.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmProduct.cs">
+    <Compile Include="Forms\Product.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmProduct.Designer.cs">
-      <DependentUpon>frmProduct.cs</DependentUpon>
+    <Compile Include="Forms\Product.Designer.cs">
+      <DependentUpon>Product.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmSalesOrderDetails.cs">
+    <Compile Include="Forms\frmSalesOrders.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmSalesOrderDetails.Designer.cs">
-      <DependentUpon>frmSalesOrderDetails.cs</DependentUpon>
+    <Compile Include="Forms\frmSalesOrders.Designer.cs">
+      <DependentUpon>frmSalesOrders.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmMainStatus.cs">
+    <Compile Include="Forms\MainStatus.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmMainStatus.Designer.cs">
-      <DependentUpon>frmMainStatus.cs</DependentUpon>
+    <Compile Include="Forms\MainStatus.Designer.cs">
+      <DependentUpon>MainStatus.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\frmAuditReportsDisplay.cs">
       <SubType>Form</SubType>
@@ -247,17 +247,17 @@
       <DependentUpon>frmReprintPalletLabels.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\ShutdownLogoff.cs" />
-    <Compile Include="Forms\frmReportSelector.cs">
+    <Compile Include="Forms\ReportSelector.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmReportSelector.Designer.cs">
-      <DependentUpon>frmReportSelector.cs</DependentUpon>
+    <Compile Include="Forms\ReportSelector.Designer.cs">
+      <DependentUpon>ReportSelector.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\frmBatchDetails.cs">
+    <Compile Include="Forms\frmSalesOrderDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\frmBatchDetails.Designer.cs">
-      <DependentUpon>frmBatchDetails.cs</DependentUpon>
+    <Compile Include="Forms\frmSalesOrderDetails.Designer.cs">
+      <DependentUpon>frmSalesOrderDetails.cs</DependentUpon>
     </Compile>
     <Compile Include="Classes\MDC_ASCII.cs" />
     <Compile Include="Forms\frmPrint.cs">
@@ -276,8 +276,8 @@
       <DependentUpon>frmUserAuthentication.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <EmbeddedResource Include="AsyncTcp\AsyncTcpTest.resx">
-      <DependentUpon>AsyncTcpTest.cs</DependentUpon>
+    <EmbeddedResource Include="AsyncTcp\frmAsyncTcpTest.resx">
+      <DependentUpon>frmAsyncTcpTest.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmLineInfo.resx">
       <DependentUpon>frmLineInfo.cs</DependentUpon>
@@ -288,14 +288,14 @@
     <EmbeddedResource Include="Forms\frmOuterInnerLabelPrint.resx">
       <DependentUpon>frmOuterInnerLabelPrint.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmProduct.resx">
-      <DependentUpon>frmProduct.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Product.resx">
+      <DependentUpon>Product.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmSalesOrderDetails.resx">
-      <DependentUpon>frmSalesOrderDetails.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\frmSalesOrders.resx">
+      <DependentUpon>frmSalesOrders.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmMainStatus.resx">
-      <DependentUpon>frmMainStatus.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\MainStatus.resx">
+      <DependentUpon>MainStatus.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmScannerDetail.resx">
       <DependentUpon>frmScannerDetail.cs</DependentUpon>
@@ -320,11 +320,11 @@
       <DependentUpon>frmReprintPalletLabels.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\rptSSCC.rdlc" />
-    <EmbeddedResource Include="Forms\frmReportSelector.resx">
-      <DependentUpon>frmReportSelector.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\ReportSelector.resx">
+      <DependentUpon>ReportSelector.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\frmBatchDetails.resx">
-      <DependentUpon>frmBatchDetails.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\frmSalesOrderDetails.resx">
+      <DependentUpon>frmSalesOrderDetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPrint.resx">
       <DependentUpon>frmPrint.cs</DependentUpon>
@@ -363,7 +363,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
-    <None Include="Exwold PC - Product Maintenance_TemporaryKey.pfx" />
     <None Include="Reports\dsAuditOpAction.xsc">
       <DependentUpon>dsAuditOpAction.xsd</DependentUpon>
     </None>

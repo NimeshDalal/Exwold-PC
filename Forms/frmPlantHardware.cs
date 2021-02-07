@@ -49,7 +49,20 @@ namespace ITS.Exwold.Desktop
             InitializeComponent();
             _exwoldConfigSettings = ConfigSettings;
             _scanners = Scanners;
+
+            // Set the form parameters
+            this.StartPosition = FormStartPosition.CenterParent;
+            this.ShowIcon = true;
+            this.Icon = Properties.Resources.ExwoldApp;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.ShowInTaskbar = false;
+            this.TopMost = true;
+            this.ControlBox = true;
+            this.HelpButton = false;
         }
+
 
         private void frmPlantHardware_Load(object sender, EventArgs e)
         {

@@ -125,16 +125,8 @@ namespace ITS.Exwold.Desktop
                     break;
                 case 1:
                     _palletBatchID = Convert.ToInt32(dtPalletBatch.Rows[0].Field<Int64>("PalletBatchUniqueNo"));
-                    //Mesh
+
                     tbPalletBatch.Text = _palletBatchID.ToString();
-
-                    //_db.QueryParameters.Clear();
-                    //_db.QueryParameters.Add("PalletBatchId", _palletBatchID.ToString());
-                    //DataTable dtCurrentProduct = await _db.executeSP("[GUI].[getPalletBatchById]", true);
-
-                    //sql = "SELECT * FROM data.PalletBatch WHERE PalletBatchUniqueNo = " + Line1BatchID;
-                    //DataTable dtCurrentProduct = Program.ExwoldDb.ExecuteQuery(sql);
-
                     txtPalletBatchNo.Text = dtPalletBatch.Rows[0]["PalletBatchNo"].ToString();
                     txtCustomer.Text = dtPalletBatch.Rows[0]["Customer"].ToString();
                     txtProdName.Text = dtPalletBatch.Rows[0]["ProductName"].ToString();
@@ -153,82 +145,15 @@ namespace ITS.Exwold.Desktop
                     btnPalletDetails.Visible = Helper.LineStatusVisibility[status];
                     btnPackLabels.Visible = Helper.LineStatusVisibility[status];
                     #endregion
-                    //Mesh Remove
-                    //txtPalletBatchNo.Text = dtCurrentProduct.Rows[0].Field<string>("PalletBatchNo");
-                    //txtCustomer.Text = dtCurrentProduct.Rows[0].Field<string>("Customer");
-                    //txtProdName.Text = dtCurrentProduct.Rows[0].Field<string>("ProductName");
-                    //txtTotalCartons.Text = dtCurrentProduct.Rows[0].Field<Int64>("TotalNoOfCartons").ToString();
-                    //txtNotes.Text = dtCurrentProduct.Rows[0].Field<string>("AdditionalInfo");
-                    //convert Status to human readable , set colour and text                    
-                    // Set the Message Colour and Button visibility
-                    //switch (dtCurrentProduct.Rows[0].Field<Int64>("Status"))
-                    //{
-                    //    case 0:
-                    //        lblStatusMessage.Text = "Available";
-                    //        lblStatusMessage.ForeColor = System.Drawing.Color.Black;
-                    //        btnPalletDetails.Visible = false;
-                    //        break;
-                    //    case 1:
-                    //        lblStatusMessage.Text = "In-Progress";
-                    //        lblStatusMessage.ForeColor = System.Drawing.Color.Green;
-                    //        btnPalletDetails.Visible = true;
-                    //        break;
-                    //    case 2:
-                    //        lblStatusMessage.Text = "On-Hold";
-                    //        lblStatusMessage.ForeColor = System.Drawing.Color.Black;
-                    //        btnPalletDetails.Visible = true;
-                    //        break;
-                    //    case 3:
-                    //        lblStatusMessage.Text = "Ready to Print";
-                    //        lblStatusMessage.ForeColor = System.Drawing.Color.Green;
-                    //        lblStatusMessage.Visible = true;
-                    //        break;
-                    //    case 4:
-                    //        lblStatusMessage.Text = "Completed";
-                    //        lblStatusMessage.ForeColor = System.Drawing.Color.Black;
-                    //        btnPalletDetails.Visible = false;
-                    //        break;
-                    //    case 5:
-                    //        lblStatusMessage.Text = "Stopped";
-                    //        lblStatusMessage.ForeColor = System.Drawing.Color.Black;
-                    //        btnPalletDetails.Visible = false;
-                    //        break;
-                    //}
-
 
                     //Get batches/carton number on Pallet
                     _db.QueryParameters.Clear();
                     _db.QueryParameters.Add("@PalletBatchId", _palletBatchID.ToString());
                     DataTable dtCurrentPallet = await _db.executeSP("[GUI].[getCartonsOnPallet]", true);
 
-                    //Mesh Remove
-                    /*
-                    //Get batches/carton number on Pallet
-                    //sql = "SELECT [DATA].PalletLabel.MaterialBatchNo, [DATA].PalletLabel.CartonsOnPallet, [DATA].Pallet.PalletUniqueNo FROM [DATA].Pallet LEFT JOIN data.PalletLabel ON data.PalletLabel.PalletUniqueNo = data.Pallet.PalletUniqueNo WHERE data.Pallet.PalletBatchUniqueNo =" + Line1BatchID;                    _sql.Clear();
-                    _sql.Append("SELECT ");
-                    _sql.Append("[DATA].PalletLabel.MaterialBatchNo, [DATA].PalletLabel.CartonsOnPallet,  [DATA].Pallet.PalletUniqueNo ");
-                    _sql.Append("FROM [DATA].Pallet ");
-                    _sql.Append("LEFT JOIN data.PalletLabel ON data.PalletLabel.PalletUniqueNo = data.Pallet.PalletUniqueNo ");
-                    _sql.Append("WHERE data.Pallet.PalletBatchUniqueNo = ");
-                    _sql.Append(_palletBatchID.ToString());
-                    DataTable dtCurrentPallet = Program.ExwoldDb.ExecuteQuery(_sql.ToString());
-                    */
-
                     _db.QueryParameters.Clear();
                     _db.QueryParameters.Add("@PalletBatchId", _palletBatchID.ToString());
                     DataTable dtCurrentPalletView = await _db.executeSP("[GUI].[getBatchesOnPallet]", true);
-                    
-                    //Mesh Remove
-                    /*
-                    //sql = "SELECT DISTINCT data.PalletLabel.MaterialBatchNo FROM data.Pallet LEFT JOIN data.PalletLabel ON data.PalletLabel.PalletUniqueNo = data.Pallet.PalletUniqueNo WHERE data.Pallet.PalletBatchUniqueNo =" + Line1BatchID;
-                    _sql.Clear();
-                    _sql.Append("SELECT DISTINCT data.PalletLabel.MaterialBatchNo ");
-                    _sql.Append("FROM data.Pallet ");
-                    _sql.Append("LEFT JOIN data.PalletLabel ON data.PalletLabel.PalletUniqueNo = data.Pallet.PalletUniqueNo ");
-                    _sql.Append("WHERE data.Pallet.PalletBatchUniqueNo = ");
-                    _sql.Append(_palletBatchID.ToString());
-                    DataTable dtCurrentPalletView = Program.ExwoldDb.ExecuteQuery(_sql.ToString());
-                    */
 
                     if (dtCurrentPallet.Rows.Count > 0)
                     {
@@ -248,7 +173,7 @@ namespace ITS.Exwold.Desktop
 
         private void btnPalletDetails_Click(object sender, EventArgs e)
         {
-            frmBatchDetails fDetails = new frmBatchDetails(_exwoldConfigSettings, _db);
+            frmSalesOrderDetails fDetails = new frmSalesOrderDetails(_exwoldConfigSettings, _db);
             fDetails.ViewBatch = true;
             fDetails.PalletBatchId = _palletBatchID;
             fDetails.ShowDialog();
@@ -350,9 +275,20 @@ namespace ITS.Exwold.Desktop
         {
             frmScannerDetail fscannerDetail = new frmScannerDetail(_scanner)
             {
+                // Set the form parameters
                 FormBorderStyle = FormBorderStyle.FixedDialog,
-                BackColor = Color.AliceBlue
-            };
+                BackColor = Color.AliceBlue,
+                StartPosition = FormStartPosition.CenterParent,
+                ShowIcon = true,
+                Icon = Properties.Resources.ExwoldApp,
+                MaximizeBox = false,
+                MinimizeBox = false,
+                ShowInTaskbar = false,
+                TopMost = true,
+                ControlBox = true,
+                HelpButton = false,
+                EnableClose = true
+        };
             
             fscannerDetail.ShowDialog();
             fscannerDetail.Dispose();

@@ -14,6 +14,8 @@ namespace ITS.Exwold.Desktop
     {
         private StandAloneScanner _scanner;
         private string _simulationMessage;
+        private bool _enableClose = false;
+
         internal frmScannerDetail(StandAloneScanner Scanner)
         {
             InitializeComponent();
@@ -21,6 +23,11 @@ namespace ITS.Exwold.Desktop
             LoadScannerData(_scanner);
         }
 
+        public bool EnableClose
+        {
+            get => _enableClose;
+            set { _enableClose = value; }
+        }
         #region Event Methods
         private void frmScannerDetail_Load(object sender, EventArgs e) 
         {
@@ -28,12 +35,6 @@ namespace ITS.Exwold.Desktop
             {
                 _scanner.MX300N.ScannerDataParsed += mx300n_DataParsed; 
             }
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            this.Dispose();
         }
         #endregion
 
@@ -126,6 +127,15 @@ namespace ITS.Exwold.Desktop
             if (_scanner.MX300N != null)
             {
                 _scanner.MX300N.StopScanning();
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            if (_enableClose)
+            {
+                this.Close();
+                this.Dispose();
             }
         }
     }

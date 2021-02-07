@@ -31,11 +31,71 @@ namespace ITS.Exwold.Desktop
         }
         #endregion
 
+        #region Public Methods
+        public async Task<bool> PrintPalletLabels(int PalletUId, int PrintQty = 1)
+        {
+            List<PalletLabelData> plData;
+            bool bRtn = false;
+            try
+            {
+                plData = await PalletLabelData(PalletUId);
+                if (plData != null && plData.Count > 0)
+                {
+                    SendLabelToPrinter(plData, PalletLabelPrinterForLine(plData[0].ProductionLineNo), PrintQty);
+                    bRtn = true;
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex.Message);
+            }
+            return bRtn;
+        }
+        public async void PrintBatchLabels(int PalletBatchUId, int PrintQty = 1)
+        {
+            int NoOfBatchesOnPallet = int.MinValue;
+            int PalletUId = int.MinValue;
+            //Print a set of labels for the whole batch
+            DataTable dtBatchesOnPallet = null;
+            PalletLabelData labelbase = new PalletLabelData();
+            List<PalletLabelData> plData;
+            try
+            {
+                dtBatchesOnPallet = await getBatchesOnPallet(PalletBatchUId);
+                if (dtBatchesOnPallet != null)
+                {
+                    NoOfBatchesOnPallet = dtBatchesOnPallet.Rows.Count;
+                    if (NoOfBatchesOnPallet > 0) //some pallet data exists, set label numbers and calculate batch data
+                    {
+                        labelbase = await getLabelBase(PalletBatchUId);
+                        foreach(DataRow row in dtBatchesOnPallet.Rows)
+                        {
+                            //Get the PalletUId
+                            PalletUId = int.Parse(row.Field<Int64>("PalletUniqueNo").ToString());
+                            if (PalletUId > 0)
+                            {
+                                plData = new List<PalletLabelData>();
+                                plData = await getLabelDetails(labelbase, PalletUId);
+                                SendLabelToPrinter(plData, PalletLabelPrinterForLine(labelbase.ProductionLineNo), PrintQty);
+                            }
+                        }
+                    }
+                }
+            }
+            catch(Exception ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex.Message);
+            }
+        }
+
+        #endregion
+
         /// <summary>
-        /// Return a list of the configured printers (from the App.Config file)
+        /// Return a list of ALL of the configured printers for this plant (from the App.Config file)
         /// </summary>
-        /// <returns></returns>
-        internal List<string> GetPalletLabelPrinters()
+        /// <returns>List of the configured printer names</returns>
+        public List<string> PalletLabelPrinters()
         {
             List<string> printers = new List<string>();
             ExwoldConfigSettings settings = new ExwoldConfigSettings(_plantNumber);
@@ -45,33 +105,31 @@ namespace ITS.Exwold.Desktop
             }
             return printers;
         }
-
         /// <summary>
-        /// Prints a single label to the given printer
+        /// For this plant, and the return the default printer for the production line
+        /// If none found, then return the first printer from the App.Config file.
         /// </summary>
-        /// <param name="label">Data for the label</param>
-        /// <param name="PrinterName">Printer to print to</param>
-        /// <param name="PrintQty">Number of copied to print</param>
-
-        internal async void SendLabelToPrinter(PalletLabelData label, string PrinterName, int PrintQty)
-        {       
-            try
+        /// <param name="ProductionLine">Line number to get the printer for</param>
+        /// <returns>The default printer for the line</returns>
+        public string PalletLabelPrinterForLine(int ProductionLine)
+        {
+            ExwoldConfigSettings settings = new ExwoldConfigSettings(_plantNumber);
+            foreach (PalletLabelPrinterConfigElement printer in settings.PalletLabelPrinters)
             {
-                //Update the print Qty and print
-                label.PrintQty = PrintQty;
-                // Set the print Qty to at least 1
-                PrintQty = PrintQty < 1 ? 1 : PrintQty;
-                await niceLabel.PrintPalletLabel(label, PrinterName);
+                if (printer.ProductionLine == ProductionLine)
+                    return printer.Name;                
             }
-            catch { }
+            //If not found then return the first printer in the list
+            return settings.PalletLabelPrinters[0].Name;
         }
+
         /// <summary>
         /// Prints a list of labels to the given printer
         /// </summary>
         /// <param name="PrintLabels">List of label data</param>
         /// <param name="PrinterName">Printer to print to</param>
         /// <param name="PrintQty">Number of copied to print</param>
-        internal void SendLabelToPrinter(List<PalletLabelData> PrintLabels, string PrinterName, int PrintQty)
+        public void SendLabelToPrinter(List<PalletLabelData> PrintLabels, string PrinterName, int PrintQty)
         {
             try
             {
@@ -84,20 +142,15 @@ namespace ITS.Exwold.Desktop
             catch { }
         }
 
-
-        /// <summary>
-        /// Get the Label(s) for a given PalletUId
-        /// Called From the Scanner
-        /// </summary>
-        /// <param name="PalletLabelUId"></param>
-        /// <returns></returns>
-        public async Task<List<PalletLabelData>> fetchLabelsByPallet(int PalletUId)
+        public async Task<List<PalletLabelData>> PalletLabelData(int PalletUId)
         {
-            List<PalletLabelData> labels = new List<PalletLabelData>();
-            //Get the PalletBatch UId
+            //Get the label data for a given Pallet
             int PalletBatchUId = int.MinValue;
+            PalletLabelData labelbase = new PalletLabelData();
+            List<PalletLabelData> plData = new List<PalletLabelData>();
             try
             {
+                // Get the Pallet Batch data
                 DataTable dtPalletBatchByPallet = await getPalletBatchByPalletId(PalletUId);
                 if (dtPalletBatchByPallet != null && dtPalletBatchByPallet.Rows.Count > 0)
                 {
@@ -105,33 +158,50 @@ namespace ITS.Exwold.Desktop
                 }
                 if (PalletBatchUId > 0)
                 {
-                    return await fetchLabelsByPalletBatch(PalletBatchUId);
+                    // Get the base data from the PalletBatch
+                    labelbase = await getLabelBase(PalletBatchUId);
+                    // Get the label data for the given Pallet
+                    plData = await getLabelDetails(labelbase, PalletUId);
                 }
-                return null;
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(),
-                    "EXCEPTION: ScannerPrint: Failed to get data from DB (Incorrect data?): " + ex.Message);
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex.Message);
             }
-            return labels;
+            return plData;
         }
 
+
+        #region Private Methods
         /// <summary>
-        /// Get the label(s) for a given PalletBatchUId
+        /// Prints a single label to the given printer
         /// </summary>
-        /// <param name="PalletBatchUId"></param>
-        /// <returns></returns>
-        public async Task<List<PalletLabelData>> fetchLabelsByPalletBatch(int PalletBatchUId)
+        /// <param name="label">Data for the label</param>
+        /// <param name="PrinterName">Printer to print to</param>
+        /// <param name="PrintQty">Number of copied to print</param>
+        private async void SendLabelToPrinter(PalletLabelData label, string PrinterName, int PrintQty)
+        {       
+            try
+            {
+                //Update the print Qty and print
+                label.PrintQty = PrintQty;
+                // Set the print Qty to at least 1
+                PrintQty = PrintQty < 1 ? 1 : PrintQty;
+                await niceLabel.PrintPalletLabel(label, PrinterName);
+            }
+            catch { }
+        }
+        /// <summary>
+        /// Get the base label data from the PalletBatch record
+        /// </summary>
+        /// <param name="PalletBatchUId">The PalletBatch UId </param>
+        /// <returns>A partially complete PalletLabelData class</returns>
+        private async Task<PalletLabelData> getLabelBase(int PalletBatchUId)
         {
             int NoOfBatchesOnPallet = int.MinValue;
-            int NoOfLabelsOnPallet = int.MinValue;
-            int PalletUId = int.MinValue;
             DataTable dtPalletBatch = null;
             DataTable dtBatchesOnPallet = null;
-            DataTable dtPalletLabels = null;
-            List<PalletLabelData> pLabels = new List<PalletLabelData>();
-            PalletLabelData _labelData = new PalletLabelData();
+            PalletLabelData baseData = new PalletLabelData();
 
             try
             {
@@ -146,49 +216,80 @@ namespace ITS.Exwold.Desktop
                     NoOfBatchesOnPallet = dtBatchesOnPallet.Rows.Count;
                     if (NoOfBatchesOnPallet > 0) //some pallet data exists, set label numbers and calculate batch data
                     {
-                        //Get the PalletUId of the first returned
-                        PalletUId = int.Parse(dtBatchesOnPallet.Rows[0].Field<Int64>("PalletUniqueNo").ToString());
+                        baseData.NetUnits_AI = dtPalletBatch.Rows[0]["UnitsOfMeasure"].ToString().Trim();
+                        baseData.GMID = dtPalletBatch.Rows[0]["GMID"].ToString();
+                        baseData.ProductionLineNo = int.Parse(dtPalletBatch.Rows[0]["ProductionLineNo"].ToString());
+                        
                     }
                 }
-                // Get the Labels for this Pallet
+            }
+            catch (Exception ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(),
+                    "EXCEPTION: Print: Failed to get data from DB (Incorrect data?): " + ex.Message);
+            }
+
+            return baseData;
+        }
+        /// <summary>
+        /// Takes the base label data, and then for each label with a matching Pallet UId
+        /// fetches the data to be included in the printout
+        /// </summary>
+        /// <param name="baseData">Data fro mthe PalletBatch record</param>
+        /// <param name="PalletUId">The UId of the pallet to get the labels for</param>
+        /// <returns></returns>
+        private async Task<List<PalletLabelData>> getLabelDetails(PalletLabelData baseData, int PalletUId)
+        {
+            //The base info is passed in
+            //Return a list of the completed data
+            List<PalletLabelData> pLabels = new List<PalletLabelData>();
+            PalletLabelData updatedData;
+            int NoOfLabelsOnPallet = int.MinValue;
+            DataTable dtPalletLabels = null;
+            
+            try
+            {
+                /*
+                 * Get the the label(s) for this pallet
+                 */
                 dtPalletLabels = await getPalletLabels(PalletUId);
                 if (dtPalletLabels != null)
                 {
                     NoOfLabelsOnPallet = dtPalletLabels.Rows.Count;
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                //Error getting the data
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), ex.Message);
             }
             try
             {
-                _labelData.NetUnits_AI = dtPalletBatch.Rows[0]["UnitsOfMeasure"].ToString().Trim();
-                _labelData.GMID = dtPalletBatch.Rows[0]["GMID"].ToString();
-                _labelData.ProductionLineNo = dtPalletBatch.Rows[0]["ProductionLineNo"].ToString();
-
-                _labelData.TotalLabels = NoOfBatchesOnPallet.ToString();
+                //_labelData.TotalLabels = NoOfBatchesOnPallet.ToString();
 
                 for (int i = 0; i < NoOfLabelsOnPallet; i++)
                 {
-                    _labelData.Count = dtPalletLabels.Rows[i]["CartonsOnPallet"].ToString();
-                    _labelData.NetUnits = dtPalletLabels.Rows[i]["QtyInner"].ToString();
-                    _labelData.BatchNumber = dtPalletLabels.Rows[i]["MaterialBatchNo"].ToString();
-                    _labelData.ProductionDate = dtPalletLabels.Rows[i]["ProdDate"].ToString();
-                    _labelData.SSCC = dtPalletLabels.Rows[i]["SSCC"].ToString();
-                    _labelData.GTIN = dtPalletLabels.Rows[i]["GTIN"].ToString();
-                    _labelData.NetVolume = dtPalletLabels.Rows[i]["NetVolOrWt"].ToString();
-                    _labelData.LabelNumber = i + 1.ToString();  //Add 1 for the display
+                    updatedData = new PalletLabelData();
+                    // Copy the base data
+                    updatedData = baseData;                    
+                    updatedData.Count = dtPalletLabels.Rows[i]["CartonsOnPallet"].ToString();
+                    updatedData.NetUnits = dtPalletLabels.Rows[i]["QtyInner"].ToString();
+                    updatedData.BatchNumber = dtPalletLabels.Rows[i]["MaterialBatchNo"].ToString();
+                    updatedData.ProductionDate = dtPalletLabels.Rows[i]["ProdDate"].ToString();
+                    updatedData.SSCC = dtPalletLabels.Rows[i]["SSCC"].ToString();
+                    updatedData.GTIN = dtPalletLabels.Rows[i]["GTIN"].ToString();
+                    updatedData.NetVolume = dtPalletLabels.Rows[i]["NetVolOrWt"].ToString();
+                    updatedData.TotalLabels = NoOfLabelsOnPallet.ToString();
+                    updatedData.LabelNumber = (i + 1).ToString();  //Add 1 for the display
 
                     string baseLabelPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\labels\\";
                     string labelname = string.Empty;
                     //Set label Path
 
-                    if (_labelData.NetUnits_AI.ToUpper() == "KG")
+                    if (updatedData.NetUnits_AI.ToUpper() == "KG")
                     {
                         labelname = "ExwoldPalletLabel1K";
                     }
-                    if (_labelData.NetUnits_AI.ToUpper() == "L")
+                    if (updatedData.NetUnits_AI.ToUpper() == "L")
                     {
                         labelname = "ExwoldPalletLabel1L";
                     }
@@ -196,8 +297,8 @@ namespace ITS.Exwold.Desktop
                     {
                         labelname = labelname + "_Additional";
                     }
-                    _labelData.LabelPath = $"{baseLabelPath}{labelname}.nlbl";
-                    pLabels.Add(_labelData);
+                    updatedData.LabelPath = $"{baseLabelPath}{labelname}.nlbl";
+                    pLabels.Add(updatedData);
                 }
             }
             catch (Exception ex)
@@ -208,8 +309,6 @@ namespace ITS.Exwold.Desktop
 
             return pLabels;
         }
-
-
         private async Task<DataTable> getPalletBatch(int palletBatchId)
         {
             //"SELECT * FROM data.PalletBatch WHERE PalletBatchUniqueNo = " + PalletBatchID;
@@ -243,7 +342,7 @@ namespace ITS.Exwold.Desktop
             _db.QueryParameters.Add("GTIN", GTIN);
             return await _db.executeSP("[GUI].[getProductByGTIN]", true);
         }
-        private async Task<DataTable> getPalletBatchByPalletId(int palletUId)
+        public async Task<DataTable> getPalletBatchByPalletId(int palletUId)
         {
             //SELECT PalletBatchUniqueNo FROM data.Pallet WHERE PalletUniqueNo = 
             _db.QueryParameters.Clear();
@@ -251,7 +350,6 @@ namespace ITS.Exwold.Desktop
             return await _db.executeSP("[GUI].[getPalletBatchByPalletId]", true);
 
         }
-        
+        #endregion
     }
-
 }

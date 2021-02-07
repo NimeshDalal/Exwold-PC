@@ -104,9 +104,10 @@
             this.lblHHScn_Line = new System.Windows.Forms.Label();
             this.lblHHScn_IpAddr = new System.Windows.Forms.Label();
             this.grpButtons = new System.Windows.Forms.GroupBox();
+            this.btnInitScanners = new System.Windows.Forms.Button();
             this.btnStandAloneScanners = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
-            this.btnInitScanners = new System.Windows.Forms.Button();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.grpStandAloneScanners.SuspendLayout();
             this.grpInnerPackLabelPrinters.SuspendLayout();
             this.grpOuterPackLabelPrinters.SuspendLayout();
@@ -137,7 +138,7 @@
             this.grpStandAloneScanners.Controls.Add(this.lblSAScn_Line);
             this.grpStandAloneScanners.Controls.Add(this.lblSAScn_IpAddr);
             this.grpStandAloneScanners.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpStandAloneScanners.Location = new System.Drawing.Point(13, 458);
+            this.grpStandAloneScanners.Location = new System.Drawing.Point(13, 485);
             this.grpStandAloneScanners.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpStandAloneScanners.Name = "grpStandAloneScanners";
             this.grpStandAloneScanners.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -402,7 +403,7 @@
             this.grpInnerPackLabelPrinters.Controls.Add(this.lblInnerPckLP_Status);
             this.grpInnerPackLabelPrinters.Controls.Add(this.lblInnerPckLP_IpAddr);
             this.grpInnerPackLabelPrinters.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpInnerPackLabelPrinters.Location = new System.Drawing.Point(13, 356);
+            this.grpInnerPackLabelPrinters.Location = new System.Drawing.Point(13, 383);
             this.grpInnerPackLabelPrinters.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpInnerPackLabelPrinters.Name = "grpInnerPackLabelPrinters";
             this.grpInnerPackLabelPrinters.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -523,7 +524,7 @@
             this.grpOuterPackLabelPrinters.Controls.Add(this.lblOuterPckLP_Status);
             this.grpOuterPackLabelPrinters.Controls.Add(this.lblOuterPckLP_IpAddr);
             this.grpOuterPackLabelPrinters.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpOuterPackLabelPrinters.Location = new System.Drawing.Point(13, 256);
+            this.grpOuterPackLabelPrinters.Location = new System.Drawing.Point(13, 283);
             this.grpOuterPackLabelPrinters.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpOuterPackLabelPrinters.Name = "grpOuterPackLabelPrinters";
             this.grpOuterPackLabelPrinters.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -699,7 +700,7 @@
             this.grpPalletLabelPrinters.Controls.Add(this.lblPLP_Line);
             this.grpPalletLabelPrinters.Controls.Add(this.lblPLP_IpAddr);
             this.grpPalletLabelPrinters.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpPalletLabelPrinters.Location = new System.Drawing.Point(13, 14);
+            this.grpPalletLabelPrinters.Location = new System.Drawing.Point(13, 41);
             this.grpPalletLabelPrinters.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpPalletLabelPrinters.Name = "grpPalletLabelPrinters";
             this.grpPalletLabelPrinters.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -860,7 +861,7 @@
             this.btnRetestIPAddresses.Location = new System.Drawing.Point(6, 18);
             this.btnRetestIPAddresses.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRetestIPAddresses.Name = "btnRetestIPAddresses";
-            this.btnRetestIPAddresses.Size = new System.Drawing.Size(193, 34);
+            this.btnRetestIPAddresses.Size = new System.Drawing.Size(171, 39);
             this.btnRetestIPAddresses.TabIndex = 3;
             this.btnRetestIPAddresses.Text = "Re-Test IP Addresses";
             this.btnRetestIPAddresses.UseVisualStyleBackColor = true;
@@ -888,11 +889,11 @@
             this.grpHandHeldScanner.Controls.Add(this.lblHHScn_Line);
             this.grpHandHeldScanner.Controls.Add(this.lblHHScn_IpAddr);
             this.grpHandHeldScanner.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpHandHeldScanner.Location = new System.Drawing.Point(13, 635);
+            this.grpHandHeldScanner.Location = new System.Drawing.Point(13, 662);
             this.grpHandHeldScanner.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.grpHandHeldScanner.Name = "grpHandHeldScanner";
             this.grpHandHeldScanner.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.grpHandHeldScanner.Size = new System.Drawing.Size(963, 232);
+            this.grpHandHeldScanner.Size = new System.Drawing.Size(933, 232);
             this.grpHandHeldScanner.TabIndex = 2;
             this.grpHandHeldScanner.TabStop = false;
             this.grpHandHeldScanner.Text = "Hand-Held Scanners";
@@ -1152,20 +1153,31 @@
             this.grpButtons.Controls.Add(this.btnClose);
             this.grpButtons.Controls.Add(this.btnRetestIPAddresses);
             this.grpButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.grpButtons.Location = new System.Drawing.Point(0, 867);
+            this.grpButtons.Location = new System.Drawing.Point(0, 897);
             this.grpButtons.Name = "grpButtons";
-            this.grpButtons.Size = new System.Drawing.Size(1111, 54);
+            this.grpButtons.Size = new System.Drawing.Size(948, 67);
             this.grpButtons.TabIndex = 4;
             this.grpButtons.TabStop = false;
             // 
+            // btnInitScanners
+            // 
+            this.btnInitScanners.Location = new System.Drawing.Point(348, 18);
+            this.btnInitScanners.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnInitScanners.Name = "btnInitScanners";
+            this.btnInitScanners.Size = new System.Drawing.Size(171, 39);
+            this.btnInitScanners.TabIndex = 6;
+            this.btnInitScanners.Text = "Init Scanners";
+            this.btnInitScanners.UseVisualStyleBackColor = true;
+            this.btnInitScanners.Click += new System.EventHandler(this.btnInitScanners_Click);
+            // 
             // btnStandAloneScanners
             // 
-            this.btnStandAloneScanners.Location = new System.Drawing.Point(207, 18);
+            this.btnStandAloneScanners.Location = new System.Drawing.Point(177, 18);
             this.btnStandAloneScanners.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnStandAloneScanners.Name = "btnStandAloneScanners";
-            this.btnStandAloneScanners.Size = new System.Drawing.Size(193, 34);
+            this.btnStandAloneScanners.Size = new System.Drawing.Size(171, 39);
             this.btnStandAloneScanners.TabIndex = 5;
-            this.btnStandAloneScanners.Text = "StandAloneScanners";
+            this.btnStandAloneScanners.Text = "Stand Alone Scanners";
             this.btnStandAloneScanners.UseVisualStyleBackColor = true;
             this.btnStandAloneScanners.Click += new System.EventHandler(this.btnStandAloneScanners_Click);
             // 
@@ -1173,31 +1185,34 @@
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(990, 18);
+            this.btnClose.Location = new System.Drawing.Point(800, 18);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(116, 34);
+            this.btnClose.Size = new System.Drawing.Size(148, 39);
             this.btnClose.TabIndex = 4;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // btnInitScanners
+            // lblTitle
             // 
-            this.btnInitScanners.Location = new System.Drawing.Point(408, 18);
-            this.btnInitScanners.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnInitScanners.Name = "btnInitScanners";
-            this.btnInitScanners.Size = new System.Drawing.Size(193, 34);
-            this.btnInitScanners.TabIndex = 6;
-            this.btnInitScanners.Text = "Init Scanners";
-            this.btnInitScanners.UseVisualStyleBackColor = true;
-            this.btnInitScanners.Click += new System.EventHandler(this.btnInitScanners_Click);
+            this.lblTitle.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.lblTitle.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblTitle.Font = new System.Drawing.Font("Palatino Linotype", 18F);
+            this.lblTitle.Location = new System.Drawing.Point(0, 0);
+            this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(948, 34);
+            this.lblTitle.TabIndex = 8;
+            this.lblTitle.Text = "Hardware";
+            this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmPlantHardware
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(1111, 921);
+            this.ClientSize = new System.Drawing.Size(948, 964);
+            this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.grpButtons);
             this.Controls.Add(this.grpHandHeldScanner);
             this.Controls.Add(this.grpInnerPackLabelPrinters);
@@ -1304,5 +1319,6 @@
         private System.Windows.Forms.Label lblHHScn_Condition;
         private System.Windows.Forms.Button btnStandAloneScanners;
         private System.Windows.Forms.Button btnInitScanners;
+        private System.Windows.Forms.Label lblTitle;
     }
 }
