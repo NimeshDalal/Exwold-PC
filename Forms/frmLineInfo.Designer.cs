@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCurrentPallet = new System.Windows.Forms.DataGridView();
             this.txtNotes = new System.Windows.Forms.RichTextBox();
             this.lblNotes = new System.Windows.Forms.Label();
@@ -50,8 +50,12 @@
             this.lblLine = new System.Windows.Forms.Label();
             this.grpDisplay = new System.Windows.Forms.GroupBox();
             this.tbPalletBatch = new System.Windows.Forms.TextBox();
+            this.tbInnersUnassigned = new System.Windows.Forms.TextBox();
+            this.tbInnersOnPallets = new System.Windows.Forms.TextBox();
             this.tbInnersScanned = new System.Windows.Forms.TextBox();
             this.tbInnersRqd = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblInnersScanned = new System.Windows.Forms.Label();
             this.lblInnersRqd = new System.Windows.Forms.Label();
             this.btnPackLabels = new System.Windows.Forms.Button();
@@ -62,20 +66,27 @@
             this.btnScannerStartStop = new System.Windows.Forms.Button();
             this.btnShowDetails = new System.Windows.Forms.Button();
             this.btnScannerStatus = new System.Windows.Forms.Button();
+            this.grpInnerCounts = new System.Windows.Forms.GroupBox();
+            this.grpOuterCounts = new System.Windows.Forms.GroupBox();
+            this.grpPalletInfo = new System.Windows.Forms.GroupBox();
+            this.lblScannerMessage = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentPallet)).BeginInit();
             this.grpDisplay.SuspendLayout();
             this.grpButtons.SuspendLayout();
             this.grpScanner.SuspendLayout();
+            this.grpInnerCounts.SuspendLayout();
+            this.grpOuterCounts.SuspendLayout();
+            this.grpPalletInfo.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvCurrentPallet
             // 
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvCurrentPallet.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dgvCurrentPallet.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvCurrentPallet.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCurrentPallet.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvCurrentPallet.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -83,24 +94,24 @@
             this.dgvCurrentPallet.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dgvCurrentPallet.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvCurrentPallet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCurrentPallet.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCurrentPallet.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgvCurrentPallet.Enabled = false;
             this.dgvCurrentPallet.EnableHeadersVisualStyles = false;
-            this.dgvCurrentPallet.Location = new System.Drawing.Point(225, 219);
+            this.dgvCurrentPallet.Location = new System.Drawing.Point(219, 39);
             this.dgvCurrentPallet.Name = "dgvCurrentPallet";
             this.dgvCurrentPallet.ReadOnly = true;
             this.dgvCurrentPallet.RowHeadersVisible = false;
             this.dgvCurrentPallet.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvCurrentPallet.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvCurrentPallet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCurrentPallet.Size = new System.Drawing.Size(223, 176);
+            this.dgvCurrentPallet.Size = new System.Drawing.Size(223, 151);
             this.dgvCurrentPallet.TabIndex = 78;
             // 
             // txtNotes
@@ -109,7 +120,7 @@
             this.txtNotes.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtNotes.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtNotes.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.txtNotes.Location = new System.Drawing.Point(9, 244);
+            this.txtNotes.Location = new System.Drawing.Point(9, 40);
             this.txtNotes.Name = "txtNotes";
             this.txtNotes.ReadOnly = true;
             this.txtNotes.Size = new System.Drawing.Size(191, 126);
@@ -122,7 +133,7 @@
             this.lblNotes.BackColor = System.Drawing.SystemColors.Control;
             this.lblNotes.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNotes.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblNotes.Location = new System.Drawing.Point(9, 219);
+            this.lblNotes.Location = new System.Drawing.Point(9, 15);
             this.lblNotes.Name = "lblNotes";
             this.lblNotes.Size = new System.Drawing.Size(49, 22);
             this.lblNotes.TabIndex = 76;
@@ -146,7 +157,7 @@
             this.lblStatusMessage.BackColor = System.Drawing.SystemColors.Control;
             this.lblStatusMessage.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatusMessage.ForeColor = System.Drawing.Color.Green;
-            this.lblStatusMessage.Location = new System.Drawing.Point(113, 373);
+            this.lblStatusMessage.Location = new System.Drawing.Point(113, 169);
             this.lblStatusMessage.Name = "lblStatusMessage";
             this.lblStatusMessage.Size = new System.Drawing.Size(87, 22);
             this.lblStatusMessage.TabIndex = 36;
@@ -158,7 +169,7 @@
             this.lblStatus.BackColor = System.Drawing.SystemColors.Control;
             this.lblStatus.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatus.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblStatus.Location = new System.Drawing.Point(9, 373);
+            this.lblStatus.Location = new System.Drawing.Point(9, 169);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(77, 22);
             this.lblStatus.TabIndex = 35;
@@ -170,7 +181,7 @@
             this.lblProductBatchesOnPallet.BackColor = System.Drawing.SystemColors.Control;
             this.lblProductBatchesOnPallet.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProductBatchesOnPallet.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblProductBatchesOnPallet.Location = new System.Drawing.Point(9, 197);
+            this.lblProductBatchesOnPallet.Location = new System.Drawing.Point(225, 14);
             this.lblProductBatchesOnPallet.Name = "lblProductBatchesOnPallet";
             this.lblProductBatchesOnPallet.Size = new System.Drawing.Size(197, 22);
             this.lblProductBatchesOnPallet.TabIndex = 31;
@@ -182,7 +193,7 @@
             this.txtTotalCartons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTotalCartons.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTotalCartons.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.txtTotalCartons.Location = new System.Drawing.Point(177, 133);
+            this.txtTotalCartons.Location = new System.Drawing.Point(171, 13);
             this.txtTotalCartons.Name = "txtTotalCartons";
             this.txtTotalCartons.ReadOnly = true;
             this.txtTotalCartons.Size = new System.Drawing.Size(37, 29);
@@ -193,10 +204,10 @@
             // lblTotalCartonsRqd
             // 
             this.lblTotalCartonsRqd.AutoSize = true;
-            this.lblTotalCartonsRqd.BackColor = System.Drawing.SystemColors.Control;
+            this.lblTotalCartonsRqd.BackColor = System.Drawing.Color.Transparent;
             this.lblTotalCartonsRqd.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalCartonsRqd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTotalCartonsRqd.Location = new System.Drawing.Point(9, 135);
+            this.lblTotalCartonsRqd.Location = new System.Drawing.Point(3, 15);
             this.lblTotalCartonsRqd.Name = "lblTotalCartonsRqd";
             this.lblTotalCartonsRqd.Size = new System.Drawing.Size(166, 22);
             this.lblTotalCartonsRqd.TabIndex = 29;
@@ -208,7 +219,7 @@
             this.txtCustomer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCustomer.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCustomer.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.txtCustomer.Location = new System.Drawing.Point(108, 47);
+            this.txtCustomer.Location = new System.Drawing.Point(108, 45);
             this.txtCustomer.Name = "txtCustomer";
             this.txtCustomer.ReadOnly = true;
             this.txtCustomer.Size = new System.Drawing.Size(137, 29);
@@ -221,7 +232,7 @@
             this.txtProdName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtProdName.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtProdName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.txtProdName.Location = new System.Drawing.Point(108, 79);
+            this.txtProdName.Location = new System.Drawing.Point(108, 75);
             this.txtProdName.Multiline = true;
             this.txtProdName.Name = "txtProdName";
             this.txtProdName.ReadOnly = true;
@@ -235,7 +246,7 @@
             this.txtCartonsOnPallet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCartonsOnPallet.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCartonsOnPallet.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.txtCartonsOnPallet.Location = new System.Drawing.Point(177, 165);
+            this.txtCartonsOnPallet.Location = new System.Drawing.Point(171, 44);
             this.txtCartonsOnPallet.Name = "txtCartonsOnPallet";
             this.txtCartonsOnPallet.ReadOnly = true;
             this.txtCartonsOnPallet.Size = new System.Drawing.Size(37, 29);
@@ -262,7 +273,7 @@
             this.lblProduct.BackColor = System.Drawing.SystemColors.Control;
             this.lblProduct.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblProduct.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblProduct.Location = new System.Drawing.Point(9, 81);
+            this.lblProduct.Location = new System.Drawing.Point(3, 77);
             this.lblProduct.Name = "lblProduct";
             this.lblProduct.Size = new System.Drawing.Size(64, 22);
             this.lblProduct.TabIndex = 22;
@@ -274,7 +285,7 @@
             this.lblSalesOrder.BackColor = System.Drawing.SystemColors.Control;
             this.lblSalesOrder.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSalesOrder.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblSalesOrder.Location = new System.Drawing.Point(9, 17);
+            this.lblSalesOrder.Location = new System.Drawing.Point(3, 17);
             this.lblSalesOrder.Name = "lblSalesOrder";
             this.lblSalesOrder.Size = new System.Drawing.Size(89, 22);
             this.lblSalesOrder.TabIndex = 21;
@@ -283,10 +294,10 @@
             // lblTotalCartonsScanned
             // 
             this.lblTotalCartonsScanned.AutoSize = true;
-            this.lblTotalCartonsScanned.BackColor = System.Drawing.SystemColors.Control;
+            this.lblTotalCartonsScanned.BackColor = System.Drawing.Color.Transparent;
             this.lblTotalCartonsScanned.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalCartonsScanned.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblTotalCartonsScanned.Location = new System.Drawing.Point(9, 167);
+            this.lblTotalCartonsScanned.Location = new System.Drawing.Point(3, 45);
             this.lblTotalCartonsScanned.Name = "lblTotalCartonsScanned";
             this.lblTotalCartonsScanned.Size = new System.Drawing.Size(163, 22);
             this.lblTotalCartonsScanned.TabIndex = 20;
@@ -298,7 +309,7 @@
             this.lblCustomer.BackColor = System.Drawing.SystemColors.Control;
             this.lblCustomer.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCustomer.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblCustomer.Location = new System.Drawing.Point(9, 49);
+            this.lblCustomer.Location = new System.Drawing.Point(3, 47);
             this.lblCustomer.Name = "lblCustomer";
             this.lblCustomer.Size = new System.Drawing.Size(76, 22);
             this.lblCustomer.TabIndex = 19;
@@ -319,31 +330,17 @@
             // 
             // grpDisplay
             // 
+            this.grpDisplay.Controls.Add(this.txtProdName);
             this.grpDisplay.Controls.Add(this.tbPalletBatch);
             this.grpDisplay.Controls.Add(this.txtPalletBatchNo);
-            this.grpDisplay.Controls.Add(this.lblTotalCartonsScanned);
             this.grpDisplay.Controls.Add(this.lblSalesOrder);
-            this.grpDisplay.Controls.Add(this.lblStatus);
-            this.grpDisplay.Controls.Add(this.lblStatusMessage);
             this.grpDisplay.Controls.Add(this.txtCustomer);
-            this.grpDisplay.Controls.Add(this.txtCartonsOnPallet);
-            this.grpDisplay.Controls.Add(this.tbInnersScanned);
-            this.grpDisplay.Controls.Add(this.tbInnersRqd);
-            this.grpDisplay.Controls.Add(this.txtTotalCartons);
-            this.grpDisplay.Controls.Add(this.dgvCurrentPallet);
-            this.grpDisplay.Controls.Add(this.txtProdName);
-            this.grpDisplay.Controls.Add(this.txtNotes);
-            this.grpDisplay.Controls.Add(this.lblProductBatchesOnPallet);
-            this.grpDisplay.Controls.Add(this.lblNotes);
-            this.grpDisplay.Controls.Add(this.lblInnersScanned);
-            this.grpDisplay.Controls.Add(this.lblInnersRqd);
-            this.grpDisplay.Controls.Add(this.lblTotalCartonsRqd);
             this.grpDisplay.Controls.Add(this.lblCustomer);
             this.grpDisplay.Controls.Add(this.lblProduct);
             this.grpDisplay.Dock = System.Windows.Forms.DockStyle.Top;
             this.grpDisplay.Location = new System.Drawing.Point(0, 32);
             this.grpDisplay.Name = "grpDisplay";
-            this.grpDisplay.Size = new System.Drawing.Size(454, 401);
+            this.grpDisplay.Size = new System.Drawing.Size(454, 127);
             this.grpDisplay.TabIndex = 80;
             this.grpDisplay.TabStop = false;
             // 
@@ -355,13 +352,41 @@
             this.tbPalletBatch.Size = new System.Drawing.Size(100, 29);
             this.tbPalletBatch.TabIndex = 79;
             // 
+            // tbInnersUnassigned
+            // 
+            this.tbInnersUnassigned.BackColor = System.Drawing.SystemColors.Control;
+            this.tbInnersUnassigned.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbInnersUnassigned.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbInnersUnassigned.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tbInnersUnassigned.Location = new System.Drawing.Point(191, 103);
+            this.tbInnersUnassigned.Name = "tbInnersUnassigned";
+            this.tbInnersUnassigned.ReadOnly = true;
+            this.tbInnersUnassigned.Size = new System.Drawing.Size(37, 29);
+            this.tbInnersUnassigned.TabIndex = 30;
+            this.tbInnersUnassigned.Text = " \r\n";
+            this.tbInnersUnassigned.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbInnersOnPallets
+            // 
+            this.tbInnersOnPallets.BackColor = System.Drawing.SystemColors.Control;
+            this.tbInnersOnPallets.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbInnersOnPallets.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbInnersOnPallets.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tbInnersOnPallets.Location = new System.Drawing.Point(191, 73);
+            this.tbInnersOnPallets.Name = "tbInnersOnPallets";
+            this.tbInnersOnPallets.ReadOnly = true;
+            this.tbInnersOnPallets.Size = new System.Drawing.Size(37, 29);
+            this.tbInnersOnPallets.TabIndex = 30;
+            this.tbInnersOnPallets.Text = " \r\n";
+            this.tbInnersOnPallets.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // tbInnersScanned
             // 
             this.tbInnersScanned.BackColor = System.Drawing.SystemColors.Control;
             this.tbInnersScanned.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbInnersScanned.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnersScanned.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tbInnersScanned.Location = new System.Drawing.Point(411, 165);
+            this.tbInnersScanned.Location = new System.Drawing.Point(191, 43);
             this.tbInnersScanned.Name = "tbInnersScanned";
             this.tbInnersScanned.ReadOnly = true;
             this.tbInnersScanned.Size = new System.Drawing.Size(37, 29);
@@ -375,7 +400,7 @@
             this.tbInnersRqd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbInnersRqd.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnersRqd.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tbInnersRqd.Location = new System.Drawing.Point(411, 133);
+            this.tbInnersRqd.Location = new System.Drawing.Point(191, 13);
             this.tbInnersRqd.Name = "tbInnersRqd";
             this.tbInnersRqd.ReadOnly = true;
             this.tbInnersRqd.Size = new System.Drawing.Size(37, 29);
@@ -383,13 +408,37 @@
             this.tbInnersRqd.Text = " \r\n";
             this.tbInnersRqd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(5, 108);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(174, 22);
+            this.label2.TabIndex = 29;
+            this.label2.Text = "Total Inners Unassigned";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Location = new System.Drawing.Point(5, 78);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(163, 22);
+            this.label1.TabIndex = 29;
+            this.label1.Text = "Total Inners On Pallets";
+            // 
             // lblInnersScanned
             // 
             this.lblInnersScanned.AutoSize = true;
-            this.lblInnersScanned.BackColor = System.Drawing.SystemColors.Control;
+            this.lblInnersScanned.BackColor = System.Drawing.Color.Transparent;
             this.lblInnersScanned.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnersScanned.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblInnersScanned.Location = new System.Drawing.Point(225, 170);
+            this.lblInnersScanned.Location = new System.Drawing.Point(5, 48);
             this.lblInnersScanned.Name = "lblInnersScanned";
             this.lblInnersScanned.Size = new System.Drawing.Size(152, 22);
             this.lblInnersScanned.TabIndex = 29;
@@ -398,10 +447,10 @@
             // lblInnersRqd
             // 
             this.lblInnersRqd.AutoSize = true;
-            this.lblInnersRqd.BackColor = System.Drawing.SystemColors.Control;
+            this.lblInnersRqd.BackColor = System.Drawing.Color.Transparent;
             this.lblInnersRqd.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnersRqd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblInnersRqd.Location = new System.Drawing.Point(225, 135);
+            this.lblInnersRqd.Location = new System.Drawing.Point(5, 15);
             this.lblInnersRqd.Name = "lblInnersRqd";
             this.lblInnersRqd.Size = new System.Drawing.Size(155, 22);
             this.lblInnersRqd.TabIndex = 29;
@@ -423,8 +472,9 @@
             // 
             this.grpButtons.Controls.Add(this.btnPalletDetails);
             this.grpButtons.Controls.Add(this.btnPackLabels);
+            this.grpButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpButtons.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpButtons.Location = new System.Drawing.Point(0, 529);
+            this.grpButtons.Location = new System.Drawing.Point(0, 623);
             this.grpButtons.Name = "grpButtons";
             this.grpButtons.Size = new System.Drawing.Size(454, 52);
             this.grpButtons.TabIndex = 81;
@@ -437,11 +487,11 @@
             this.grpScanner.Controls.Add(this.btnScannerStartStop);
             this.grpScanner.Controls.Add(this.btnShowDetails);
             this.grpScanner.Controls.Add(this.btnScannerStatus);
-            this.grpScanner.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grpScanner.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpScanner.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpScanner.Location = new System.Drawing.Point(0, 433);
+            this.grpScanner.Location = new System.Drawing.Point(0, 526);
             this.grpScanner.Name = "grpScanner";
-            this.grpScanner.Size = new System.Drawing.Size(454, 96);
+            this.grpScanner.Size = new System.Drawing.Size(454, 97);
             this.grpScanner.TabIndex = 82;
             this.grpScanner.TabStop = false;
             this.grpScanner.Text = "Scanner";
@@ -490,13 +540,71 @@
             this.btnScannerStatus.UseVisualStyleBackColor = true;
             this.btnScannerStatus.Click += new System.EventHandler(this.btnScannerStatus_Click);
             // 
+            // grpInnerCounts
+            // 
+            this.grpInnerCounts.BackColor = System.Drawing.Color.Yellow;
+            this.grpInnerCounts.Controls.Add(this.tbInnersRqd);
+            this.grpInnerCounts.Controls.Add(this.lblInnersRqd);
+            this.grpInnerCounts.Controls.Add(this.lblInnersScanned);
+            this.grpInnerCounts.Controls.Add(this.label1);
+            this.grpInnerCounts.Controls.Add(this.label2);
+            this.grpInnerCounts.Controls.Add(this.tbInnersScanned);
+            this.grpInnerCounts.Controls.Add(this.tbInnersOnPallets);
+            this.grpInnerCounts.Controls.Add(this.tbInnersUnassigned);
+            this.grpInnerCounts.Location = new System.Drawing.Point(220, 160);
+            this.grpInnerCounts.Name = "grpInnerCounts";
+            this.grpInnerCounts.Size = new System.Drawing.Size(234, 136);
+            this.grpInnerCounts.TabIndex = 80;
+            this.grpInnerCounts.TabStop = false;
+            // 
+            // grpOuterCounts
+            // 
+            this.grpOuterCounts.Controls.Add(this.txtTotalCartons);
+            this.grpOuterCounts.Controls.Add(this.lblTotalCartonsRqd);
+            this.grpOuterCounts.Controls.Add(this.txtCartonsOnPallet);
+            this.grpOuterCounts.Controls.Add(this.lblTotalCartonsScanned);
+            this.grpOuterCounts.Location = new System.Drawing.Point(0, 160);
+            this.grpOuterCounts.Name = "grpOuterCounts";
+            this.grpOuterCounts.Size = new System.Drawing.Size(216, 79);
+            this.grpOuterCounts.TabIndex = 81;
+            this.grpOuterCounts.TabStop = false;
+            // 
+            // grpPalletInfo
+            // 
+            this.grpPalletInfo.Controls.Add(this.txtNotes);
+            this.grpPalletInfo.Controls.Add(this.lblNotes);
+            this.grpPalletInfo.Controls.Add(this.lblProductBatchesOnPallet);
+            this.grpPalletInfo.Controls.Add(this.dgvCurrentPallet);
+            this.grpPalletInfo.Controls.Add(this.lblStatusMessage);
+            this.grpPalletInfo.Controls.Add(this.lblStatus);
+            this.grpPalletInfo.Location = new System.Drawing.Point(0, 319);
+            this.grpPalletInfo.Name = "grpPalletInfo";
+            this.grpPalletInfo.Size = new System.Drawing.Size(454, 200);
+            this.grpPalletInfo.TabIndex = 83;
+            this.grpPalletInfo.TabStop = false;
+            // 
+            // lblScannerMessage
+            // 
+            this.lblScannerMessage.BackColor = System.Drawing.Color.Yellow;
+            this.lblScannerMessage.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScannerMessage.ForeColor = System.Drawing.Color.Red;
+            this.lblScannerMessage.Location = new System.Drawing.Point(2, 242);
+            this.lblScannerMessage.Name = "lblScannerMessage";
+            this.lblScannerMessage.Size = new System.Drawing.Size(217, 54);
+            this.lblScannerMessage.TabIndex = 84;
+            this.lblScannerMessage.Text = "An Error message from the scanner";
+            // 
             // frmLineInfo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(454, 587);
+            this.ClientSize = new System.Drawing.Size(454, 675);
             this.ControlBox = false;
+            this.Controls.Add(this.lblScannerMessage);
+            this.Controls.Add(this.grpPalletInfo);
+            this.Controls.Add(this.grpOuterCounts);
             this.Controls.Add(this.grpScanner);
+            this.Controls.Add(this.grpInnerCounts);
             this.Controls.Add(this.grpButtons);
             this.Controls.Add(this.grpDisplay);
             this.Controls.Add(this.lblLine);
@@ -514,6 +622,12 @@
             this.grpButtons.ResumeLayout(false);
             this.grpScanner.ResumeLayout(false);
             this.grpScanner.PerformLayout();
+            this.grpInnerCounts.ResumeLayout(false);
+            this.grpInnerCounts.PerformLayout();
+            this.grpOuterCounts.ResumeLayout(false);
+            this.grpOuterCounts.PerformLayout();
+            this.grpPalletInfo.ResumeLayout(false);
+            this.grpPalletInfo.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -551,5 +665,13 @@
         private System.Windows.Forms.Button btnScannerStartStop;
         private System.Windows.Forms.TextBox tbScannerRunning;
         private System.Windows.Forms.Button btnShowDetails;
+        private System.Windows.Forms.TextBox tbInnersUnassigned;
+        private System.Windows.Forms.TextBox tbInnersOnPallets;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.GroupBox grpOuterCounts;
+        private System.Windows.Forms.GroupBox grpInnerCounts;
+        private System.Windows.Forms.GroupBox grpPalletInfo;
+        private System.Windows.Forms.Label lblScannerMessage;
     }
 }

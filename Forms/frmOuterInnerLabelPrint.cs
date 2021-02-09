@@ -30,6 +30,7 @@ namespace ITS.Exwold.Desktop
     internal partial class frmOuterInnerLabels : Form
     {
         #region Local variables
+        private const int cstDefaultPrintQty = 1;
         //Data variables
         private DataInterface.execFunction _db = null;
         private int _palletBatchUId = -1;
@@ -200,7 +201,7 @@ namespace ITS.Exwold.Desktop
                 {
                     tbOuterRemainingQty.Text = (_outerTotalLabels - _outerQtyPrinted).ToString();
                 }
-                tbOuterQtyToPrint.Text = "0";
+                tbOuterQtyToPrint.Text = cstDefaultPrintQty.ToString();
             }
             else
             {
@@ -249,7 +250,7 @@ namespace ITS.Exwold.Desktop
                 {
                     tbInnerRemainingQty.Text = (_innerTotalLabels - _innerQtyPrinted).ToString();
                 }
-                tbInnerQtyToPrint.Text = "0";
+                tbInnerQtyToPrint.Text = cstDefaultPrintQty.ToString();
             }
             else
             {
@@ -275,7 +276,7 @@ namespace ITS.Exwold.Desktop
         private async void btnInnerPrint_Click(object sender, EventArgs e)
         {
             InnerLabelData labelData = new InnerLabelData();
-            int iPrintQty = 0;
+            int iPrintQty = cstDefaultPrintQty;
             DateTime dtDoM = DateTime.MinValue;
             StringBuilder ErrorMsg = new StringBuilder();
             try
@@ -291,8 +292,8 @@ namespace ITS.Exwold.Desktop
             labelData.LabelPath = $"{Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)}\\labels\\InnerLabel.nlbl";
             labelData.PrintQty = iPrintQty;
 
-            labelData.GTIN = tbOuterGTIN.Text;
-            labelData.LotNo = tbOuterLotNumber.Text;
+            labelData.GTIN = tbInnerGTIN.Text;
+            labelData.LotNo = tbInnerLotNumber.Text;
             labelData.ProductionDate = dtDoM;
 
             if (labelData.CanPrintLabel(out ErrorMsg))
@@ -307,12 +308,12 @@ namespace ITS.Exwold.Desktop
                 //Write the updates to the database
                 _db.QueryParameters.Clear();
                 _db.QueryParameters.Add("InnerPackUId", _innerPackUId.ToString());
-                _db.QueryParameters.Add("AdditionalLabels", tbOuterQtyToPrint.Text);
+                _db.QueryParameters.Add("AdditionalLabels", tbInnerQtyToPrint.Text);
                 DataTable dt = await _db.executeSP("[GUI].[updateInnerLabelsPrinted]", true);
 
                 //Done with the printing - Need to set new parameters
 
-                tbInnerQtyToPrint.Text = "0";
+                tbInnerQtyToPrint.Text = cstDefaultPrintQty.ToString();
                 btnInnerPrint.Enabled = false;
             }
             else
@@ -324,7 +325,7 @@ namespace ITS.Exwold.Desktop
         private async void btnOuterPrint_Click(object sender, EventArgs e)
         {
             OuterLabelData labelData = new OuterLabelData();
-            int iPrintQty = 0;
+            int iPrintQty = cstDefaultPrintQty;
             DateTime dtDoM = DateTime.MinValue;
             StringBuilder ErrorMsg = new StringBuilder();
             try
@@ -361,7 +362,7 @@ namespace ITS.Exwold.Desktop
                 DataTable dt = await _db.executeSP("[GUI].[updateOuterLabelsPrinted]", true);
 
                 //Done with the printing - Need to set new parameters
-                tbOuterQtyToPrint.Text = "0";
+                tbOuterQtyToPrint.Text = cstDefaultPrintQty.ToString();
                 btnOuterPrint.Enabled = false;
             }
             else

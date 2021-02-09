@@ -94,6 +94,7 @@ namespace ITS.Exwold.Desktop
 #if DEBUG 
             FormBorderStyle = FormBorderStyle.Sizable;
             WindowState = FormWindowState.Normal;
+            StartPosition = FormStartPosition.CenterScreen;
             grpTesting.Visible = true;
             grpTesting.Visible = false;
 

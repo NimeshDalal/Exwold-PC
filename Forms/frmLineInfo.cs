@@ -32,18 +32,24 @@ namespace ITS.Exwold.Desktop
     {
         #region Constants
         private string _moduleName = MethodBase.GetCurrentMethod().DeclaringType.Name;
+        private readonly Color clrGood = Color.Transparent;
+        private readonly Color clrBad = Color.Yellow;
         #endregion
 
         private int _palletBatchID;
 
         #region Local variables
         //Data variables
-        private DataInterface.execFunction _db = null;
+        private readonly DataInterface.execFunction _db = null;
         private ExwoldConfigSettings _exwoldConfigSettings = null;
         private StandAloneScanner _scanner = null;
         private int _plantNumber = 0;
         private int _lineId = 0;
         private string _lineName = string.Empty;
+        private int _innersScannedTotal = 0;
+        private int _innersScannedOnPallet = 0;
+        private int _innersScannedUnassigned = 0;
+        private int _totalOutersScanned = 0;
         #endregion
         #region Properties
         public int LineId
@@ -63,11 +69,6 @@ namespace ITS.Exwold.Desktop
                 _lineName = value;
                 WriteTitle();
             }
-        }
-        internal DataInterface.execFunction DB
-        {
-            get { return _db; }
-            set { _db = value; }
         }
         internal StandAloneScanner Scanner
         {
@@ -101,11 +102,71 @@ namespace ITS.Exwold.Desktop
             }
             
         }
+
+        public void UpdateScannerUI(bool InnerScanGood, string InnerErrorMsg, bool OuterScanGood, string OuterErrorMsg)
+        {
+            if (InnerScanGood)
+            {
+                grpInnerCounts.BackColor = clrGood;
+                lblScannerMessage.Text = string.Empty;
+                lblScannerMessage.Visible = false;
+            }
+            else
+            {
+                grpInnerCounts.BackColor = clrBad;
+                lblScannerMessage.Text = InnerErrorMsg;
+                lblScannerMessage.Visible = true;
+                return;
+            }
+            if (OuterScanGood)
+            {
+                grpOuterCounts.BackColor = clrGood;
+                lblScannerMessage.Text =string.Empty;
+                lblScannerMessage.Visible = false;
+            }
+            else
+            {
+                grpOuterCounts.BackColor = clrBad;
+                lblScannerMessage.Text = OuterErrorMsg;
+                lblScannerMessage.Visible = true;
+            }
+        }
+        public async Task UpdateScannedCounts()
+        {
+            try
+            {
+                _db.QueryParameters.Clear();
+                _db.QueryParameters.Add("@PalletBatchUniqueNo", _palletBatchID.ToString());
+                DataTable dtScannedInners = await _db.executeSP("[GUI].[getScannedInners]", true);
+                if (dtScannedInners != null)
+                {
+                    _innersScannedTotal = dtScannedInners.AsEnumerable().Where(row => int.Parse(row["Valid"].ToString()) == 1).Sum(res => int.Parse(res["Total"].ToString()));
+                    _innersScannedOnPallet = dtScannedInners.AsEnumerable().Where(row => int.Parse(row["Valid"].ToString()) == 1 && row["PalletUniqueNo"] != DBNull.Value).Sum(res => (int)(res["Total"] == DBNull.Value ? 0 : int.Parse(res["Total"].ToString())));
+                    _innersScannedUnassigned = dtScannedInners.AsEnumerable().Where(row => int.Parse(row["Valid"].ToString()) == 1 && row["PalletUniqueNo"] == DBNull.Value).Sum(res => (int)(res["Total"] == DBNull.Value ? 0 : int.Parse(res["Total"].ToString())));
+
+                    tbInnersScanned.Text = _innersScannedTotal.ToString();
+                    tbInnersOnPallets.Text = _innersScannedOnPallet.ToString();
+                    tbInnersUnassigned.Text = _innersScannedUnassigned.ToString();
+                }
+            }
+            catch(Exception ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), ex.Message);
+                _innersScannedTotal = int.MinValue;
+                _innersScannedOnPallet = int.MinValue;
+                _innersScannedUnassigned = int.MinValue;
+                tbInnersScanned.Text = string.Empty;
+                tbInnersOnPallets.Text = string.Empty;
+                tbInnersUnassigned.Text = string.Empty;
+            }
+        }
+
         public async void GetLineData()
         {
             grpScanner.Enabled = (_scanner != null);
             CheckScannerStatus();
             SetScannerStartStop();
+
             //Collect the line information
             _db.QueryParameters.Clear();
             _db.QueryParameters.Add("status", ((int)Helper.BatchStatus.InProgress).ToString());
@@ -145,6 +206,10 @@ namespace ITS.Exwold.Desktop
                     btnPalletDetails.Visible = Helper.LineStatusVisibility[status];
                     btnPackLabels.Visible = Helper.LineStatusVisibility[status];
                     #endregion
+                    // Get the current number of inners scanned
+                    await UpdateScannedCounts();
+
+
 
                     //Get batches/carton number on Pallet
                     _db.QueryParameters.Clear();
@@ -177,8 +242,7 @@ namespace ITS.Exwold.Desktop
             fDetails.ViewBatch = true;
             fDetails.PalletBatchId = _palletBatchID;
             fDetails.ShowDialog();
-            GetLineData();
-            Program.Log.LogMessage(ThreadLog.DebugLevel.Message, _moduleName + " btnPalletDetails_Click(): " + "Edit Line 1");
+            GetLineData();           
         }
 
         private void frmLineInfo_Load(object sender, EventArgs e)

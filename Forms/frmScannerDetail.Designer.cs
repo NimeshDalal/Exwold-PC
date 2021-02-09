@@ -106,7 +106,7 @@ namespace ITS.Exwold.Desktop
             this.grpScannerStatus.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpScannerStatus.Name = "grpScannerStatus";
             this.grpScannerStatus.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grpScannerStatus.Size = new System.Drawing.Size(486, 321);
+            this.grpScannerStatus.Size = new System.Drawing.Size(482, 321);
             this.grpScannerStatus.TabIndex = 4;
             this.grpScannerStatus.TabStop = false;
             this.grpScannerStatus.Text = "Scanner Status";
@@ -135,7 +135,6 @@ namespace ITS.Exwold.Desktop
             this.btnScanningStop.TabIndex = 18;
             this.btnScanningStop.Text = "Stop Scanning";
             this.btnScanningStop.UseVisualStyleBackColor = true;
-            this.btnScanningStop.Visible = false;
             this.btnScanningStop.Click += new System.EventHandler(this.btnScanningStop_Click);
             // 
             // chkScanningSimulate
@@ -147,7 +146,6 @@ namespace ITS.Exwold.Desktop
             this.chkScanningSimulate.TabIndex = 17;
             this.chkScanningSimulate.Text = "Simulate";
             this.chkScanningSimulate.UseVisualStyleBackColor = true;
-            this.chkScanningSimulate.Visible = false;
             // 
             // lblLastProdDate
             // 
@@ -276,7 +274,6 @@ namespace ITS.Exwold.Desktop
             this.btnScanningSimulateMsg.TabIndex = 8;
             this.btnScanningSimulateMsg.Text = "Sim Message";
             this.btnScanningSimulateMsg.UseVisualStyleBackColor = true;
-            this.btnScanningSimulateMsg.Visible = false;
             this.btnScanningSimulateMsg.Click += new System.EventHandler(this.btnScanningSimulateMsg_Click);
             // 
             // btnScanningStart
@@ -289,7 +286,6 @@ namespace ITS.Exwold.Desktop
             this.btnScanningStart.TabIndex = 8;
             this.btnScanningStart.Text = "Start Scanning";
             this.btnScanningStart.UseVisualStyleBackColor = true;
-            this.btnScanningStart.Visible = false;
             this.btnScanningStart.Click += new System.EventHandler(this.btnScanningStart_Click);
             // 
             // button1
@@ -375,7 +371,7 @@ namespace ITS.Exwold.Desktop
             this.grpScannerDetails.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpScannerDetails.Name = "grpScannerDetails";
             this.grpScannerDetails.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grpScannerDetails.Size = new System.Drawing.Size(486, 109);
+            this.grpScannerDetails.Size = new System.Drawing.Size(482, 109);
             this.grpScannerDetails.TabIndex = 4;
             this.grpScannerDetails.TabStop = false;
             this.grpScannerDetails.Text = "Scanner Details";
@@ -490,7 +486,7 @@ namespace ITS.Exwold.Desktop
             this.grpOrderInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.grpOrderInfo.Name = "grpOrderInfo";
             this.grpOrderInfo.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.grpOrderInfo.Size = new System.Drawing.Size(486, 197);
+            this.grpOrderInfo.Size = new System.Drawing.Size(482, 197);
             this.grpOrderInfo.TabIndex = 4;
             this.grpOrderInfo.TabStop = false;
             this.grpOrderInfo.Text = "Order Info";
@@ -589,7 +585,7 @@ namespace ITS.Exwold.Desktop
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(486, 619);
+            this.ClientSize = new System.Drawing.Size(482, 615);
             this.ControlBox = false;
             this.Controls.Add(this.grpScannerStatus);
             this.Controls.Add(this.grpOrderInfo);

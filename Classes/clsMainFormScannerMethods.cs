@@ -28,12 +28,19 @@ namespace ITS.Exwold.Desktop
         #region local variables
         internal List<StandAloneScanner> Scanners = new List<StandAloneScanner>();
         public event EventHandler<ScannerDataEventArgs> ScannerDataParsed;
+
         #endregion
         #region Events
         protected virtual void OnScannerDataParsed(ScannerDataEventArgs args)
         {
             ScannerDataParsed?.Invoke(this, args);
         }
+        protected virtual void OnScannerGoodData(ScannerDataEventArgs args)
+        {
+            ScannerDataParsed?.Invoke(this, args);
+        }
+
+
         private void SubscribeScannerEvents(StandAloneScanner scanner, bool subscribe)
         {
             if (scanner.MX300N == null) return;
@@ -104,7 +111,7 @@ namespace ITS.Exwold.Desktop
         private async void InitScanner(StandAloneScannerConfigElement scannerConfig)
         {
             ScannerOrderData orderData = null;
-            StandAloneScanner scanner = new StandAloneScanner(scannerConfig, orderData);
+            StandAloneScanner scanner = null; // = new StandAloneScanner(scannerConfig, orderData);
             Console.WriteLine($"Id:{scannerConfig.Id}, Name:{scannerConfig.Name}");
             if (scannerConfig.Condition == "active")
             {
@@ -129,7 +136,7 @@ namespace ITS.Exwold.Desktop
                         orderData.ProductCode = dt.Rows[0]["ProductCode"].ToString();
                         orderData.ProdLineName = dt.Rows[0]["ProdLineName"].ToString();
                     }
-                    scanner.OrderData = orderData;
+                    scanner = new StandAloneScanner(scannerConfig, orderData);
                     Scanners.Add(scanner);
                     bool bScanning = await scanner.MX300N.TryStart();
                     try
@@ -178,16 +185,47 @@ namespace ITS.Exwold.Desktop
         }
         private async void mx300n_ScannerDataParsed(object sender, ScannerDataEventArgs args)
         {
-            Console.WriteLine($"Parsed Data:{args.ScannerId}\n{args.GTIN}\n{args.LotNo}\n{args.ProdDate}\n{args.ProdName}");
+            Console.WriteLine($"Parsed Data:{args.ScannerId}, {args.GTIN}, {args.LotNo}, {args.ProdDate}, {args.ProdName}");
             //Upload the data to the database
             _db.QueryParameters.Clear();
             _db.QueryParameters.Add("PalletBatchUniqueNo", args.PalletBatchUId.ToString());
-            _db.QueryParameters.Add("ProductionLineNo", args.ProductionLineUId.ToString());
-            _db.QueryParameters.Add("GTIN", args.GTIN);
-            _db.QueryParameters.Add("ProdDate", args.ProdDate);
             _db.QueryParameters.Add("LotNo", args.LotNo);
+            _db.QueryParameters.Add("ProductionLineNo", args.ProductionLineUId.ToString());
+            _db.QueryParameters.Add("InnerGTIN", args.GTIN);
+            _db.QueryParameters.Add("ProdDate", args.ProdDate);
             _db.QueryParameters.Add("Device", args.ScannerId);
-            DataTable dt = await _db.executeSP("[dbo].[spAcceptInnerPackData]", true);
+            DataTable dt = await _db.executeSP("[GUI].[spStoreInnerPackData]", true);
+
+            if (dt != null)
+            {
+                // If we have a valid UId returned and the data is valid, refresh the 
+                if (fLineInfo1 != null && fLineInfo1.LineId == args.ProductionLineUId)
+                {
+                    if (int.Parse(dt.Rows[0]["Valid"].ToString()) == 1)
+                    {
+                        await fLineInfo1.UpdateScannedCounts();
+                    }
+                    fLineInfo1.UpdateScannerUI(int.Parse(dt.Rows[0]["Valid"].ToString()) == 1, dt.Rows[0]["Message"].ToString(), true, string.Empty);
+                }
+                if (fLineInfo2 != null && fLineInfo2.LineId == args.ProductionLineUId)
+                {
+                    if (int.Parse(dt.Rows[0]["Valid"].ToString()) == 1)
+                    {
+                        await fLineInfo2.UpdateScannedCounts();
+                    }
+                    fLineInfo2.UpdateScannerUI(int.Parse(dt.Rows[0]["Valid"].ToString()) == 1, dt.Rows[0]["Message"].ToString(), true, string.Empty);
+                }
+                if (fLineInfo3 != null && fLineInfo3.LineId == args.ProductionLineUId)
+                {
+                    if (int.Parse(dt.Rows[0]["Valid"].ToString()) == 1)
+                    {
+                        await fLineInfo2.UpdateScannedCounts();
+                    }
+                    fLineInfo3.UpdateScannerUI(int.Parse(dt.Rows[0]["Valid"].ToString()) == 1, dt.Rows[0]["Message"].ToString(), true, string.Empty);
+                }
+
+
+            }
         }
 
         #endregion

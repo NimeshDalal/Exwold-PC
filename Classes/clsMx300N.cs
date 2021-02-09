@@ -863,19 +863,20 @@ namespace ITS.Exwold.Desktop
                 }
             }
 
-            //Raise the data parsed event
-            ScannerDataEventArgs dataArgs = new ScannerDataEventArgs
-            {
-                ScannedDate = DateTime.Now,
-                ScannerId = ScannerID,
-                GTIN = Identifiers.Find(ele => ele.Name == "GTIN").DataValue,
-                ProdDate = Identifiers.Find(ele => ele.Name == "ProdDate").DataValue,
-                LotNo = Identifiers.Find(ele => ele.Name == "LotNo").DataValue,
-                ProdName =
-                    Identifiers.Find(ele => ele.Name == "ProdName1").DataValue +
-                    Identifiers.Find(ele => ele.Name == "ProdName2").DataValue
-            };
-            OnScannerDataParsed(dataArgs);
+            //Mesh Removed
+            ////Raise the data parsed event
+            //ScannerDataEventArgs dataArgs = new ScannerDataEventArgs
+            //{
+            //    ScannedDate = DateTime.Now,
+            //    ScannerId = ScannerID,
+            //    GTIN = Identifiers.Find(ele => ele.Name == "GTIN").DataValue,
+            //    ProdDate = Identifiers.Find(ele => ele.Name == "ProdDate").DataValue,
+            //    LotNo = Identifiers.Find(ele => ele.Name == "LotNo").DataValue,
+            //    ProdName =
+            //        Identifiers.Find(ele => ele.Name == "ProdName1").DataValue +
+            //        Identifiers.Find(ele => ele.Name == "ProdName2").DataValue
+            //};
+            //OnScannerDataParsed(dataArgs);
 
             return Identifiers;
         }

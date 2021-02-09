@@ -431,11 +431,9 @@ E:\991018-Exwold\Exwold PC\bin\Debug\ExwoldDesktop.pdb
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmScannerDetail.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmScannerMsg.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\Desktop Application.csprojAssemblyReference.cache
-C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.AsyncTcp.AsyncTcpTest.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmLineInfo.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmPlantHardware.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmOuterInnerLabels.resources
-C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmProduct.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmSalesOrderDetails.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.MainStatusForm.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmScannerDetail.resources
@@ -444,8 +442,6 @@ C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmStandAloneScanners.re
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReportDisplay.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmAuditReports.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReprintPalletLabels.resources
-C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmReportSelector.resources
-C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmBatchDetails.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmPrint.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.Properties.Resources.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.UserAuthentication.resources
@@ -543,3 +539,7 @@ E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.Product.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.ReportSelector.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmSalesOrders.resources
 E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.AsyncTcp.frmAsyncTcpTest.resources
+C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.AsyncTcp.frmAsyncTcpTest.resources
+C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.Product.resources
+C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmSalesOrders.resources
+C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.ReportSelector.resources
