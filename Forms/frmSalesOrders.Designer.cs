@@ -74,6 +74,8 @@
             this.btnViewDetails = new System.Windows.Forms.Button();
             this.grpButtons = new System.Windows.Forms.GroupBox();
             this.btnClose = new System.Windows.Forms.Button();
+            this.tbLotNumber = new System.Windows.Forms.MaskedTextBox();
+            this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
             this.pnlTextBoxes.SuspendLayout();
             this.grpButtons.SuspendLayout();
@@ -84,6 +86,8 @@
             this.dgvOrders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvOrders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvOrders.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvOrders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOrders.Location = new System.Drawing.Point(3, 41);
             this.dgvOrders.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -99,6 +103,7 @@
             this.dgvOrders.Size = new System.Drawing.Size(1480, 616);
             this.dgvOrders.TabIndex = 0;
             this.dgvOrders.TabStop = false;
+            this.dgvOrders.DataSourceChanged += new System.EventHandler(this.dgvOrders_DataSourceChanged);
             // 
             // btnAdd
             // 
@@ -141,7 +146,9 @@
             this.pnlTextBoxes.Controls.Add(this.TextBoxPalletBatchNo);
             this.pnlTextBoxes.Controls.Add(this.tbGMID);
             this.pnlTextBoxes.Controls.Add(this.tbDetails);
+            this.pnlTextBoxes.Controls.Add(this.label11);
             this.pnlTextBoxes.Controls.Add(this.label8);
+            this.pnlTextBoxes.Controls.Add(this.tbLotNumber);
             this.pnlTextBoxes.Controls.Add(this.tbCustomer);
             this.pnlTextBoxes.Controls.Add(this.cboProdLine);
             this.pnlTextBoxes.Controls.Add(this.label14);
@@ -219,7 +226,7 @@
             // tbInnerPackStyle
             // 
             this.tbInnerPackStyle.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerPackStyle.Location = new System.Drawing.Point(153, 153);
+            this.tbInnerPackStyle.Location = new System.Drawing.Point(312, 154);
             this.tbInnerPackStyle.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbInnerPackStyle.Name = "tbInnerPackStyle";
             this.tbInnerPackStyle.Size = new System.Drawing.Size(39, 29);
@@ -229,7 +236,7 @@
             // tbClientCode
             // 
             this.tbClientCode.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbClientCode.Location = new System.Drawing.Point(112, 153);
+            this.tbClientCode.Location = new System.Drawing.Point(272, 154);
             this.tbClientCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbClientCode.Name = "tbClientCode";
             this.tbClientCode.Size = new System.Drawing.Size(39, 29);
@@ -239,7 +246,7 @@
             // tbCompanyCode
             // 
             this.tbCompanyCode.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCompanyCode.Location = new System.Drawing.Point(112, 123);
+            this.tbCompanyCode.Location = new System.Drawing.Point(112, 154);
             this.tbCompanyCode.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbCompanyCode.Name = "tbCompanyCode";
             this.tbCompanyCode.Size = new System.Drawing.Size(39, 29);
@@ -249,7 +256,7 @@
             // tbPlant
             // 
             this.tbPlant.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPlant.Location = new System.Drawing.Point(32, 123);
+            this.tbPlant.Location = new System.Drawing.Point(32, 154);
             this.tbPlant.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbPlant.Name = "tbPlant";
             this.tbPlant.Size = new System.Drawing.Size(39, 29);
@@ -259,7 +266,7 @@
             // tbDateOfManufacture
             // 
             this.tbDateOfManufacture.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDateOfManufacture.Location = new System.Drawing.Point(194, 153);
+            this.tbDateOfManufacture.Location = new System.Drawing.Point(352, 154);
             this.tbDateOfManufacture.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbDateOfManufacture.Name = "tbDateOfManufacture";
             this.tbDateOfManufacture.Size = new System.Drawing.Size(39, 29);
@@ -269,7 +276,7 @@
             // tbInnerGTIN
             // 
             this.tbInnerGTIN.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerGTIN.Location = new System.Drawing.Point(194, 123);
+            this.tbInnerGTIN.Location = new System.Drawing.Point(192, 154);
             this.tbInnerGTIN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbInnerGTIN.Name = "tbInnerGTIN";
             this.tbInnerGTIN.Size = new System.Drawing.Size(39, 29);
@@ -279,7 +286,7 @@
             // tbGTIN
             // 
             this.tbGTIN.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbGTIN.Location = new System.Drawing.Point(153, 123);
+            this.tbGTIN.Location = new System.Drawing.Point(152, 154);
             this.tbGTIN.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbGTIN.Name = "tbGTIN";
             this.tbGTIN.Size = new System.Drawing.Size(39, 29);
@@ -309,7 +316,7 @@
             // tbGMID
             // 
             this.tbGMID.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbGMID.Location = new System.Drawing.Point(72, 153);
+            this.tbGMID.Location = new System.Drawing.Point(232, 154);
             this.tbGMID.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbGMID.Name = "tbGMID";
             this.tbGMID.Size = new System.Drawing.Size(39, 29);
@@ -319,7 +326,7 @@
             // tbDetails
             // 
             this.tbDetails.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDetails.Location = new System.Drawing.Point(72, 123);
+            this.tbDetails.Location = new System.Drawing.Point(72, 154);
             this.tbDetails.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbDetails.Name = "tbDetails";
             this.tbDetails.Size = new System.Drawing.Size(39, 29);
@@ -638,6 +645,27 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // tbLotNumber
+            // 
+            this.tbLotNumber.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbLotNumber.Location = new System.Drawing.Point(132, 123);
+            this.tbLotNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbLotNumber.Name = "tbLotNumber";
+            this.tbLotNumber.ReadOnly = true;
+            this.tbLotNumber.Size = new System.Drawing.Size(230, 29);
+            this.tbLotNumber.TabIndex = 36;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(3, 126);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(95, 22);
+            this.label11.TabIndex = 37;
+            this.label11.Text = "Lot Number";
+            // 
             // frmSalesOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
@@ -714,6 +742,8 @@
         private System.Windows.Forms.MaskedTextBox tbInnerGTIN;
         private System.Windows.Forms.GroupBox grpButtons;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.MaskedTextBox tbLotNumber;
     }
 }
 

@@ -124,7 +124,7 @@
             this.label10.BackColor = System.Drawing.SystemColors.Control;
             this.label10.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.label10.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label10.Location = new System.Drawing.Point(318, 200);
+            this.label10.Location = new System.Drawing.Point(318, 222);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(135, 29);
@@ -137,7 +137,7 @@
             this.label11.BackColor = System.Drawing.SystemColors.Control;
             this.label11.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.label11.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label11.Location = new System.Drawing.Point(318, 291);
+            this.label11.Location = new System.Drawing.Point(318, 313);
             this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(191, 29);
@@ -230,7 +230,7 @@
             this.label4.BackColor = System.Drawing.SystemColors.Control;
             this.label4.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.label4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label4.Location = new System.Drawing.Point(3, 200);
+            this.label4.Location = new System.Drawing.Point(3, 222);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(135, 29);
@@ -256,7 +256,7 @@
             this.label14.BackColor = System.Drawing.SystemColors.Control;
             this.label14.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.label14.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label14.Location = new System.Drawing.Point(3, 291);
+            this.label14.Location = new System.Drawing.Point(3, 313);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(135, 29);
@@ -269,7 +269,7 @@
             this.label19.BackColor = System.Drawing.SystemColors.Control;
             this.label19.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.label19.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label19.Location = new System.Drawing.Point(3, 261);
+            this.label19.Location = new System.Drawing.Point(3, 283);
             this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(135, 29);
@@ -282,7 +282,7 @@
             this.label21.BackColor = System.Drawing.SystemColors.Control;
             this.label21.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.label21.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label21.Location = new System.Drawing.Point(3, 231);
+            this.label21.Location = new System.Drawing.Point(3, 253);
             this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(135, 29);
@@ -324,7 +324,7 @@
             this.textBoxInnersPerCart.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxInnersPerCart.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.textBoxInnersPerCart.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.textBoxInnersPerCart.Location = new System.Drawing.Point(139, 231);
+            this.textBoxInnersPerCart.Location = new System.Drawing.Point(139, 253);
             this.textBoxInnersPerCart.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.textBoxInnersPerCart.Name = "textBoxInnersPerCart";
             this.textBoxInnersPerCart.Size = new System.Drawing.Size(46, 29);
@@ -338,7 +338,7 @@
             this.textBoxCartsPerPallet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxCartsPerPallet.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.textBoxCartsPerPallet.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.textBoxCartsPerPallet.Location = new System.Drawing.Point(139, 200);
+            this.textBoxCartsPerPallet.Location = new System.Drawing.Point(139, 222);
             this.textBoxCartsPerPallet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.textBoxCartsPerPallet.Name = "textBoxCartsPerPallet";
             this.textBoxCartsPerPallet.Size = new System.Drawing.Size(46, 29);
@@ -355,7 +355,7 @@
             this.textBoxProdName.Location = new System.Drawing.Point(139, 170);
             this.textBoxProdName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.textBoxProdName.Name = "textBoxProdName";
-            this.textBoxProdName.Size = new System.Drawing.Size(177, 29);
+            this.textBoxProdName.Size = new System.Drawing.Size(370, 51);
             this.textBoxProdName.TabIndex = 94;
             this.textBoxProdName.Text = "...";
             this.textBoxProdName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -380,7 +380,7 @@
             this.comboBoxInnerUnit.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.comboBoxInnerUnit.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.comboBoxInnerUnit.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.comboBoxInnerUnit.Location = new System.Drawing.Point(187, 261);
+            this.comboBoxInnerUnit.Location = new System.Drawing.Point(187, 283);
             this.comboBoxInnerUnit.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.comboBoxInnerUnit.Name = "comboBoxInnerUnit";
             this.comboBoxInnerUnit.Size = new System.Drawing.Size(46, 29);
@@ -394,7 +394,7 @@
             this.textBoxInnerWeight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxInnerWeight.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.textBoxInnerWeight.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.textBoxInnerWeight.Location = new System.Drawing.Point(139, 261);
+            this.textBoxInnerWeight.Location = new System.Drawing.Point(139, 283);
             this.textBoxInnerWeight.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.textBoxInnerWeight.Name = "textBoxInnerWeight";
             this.textBoxInnerWeight.Size = new System.Drawing.Size(46, 29);
@@ -408,7 +408,7 @@
             this.textBoxTotalCartons.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxTotalCartons.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.textBoxTotalCartons.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.textBoxTotalCartons.Location = new System.Drawing.Point(463, 200);
+            this.textBoxTotalCartons.Location = new System.Drawing.Point(463, 222);
             this.textBoxTotalCartons.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.textBoxTotalCartons.Name = "textBoxTotalCartons";
             this.textBoxTotalCartons.Size = new System.Drawing.Size(46, 29);
@@ -435,7 +435,7 @@
             this.label7.BackColor = System.Drawing.SystemColors.Control;
             this.label7.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.label7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label7.Location = new System.Drawing.Point(318, 231);
+            this.label7.Location = new System.Drawing.Point(318, 253);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(135, 29);
@@ -449,7 +449,7 @@
             this.textBoxCartonsOnPallet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxCartonsOnPallet.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.textBoxCartonsOnPallet.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.textBoxCartonsOnPallet.Location = new System.Drawing.Point(463, 231);
+            this.textBoxCartonsOnPallet.Location = new System.Drawing.Point(463, 253);
             this.textBoxCartonsOnPallet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.textBoxCartonsOnPallet.Name = "textBoxCartonsOnPallet";
             this.textBoxCartonsOnPallet.Size = new System.Drawing.Size(46, 29);
@@ -473,7 +473,7 @@
             this.dgvCartonsOnPallet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCartonsOnPallet.Enabled = false;
             this.dgvCartonsOnPallet.EnableHeadersVisualStyles = false;
-            this.dgvCartonsOnPallet.Location = new System.Drawing.Point(318, 321);
+            this.dgvCartonsOnPallet.Location = new System.Drawing.Point(318, 343);
             this.dgvCartonsOnPallet.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.dgvCartonsOnPallet.MultiSelect = false;
             this.dgvCartonsOnPallet.Name = "dgvCartonsOnPallet";
@@ -489,7 +489,7 @@
             // 
             this.textBoxNotes.BackColor = System.Drawing.SystemColors.Window;
             this.textBoxNotes.Font = new System.Drawing.Font("Palatino Linotype", 12F);
-            this.textBoxNotes.Location = new System.Drawing.Point(3, 321);
+            this.textBoxNotes.Location = new System.Drawing.Point(3, 343);
             this.textBoxNotes.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxNotes.Name = "textBoxNotes";
             this.textBoxNotes.ReadOnly = true;
@@ -503,7 +503,7 @@
             this.textBoxCurrentPallet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBoxCurrentPallet.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.textBoxCurrentPallet.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.textBoxCurrentPallet.Location = new System.Drawing.Point(463, 261);
+            this.textBoxCurrentPallet.Location = new System.Drawing.Point(463, 283);
             this.textBoxCurrentPallet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.textBoxCurrentPallet.Name = "textBoxCurrentPallet";
             this.textBoxCurrentPallet.Size = new System.Drawing.Size(46, 29);
@@ -516,7 +516,7 @@
             this.label12.BackColor = System.Drawing.SystemColors.Control;
             this.label12.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.label12.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.label12.Location = new System.Drawing.Point(318, 261);
+            this.label12.Location = new System.Drawing.Point(318, 283);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(135, 29);
@@ -530,7 +530,7 @@
             this.grpButtons.Controls.Add(this.buttonEdit);
             this.grpButtons.Controls.Add(this.btnClose);
             this.grpButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.grpButtons.Location = new System.Drawing.Point(0, 460);
+            this.grpButtons.Location = new System.Drawing.Point(0, 485);
             this.grpButtons.Name = "grpButtons";
             this.grpButtons.Size = new System.Drawing.Size(513, 67);
             this.grpButtons.TabIndex = 109;
@@ -541,7 +541,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(513, 527);
+            this.ClientSize = new System.Drawing.Size(513, 552);
             this.ControlBox = false;
             this.Controls.Add(this.grpButtons);
             this.Controls.Add(this.textBoxCurrentPallet);

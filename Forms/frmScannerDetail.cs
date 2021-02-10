@@ -95,7 +95,7 @@ namespace ITS.Exwold.Desktop
                 ProdName = tbLastProdName.Text
             };
 
-
+            fscannercMsg.TopMost = true;
             fscannercMsg.ShowDialog();
             _simulationMessage = fscannercMsg.SimMsg;
             fscannercMsg.Dispose();
@@ -110,6 +110,7 @@ namespace ITS.Exwold.Desktop
             {
                 _scanner.MX300N.StartScanningSimulation(_scanner.ConfigData.ScanRate);
             }
+            btnScanningStop.Enabled = true;
         }
 
         private void mx300n_DataParsed(object sender, ScannerDataEventArgs args)
@@ -128,6 +129,7 @@ namespace ITS.Exwold.Desktop
             {
                 _scanner.MX300N.StopScanning();
             }
+            btnScanningStop.Enabled = false;
         }
 
         private void btnClose_Click(object sender, EventArgs e)

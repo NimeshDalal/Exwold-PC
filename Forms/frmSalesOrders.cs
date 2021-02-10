@@ -86,6 +86,9 @@ namespace ITS.Exwold.Desktop
                     {
                         ProductID = int.Parse(CreateBatchID);
                         btnAdd.PerformClick();
+
+                        setEnableCRUDButtons(false);
+
                         //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Form Loaded from Create Pallet Batch Button");
                         break;
                     }
@@ -112,6 +115,7 @@ namespace ITS.Exwold.Desktop
                 case "Create":  //means dialogue has been opened from products page, continue
                     {
                         UpdateType = "Add";
+                        
                         this.pnlTextBoxes.Visible = true;
                         this.btnChangeStatus.Visible = false;
                         btnSave.Text = "Save";
@@ -125,6 +129,7 @@ namespace ITS.Exwold.Desktop
                         tbCustomer.Text = dtCurrentProduct.Rows[0]["Customer"].ToString();
                         tbDetails.Text = dtCurrentProduct.Rows[0]["CustomerDetails"].ToString();
                         tbPlant.Text = dtCurrentProduct.Rows[0]["Plant"].ToString();
+                        tbLotNumber.Text = dtCurrentProduct.Rows[0]["LotNumber"].ToString();
 
                         tbGMID.Text = dtCurrentProduct.Rows[0]["GMID"].ToString();
                         tbProdCode.Text = dtCurrentProduct.Rows[0]["ProductCode"].ToString();
@@ -145,6 +150,11 @@ namespace ITS.Exwold.Desktop
                         cboStatus.Visible = false;
                         lblStatus.Visible = false;
                         CreateBatchFlag = "Reset";
+
+                        Helper.dgvColumnVisible(dgvOrders, "ProductUniqueNo", false);
+                        Helper.dgvColumnVisible(dgvOrders, "Plant", false);
+
+
                         break;
                     }
                 default:  //no product has been selected, send user to products page
@@ -153,7 +163,7 @@ namespace ITS.Exwold.Desktop
                         Product fProduct = new Product(_exwoldConfigSettings, _db);
                         fProduct.DB = _db;
                         fProduct.ShowDialog();
-                        Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Open Product Form from Pallet Form Add button");
+                        //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Open Product Form from Pallet Form Add button");
                         break;
                     }
             }
@@ -260,6 +270,8 @@ namespace ITS.Exwold.Desktop
 
                 cboStatus.Enabled = false;
                 EnableTextBoxes(false);
+                MessageBox.Show("This order has now been set for deletion\nPlease select the 'Delete' button to confirm it's removal",
+                    "Deletion Flag Set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
@@ -458,13 +470,13 @@ namespace ITS.Exwold.Desktop
 
                 case "Delete":
                    
-                    DialogResult dialogResult = MessageBox.Show("Are you sure?", "This will permanently delete the selected Sales Order.", MessageBoxButtons.YesNo);
+                    DialogResult dialogResult = MessageBox.Show("This will permanently delete the selected Sales Order.", "Are you sure?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
                     if (dialogResult == DialogResult.Yes)
                     { 
                         _db.QueryParameters.Clear();
                         _db.QueryParameters.Add("@PalletBatchUId", BatchID.ToString());
-                        DataTable dtResult = await _db.executeSP("deletePalletBatch", true);
+                        DataTable dtResult = await _db.executeSP("[GUI].[deletePalletBatch]", true);
                         int.TryParse(dtResult.Rows[0].ItemArray[0].ToString(), out NoRows);
 
                         // Re-Populate Datagrid                        
@@ -476,16 +488,16 @@ namespace ITS.Exwold.Desktop
                         {
                             case 1:
                                 {
-                                MessageBox.Show("Sales Order deleted.");
+                                MessageBox.Show("Sales Order deleted.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Deleted " + TextBoxPalletBatchNo.Text);
                                 break;
                             }
 
                             default:
                                 {
-                                MessageBox.Show("Failed to Delete Sales Order - Please check data and try again.");
-                                //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Batch Delete Failed " + TextBoxPalletBatchNo.Text);
-                                break;
+                                MessageBox.Show("Failed to Delete Sales Order\nPlease check data and try again.", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Batch Delete Failed " + TextBoxPalletBatchNo.Text);
+                                    break;
                             }
                         }
                     }
@@ -496,6 +508,7 @@ namespace ITS.Exwold.Desktop
                     }
                     break;
             }
+            getIncompleteOrders();
         }
         /// <summary>
         /// Opens Pallet details form for highlighted batch
@@ -538,6 +551,7 @@ namespace ITS.Exwold.Desktop
             cboStatus.Enabled = true;
             cboStatus.Visible = true;
             lblStatus.Visible = true;
+            setEnableCRUDButtons(true);
             this.btnChangeStatus.Visible = true;
             CreateBatchFlag = "Reset";
             getIncompleteOrders();
@@ -546,6 +560,13 @@ namespace ITS.Exwold.Desktop
         #endregion
 
         #region Local helpers methods
+        private void setEnableCRUDButtons(bool Status)
+        {
+            btnAdd.Enabled = Status;
+            btnEdit.Enabled = Status;
+            btnDelete.Enabled = Status;
+        }
+
         private async void getIncompleteOrders()
         {
             _db.QueryParameters.Clear();
@@ -554,6 +575,8 @@ namespace ITS.Exwold.Desktop
             DataTable dt = await _db.executeSP("[GUI].[getIncompleteOrders]", true);
             dgvOrders.DataSource = dt;
             Helper.dgvColumnVisible(dgvOrders, "PalletBatchUniqueNo", false);
+            Helper.dgvColumnVisible(dgvOrders, "PalletBatchNo", false);
+            Helper.dgvColumnVisible(dgvOrders, "Plant", false);
             Helper.dgvColumnVisible(dgvOrders, "ProductUniqueNo", false);
             Helper.dgvColumnVisible(dgvOrders, "DateOfManufacture", false);
             Helper.dgvColumnVisible(dgvOrders, "OuterLabelsRqd", false);
@@ -593,6 +616,7 @@ namespace ITS.Exwold.Desktop
             tbCustomer.Enabled = enabled;
             tbProdCode.Enabled = enabled;
             tbProdName.Enabled = enabled;
+            tbLotNumber.Enabled = enabled;
             tbTotalCartons.Enabled = enabled;
             tbCartonsPerPallet.Enabled = enabled;
             tbInnersPerCart.Enabled = enabled;
@@ -617,6 +641,16 @@ namespace ITS.Exwold.Desktop
         {
             this.Close();
             this.Dispose();
+        }
+
+        private void dgvOrders_DataSourceChanged(object sender, EventArgs e)
+        {
+            if (dgvOrders.Columns.Count > 0)
+            {
+                dgvOrders.AutoResizeColumns();
+                dgvOrders.Columns[0].Frozen = true;
+
+            }
         }
     }
 }

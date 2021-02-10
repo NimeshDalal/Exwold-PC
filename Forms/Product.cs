@@ -68,6 +68,8 @@ namespace ITS.Exwold.Desktop
             tbInnerGTIN.MaxLength = 14;
             tbNotes.MaxLength = 1000;
             tbGMID.MaxLength = 20;
+            tbLotNumber.MaxLength = 20;
+
         }
         private void button_close_Click(object sender, EventArgs e)
         {
@@ -157,6 +159,7 @@ namespace ITS.Exwold.Desktop
                 tbCustomer.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "Customer").ToString();
                 tbDetails.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "CustomerDetails").ToString();
                 tbGMID.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "GMID").ToString();
+                tbLotNumber.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "LotNumber").ToString();
                 tbProdCode.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "ProductCode").ToString();
                 tbProdName.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "ProductName").ToString();
                 tbDefaultCartons.Text = Helper.dgvGetCurrentRowColumn(dgvAllProducts, "DefaultTotalNoOfCartons").ToString();
@@ -213,6 +216,7 @@ namespace ITS.Exwold.Desktop
             tbCustomer.Enabled = status;
             tbDetails.Enabled = status;
             tbGMID.Enabled = status;
+            tbLotNumber.Enabled = status;
             tbProdCode.Enabled = status;
             tbProdName.Enabled = status;
             tbDefaultCartons.Enabled = status;
@@ -245,6 +249,10 @@ namespace ITS.Exwold.Desktop
                 DoAdd = "no";
             }
             if (await chk.ValidateInput(tbGMID.Text, "GMID", "", 20))
+            {
+                DoAdd = "no";
+            }
+            if (await chk.ValidateInput(tbLotNumber.Text, "Lot Number", "", 20))
             {
                 DoAdd = "no";
             }
@@ -358,11 +366,12 @@ namespace ITS.Exwold.Desktop
                 case "Add":
                     //Validate input values and add data to Config.Products table
                     if (DoAdd != "no")
-                    {
+                    {                        
                         _db.QueryParameters.Clear();
                         _db.QueryParameters.Add("Customer", tbCustomer.Text);
                         _db.QueryParameters.Add("CustDetails", tbDetails.Text);
                         _db.QueryParameters.Add("GMID", tbGMID.Text);
+                        _db.QueryParameters.Add("LotNo", tbLotNumber.Text);
                         _db.QueryParameters.Add("ProdCode", tbProdCode.Text);
                         _db.QueryParameters.Add("ProdName", tbProdName.Text);
                         _db.QueryParameters.Add("Plant", _exwoldConfigSettings.PlantID.ToString());
@@ -423,7 +432,8 @@ namespace ITS.Exwold.Desktop
                     break;
 
                 case "Delete":
-                    DialogResult dialogResult = MessageBox.Show("Are you sure?", "This will permanently delete the selected product.", MessageBoxButtons.YesNo);
+                    DialogResult dialogResult = MessageBox.Show("This will permanently delete the selected product.", "Are you sure?", 
+                        MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
 
                     if (dialogResult == DialogResult.Yes)
                     {
@@ -432,7 +442,7 @@ namespace ITS.Exwold.Desktop
                         _db.QueryParameters.Add("ProductId", ProductID.ToString());
                         _db.QueryParameters.Add("ChangeAction", "Delete");
                         DataTable dtRtn = await _db.executeSP("[GUI].[updateProductChangeAction]", true);
-                        NoRows = dtRtn.Rows[0].Field<int>("RowsUpdated");
+                        int.TryParse(dtRtn.Rows[0]["RowsUpdated"].ToString(), out NoRows);
 
                         getProducts();
 
@@ -440,7 +450,7 @@ namespace ITS.Exwold.Desktop
                         {
                             case 1:
                                 {
-                                    MessageBox.Show("Product Deleted");
+                                    MessageBox.Show("Product Deleted", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                     break;
                                 }
                             default:
@@ -467,7 +477,8 @@ namespace ITS.Exwold.Desktop
                 UpdateType = "Delete";
                 this.pnlProductDetails.Visible = true;
                 this.btnSave.Text = "Delete";
-
+                MessageBox.Show("This product has now been set for deletion\nPlease select the 'Delete' button to confirm it's removal",
+                    "Deletion Flag Set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 copyDGVProductToTextBoxes();
                 enableTextFields(false);
             }
@@ -505,13 +516,19 @@ namespace ITS.Exwold.Desktop
             }
             else
             {
-                btnCreateSalesOrder.Text = $"{_cstbtnSalesOrderText} for\n{Helper.dgvGetCurrentRowColumn(dgvAllProducts, "ProductCode").ToString()}";
+                btnCreateSalesOrder.Text = $"{_cstbtnSalesOrderText} for {Helper.dgvGetCurrentRowColumn(dgvAllProducts, "ProductCode").ToString()}";
                 btnCreateSalesOrder.Enabled = true;
                 btnEdit.Enabled = true;
                 btnDelete.Enabled = true;
             }
         }
 
-
+        private void dgvAllProducts_DataSourceChanged(object sender, EventArgs e)
+        {
+            if (dgvAllProducts.Columns.Count > 2)
+            {
+                dgvAllProducts.Columns[1].Frozen = true;
+            }
+        }
     }
 }

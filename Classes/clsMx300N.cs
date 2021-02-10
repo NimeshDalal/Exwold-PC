@@ -207,10 +207,18 @@ namespace ITS.Exwold.Desktop
         /// <summary>
         /// Cancels the scanning of the tcp socket 
         /// </summary>
-        public void StopScanning()
+        public bool StopScanning()
         {
-            _cancelToken = _cancelSource.Token;
-            _cancelSource.Cancel();
+            if (_cancelSource == null)
+            {
+                return false;
+            }
+            else
+            {
+                _cancelToken = _cancelSource.Token;
+                _cancelSource.Cancel();
+                return true;
+            }
         }       
         /// <summary>
         /// Begin the scanning of the tcp port at the rate specified

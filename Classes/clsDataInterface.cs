@@ -149,7 +149,8 @@ namespace ITS.Exwold.Desktop.DataInterface
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{Logging.ThisMethod()}\nError converting the result to a data set\n{strJSON}\n{ex.Message}");
+                Console.WriteLine($"{Logging.ThisMethod()}\nError converting the result to a data set\n{spName}\n{strJSON}\n{ex.Message}");
+                //MessageBox.Show($"{Logging.ThisMethod()}\nError converting the result to a data set\n{spName}\n{strJSON}\n{ex.Message}");
             }
             return dsResult;
         }

@@ -129,17 +129,14 @@ namespace ITS.Exwold.Desktop
                                 //Get the data
                                 DataTable dtPalletLabels = await _db.executeSP("[GUI].[getPalletLabelByPalletId]", true);
 
-                                //dtCurrentPallet = await _db.executeSP("[GUI].[getPalletLabelByPalletId]", true);
-
                                 dgvCartonsOnPallet.DataSource = dtPalletLabels;
                                 foreach (DataGridViewColumn col in dgvCartonsOnPallet.Columns)
                                 {
                                     if (col.Name.ToUpper() == "MaterialBatchNo".ToUpper())
                                     {
                                         col.Visible = true;
-                                        col.HeaderText = "Lot Number";
+                                        col.HeaderText = "Order No";
                                         col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                                        
                                     }
                                     else
                                     {

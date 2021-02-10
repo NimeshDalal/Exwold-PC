@@ -166,6 +166,7 @@ namespace ITS.Exwold.Desktop
             grpScanner.Enabled = (_scanner != null);
             CheckScannerStatus();
             SetScannerStartStop();
+            UpdateScannerUI(true, string.Empty, true, string.Empty);
 
             //Collect the line information
             _db.QueryParameters.Clear();
@@ -187,12 +188,14 @@ namespace ITS.Exwold.Desktop
                 case 1:
                     _palletBatchID = Convert.ToInt32(dtPalletBatch.Rows[0].Field<Int64>("PalletBatchUniqueNo"));
 
-                    tbPalletBatch.Text = _palletBatchID.ToString();
-                    txtPalletBatchNo.Text = dtPalletBatch.Rows[0]["PalletBatchNo"].ToString();
-                    txtCustomer.Text = dtPalletBatch.Rows[0]["Customer"].ToString();
-                    txtProdName.Text = dtPalletBatch.Rows[0]["ProductName"].ToString();
-                    txtTotalCartons.Text = dtPalletBatch.Rows[0]["TotalNoOfCartons"].ToString();
-                    txtNotes.Text = dtPalletBatch.Rows[0]["AdditionalInfo"].ToString();
+                    tbPalletBatchUId.Text = _palletBatchID.ToString();
+                    tbProductUId.Text = dtPalletBatch.Rows[0]["ProductUniqueNo"].ToString();
+                    tbPalletBatchNo.Text = dtPalletBatch.Rows[0]["PalletBatchNo"].ToString();
+                    tbLotNo.Text = dtPalletBatch.Rows[0]["LotNumber"].ToString();
+                    tbCustomer.Text = dtPalletBatch.Rows[0]["Customer"].ToString();
+                    tbProdName.Text = dtPalletBatch.Rows[0]["ProductName"].ToString();
+                    tbTotalCartons.Text = dtPalletBatch.Rows[0]["TotalNoOfCartons"].ToString();
+                    tbNotes.Text = dtPalletBatch.Rows[0]["AdditionalInfo"].ToString();
                     tbInnersRqd.Text = dtPalletBatch.Rows[0]["InnerLabelsRqd"].ToString();
                     
 

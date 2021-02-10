@@ -31,6 +31,9 @@ namespace ITS.Exwold.Desktop
     {
         #region Local variables
         private const int cstDefaultPrintQty = 1;
+        private const string cstDoMFormat = "dd-MMM-yyyy";
+        private const int _maxPrintInnerLabels = 100;
+        private const int _maxPrintOuterLabels = 50;
         //Data variables
         private DataInterface.execFunction _db = null;
         private int _palletBatchUId = -1;
@@ -191,7 +194,8 @@ namespace ITS.Exwold.Desktop
 
                 tbOuterProductName.Text = dt.Rows[0]["ProductName"].ToString();
                 tbOuterGTIN.Text = dt.Rows[0]["GTIN"].ToString();
-                tbOuterDateOfMan.Text = dt.Rows[0]["ManufactureDate"].ToString();
+                DateTime dtDoM = DateTime.Parse(dt.Rows[0]["ManufactureDate"].ToString());
+                tbOuterDateOfMan.Text = dtDoM.ToString(cstDoMFormat);
                 tbOuterLotNumber.Text = dt.Rows[0]["LotNo"].ToString();
                 tbOuterTotalLabels.Text = dt.Rows[0]["LabelsRequired"].ToString();
                 tbOuterQtyPrinted.Text = dt.Rows[0]["LabelsPrinted"].ToString();
@@ -200,8 +204,14 @@ namespace ITS.Exwold.Desktop
                     int.TryParse(dt.Rows[0]["LabelsPrinted"].ToString(), out _outerQtyPrinted))
                 {
                     tbOuterRemainingQty.Text = (_outerTotalLabels - _outerQtyPrinted).ToString();
+                    tbOuterQtyToPrint.Text = (_outerTotalLabels - _outerQtyPrinted).ToString();
                 }
-                tbOuterQtyToPrint.Text = cstDefaultPrintQty.ToString();
+                else
+                {
+                    tbOuterRemainingQty.Text = cstDefaultPrintQty.ToString();
+                    tbOuterQtyToPrint.Text = cstDefaultPrintQty.ToString();
+                }
+                ValidateQtyToPrint(tbOuterQtyToPrint, _maxPrintOuterLabels, btnOuterPrint);
             }
             else
             {
@@ -240,7 +250,8 @@ namespace ITS.Exwold.Desktop
                 tbInnerUId.Text = dt.Rows[0]["UId"].ToString();
                 tbInnerCustomer.Text = dt.Rows[0]["Customer"].ToString();
                 tbInnerGTIN.Text = dt.Rows[0]["GTIN"].ToString();
-                tbInnerDateOfMan.Text = dt.Rows[0]["ManufactureDate"].ToString();
+                DateTime dtDoM = DateTime.Parse(dt.Rows[0]["ManufactureDate"].ToString());
+                tbInnerDateOfMan.Text = dtDoM.ToString(cstDoMFormat);
                 tbInnerLotNumber.Text = dt.Rows[0]["LotNo"].ToString();
                 tbInnerTotalLabels.Text = dt.Rows[0]["LabelsRequired"].ToString();
                 tbInnerQtyPrinted.Text = dt.Rows[0]["LabelsPrinted"].ToString();
@@ -249,8 +260,14 @@ namespace ITS.Exwold.Desktop
                     int.TryParse(dt.Rows[0]["LabelsPrinted"].ToString(), out _innerQtyPrinted))
                 {
                     tbInnerRemainingQty.Text = (_innerTotalLabels - _innerQtyPrinted).ToString();
+                    tbInnerQtyToPrint.Text = (_innerTotalLabels - _innerQtyPrinted).ToString();
                 }
-                tbInnerQtyToPrint.Text = cstDefaultPrintQty.ToString();
+                else
+                {
+                    tbInnerRemainingQty.Text = cstDefaultPrintQty.ToString();
+                    tbInnerQtyToPrint.Text = cstDefaultPrintQty.ToString();
+                }
+                ValidateQtyToPrint(tbInnerQtyToPrint, _maxPrintInnerLabels, btnInnerPrint);
             }
             else
             {

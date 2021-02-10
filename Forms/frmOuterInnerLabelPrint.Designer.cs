@@ -140,6 +140,7 @@
             // 
             // tbOuterCustomer
             // 
+            this.tbOuterCustomer.BackColor = System.Drawing.SystemColors.Control;
             this.tbOuterCustomer.Enabled = false;
             this.tbOuterCustomer.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbOuterCustomer.Location = new System.Drawing.Point(169, 23);
@@ -282,6 +283,7 @@
             this.grpOuterLabelData.Controls.Add(this.tbOuterLotNumber);
             this.grpOuterLabelData.Controls.Add(this.tbOuterProductName);
             this.grpOuterLabelData.Controls.Add(this.tbOuterDateOfMan);
+            this.grpOuterLabelData.Controls.Add(this.tbOuterUId);
             this.grpOuterLabelData.Controls.Add(this.lblOuterDateOfMan);
             this.grpOuterLabelData.Controls.Add(this.tbOuterGTIN);
             this.grpOuterLabelData.Controls.Add(this.lblOuterGTIN);
@@ -321,6 +323,7 @@
             // 
             // tbOuterLotNumber
             // 
+            this.tbOuterLotNumber.BackColor = System.Drawing.SystemColors.Control;
             this.tbOuterLotNumber.Enabled = false;
             this.tbOuterLotNumber.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbOuterLotNumber.Location = new System.Drawing.Point(169, 82);
@@ -332,6 +335,7 @@
             // 
             // tbOuterProductName
             // 
+            this.tbOuterProductName.BackColor = System.Drawing.SystemColors.Control;
             this.tbOuterProductName.Enabled = false;
             this.tbOuterProductName.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbOuterProductName.Location = new System.Drawing.Point(169, 113);
@@ -344,6 +348,7 @@
             // 
             // tbOuterDateOfMan
             // 
+            this.tbOuterDateOfMan.BackColor = System.Drawing.SystemColors.Control;
             this.tbOuterDateOfMan.Enabled = false;
             this.tbOuterDateOfMan.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbOuterDateOfMan.Location = new System.Drawing.Point(169, 52);
@@ -368,6 +373,7 @@
             // 
             // tbOuterGTIN
             // 
+            this.tbOuterGTIN.BackColor = System.Drawing.SystemColors.Control;
             this.tbOuterGTIN.Enabled = false;
             this.tbOuterGTIN.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbOuterGTIN.Location = new System.Drawing.Point(169, 22);
@@ -397,7 +403,6 @@
             this.grpOuterPrintInfo.Controls.Add(this.tbOuterRemainingQty);
             this.grpOuterPrintInfo.Controls.Add(this.tbOuterQtyPrinted);
             this.grpOuterPrintInfo.Controls.Add(this.lblOuterTotalLabels);
-            this.grpOuterPrintInfo.Controls.Add(this.tbOuterUId);
             this.grpOuterPrintInfo.Controls.Add(this.tbOuterTotalLabels);
             this.grpOuterPrintInfo.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpOuterPrintInfo.Location = new System.Drawing.Point(3, 241);
@@ -468,11 +473,11 @@
             // tbOuterUId
             // 
             this.tbOuterUId.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbOuterUId.Location = new System.Drawing.Point(307, 22);
+            this.tbOuterUId.Location = new System.Drawing.Point(8, 22);
             this.tbOuterUId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbOuterUId.MaxLength = 40;
             this.tbOuterUId.Name = "tbOuterUId";
-            this.tbOuterUId.Size = new System.Drawing.Size(110, 29);
+            this.tbOuterUId.Size = new System.Drawing.Size(73, 29);
             this.tbOuterUId.TabIndex = 69;
             this.tbOuterUId.Visible = false;
             // 
@@ -535,6 +540,7 @@
             // 
             // tbInnerCustomer
             // 
+            this.tbInnerCustomer.BackColor = System.Drawing.SystemColors.Control;
             this.tbInnerCustomer.Enabled = false;
             this.tbInnerCustomer.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnerCustomer.Location = new System.Drawing.Point(169, 23);
@@ -697,7 +703,6 @@
             this.grpInnerPrintInfo.Controls.Add(this.tbInnerRemainingQty);
             this.grpInnerPrintInfo.Controls.Add(this.tbInnerQtyPrinted);
             this.grpInnerPrintInfo.Controls.Add(this.lblInnerTotalLabels);
-            this.grpInnerPrintInfo.Controls.Add(this.tbInnerUId);
             this.grpInnerPrintInfo.Controls.Add(this.tbInnerTotalLabels);
             this.grpInnerPrintInfo.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpInnerPrintInfo.Location = new System.Drawing.Point(3, 241);
@@ -768,11 +773,11 @@
             // tbInnerUId
             // 
             this.tbInnerUId.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbInnerUId.Location = new System.Drawing.Point(307, 22);
+            this.tbInnerUId.Location = new System.Drawing.Point(9, 22);
             this.tbInnerUId.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbInnerUId.MaxLength = 40;
             this.tbInnerUId.Name = "tbInnerUId";
-            this.tbInnerUId.Size = new System.Drawing.Size(110, 29);
+            this.tbInnerUId.Size = new System.Drawing.Size(68, 29);
             this.tbInnerUId.TabIndex = 78;
             this.tbInnerUId.Visible = false;
             // 
@@ -794,6 +799,7 @@
             this.grpInnerLabelData.Controls.Add(this.tbInnerProductName);
             this.grpInnerLabelData.Controls.Add(this.tbInnerDateOfMan);
             this.grpInnerLabelData.Controls.Add(this.lblInnerDateOfMan);
+            this.grpInnerLabelData.Controls.Add(this.tbInnerUId);
             this.grpInnerLabelData.Controls.Add(this.tbInnerGTIN);
             this.grpInnerLabelData.Controls.Add(this.lblInnerGTIN);
             this.grpInnerLabelData.Controls.Add(this.lblInnerProductName);
@@ -820,6 +826,7 @@
             // 
             // tbInnerLotNumber
             // 
+            this.tbInnerLotNumber.BackColor = System.Drawing.SystemColors.Control;
             this.tbInnerLotNumber.Enabled = false;
             this.tbInnerLotNumber.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnerLotNumber.Location = new System.Drawing.Point(169, 82);
@@ -832,6 +839,7 @@
             // 
             // tbInnerProductName
             // 
+            this.tbInnerProductName.BackColor = System.Drawing.SystemColors.Control;
             this.tbInnerProductName.Enabled = false;
             this.tbInnerProductName.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnerProductName.Location = new System.Drawing.Point(169, 112);
@@ -845,6 +853,7 @@
             // 
             // tbInnerDateOfMan
             // 
+            this.tbInnerDateOfMan.BackColor = System.Drawing.SystemColors.Control;
             this.tbInnerDateOfMan.Enabled = false;
             this.tbInnerDateOfMan.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnerDateOfMan.Location = new System.Drawing.Point(169, 52);
@@ -870,6 +879,7 @@
             // 
             // tbInnerGTIN
             // 
+            this.tbInnerGTIN.BackColor = System.Drawing.SystemColors.Control;
             this.tbInnerGTIN.Enabled = false;
             this.tbInnerGTIN.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnerGTIN.Location = new System.Drawing.Point(169, 22);

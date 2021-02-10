@@ -4,7 +4,7 @@
   <description asmv2:iconFile="Resources\ExwoldApp.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="ExwoldDesktop" version="2.0.7709.43137" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="ExwoldDesktop" version="2.0.7711.1686" language="neutral" processorArchitecture="msil" />
     <commandLine file="ExwoldDesktop.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExwoldDesktop.exe" size="1419264">
-      <assemblyIdentity name="ExwoldDesktop" version="2.0.7709.43137" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExwoldDesktop.exe" size="1429504">
+      <assemblyIdentity name="ExwoldDesktop" version="2.0.7711.1686" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>xY1KPGQLPRowxnY9Rvw148Sh1PWCFnRRFdHdAR+Jty0=</dsig:DigestValue>
+        <dsig:DigestValue>KtsN8/vyRAAMZO0MHObIrUW9sura3Ky3RfIde3hTTMU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -750,13 +750,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="ExwoldDesktop.exe.config" size="7316">
+  <file name="ExwoldDesktop.exe.config" size="7320">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Ul7tMR5Jial8D+ybUp0E+Ht2lasSJmEm4w1OWiwiDEw=</dsig:DigestValue>
+      <dsig:DigestValue>xiKyZ+UBxR3T1MD6DsBuqoXemPxLe2fFtjfSZtIQPXQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\ExwoldApp.ico" size="169226">
