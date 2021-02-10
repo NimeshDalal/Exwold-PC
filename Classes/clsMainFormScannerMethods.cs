@@ -188,30 +188,21 @@ namespace ITS.Exwold.Desktop
             string batchChangeUser = args.ScannerId;
             Console.WriteLine($"Parsed Data:{args.ScannerId}, {args.GTIN}, {args.LotNo}, {args.ProdDate}, {args.ProdName}");
             try
-            { 
-                // Get the change user for this batch (this is the scanner).  Need it to be able to update execute the insert
-                _db.QueryParameters.Clear();
-                _db.QueryParameters.Add("PalletBatchId", args.PalletBatchUId.ToString());
-                DataTable dtPalletBatch = await _db.executeSP("[GUI].[getPalletBatchById]", true);
-                if (dtPalletBatch != null)
+            {
+                batchChangeUser = await Helper.ChangeUser(_db, args.PalletBatchUId.ToString());
+                batchChangeUser = string.IsNullOrEmpty(batchChangeUser) ? batchChangeUser : args.ScannerId;
+
+                if (string.IsNullOrEmpty(args.ProdName))
                 {
-                    batchChangeUser = dtPalletBatch.Rows[0]["ChangeUser"].ToString();
+                    //This is an Inner scan
+                    await ProcessInnerPackScan(args, batchChangeUser);
                 }
-                if (dtPalletBatch != null)
+                else
                 {
-                    batchChangeUser = dtPalletBatch.Rows[0]["ChangeUser"].ToString();
+                    await ProcessOuterPackScan(args, batchChangeUser);
                 }
             }
             catch { }
-            if (string.IsNullOrEmpty(args.ProdName))
-            {
-                //This is an Inner scan
-                await ProcessInnerPackScan(args, batchChangeUser);
-            }
-            else
-            {
-                await ProcessOuterPackScan(args, batchChangeUser);
-            }
         }
 
         /// <summary>
@@ -230,7 +221,7 @@ namespace ITS.Exwold.Desktop
                 _db.QueryParameters.Add("InnerGTIN", scannedData.GTIN);
                 _db.QueryParameters.Add("ProdDate", scannedData.ProdDate);
                 _db.QueryParameters.Add("Device", scannedData.ScannerId);
-                DataTable dt = await _db.executeSP("[GUI].[spStoreInnerPackData]", true);
+                DataTable dt = await _db.executeSP("[GUI].[spAcceptInnerPack]", true);
 
                 if (dt != null)
                 {
@@ -272,31 +263,6 @@ namespace ITS.Exwold.Desktop
             int CurrentPalletUId = 0;
             try
             {
-                // Get the current PalletUId for this batch
-                _db.QueryParameters.Clear();
-                _db.QueryParameters.Add("PalletBatchId", scannedData.PalletBatchUId.ToString());
-                DataTable dtPallet = await _db.executeSP("[GUI].[getPalletByPalletBatchId]", true);
-                if (dtPallet != null)
-                {
-                    //We have a pallet, so get the one which is not complete (the end date is null)
-                    try
-                    {
-                        CurrentPalletUId = dtPallet.AsEnumerable().Where(p => p["EndDt"] == DBNull.Value).First().Field<int>("PalletUniqueNo");
-                        //DataRow drPallet = dtPallet.AsEnumerable().Where(p => p["EndDt"] == DBNull.Value).First();
-                        //if (drPallet != null) { }
-                    }
-                    catch { /* Use the default if we get an error */ }
-                }
-            }
-            catch (Exception ex)
-            {
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex.Message);
-            }
-            /*
-             * Now we have the palletUId, accept the outer
-             */
-            try
-            {
                 _db.QueryParameters.Clear();
                 _db.QueryParameters.Add("PalletBatchUniqueNo", scannedData.PalletBatchUId.ToString());
                 _db.QueryParameters.Add("GTIN", scannedData.GTIN);
@@ -305,17 +271,28 @@ namespace ITS.Exwold.Desktop
                 _db.QueryParameters.Add("PalletUniqueNo", CurrentPalletUId.ToString());
                 _db.QueryParameters.Add("Device", string.IsNullOrEmpty(ChangeUser) ? scannedData.ScannerId : ChangeUser);
                 DataTable dtAcceptCartonData = await _db.executeSP("[dbo].[spAcceptCartonData]", true);
-
-                //Refresh the screen
+                if (dtAcceptCartonData != null)
+                {
+                    // If we have a valid UId returned and the data is valid, refresh the 
+                    if (fLineInfo1 != null && fLineInfo1.LineId == scannedData.ProductionLineUId)
+                    {
+                        await fLineInfo1.UpdateScannedCounts();
+                    }
+                    if (fLineInfo2 != null && fLineInfo2.LineId == scannedData.ProductionLineUId)
+                    {
+                        await fLineInfo2.UpdateScannedCounts();
+                    }
+                    if (fLineInfo3 != null && fLineInfo3.LineId == scannedData.ProductionLineUId)
+                    { 
+                        await fLineInfo3.UpdateScannedCounts();
+                    }
+                }
             }
             catch (Exception ex)
             {
                 Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex.Message);
             }
-
             #endregion
-
-
         }
     }
     internal class ScannerOrderData

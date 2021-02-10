@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Data;
 
 namespace ITS.Exwold.Desktop
 {
@@ -199,6 +200,24 @@ namespace ITS.Exwold.Desktop
             {
                 return null;
             }
+        }
+
+        internal async static Task<string> ChangeUser(DataInterface.execFunction db, string PalletBatchUId)
+        {
+            string ChangeUser = string.Empty;
+            try
+            {
+                // Get the change user for this batch (this is the scanner).  Need it to be able to update execute the insert
+                db.QueryParameters.Clear();
+                db.QueryParameters.Add("PalletBatchId", PalletBatchUId);
+                DataTable dtPalletBatch = await db.executeSP("[GUI].[getPalletBatchById]", true);
+                if (dtPalletBatch != null)
+                {
+                    ChangeUser = dtPalletBatch.Rows[0]["ChangeUser"].ToString();
+                }
+            }
+            catch { }
+            return ChangeUser;
         }
 
         #endregion
