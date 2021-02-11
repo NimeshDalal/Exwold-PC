@@ -18,15 +18,11 @@ namespace ITS.Exwold.Desktop
 
         #region Local variables
         //Data variables
-        private DataInterface.execFunction _db = null;
+        private readonly DataInterface.execFunction _db = null;
         #endregion
 
         #region Properties
-        internal DataInterface.execFunction DB
-        {
-            get { return _db; }
-            set { _db = value; }
-        }
+
         #endregion
         
         private async Task<DataTable> checkIncompleteOrders(string PalletBatchNo)

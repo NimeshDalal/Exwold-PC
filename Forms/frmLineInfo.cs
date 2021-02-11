@@ -89,7 +89,8 @@ namespace ITS.Exwold.Desktop
             {
                 _exwoldConfigSettings = null;
             }
-            
+            lblCartonMessage.Text = string.Empty;
+            lblStatusMessage.Text = string.Empty;
         }
         #endregion
         #region Public Methods
@@ -131,14 +132,37 @@ namespace ITS.Exwold.Desktop
                 if (dsPackInfo != null && dsPackInfo.Tables[0].Rows.Count > 0)
                 {
                     Console.WriteLine(dsPackInfo.Tables[0].Rows.Count);
+                    int InnersUnassigned = int.Parse(dsPackInfo.Tables[0].Rows[0]["InnersUnassigned"].ToString());
+                    int InnersPerCarton = int.Parse(dsPackInfo.Tables[0].Rows[0]["InnerPacksPerCarton"].ToString());
+                    int CartonsScanned = int.Parse(dsPackInfo.Tables[0].Rows[0]["NumCartons"].ToString());
+                    int CartonsPerPallet = 0;
+                    int CurrentPalletUId = 0;
+                    try
+                    {
+                        if (dsPackInfo.Tables[1].Rows.Count > 0)
+                        {
+                            int.TryParse(dsPackInfo.Tables[1].Rows[0]["CartonsPerPallet"].ToString(), out CartonsPerPallet);
+                            int.TryParse(dsPackInfo.Tables[1].Rows[0]["PalletuniqueNo"].ToString(), out CurrentPalletUId);
+                        }
+                    }
+                    catch { }
+                    tbCartonsPerPallet.Text = CartonsPerPallet.ToString();
+                    tbCurrentPalletUId.Text = CurrentPalletUId.ToString();
+                    tbInnersPerCarton.Text = InnersPerCarton.ToString();
+
+
 
                     tbOutersRqd.Text = dsPackInfo.Tables[0].Rows[0]["RequiredTotalOuters"].ToString();
-                    tbOutersScanned.Text = dsPackInfo.Tables[0].Rows[0]["NumCartons"].ToString();
+                    tbOutersScanned.Text = CartonsScanned.ToString();
                     tbInnersInOuters.Text = dsPackInfo.Tables[0].Rows[0]["InnersInCarton"].ToString();
                     tbInnersRqd.Text = dsPackInfo.Tables[0].Rows[0]["RequiredTotalInners"].ToString();
                     tbInnersScanned.Text = dsPackInfo.Tables[0].Rows[0]["NumInners"].ToString();
                     tbInnersOnPallets.Text = dsPackInfo.Tables[0].Rows[0]["InnersOnPallet"].ToString();
                     tbInnersUnassigned.Text = dsPackInfo.Tables[0].Rows[0]["InnersUnassigned"].ToString();
+
+                    //Write the screen message
+                    lblCartonMessage.Text = (CartonsPerPallet > 0 && CartonsScanned >= CartonsPerPallet) ? "Pallet is ready for scanning" : string.Empty;
+                    lblCartonMessage.Text = (string.IsNullOrEmpty(lblCartonMessage.Text) && InnersPerCarton > 0 && InnersUnassigned >= InnersPerCarton) ? "Carton is for ready scanning" : string.Empty;
 
                     //dtScannedInners.AsEnumerable().Where(row => int.Parse(row["Valid"].ToString()) == 1).Sum(res => int.Parse(res["Total"].ToString()));
                     //dtScannedInners.AsEnumerable().Where(row => int.Parse(row["Valid"].ToString()) == 1 && row["PalletUniqueNo"] != DBNull.Value).Sum(res => (int)(res["Total"] == DBNull.Value ? 0 : int.Parse(res["Total"].ToString())));
@@ -153,6 +177,7 @@ namespace ITS.Exwold.Desktop
                     tbInnersScanned.Text = string.Empty;
                     tbInnersOnPallets.Text = string.Empty;
                     tbInnersUnassigned.Text = string.Empty;
+                    lblCartonMessage.Text = string.Empty;
                 }
             }
             catch(Exception ex)
@@ -165,6 +190,7 @@ namespace ITS.Exwold.Desktop
                 tbInnersScanned.Text = string.Empty;
                 tbInnersOnPallets.Text = string.Empty;
                 tbInnersUnassigned.Text = string.Empty;
+                lblCartonMessage.Text = string.Empty;
             }
         }
         public async void GetLineData()
@@ -218,29 +244,30 @@ namespace ITS.Exwold.Desktop
                     // Get the current number of inners scanned
                     await UpdateScannedCounts();
 
-                    //Get batches/carton number on Pallet
-                    _db.QueryParameters.Clear();
-                    _db.QueryParameters.Add("@PalletBatchId", _palletBatchID.ToString());
-                    DataTable dtCurrentPallet = await _db.executeSP("[GUI].[getCartonsOnPallet]", true);
+                    //Mesh
+                    ////Get batches/carton number on Pallet
+                    //_db.QueryParameters.Clear();
+                    //_db.QueryParameters.Add("@PalletBatchId", _palletBatchID.ToString());
+                    //DataTable dtCurrentPallet = await _db.executeSP("[GUI].[getCartonsOnPallet]", true);
 
                     _db.QueryParameters.Clear();
                     _db.QueryParameters.Add("@PalletBatchId", _palletBatchID.ToString());
                     DataTable dtCurrentPalletView = await _db.executeSP("[GUI].[getBatchesOnPallet]", true);
 
-                    if (dtCurrentPallet.Rows.Count > 0)
+                    if (dtCurrentPalletView != null && dtCurrentPalletView.Rows.Count > 0)
                     {
                         try
                         {
                             this.dgvCurrentPallet.DataSource = dtCurrentPalletView;
-                            object sumObject;
-                            sumObject = dtCurrentPallet.Compute("Sum(CartonsOnPallet)", "");
-                            tbOutersScanned.Text = sumObject.ToString();
+                            //object sumObject;
+                            //sumObject = dtCurrentPallet.Compute("Sum(CartonsOnPallet)", "");
+                            //tbOutersScanned.Text = sumObject.ToString();
                         }
-                        catch { tbOutersScanned.Text = string.Empty; }
+                        catch { }//tbOutersScanned.Text = string.Empty; }
                     }
                     break;
                 default:
-                    lblStatusMessage.Text = "ERROR \r\nMultiple batches \r\nidentified";
+                    lblStatusMessage.Text = "ERROR Multiple batches identified";
                     lblStatusMessage.ForeColor = System.Drawing.Color.Red;
                     btnPalletDetails.Visible = false;
                     break;
@@ -372,5 +399,7 @@ namespace ITS.Exwold.Desktop
             fscannerDetail.Dispose();
         }
         #endregion
+
+
     }
 }

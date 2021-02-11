@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvCurrentPallet = new System.Windows.Forms.DataGridView();
             this.tbNotes = new System.Windows.Forms.RichTextBox();
             this.lblNotes = new System.Windows.Forms.Label();
@@ -71,10 +71,17 @@
             this.btnScannerStatus = new System.Windows.Forms.Button();
             this.grpInnerCounts = new System.Windows.Forms.GroupBox();
             this.grpOuterCounts = new System.Windows.Forms.GroupBox();
+            this.lblCartonMessage = new System.Windows.Forms.Label();
             this.tbInnersInOuters = new System.Windows.Forms.TextBox();
             this.lblInnersInOuters = new System.Windows.Forms.Label();
             this.grpPalletInfo = new System.Windows.Forms.GroupBox();
             this.tbProductUId = new System.Windows.Forms.TextBox();
+            this.tbCartonsPerPallet = new System.Windows.Forms.TextBox();
+            this.tbCurrentPalletUId = new System.Windows.Forms.TextBox();
+            this.tbInnersPerCarton = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.grpPackTotals = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentPallet)).BeginInit();
             this.grpDisplay.SuspendLayout();
             this.grpButtons.SuspendLayout();
@@ -82,16 +89,17 @@
             this.grpInnerCounts.SuspendLayout();
             this.grpOuterCounts.SuspendLayout();
             this.grpPalletInfo.SuspendLayout();
+            this.grpPackTotals.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvCurrentPallet
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvCurrentPallet.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dgvCurrentPallet.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvCurrentPallet.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvCurrentPallet.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvCurrentPallet.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -99,14 +107,14 @@
             this.dgvCurrentPallet.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dgvCurrentPallet.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvCurrentPallet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvCurrentPallet.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvCurrentPallet.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvCurrentPallet.Enabled = false;
             this.dgvCurrentPallet.EnableHeadersVisualStyles = false;
             this.dgvCurrentPallet.Location = new System.Drawing.Point(219, 39);
@@ -116,7 +124,7 @@
             this.dgvCurrentPallet.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Palatino Linotype", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvCurrentPallet.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvCurrentPallet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCurrentPallet.Size = new System.Drawing.Size(223, 151);
+            this.dgvCurrentPallet.Size = new System.Drawing.Size(223, 127);
             this.dgvCurrentPallet.TabIndex = 78;
             // 
             // tbNotes
@@ -158,13 +166,12 @@
             // 
             // lblStatusMessage
             // 
-            this.lblStatusMessage.AutoSize = true;
             this.lblStatusMessage.BackColor = System.Drawing.SystemColors.Control;
             this.lblStatusMessage.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblStatusMessage.ForeColor = System.Drawing.Color.Green;
-            this.lblStatusMessage.Location = new System.Drawing.Point(113, 169);
+            this.lblStatusMessage.Location = new System.Drawing.Point(61, 169);
             this.lblStatusMessage.Name = "lblStatusMessage";
-            this.lblStatusMessage.Size = new System.Drawing.Size(87, 22);
+            this.lblStatusMessage.Size = new System.Drawing.Size(381, 48);
             this.lblStatusMessage.TabIndex = 36;
             this.lblStatusMessage.Text = "In-Progress";
             // 
@@ -198,7 +205,7 @@
             this.tbOutersRqd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbOutersRqd.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbOutersRqd.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tbOutersRqd.Location = new System.Drawing.Point(171, 13);
+            this.tbOutersRqd.Location = new System.Drawing.Point(171, 16);
             this.tbOutersRqd.Name = "tbOutersRqd";
             this.tbOutersRqd.ReadOnly = true;
             this.tbOutersRqd.Size = new System.Drawing.Size(37, 29);
@@ -212,7 +219,7 @@
             this.lblOutersRqd.BackColor = System.Drawing.Color.Transparent;
             this.lblOutersRqd.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOutersRqd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblOutersRqd.Location = new System.Drawing.Point(3, 16);
+            this.lblOutersRqd.Location = new System.Drawing.Point(3, 19);
             this.lblOutersRqd.Name = "lblOutersRqd";
             this.lblOutersRqd.Size = new System.Drawing.Size(166, 22);
             this.lblOutersRqd.TabIndex = 29;
@@ -251,7 +258,7 @@
             this.tbOutersScanned.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbOutersScanned.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbOutersScanned.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tbOutersScanned.Location = new System.Drawing.Point(171, 44);
+            this.tbOutersScanned.Location = new System.Drawing.Point(171, 16);
             this.tbOutersScanned.Name = "tbOutersScanned";
             this.tbOutersScanned.ReadOnly = true;
             this.tbOutersScanned.Size = new System.Drawing.Size(37, 29);
@@ -302,11 +309,11 @@
             this.lblOutersScanned.BackColor = System.Drawing.Color.Transparent;
             this.lblOutersScanned.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOutersScanned.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblOutersScanned.Location = new System.Drawing.Point(3, 47);
+            this.lblOutersScanned.Location = new System.Drawing.Point(3, 19);
             this.lblOutersScanned.Name = "lblOutersScanned";
-            this.lblOutersScanned.Size = new System.Drawing.Size(163, 22);
+            this.lblOutersScanned.Size = new System.Drawing.Size(125, 22);
             this.lblOutersScanned.TabIndex = 20;
-            this.lblOutersScanned.Text = "Total Cartons Scanned";
+            this.lblOutersScanned.Text = "Cartons Scanned";
             // 
             // lblCustomer
             // 
@@ -401,7 +408,7 @@
             this.tbInnersUnassigned.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbInnersUnassigned.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnersUnassigned.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tbInnersUnassigned.Location = new System.Drawing.Point(191, 103);
+            this.tbInnersUnassigned.Location = new System.Drawing.Point(191, 76);
             this.tbInnersUnassigned.Name = "tbInnersUnassigned";
             this.tbInnersUnassigned.ReadOnly = true;
             this.tbInnersUnassigned.Size = new System.Drawing.Size(37, 29);
@@ -415,7 +422,7 @@
             this.tbInnersOnPallets.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbInnersOnPallets.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnersOnPallets.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tbInnersOnPallets.Location = new System.Drawing.Point(191, 73);
+            this.tbInnersOnPallets.Location = new System.Drawing.Point(191, 46);
             this.tbInnersOnPallets.Name = "tbInnersOnPallets";
             this.tbInnersOnPallets.ReadOnly = true;
             this.tbInnersOnPallets.Size = new System.Drawing.Size(37, 29);
@@ -429,7 +436,7 @@
             this.tbInnersScanned.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbInnersScanned.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnersScanned.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tbInnersScanned.Location = new System.Drawing.Point(191, 43);
+            this.tbInnersScanned.Location = new System.Drawing.Point(191, 16);
             this.tbInnersScanned.Name = "tbInnersScanned";
             this.tbInnersScanned.ReadOnly = true;
             this.tbInnersScanned.Size = new System.Drawing.Size(37, 29);
@@ -443,7 +450,7 @@
             this.tbInnersRqd.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbInnersRqd.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnersRqd.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tbInnersRqd.Location = new System.Drawing.Point(191, 13);
+            this.tbInnersRqd.Location = new System.Drawing.Point(411, 16);
             this.tbInnersRqd.Name = "tbInnersRqd";
             this.tbInnersRqd.ReadOnly = true;
             this.tbInnersRqd.Size = new System.Drawing.Size(37, 29);
@@ -457,11 +464,11 @@
             this.lblInnersUnassigned.BackColor = System.Drawing.Color.Transparent;
             this.lblInnersUnassigned.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnersUnassigned.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblInnersUnassigned.Location = new System.Drawing.Point(5, 106);
+            this.lblInnersUnassigned.Location = new System.Drawing.Point(5, 79);
             this.lblInnersUnassigned.Name = "lblInnersUnassigned";
-            this.lblInnersUnassigned.Size = new System.Drawing.Size(174, 22);
+            this.lblInnersUnassigned.Size = new System.Drawing.Size(136, 22);
             this.lblInnersUnassigned.TabIndex = 29;
-            this.lblInnersUnassigned.Text = "Total Inners Unassigned";
+            this.lblInnersUnassigned.Text = "Unassigned Inners";
             // 
             // lblInnerInPallet
             // 
@@ -469,11 +476,11 @@
             this.lblInnerInPallet.BackColor = System.Drawing.Color.Transparent;
             this.lblInnerInPallet.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnerInPallet.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblInnerInPallet.Location = new System.Drawing.Point(5, 76);
+            this.lblInnerInPallet.Location = new System.Drawing.Point(5, 49);
             this.lblInnerInPallet.Name = "lblInnerInPallet";
-            this.lblInnerInPallet.Size = new System.Drawing.Size(163, 22);
+            this.lblInnerInPallet.Size = new System.Drawing.Size(125, 22);
             this.lblInnerInPallet.TabIndex = 29;
-            this.lblInnerInPallet.Text = "Total Inners On Pallets";
+            this.lblInnerInPallet.Text = "Inners On Pallets";
             // 
             // lblInnersScanned
             // 
@@ -481,11 +488,11 @@
             this.lblInnersScanned.BackColor = System.Drawing.Color.Transparent;
             this.lblInnersScanned.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnersScanned.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblInnersScanned.Location = new System.Drawing.Point(5, 46);
+            this.lblInnersScanned.Location = new System.Drawing.Point(5, 19);
             this.lblInnersScanned.Name = "lblInnersScanned";
-            this.lblInnersScanned.Size = new System.Drawing.Size(152, 22);
+            this.lblInnersScanned.Size = new System.Drawing.Size(127, 22);
             this.lblInnersScanned.TabIndex = 29;
-            this.lblInnersScanned.Text = "Total Inners Scanned";
+            this.lblInnersScanned.Text = "Inners In Cartons";
             // 
             // lblInnersRqd
             // 
@@ -493,7 +500,7 @@
             this.lblInnersRqd.BackColor = System.Drawing.Color.Transparent;
             this.lblInnersRqd.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnersRqd.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblInnersRqd.Location = new System.Drawing.Point(5, 16);
+            this.lblInnersRqd.Location = new System.Drawing.Point(225, 19);
             this.lblInnersRqd.Name = "lblInnersRqd";
             this.lblInnersRqd.Size = new System.Drawing.Size(155, 22);
             this.lblInnersRqd.TabIndex = 29;
@@ -517,7 +524,7 @@
             this.grpButtons.Controls.Add(this.btnPackLabels);
             this.grpButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpButtons.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpButtons.Location = new System.Drawing.Point(0, 625);
+            this.grpButtons.Location = new System.Drawing.Point(0, 709);
             this.grpButtons.Name = "grpButtons";
             this.grpButtons.Size = new System.Drawing.Size(454, 52);
             this.grpButtons.TabIndex = 81;
@@ -532,7 +539,7 @@
             this.grpScanner.Controls.Add(this.btnScannerStatus);
             this.grpScanner.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpScanner.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpScanner.Location = new System.Drawing.Point(0, 528);
+            this.grpScanner.Location = new System.Drawing.Point(0, 612);
             this.grpScanner.Name = "grpScanner";
             this.grpScanner.Size = new System.Drawing.Size(454, 97);
             this.grpScanner.TabIndex = 82;
@@ -586,33 +593,41 @@
             // grpInnerCounts
             // 
             this.grpInnerCounts.BackColor = System.Drawing.Color.Yellow;
-            this.grpInnerCounts.Controls.Add(this.tbInnersRqd);
-            this.grpInnerCounts.Controls.Add(this.lblInnersRqd);
             this.grpInnerCounts.Controls.Add(this.lblInnersScanned);
             this.grpInnerCounts.Controls.Add(this.lblInnerInPallet);
             this.grpInnerCounts.Controls.Add(this.lblInnersUnassigned);
             this.grpInnerCounts.Controls.Add(this.tbInnersScanned);
             this.grpInnerCounts.Controls.Add(this.tbInnersOnPallets);
             this.grpInnerCounts.Controls.Add(this.tbInnersUnassigned);
-            this.grpInnerCounts.Location = new System.Drawing.Point(220, 192);
+            this.grpInnerCounts.Location = new System.Drawing.Point(220, 276);
             this.grpInnerCounts.Name = "grpInnerCounts";
-            this.grpInnerCounts.Size = new System.Drawing.Size(234, 136);
+            this.grpInnerCounts.Size = new System.Drawing.Size(234, 110);
             this.grpInnerCounts.TabIndex = 80;
             this.grpInnerCounts.TabStop = false;
             // 
             // grpOuterCounts
             // 
-            this.grpOuterCounts.Controls.Add(this.tbOutersRqd);
-            this.grpOuterCounts.Controls.Add(this.lblOutersRqd);
             this.grpOuterCounts.Controls.Add(this.tbInnersInOuters);
+            this.grpOuterCounts.Controls.Add(this.lblCartonMessage);
             this.grpOuterCounts.Controls.Add(this.tbOutersScanned);
             this.grpOuterCounts.Controls.Add(this.lblInnersInOuters);
             this.grpOuterCounts.Controls.Add(this.lblOutersScanned);
-            this.grpOuterCounts.Location = new System.Drawing.Point(0, 194);
+            this.grpOuterCounts.Location = new System.Drawing.Point(0, 276);
             this.grpOuterCounts.Name = "grpOuterCounts";
-            this.grpOuterCounts.Size = new System.Drawing.Size(216, 134);
+            this.grpOuterCounts.Size = new System.Drawing.Size(216, 110);
             this.grpOuterCounts.TabIndex = 81;
             this.grpOuterCounts.TabStop = false;
+            // 
+            // lblCartonMessage
+            // 
+            this.lblCartonMessage.BackColor = System.Drawing.SystemColors.Control;
+            this.lblCartonMessage.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCartonMessage.ForeColor = System.Drawing.Color.Green;
+            this.lblCartonMessage.Location = new System.Drawing.Point(5, 78);
+            this.lblCartonMessage.Name = "lblCartonMessage";
+            this.lblCartonMessage.Size = new System.Drawing.Size(203, 25);
+            this.lblCartonMessage.TabIndex = 37;
+            this.lblCartonMessage.Text = "Carton Message";
             // 
             // tbInnersInOuters
             // 
@@ -620,7 +635,7 @@
             this.tbInnersInOuters.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbInnersInOuters.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbInnersInOuters.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.tbInnersInOuters.Location = new System.Drawing.Point(171, 74);
+            this.tbInnersInOuters.Location = new System.Drawing.Point(171, 46);
             this.tbInnersInOuters.Name = "tbInnersInOuters";
             this.tbInnersInOuters.ReadOnly = true;
             this.tbInnersInOuters.Size = new System.Drawing.Size(37, 29);
@@ -634,7 +649,7 @@
             this.lblInnersInOuters.BackColor = System.Drawing.Color.Transparent;
             this.lblInnersInOuters.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnersInOuters.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblInnersInOuters.Location = new System.Drawing.Point(3, 77);
+            this.lblInnersInOuters.Location = new System.Drawing.Point(3, 49);
             this.lblInnersInOuters.Name = "lblInnersInOuters";
             this.lblInnersInOuters.Size = new System.Drawing.Size(127, 22);
             this.lblInnersInOuters.TabIndex = 20;
@@ -649,9 +664,9 @@
             this.grpPalletInfo.Controls.Add(this.lblStatusMessage);
             this.grpPalletInfo.Controls.Add(this.lblStatus);
             this.grpPalletInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.grpPalletInfo.Location = new System.Drawing.Point(0, 328);
+            this.grpPalletInfo.Location = new System.Drawing.Point(0, 389);
             this.grpPalletInfo.Name = "grpPalletInfo";
-            this.grpPalletInfo.Size = new System.Drawing.Size(454, 200);
+            this.grpPalletInfo.Size = new System.Drawing.Size(454, 223);
             this.grpPalletInfo.TabIndex = 83;
             this.grpPalletInfo.TabStop = false;
             // 
@@ -663,15 +678,100 @@
             this.tbProductUId.Size = new System.Drawing.Size(65, 29);
             this.tbProductUId.TabIndex = 79;
             // 
+            // tbCartonsPerPallet
+            // 
+            this.tbCartonsPerPallet.BackColor = System.Drawing.SystemColors.Control;
+            this.tbCartonsPerPallet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbCartonsPerPallet.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCartonsPerPallet.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tbCartonsPerPallet.Location = new System.Drawing.Point(171, 46);
+            this.tbCartonsPerPallet.Name = "tbCartonsPerPallet";
+            this.tbCartonsPerPallet.ReadOnly = true;
+            this.tbCartonsPerPallet.Size = new System.Drawing.Size(37, 29);
+            this.tbCartonsPerPallet.TabIndex = 26;
+            this.tbCartonsPerPallet.Text = " \r\n";
+            this.tbCartonsPerPallet.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbCurrentPalletUId
+            // 
+            this.tbCurrentPalletUId.BackColor = System.Drawing.SystemColors.Window;
+            this.tbCurrentPalletUId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbCurrentPalletUId.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbCurrentPalletUId.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tbCurrentPalletUId.Location = new System.Drawing.Point(309, 3);
+            this.tbCurrentPalletUId.Name = "tbCurrentPalletUId";
+            this.tbCurrentPalletUId.ReadOnly = true;
+            this.tbCurrentPalletUId.Size = new System.Drawing.Size(71, 29);
+            this.tbCurrentPalletUId.TabIndex = 26;
+            this.tbCurrentPalletUId.Text = " \r\n";
+            this.tbCurrentPalletUId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // tbInnersPerCarton
+            // 
+            this.tbInnersPerCarton.BackColor = System.Drawing.SystemColors.Control;
+            this.tbInnersPerCarton.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbInnersPerCarton.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbInnersPerCarton.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.tbInnersPerCarton.Location = new System.Drawing.Point(411, 46);
+            this.tbInnersPerCarton.Name = "tbInnersPerCarton";
+            this.tbInnersPerCarton.ReadOnly = true;
+            this.tbInnersPerCarton.Size = new System.Drawing.Size(37, 29);
+            this.tbInnersPerCarton.TabIndex = 26;
+            this.tbInnersPerCarton.Text = " \r\n";
+            this.tbInnersPerCarton.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Location = new System.Drawing.Point(3, 49);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(130, 22);
+            this.label1.TabIndex = 84;
+            this.label1.Text = "Cartons Per Pallet";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label2.Location = new System.Drawing.Point(225, 49);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(129, 22);
+            this.label2.TabIndex = 84;
+            this.label2.Text = "Inners Per Carton";
+            // 
+            // grpPackTotals
+            // 
+            this.grpPackTotals.Controls.Add(this.tbInnersRqd);
+            this.grpPackTotals.Controls.Add(this.lblInnersRqd);
+            this.grpPackTotals.Controls.Add(this.label2);
+            this.grpPackTotals.Controls.Add(this.tbOutersRqd);
+            this.grpPackTotals.Controls.Add(this.lblOutersRqd);
+            this.grpPackTotals.Controls.Add(this.label1);
+            this.grpPackTotals.Controls.Add(this.tbInnersPerCarton);
+            this.grpPackTotals.Controls.Add(this.tbCartonsPerPallet);
+            this.grpPackTotals.Dock = System.Windows.Forms.DockStyle.Top;
+            this.grpPackTotals.Location = new System.Drawing.Point(0, 190);
+            this.grpPackTotals.Name = "grpPackTotals";
+            this.grpPackTotals.Size = new System.Drawing.Size(454, 85);
+            this.grpPackTotals.TabIndex = 85;
+            this.grpPackTotals.TabStop = false;
+            // 
             // frmLineInfo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(454, 677);
+            this.ClientSize = new System.Drawing.Size(454, 761);
             this.ControlBox = false;
+            this.Controls.Add(this.grpPackTotals);
             this.Controls.Add(this.tbProductUId);
             this.Controls.Add(this.grpPalletInfo);
             this.Controls.Add(this.tbPalletBatchUId);
+            this.Controls.Add(this.tbCurrentPalletUId);
             this.Controls.Add(this.grpOuterCounts);
             this.Controls.Add(this.grpScanner);
             this.Controls.Add(this.grpInnerCounts);
@@ -698,6 +798,8 @@
             this.grpOuterCounts.PerformLayout();
             this.grpPalletInfo.ResumeLayout(false);
             this.grpPalletInfo.PerformLayout();
+            this.grpPackTotals.ResumeLayout(false);
+            this.grpPackTotals.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -749,5 +851,12 @@
         private System.Windows.Forms.TextBox tbProductUId;
         private System.Windows.Forms.TextBox tbInnersInOuters;
         private System.Windows.Forms.Label lblInnersInOuters;
+        private System.Windows.Forms.Label lblCartonMessage;
+        private System.Windows.Forms.TextBox tbCartonsPerPallet;
+        private System.Windows.Forms.TextBox tbCurrentPalletUId;
+        private System.Windows.Forms.TextBox tbInnersPerCarton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.GroupBox grpPackTotals;
     }
 }

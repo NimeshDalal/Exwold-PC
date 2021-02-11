@@ -551,11 +551,17 @@ namespace ITS.Exwold.Desktop
             cboStatus.Enabled = true;
             cboStatus.Visible = true;
             lblStatus.Visible = true;
-            setEnableCRUDButtons(true);
-            this.btnChangeStatus.Visible = true;
-            CreateBatchFlag = "Reset";
-            getIncompleteOrders();
-            //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "User cancelled batch edit " + dgvOrders.CurrentRow.Cells[1].Value);
+            try
+            {
+                setEnableCRUDButtons(true);
+                this.btnChangeStatus.Visible = true;
+                CreateBatchFlag = "Reset";
+                getIncompleteOrders();
+            }
+            catch (Exception ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), $"User cancelled batch edit {dgvOrders.CurrentRow.Cells[1].Value}\n{ex.Message}");
+            }
         }
         #endregion
 

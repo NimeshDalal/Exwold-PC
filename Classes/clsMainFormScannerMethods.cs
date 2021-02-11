@@ -190,7 +190,7 @@ namespace ITS.Exwold.Desktop
             try
             {
                 batchChangeUser = await Helper.ChangeUser(_db, args.PalletBatchUId.ToString());
-                batchChangeUser = string.IsNullOrEmpty(batchChangeUser) ? batchChangeUser : args.ScannerId;
+                batchChangeUser = string.IsNullOrEmpty(batchChangeUser) ? args.ScannerId : batchChangeUser;
 
                 if (string.IsNullOrEmpty(args.ProdName))
                 {
@@ -221,7 +221,7 @@ namespace ITS.Exwold.Desktop
                 _db.QueryParameters.Add("InnerGTIN", scannedData.GTIN);
                 _db.QueryParameters.Add("ProdDate", scannedData.ProdDate);
                 _db.QueryParameters.Add("Device", scannedData.ScannerId);
-                DataTable dt = await _db.executeSP("[GUI].[spAcceptInnerPack]", true);
+                DataTable dt = await _db.executeSP("[dbo].[spInnerPackAccept]", true);
 
                 if (dt != null)
                 {
@@ -261,16 +261,37 @@ namespace ITS.Exwold.Desktop
         private async Task ProcessOuterPackScan(ScannerDataEventArgs scannedData, string ChangeUser)
         {
             int CurrentPalletUId = 0;
+            DataTable dtAcceptCartonData = null;
             try
             {
+                // Get the current PalletUId
                 _db.QueryParameters.Clear();
                 _db.QueryParameters.Add("PalletBatchUniqueNo", scannedData.PalletBatchUId.ToString());
-                _db.QueryParameters.Add("GTIN", scannedData.GTIN);
-                _db.QueryParameters.Add("ProdDate", scannedData.ProdDate);
-                _db.QueryParameters.Add("MaterialBatch", scannedData.LotNo);
-                _db.QueryParameters.Add("PalletUniqueNo", CurrentPalletUId.ToString());
-                _db.QueryParameters.Add("Device", string.IsNullOrEmpty(ChangeUser) ? scannedData.ScannerId : ChangeUser);
-                DataTable dtAcceptCartonData = await _db.executeSP("[dbo].[spAcceptCartonData]", true);
+                DataSet dsPackInfo = await _db.getDataSet("[GUI].[spPackInfo]", true);
+                if (dsPackInfo != null && dsPackInfo.Tables.Count > 1 && dsPackInfo.Tables[1].Rows.Count > 0)
+                {
+                    int.TryParse(dsPackInfo.Tables[1].Rows[0]["PalletuniqueNo"].ToString(), out CurrentPalletUId);
+                }
+            }
+            catch { CurrentPalletUId = 0; }
+            try
+            {
+                clsValidation val = new clsValidation(_db);
+                bool bGTIN = scannedData.GTIN.Length == 14;
+                bool bProdDate = scannedData.ProdDate.Length == 6;
+                bool bLotNo = scannedData.LotNo.Length >= 3 && scannedData.LotNo.Length <= 20;
+
+                if (bGTIN && bProdDate && bLotNo)
+                {
+                    _db.QueryParameters.Clear();
+                    _db.QueryParameters.Add("PalletBatchUniqueNo", scannedData.PalletBatchUId.ToString());
+                    _db.QueryParameters.Add("GTIN", scannedData.GTIN);
+                    _db.QueryParameters.Add("ProdDate", scannedData.ProdDate);
+                    _db.QueryParameters.Add("MaterialBatch", scannedData.LotNo);
+                    _db.QueryParameters.Add("PalletUniqueNo", CurrentPalletUId.ToString());
+                    _db.QueryParameters.Add("Device", string.IsNullOrEmpty(ChangeUser) ? scannedData.ScannerId : ChangeUser);
+                    dtAcceptCartonData = await _db.executeSP("[dbo].[spAcceptCartonData]", true);
+                }
                 if (dtAcceptCartonData != null)
                 {
                     // If we have a valid UId returned and the data is valid, refresh the 
@@ -283,9 +304,25 @@ namespace ITS.Exwold.Desktop
                         await fLineInfo2.UpdateScannedCounts();
                     }
                     if (fLineInfo3 != null && fLineInfo3.LineId == scannedData.ProductionLineUId)
-                    { 
+                    {
                         await fLineInfo3.UpdateScannedCounts();
                     }
+                }                
+                else
+                {
+                    if (fLineInfo1 != null && fLineInfo1.LineId == scannedData.ProductionLineUId)
+                    {
+                        fLineInfo1.UpdateScannerUI(true, string.Empty, false, "Bad Scan. Please retry");
+                    }
+                    if (fLineInfo2 != null && fLineInfo2.LineId == scannedData.ProductionLineUId)
+                    {
+                        fLineInfo2.UpdateScannerUI(true, string.Empty, false, "Bad Scan. Please retry");
+                    }
+                    if (fLineInfo3 != null && fLineInfo3.LineId == scannedData.ProductionLineUId)
+                    {
+                        fLineInfo3.UpdateScannerUI(true, string.Empty, false, "Bad Scan. Please retry");
+                    }
+
                 }
             }
             catch (Exception ex)
