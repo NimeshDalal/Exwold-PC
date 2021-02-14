@@ -57,20 +57,25 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.lblPlantName = new System.Windows.Forms.Label();
+            this.grpOperation = new System.Windows.Forms.GroupBox();
+            this.grpReporting = new System.Windows.Forms.GroupBox();
+            this.grpHardware = new System.Windows.Forms.GroupBox();
             this.panel4.SuspendLayout();
             this.grpTesting.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picExwoldLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picITSLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOnHold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReadyToPrint)).BeginInit();
+            this.grpOperation.SuspendLayout();
+            this.grpReporting.SuspendLayout();
+            this.grpHardware.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_setBatch
             // 
-            this.button_setBatch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.button_setBatch.AutoSize = true;
             this.button_setBatch.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_setBatch.Location = new System.Drawing.Point(526, 839);
+            this.button_setBatch.Location = new System.Drawing.Point(5, 48);
             this.button_setBatch.Name = "button_setBatch";
             this.button_setBatch.Size = new System.Drawing.Size(182, 32);
             this.button_setBatch.TabIndex = 16;
@@ -82,7 +87,7 @@
             // 
             this.button_exitPalletTracking.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button_exitPalletTracking.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button_exitPalletTracking.Location = new System.Drawing.Point(1427, 3);
+            this.button_exitPalletTracking.Location = new System.Drawing.Point(1527, 3);
             this.button_exitPalletTracking.Name = "button_exitPalletTracking";
             this.button_exitPalletTracking.Size = new System.Drawing.Size(157, 39);
             this.button_exitPalletTracking.TabIndex = 57;
@@ -92,10 +97,9 @@
             // 
             // btnSetProduct
             // 
-            this.btnSetProduct.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnSetProduct.AutoSize = true;
             this.btnSetProduct.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSetProduct.Location = new System.Drawing.Point(526, 874);
+            this.btnSetProduct.Location = new System.Drawing.Point(5, 16);
             this.btnSetProduct.Name = "btnSetProduct";
             this.btnSetProduct.Size = new System.Drawing.Size(182, 32);
             this.btnSetProduct.TabIndex = 58;
@@ -116,10 +120,9 @@
             // 
             // buttonReports
             // 
-            this.buttonReports.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonReports.AutoSize = true;
             this.buttonReports.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReports.Location = new System.Drawing.Point(711, 839);
+            this.buttonReports.Location = new System.Drawing.Point(5, 16);
             this.buttonReports.Name = "buttonReports";
             this.buttonReports.Size = new System.Drawing.Size(182, 32);
             this.buttonReports.TabIndex = 88;
@@ -129,10 +132,9 @@
             // 
             // AuditReportButton
             // 
-            this.AuditReportButton.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.AuditReportButton.AutoSize = true;
             this.AuditReportButton.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AuditReportButton.Location = new System.Drawing.Point(897, 874);
+            this.AuditReportButton.Location = new System.Drawing.Point(5, 48);
             this.AuditReportButton.Name = "AuditReportButton";
             this.AuditReportButton.Size = new System.Drawing.Size(182, 32);
             this.AuditReportButton.TabIndex = 90;
@@ -144,7 +146,7 @@
             // 
             this.pnlPosn3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlPosn3.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.pnlPosn3.Location = new System.Drawing.Point(918, 71);
+            this.pnlPosn3.Location = new System.Drawing.Point(921, 43);
             this.pnlPosn3.Name = "pnlPosn3";
             this.pnlPosn3.Size = new System.Drawing.Size(454, 762);
             this.pnlPosn3.TabIndex = 91;
@@ -153,16 +155,15 @@
             // 
             this.pnlPosn2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlPosn2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.pnlPosn2.Location = new System.Drawing.Point(461, 71);
+            this.pnlPosn2.Location = new System.Drawing.Point(464, 43);
             this.pnlPosn2.Name = "pnlPosn2";
             this.pnlPosn2.Size = new System.Drawing.Size(454, 762);
             this.pnlPosn2.TabIndex = 92;
             // 
             // pnlPosn1
             // 
-            this.pnlPosn1.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pnlPosn1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.pnlPosn1.Location = new System.Drawing.Point(4, 71);
+            this.pnlPosn1.Location = new System.Drawing.Point(7, 43);
             this.pnlPosn1.Name = "pnlPosn1";
             this.pnlPosn1.Size = new System.Drawing.Size(454, 762);
             this.pnlPosn1.TabIndex = 93;
@@ -173,10 +174,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.grpTesting);
-            this.panel4.Controls.Add(this.btnScanners);
+            this.panel4.Controls.Add(this.grpHardware);
+            this.panel4.Controls.Add(this.grpReporting);
+            this.panel4.Controls.Add(this.grpOperation);
             this.panel4.Controls.Add(this.btnChangePage);
-            this.panel4.Controls.Add(this.btnHardwareSettings);
-            this.panel4.Controls.Add(this.buttonReprintPalletLabels);
             this.panel4.Controls.Add(this.picExwoldLogo);
             this.panel4.Controls.Add(this.picITSLogo);
             this.panel4.Controls.Add(this.dgvOnHold);
@@ -186,15 +187,11 @@
             this.panel4.Controls.Add(this.pnlPosn1);
             this.panel4.Controls.Add(this.pnlPosn2);
             this.panel4.Controls.Add(this.pnlPosn3);
-            this.panel4.Controls.Add(this.AuditReportButton);
-            this.panel4.Controls.Add(this.buttonReports);
-            this.panel4.Controls.Add(this.btnSetProduct);
-            this.panel4.Controls.Add(this.button_setBatch);
             this.panel4.Controls.Add(this.lblPlantName);
             this.panel4.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.panel4.Location = new System.Drawing.Point(0, 49);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1584, 912);
+            this.panel4.Size = new System.Drawing.Size(1684, 912);
             this.panel4.TabIndex = 94;
             this.panel4.Click += new System.EventHandler(this.btnTest_Click);
             // 
@@ -203,9 +200,9 @@
             this.grpTesting.Controls.Add(this.btnTCPListener);
             this.grpTesting.Controls.Add(this.tbLabelTest);
             this.grpTesting.Controls.Add(this.btnTest);
-            this.grpTesting.Location = new System.Drawing.Point(133, 847);
+            this.grpTesting.Location = new System.Drawing.Point(1243, 828);
             this.grpTesting.Name = "grpTesting";
-            this.grpTesting.Size = new System.Drawing.Size(405, 65);
+            this.grpTesting.Size = new System.Drawing.Size(405, 73);
             this.grpTesting.TabIndex = 100;
             this.grpTesting.TabStop = false;
             this.grpTesting.Text = "Test Group";
@@ -240,8 +237,7 @@
             // 
             // btnScanners
             // 
-            this.btnScanners.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnScanners.Location = new System.Drawing.Point(1081, 839);
+            this.btnScanners.Location = new System.Drawing.Point(5, 16);
             this.btnScanners.Name = "btnScanners";
             this.btnScanners.Size = new System.Drawing.Size(182, 32);
             this.btnScanners.TabIndex = 98;
@@ -254,7 +250,7 @@
             this.btnChangePage.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.btnChangePage.AutoSize = true;
             this.btnChangePage.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnChangePage.Location = new System.Drawing.Point(1190, 33);
+            this.btnChangePage.Location = new System.Drawing.Point(1193, 6);
             this.btnChangePage.Name = "btnChangePage";
             this.btnChangePage.Size = new System.Drawing.Size(182, 32);
             this.btnChangePage.TabIndex = 95;
@@ -264,10 +260,9 @@
             // 
             // btnHardwareSettings
             // 
-            this.btnHardwareSettings.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnHardwareSettings.AutoSize = true;
             this.btnHardwareSettings.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHardwareSettings.Location = new System.Drawing.Point(896, 839);
+            this.btnHardwareSettings.Location = new System.Drawing.Point(5, 48);
             this.btnHardwareSettings.Name = "btnHardwareSettings";
             this.btnHardwareSettings.Size = new System.Drawing.Size(182, 32);
             this.btnHardwareSettings.TabIndex = 95;
@@ -277,10 +272,9 @@
             // 
             // buttonReprintPalletLabels
             // 
-            this.buttonReprintPalletLabels.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.buttonReprintPalletLabels.AutoSize = true;
             this.buttonReprintPalletLabels.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonReprintPalletLabels.Location = new System.Drawing.Point(711, 874);
+            this.buttonReprintPalletLabels.Location = new System.Drawing.Point(187, 16);
             this.buttonReprintPalletLabels.Name = "buttonReprintPalletLabels";
             this.buttonReprintPalletLabels.Size = new System.Drawing.Size(182, 32);
             this.buttonReprintPalletLabels.TabIndex = 97;
@@ -292,7 +286,7 @@
             // 
             this.picExwoldLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.picExwoldLogo.Image = global::ITS.Exwold.Desktop.Properties.Resources.Exwold_High_Res_Logo_No_Strapline___small;
-            this.picExwoldLogo.Location = new System.Drawing.Point(0, 839);
+            this.picExwoldLogo.Location = new System.Drawing.Point(7, 833);
             this.picExwoldLogo.Name = "picExwoldLogo";
             this.picExwoldLogo.Size = new System.Drawing.Size(319, 73);
             this.picExwoldLogo.TabIndex = 95;
@@ -302,7 +296,7 @@
             // 
             this.picITSLogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.picITSLogo.Image = global::ITS.Exwold.Desktop.Properties.Resources.ITS_logo_small1;
-            this.picITSLogo.Location = new System.Drawing.Point(1345, 826);
+            this.picITSLogo.Location = new System.Drawing.Point(1378, 719);
             this.picITSLogo.Name = "picITSLogo";
             this.picITSLogo.Size = new System.Drawing.Size(239, 86);
             this.picITSLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -334,13 +328,13 @@
             this.dgvOnHold.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvOnHold.Enabled = false;
             this.dgvOnHold.EnableHeadersVisualStyles = false;
-            this.dgvOnHold.Location = new System.Drawing.Point(1375, 425);
+            this.dgvOnHold.Location = new System.Drawing.Point(1378, 397);
             this.dgvOnHold.Name = "dgvOnHold";
             this.dgvOnHold.ReadOnly = true;
             this.dgvOnHold.RowHeadersVisible = false;
             this.dgvOnHold.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvOnHold.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvOnHold.Size = new System.Drawing.Size(206, 302);
+            this.dgvOnHold.Size = new System.Drawing.Size(239, 302);
             this.dgvOnHold.TabIndex = 96;
             // 
             // dgvReadyToPrint
@@ -368,13 +362,13 @@
             this.dgvReadyToPrint.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvReadyToPrint.Enabled = false;
             this.dgvReadyToPrint.EnableHeadersVisualStyles = false;
-            this.dgvReadyToPrint.Location = new System.Drawing.Point(1375, 71);
+            this.dgvReadyToPrint.Location = new System.Drawing.Point(1378, 43);
             this.dgvReadyToPrint.Name = "dgvReadyToPrint";
             this.dgvReadyToPrint.ReadOnly = true;
             this.dgvReadyToPrint.RowHeadersVisible = false;
             this.dgvReadyToPrint.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.dgvReadyToPrint.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvReadyToPrint.Size = new System.Drawing.Size(206, 302);
+            this.dgvReadyToPrint.Size = new System.Drawing.Size(239, 302);
             this.dgvReadyToPrint.TabIndex = 86;
             // 
             // label30
@@ -382,9 +376,9 @@
             this.label30.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label30.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label30.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label30.Location = new System.Drawing.Point(1375, 390);
+            this.label30.Location = new System.Drawing.Point(1378, 362);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(206, 32);
+            this.label30.Size = new System.Drawing.Size(239, 32);
             this.label30.TabIndex = 95;
             this.label30.Text = "On Hold";
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -394,30 +388,62 @@
             this.label22.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.label22.Font = new System.Drawing.Font("Palatino Linotype", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label22.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label22.Location = new System.Drawing.Point(1375, 2);
+            this.label22.Location = new System.Drawing.Point(1378, 2);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(206, 68);
+            this.label22.Size = new System.Drawing.Size(239, 40);
             this.label22.TabIndex = 94;
-            this.label22.Text = "Ready to\r\nPrint";
+            this.label22.Text = "Ready to Print";
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPlantName
             // 
             this.lblPlantName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lblPlantName.AutoSize = true;
             this.lblPlantName.Font = new System.Drawing.Font("Palatino Linotype", 18F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlantName.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.lblPlantName.Location = new System.Drawing.Point(639, 30);
+            this.lblPlantName.Location = new System.Drawing.Point(464, 2);
             this.lblPlantName.Name = "lblPlantName";
-            this.lblPlantName.Size = new System.Drawing.Size(142, 32);
+            this.lblPlantName.Size = new System.Drawing.Size(454, 40);
             this.lblPlantName.TabIndex = 15;
             this.lblPlantName.Text = "Plant Name";
             this.lblPlantName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // grpOperation
+            // 
+            this.grpOperation.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.grpOperation.Controls.Add(this.button_setBatch);
+            this.grpOperation.Controls.Add(this.btnSetProduct);
+            this.grpOperation.Controls.Add(this.buttonReprintPalletLabels);
+            this.grpOperation.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.grpOperation.Location = new System.Drawing.Point(450, 821);
+            this.grpOperation.Name = "grpOperation";
+            this.grpOperation.Size = new System.Drawing.Size(373, 85);
+            this.grpOperation.TabIndex = 99;
+            this.grpOperation.TabStop = false;
+            // 
+            // grpReporting
+            // 
+            this.grpReporting.Controls.Add(this.buttonReports);
+            this.grpReporting.Controls.Add(this.AuditReportButton);
+            this.grpReporting.Location = new System.Drawing.Point(826, 821);
+            this.grpReporting.Name = "grpReporting";
+            this.grpReporting.Size = new System.Drawing.Size(191, 85);
+            this.grpReporting.TabIndex = 100;
+            this.grpReporting.TabStop = false;
+            // 
+            // grpHardware
+            // 
+            this.grpHardware.Controls.Add(this.btnScanners);
+            this.grpHardware.Controls.Add(this.btnHardwareSettings);
+            this.grpHardware.Location = new System.Drawing.Point(1020, 821);
+            this.grpHardware.Name = "grpHardware";
+            this.grpHardware.Size = new System.Drawing.Size(191, 85);
+            this.grpHardware.TabIndex = 101;
+            this.grpHardware.TabStop = false;
+            // 
             // MainStatusForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(1584, 961);
+            this.ClientSize = new System.Drawing.Size(1684, 961);
             this.ControlBox = false;
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.lblTitle);
@@ -434,6 +460,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.picITSLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOnHold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReadyToPrint)).EndInit();
+            this.grpOperation.ResumeLayout(false);
+            this.grpOperation.PerformLayout();
+            this.grpReporting.ResumeLayout(false);
+            this.grpReporting.PerformLayout();
+            this.grpHardware.ResumeLayout(false);
+            this.grpHardware.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -465,6 +497,9 @@
         private System.Windows.Forms.Button btnTCPListener;
         private System.Windows.Forms.TextBox tbLabelTest;
         private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.GroupBox grpHardware;
+        private System.Windows.Forms.GroupBox grpReporting;
+        private System.Windows.Forms.GroupBox grpOperation;
     }
 }
 

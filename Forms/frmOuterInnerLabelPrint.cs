@@ -35,7 +35,7 @@ namespace ITS.Exwold.Desktop
         private const int _maxPrintInnerLabels = 100;
         private const int _maxPrintOuterLabels = 50;
         //Data variables
-        private DataInterface.execFunction _db = null;
+        private readonly DataInterface.execFunction _db = null;
         private int _palletBatchUId = -1;
         private int _outerPackUId = -1;
         private int _outerTotalLabels = 0;
@@ -47,11 +47,6 @@ namespace ITS.Exwold.Desktop
         private ExwoldConfigSettings _exwoldConfigSettings = null;
         #endregion
         #region Properties
-        internal DataInterface.execFunction DB
-        {
-            get { return _db; }
-            set { _db = value; }
-        }
         internal int PalletBatchUId
         {
             get { return _palletBatchUId; }
@@ -64,6 +59,7 @@ namespace ITS.Exwold.Desktop
         }
         #endregion
 
+        #region Constructor
         /// <summary>
         /// Initializes a new instance of the <see cref="frmPrint"/> class.
         /// </summary>
@@ -78,6 +74,7 @@ namespace ITS.Exwold.Desktop
             tbInnerPrinter.Text = _exwoldConfigSettings.InnerPackLabelPrinters[0].Name;
             SetPrinters();
         }
+        #endregion
         private void cboOuterPrinters_SelectedIndexChanged(object sender, EventArgs e)
         {
             Console.WriteLine($"{cboOuterPrinters.SelectedIndex}, {cboOuterPrinters.SelectedItem}");

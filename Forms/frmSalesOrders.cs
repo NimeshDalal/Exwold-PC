@@ -200,7 +200,7 @@ namespace ITS.Exwold.Desktop
             tbCartonsPerPallet.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "CartonsPerPallet").ToString();
             tbInnersPerCart.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "InnerPacksPerCarton").ToString();
             tbInnerWeight.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "InnerPackWeightOrVolume").ToString();
-            TextBoxPalletBatchNo.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "PalletBatchNo").ToString();
+            tbPalletBatchNo.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "PalletBatchNo").ToString();
             tbNotes.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "AdditionalInfo").ToString();
 
             cboInnerUnit.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "UnitsOfMeasure").ToString();
@@ -261,7 +261,7 @@ namespace ITS.Exwold.Desktop
                 tbInnersPerCart.Text = dtCurrentProduct.Rows[0]["InnerPacksPerCarton"].ToString();
                 tbInnerWeight.Text = dtCurrentProduct.Rows[0]["InnerPackWeightOrVolume"].ToString();
                 cboInnerUnit.Text = dtCurrentProduct.Rows[0]["UnitsOfMeasure"].ToString();
-                TextBoxPalletBatchNo.Text = dtCurrentProduct.Rows[0]["PalletBatchNo"].ToString();
+                tbPalletBatchNo.Text = dtCurrentProduct.Rows[0]["PalletBatchNo"].ToString();
                 cboProdLine.Text = dtCurrentProduct.Rows[0]["ProductionLineNo"].ToString();
                 tbNotes.Text = dtCurrentProduct.Rows[0]["AdditionalInfo"].ToString();
                 cboStatus.SelectedValue = dtCurrentProduct.Rows[0]["Status"].ToString();
@@ -312,7 +312,7 @@ namespace ITS.Exwold.Desktop
             {
                 DoAdd = "no";
             }
-            if (await chk.ValidateInput(TextBoxPalletBatchNo.Text, "Sales Order", "", 15, 1))
+            if (await chk.ValidateInput(tbPalletBatchNo.Text, "Sales Order", "", 15, 1))
             {
                 DoAdd = "no";
             }
@@ -328,7 +328,7 @@ namespace ITS.Exwold.Desktop
                 case "Edit":
 
                     this.btnChangeStatus.Visible = true;
-                    if (await chk.ValidateInput(TextBoxPalletBatchNo.Text, "Sales Order", "SalesOrderEdit"))
+                    if (await chk.ValidateInput(tbPalletBatchNo.Text, "Sales Order", "SalesOrderEdit"))
                     {
                         DoAdd = "no";
                     }
@@ -337,7 +337,7 @@ namespace ITS.Exwold.Desktop
                         _db.QueryParameters.Clear();
                         _db.QueryParameters.Add("@BatchId", BatchID.ToString());
                         _db.QueryParameters.Add("@ProductionLineNo", cboProdLine.SelectedValue.ToString());
-                        _db.QueryParameters.Add("@PalletBatchNo", TextBoxPalletBatchNo.Text);
+                        _db.QueryParameters.Add("@PalletBatchNo", tbPalletBatchNo.Text);
                         _db.QueryParameters.Add("@TotalNoOfCartons", tbTotalCartons.Text);
                         _db.QueryParameters.Add("@CartonsPerPallet", tbCartonsPerPallet.Text);
                         _db.QueryParameters.Add("@InnerPacksPerCarton", tbInnersPerCart.Text);
@@ -372,21 +372,22 @@ namespace ITS.Exwold.Desktop
                             default:
                                 {
                                     Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), 
-                                        $"Unknown Error for {TextBoxPalletBatchNo.Text}");
+                                        $"Unknown Error for {tbPalletBatchNo.Text}");
                                     break;
                                 }
                         }
                     }
                     break;
                 case "Add":                   
-                    if (await chk.ValidateInput(TextBoxPalletBatchNo.Text, "Sales Order", "SalesOrderAdd"))
+                    if (await chk.ValidateInput(tbPalletBatchNo.Text, "Sales Order", "SalesOrderAdd"))
                     {
                         DoAdd = "no";
                     }
                     if (DoAdd != "no")
                     {
                         _db.QueryParameters.Clear();
-                        _db.QueryParameters.Add("@PalletBatchNo", TextBoxPalletBatchNo.Text);
+                        _db.QueryParameters.Add("@PalletBatchNo", tbPalletBatchNo.Text);
+                        _db.QueryParameters.Add("@LotNumber", tbLotNumber.Text);
                         _db.QueryParameters.Add("@Plant", tbPlant.Text);
                         _db.QueryParameters.Add("@ProdLineNo", cboProdLine.SelectedValue.ToString());
                         _db.QueryParameters.Add("@ProductID", ProductID.ToString());
@@ -628,7 +629,7 @@ namespace ITS.Exwold.Desktop
             tbInnersPerCart.Enabled = enabled;
             tbInnerWeight.Enabled = enabled;
             cboInnerUnit.Enabled = enabled;
-            TextBoxPalletBatchNo.Enabled = enabled;
+            tbPalletBatchNo.Enabled = enabled;
             cboProdLine.Enabled = enabled;
             tbNotes.Enabled = enabled;
             btnChangeStatus.Visible = enabled;
@@ -651,6 +652,7 @@ namespace ITS.Exwold.Desktop
 
         private void dgvOrders_DataSourceChanged(object sender, EventArgs e)
         {
+            dgvOrders.Columns[0].Frozen = false; ;
             if (dgvOrders.Columns.Count > 0)
             {
                 dgvOrders.AutoResizeColumns();

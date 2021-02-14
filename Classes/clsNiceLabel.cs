@@ -211,7 +211,7 @@ namespace ITS.Exwold.Desktop
                 label.Variables["GMID"].SetValue(palletLabelData.GMID);
                 label.Variables["Count"].SetValue(palletLabelData.Count);
                 label.Variables["NetUnits"].SetValue(palletLabelData.NetUnits);
-                label.Variables["NetVolume"].SetValue(palletLabelData.NetVolume);
+                label.Variables["NetVolume"].SetValue(palletLabelData.NetVolOrWt);
                 label.Variables["NetUnits_AI"].SetValue(palletLabelData.NetUnits_AI);
                 label.Variables["BatchNumber"].SetValue(palletLabelData.BatchNumber);
                 label.Variables["ProductionDate"].SetValue(palletLabelData.ProductionDate);
@@ -834,7 +834,7 @@ namespace ITS.Exwold.Desktop
             get { return _NetUnits; }
             set { _NetUnits = value; }
         }
-        public string NetVolume
+        public string NetVolOrWt
         {
             get { return _NetVolume; }
             set { _NetVolume = value; }
@@ -919,7 +919,7 @@ namespace ITS.Exwold.Desktop
         string GMID { get; set; }
         string Count { get; set; }
         string NetUnits { get; set; }
-        string NetVolume { get; set; }
+        string NetVolOrWt { get; set; }
         string NetUnits_AI { get; set; }
         string BatchNumber { get; set; }
         string ProductionDate { get; set; }

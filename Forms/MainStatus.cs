@@ -415,9 +415,9 @@ namespace ITS.Exwold.Desktop
             UserAuthentication auth = new UserAuthentication();
             frmPlantHardware frmHW = null;
             auth.ShowDialog();
-            if (auth.Supervisor)
+            if (auth.Supervisor) 
             {
-                frmHW = new frmPlantHardware(_exwoldConfigSettings, Scanners);
+                frmHW = new frmPlantHardware(_db, _exwoldConfigSettings, Scanners);
                 frmHW.ShowDialog();
                 if (frmHW.DialogResult == DialogResult.OK)
                 {
@@ -438,7 +438,7 @@ namespace ITS.Exwold.Desktop
         }
         private void btnScanner_Click(object sender, EventArgs e)
         {
-            frmStandAloneScanners fScanners = new frmStandAloneScanners(Scanners);
+            frmStandAloneScanners fScanners = new frmStandAloneScanners(_db, Scanners);
             fScanners.ShowDialog();
             fScanners.Dispose();
         }

@@ -101,11 +101,11 @@ namespace ITS.Exwold.Desktop
             tbPalletGMID.Text = plData == null ? string.Empty : plData.GMID;
             tbPalletCount.Text = plData == null ? string.Empty : plData.Count;
             tbPalletNetUnits.Text = plData == null ? string.Empty : plData.NetUnits;
-            tbPalletNetVolume.Text = plData == null ? string.Empty : plData.NetVolume;
+            tbPalletNetVolOrWt.Text = plData == null ? string.Empty : plData.NetVolOrWt.Insert(4, ".");
             tbPalletNetUnits_AI.Text = plData == null ? string.Empty : plData.NetUnits_AI;
             tbPalletBatchNumber.Text = plData == null ? string.Empty : plData.BatchNumber;
             
-            tbPalletProductionDate.Text = plData == null ? string.Empty : LabelDate(plData.ProductionDate).ToString("dd/MM/yyyy");
+            tbPalletProductionDate.Text = plData == null ? string.Empty : LabelDate(plData.ProductionDate).ToString("dd-MMMM-yyyy");
             tbPalletSSCC.Text = plData == null ? string.Empty : plData.SSCC;
             tbPalletGTIN.Text = plData == null ? string.Empty : plData.GTIN;
             tbPalletLabelNumber.Text = plData == null ? string.Empty : plData.LabelNumber;

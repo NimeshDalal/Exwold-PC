@@ -99,7 +99,7 @@ namespace ITS.Exwold.Desktop.AsyncTcp
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Stop Err: {ex.Message}");
+                Console.WriteLine($"{Logging.ThisMethod()} Stop Err: {ex.Message}");
             }
         }        
         public bool ServerRunning()
@@ -133,7 +133,7 @@ namespace ITS.Exwold.Desktop.AsyncTcp
 							string message = Encoding.UTF8.GetString(bytes, 0, bytes.Length);
 							string reply = await tcpListenerReplyMsgAsync(message);
 
-							Console.WriteLine($"Sending reply {reply}");
+							Console.WriteLine($"{Logging.ThisMethod()} Sending reply {reply}");
 
 
 							bytes = Encoding.UTF8.GetBytes(reply);
@@ -208,7 +208,7 @@ namespace ITS.Exwold.Desktop.AsyncTcp
                 sRtn = "ERROR";
             }
             TxMessage = sRtn;
-            Console.WriteLine($"Message in:{Message}, Reply:{sRtn}");
+            Console.WriteLine($"{Logging.ThisMethod()} Message in:{Message}, Reply:{sRtn}");
 
             return sRtn;
         }
@@ -228,7 +228,7 @@ namespace ITS.Exwold.Desktop.AsyncTcp
         }
         private void ServerMessage(object sender, AsyncTcpEventArgs e)
         {
-            Console.WriteLine($"ServerMessage: {e.Message}");
+            Console.WriteLine($"{Logging.ThisMethod()} ServerMessage: {e.Message}");
             SvrMessage = e.Message;
         }
         #endregion

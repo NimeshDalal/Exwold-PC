@@ -122,6 +122,7 @@ namespace ITS.Exwold.Desktop
                 lblScannerMessage.Visible = true;
             }
         }
+
         public async Task UpdateScannedCounts()
         {
             try
@@ -131,7 +132,7 @@ namespace ITS.Exwold.Desktop
                 DataSet dsPackInfo = await _db.getDataSet("[GUI].[spPackInfo]", true);
                 if (dsPackInfo != null && dsPackInfo.Tables[0].Rows.Count > 0)
                 {
-                    Console.WriteLine(dsPackInfo.Tables[0].Rows.Count);
+                    Console.WriteLine($"{Logging.ThisMethod()} {dsPackInfo.Tables[0].Rows.Count}");
                     int InnersUnassigned = int.Parse(dsPackInfo.Tables[0].Rows[0]["InnersUnassigned"].ToString());
                     int InnersPerCarton = int.Parse(dsPackInfo.Tables[0].Rows[0]["InnerPacksPerCarton"].ToString());
                     int CartonsScanned = int.Parse(dsPackInfo.Tables[0].Rows[0]["NumCartons"].ToString());
@@ -156,14 +157,15 @@ namespace ITS.Exwold.Desktop
                     tbOutersScanned.Text = CartonsScanned.ToString();
                     tbInnersInOuters.Text = dsPackInfo.Tables[0].Rows[0]["InnersInCarton"].ToString();
                     tbInnersRqd.Text = dsPackInfo.Tables[0].Rows[0]["RequiredTotalInners"].ToString();
-                    tbInnersScanned.Text = dsPackInfo.Tables[0].Rows[0]["NumInners"].ToString();
                     tbInnersOnPallets.Text = dsPackInfo.Tables[0].Rows[0]["InnersOnPallet"].ToString();
                     tbInnersUnassigned.Text = dsPackInfo.Tables[0].Rows[0]["InnersUnassigned"].ToString();
 
                     //Write the screen message
                     lblCartonMessage.Text = (CartonsPerPallet > 0 && CartonsScanned >= CartonsPerPallet) ? "Pallet is ready for scanning" : string.Empty;
-                    lblCartonMessage.Text = (string.IsNullOrEmpty(lblCartonMessage.Text) && InnersPerCarton > 0 && InnersUnassigned >= InnersPerCarton) ? "Carton is for ready scanning" : string.Empty;
-
+                    if (string.IsNullOrEmpty(lblCartonMessage.Text))
+                    {
+                        lblCartonMessage.Text = (InnersPerCarton > 0 && InnersUnassigned >= InnersPerCarton) ? "Carton is for ready scanning" : string.Empty;
+                    }
                     //dtScannedInners.AsEnumerable().Where(row => int.Parse(row["Valid"].ToString()) == 1).Sum(res => int.Parse(res["Total"].ToString()));
                     //dtScannedInners.AsEnumerable().Where(row => int.Parse(row["Valid"].ToString()) == 1 && row["PalletUniqueNo"] != DBNull.Value).Sum(res => (int)(res["Total"] == DBNull.Value ? 0 : int.Parse(res["Total"].ToString())));
                     //dtScannedInners.AsEnumerable().Where(row => int.Parse(row["Valid"].ToString()) == 1 && row["PalletUniqueNo"] == DBNull.Value).Sum(res => (int)(res["Total"] == DBNull.Value ? 0 : int.Parse(res["Total"].ToString())));
@@ -174,7 +176,6 @@ namespace ITS.Exwold.Desktop
                     tbOutersScanned.Text = string.Empty;
                     tbInnersInOuters.Text = string.Empty;
                     tbInnersRqd.Text = string.Empty;
-                    tbInnersScanned.Text = string.Empty;
                     tbInnersOnPallets.Text = string.Empty;
                     tbInnersUnassigned.Text = string.Empty;
                     lblCartonMessage.Text = string.Empty;
@@ -187,7 +188,6 @@ namespace ITS.Exwold.Desktop
                 tbOutersScanned.Text = string.Empty;
                 tbInnersInOuters.Text = string.Empty;
                 tbInnersRqd.Text = string.Empty;
-                tbInnersScanned.Text = string.Empty;
                 tbInnersOnPallets.Text = string.Empty;
                 tbInnersUnassigned.Text = string.Empty;
                 lblCartonMessage.Text = string.Empty;
@@ -378,7 +378,7 @@ namespace ITS.Exwold.Desktop
         }
         private void btnShowDetails_Click(object sender, EventArgs e)
         {
-            frmScannerDetail fscannerDetail = new frmScannerDetail(_scanner)
+            frmScannerDetail fscannerDetail = new frmScannerDetail(_db, _scanner)
             {
                 // Set the form parameters
                 FormBorderStyle = FormBorderStyle.FixedDialog,
@@ -398,8 +398,27 @@ namespace ITS.Exwold.Desktop
             fscannerDetail.ShowDialog();
             fscannerDetail.Dispose();
         }
+
         #endregion
 
+        private async void btnCompletePallet_Click(object sender, EventArgs e)
+        {
+            // Get the PalletUId
+            int PalletUId = await Helper.CurrentPallet(_db, _palletBatchID);
+            // This call closes the Pallet
+            _db.QueryParameters.Clear();
+            _db.QueryParameters.Add("PalletUniqueNo", PalletUId.ToString());
+            DataTable dtCollectPalletLabels = await _db.executeSP("[dbo].[spCollectPalletLabels]", true);
 
+            PalletLabelMethods plMethods = new PalletLabelMethods(_db);
+            if (await plMethods.PrintPalletLabels(PalletUId, 1))
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Information, Logging.ThisMethod(), "Pallet labels printed");
+            }
+            else
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Information, Logging.ThisMethod(), "Pallet labels failed to print");
+            }
+        }
     }
 }

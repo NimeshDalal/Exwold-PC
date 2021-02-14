@@ -12,8 +12,9 @@ namespace ITS.Exwold.Desktop
 {
     internal partial class frmStandAloneScanners : Form
     {
+        private readonly DataInterface.execFunction _db = null;
         List<StandAloneScanner> _scanners;
-        internal frmStandAloneScanners(List<StandAloneScanner> Scanners)
+        internal frmStandAloneScanners(DataInterface.execFunction database, List<StandAloneScanner> Scanners)
         {
             InitializeComponent();
             // Set the form parameters
@@ -28,6 +29,7 @@ namespace ITS.Exwold.Desktop
             ControlBox = true;
             HelpButton = false;
 
+            _db = database;
             _scanners = Scanners;
             
         }
@@ -57,7 +59,7 @@ namespace ITS.Exwold.Desktop
                 //
                 // fScanner
                 //
-                frmScannerDetail fScannerDetail = new frmScannerDetail(scanner);
+                frmScannerDetail fScannerDetail = new frmScannerDetail(_db, scanner);
                 fScannerDetail.TopLevel = false;
                 fScannerDetail.Name = $"frm{scanner.ConfigData.Name.Replace(" ", "")}";
                 fScannerDetail.FormBorderStyle = FormBorderStyle.None;

@@ -64,8 +64,8 @@ namespace ITS.Exwold.Desktop
 
         public void InitScanners()
         {
-            Console.WriteLine($"No of scanners (Config) : {_exwoldConfigSettings.StandAloneScanners.Count}");
-            Console.WriteLine($"No of scanners (Setup) : {Scanners.Count}");
+            Console.WriteLine($"{Logging.ThisMethod()} No of scanners (Config) : {_exwoldConfigSettings.StandAloneScanners.Count}");
+            Console.WriteLine($"{Logging.ThisMethod()} No of scanners (Setup) : {Scanners.Count}");
             foreach (StandAloneScannerConfigElement scannerConfig in _exwoldConfigSettings.StandAloneScanners)
             {
                 bool _init = false;
@@ -112,7 +112,7 @@ namespace ITS.Exwold.Desktop
         {
             ScannerOrderData orderData = null;
             StandAloneScanner scanner = null; // = new StandAloneScanner(scannerConfig, orderData);
-            Console.WriteLine($"Id:{scannerConfig.Id}, Name:{scannerConfig.Name}");
+            Console.WriteLine($"{Logging.ThisMethod()} Id:{scannerConfig.Id}, Name:{scannerConfig.Name}");
             if (scannerConfig.Condition == "active")
             {
                 try
@@ -176,17 +176,17 @@ namespace ITS.Exwold.Desktop
         }
         private void mx300n_ScannerReadStarted(object sender, ScannerReadStatusEventArgs a)
         {
-            Console.WriteLine($"Scanner read start {a.IPAddr}");
+            Console.WriteLine($"{Logging.ThisMethod()} Scanner read start {a.IPAddr}");
         }
         private void mx300n_ScannerReadStopped(object sender, ScannerReadStatusEventArgs a)
 
         {
-            Console.WriteLine($"Scanner read stopped {a.IPAddr}");
+            Console.WriteLine($"{Logging.ThisMethod()} Scanner read stopped {a.IPAddr}");
         }
         private async void mx300n_ScannerDataParsed(object sender, ScannerDataEventArgs args)
         {
             string batchChangeUser = args.ScannerId;
-            Console.WriteLine($"Parsed Data:{args.ScannerId}, {args.GTIN}, {args.LotNo}, {args.ProdDate}, {args.ProdName}");
+            //Console.WriteLine($"Parsed Data:{args.ScannerId}, {args.GTIN}, {args.LotNo}, {args.ProdDate}, {args.ProdName}");
             try
             {
                 batchChangeUser = await Helper.ChangeUser(_db, args.PalletBatchUId.ToString());
@@ -225,31 +225,20 @@ namespace ITS.Exwold.Desktop
 
                 if (dt != null)
                 {
-                    // If we have a valid UId returned and the data is valid, refresh the 
-                    if (fLineInfo1 != null && fLineInfo1.LineId == scannedData.ProductionLineUId)
+                    // If we have a valid UId returned and the data is valid, refresh the page
+                    try
                     {
-                        if (int.Parse(dt.Rows[0]["Valid"].ToString()) == 1)
+                        frmLineInfo lInfo = lineInfoPage(scannedData.ProductionLineUId);
+                        if (lInfo != null)
                         {
-                            await fLineInfo1.UpdateScannedCounts();
+                            if (int.Parse(dt.Rows[0]["Valid"].ToString()) == 1)
+                            {
+                                await lInfo.UpdateScannedCounts();
+                            }
+                            lInfo.UpdateScannerUI(int.Parse(dt.Rows[0]["Valid"].ToString()) == 1, dt.Rows[0]["Message"].ToString(), true, string.Empty);
                         }
-                        fLineInfo1.UpdateScannerUI(int.Parse(dt.Rows[0]["Valid"].ToString()) == 1, dt.Rows[0]["Message"].ToString(), true, string.Empty);
                     }
-                    if (fLineInfo2 != null && fLineInfo2.LineId == scannedData.ProductionLineUId)
-                    {
-                        if (int.Parse(dt.Rows[0]["Valid"].ToString()) == 1)
-                        {
-                            await fLineInfo2.UpdateScannedCounts();
-                        }
-                        fLineInfo2.UpdateScannerUI(int.Parse(dt.Rows[0]["Valid"].ToString()) == 1, dt.Rows[0]["Message"].ToString(), true, string.Empty);
-                    }
-                    if (fLineInfo3 != null && fLineInfo3.LineId == scannedData.ProductionLineUId)
-                    {
-                        if (int.Parse(dt.Rows[0]["Valid"].ToString()) == 1)
-                        {
-                            await fLineInfo3.UpdateScannedCounts();
-                        }
-                        fLineInfo3.UpdateScannerUI(int.Parse(dt.Rows[0]["Valid"].ToString()) == 1, dt.Rows[0]["Message"].ToString(), true, string.Empty);
-                    }
+                    catch { } //Line not found so do nothing!
                 }
             }
             catch (Exception ex)
@@ -260,28 +249,12 @@ namespace ITS.Exwold.Desktop
 
         private async Task ProcessOuterPackScan(ScannerDataEventArgs scannedData, string ChangeUser)
         {
-            int CurrentPalletUId = 0;
+            
             DataTable dtAcceptCartonData = null;
+            int CurrentPalletUId = await Helper.CurrentPallet(_db, scannedData.PalletBatchUId);
             try
             {
-                // Get the current PalletUId
-                _db.QueryParameters.Clear();
-                _db.QueryParameters.Add("PalletBatchUniqueNo", scannedData.PalletBatchUId.ToString());
-                DataSet dsPackInfo = await _db.getDataSet("[GUI].[spPackInfo]", true);
-                if (dsPackInfo != null && dsPackInfo.Tables.Count > 1 && dsPackInfo.Tables[1].Rows.Count > 0)
-                {
-                    int.TryParse(dsPackInfo.Tables[1].Rows[0]["PalletuniqueNo"].ToString(), out CurrentPalletUId);
-                }
-            }
-            catch { CurrentPalletUId = 0; }
-            try
-            {
-                clsValidation val = new clsValidation(_db);
-                bool bGTIN = scannedData.GTIN.Length == 14;
-                bool bProdDate = scannedData.ProdDate.Length == 6;
-                bool bLotNo = scannedData.LotNo.Length >= 3 && scannedData.LotNo.Length <= 20;
-
-                if (bGTIN && bProdDate && bLotNo)
+                if (checkScanData(scannedData))
                 {
                     _db.QueryParameters.Clear();
                     _db.QueryParameters.Add("PalletBatchUniqueNo", scannedData.PalletBatchUId.ToString());
@@ -294,35 +267,33 @@ namespace ITS.Exwold.Desktop
                 }
                 if (dtAcceptCartonData != null)
                 {
-                    // If we have a valid UId returned and the data is valid, refresh the 
-                    if (fLineInfo1 != null && fLineInfo1.LineId == scannedData.ProductionLineUId)
+                    if (int.Parse(dtAcceptCartonData.Rows[0]["PalletUniqueNo"].ToString()) > 0)
                     {
-                        await fLineInfo1.UpdateScannedCounts();
+                        Console.WriteLine($"dtAcceptCartonData Rtn: {dtAcceptCartonData.Rows[0]["PalletUniqueNo"]}");
+                        // If we have a valid UId returned and the data is valid, refresh the 
+                        try
+                        {
+                            await lineInfoPage(scannedData.ProductionLineUId).UpdateScannedCounts();
+                            lineInfoPage(scannedData.ProductionLineUId).UpdateScannerUI(true, string.Empty, true, string.Empty);
+                        }
+                        catch { } //Line not found so do nothing!
                     }
-                    if (fLineInfo2 != null && fLineInfo2.LineId == scannedData.ProductionLineUId)
+                    else
                     {
-                        await fLineInfo2.UpdateScannedCounts();
+                        try
+                        {
+                            lineInfoPage(scannedData.ProductionLineUId).UpdateScannerUI(true, string.Empty, false, dtAcceptCartonData.Rows[0]["Message"].ToString());
+                        }
+                        catch { } //Line not found so do nothing!
                     }
-                    if (fLineInfo3 != null && fLineInfo3.LineId == scannedData.ProductionLineUId)
-                    {
-                        await fLineInfo3.UpdateScannedCounts();
-                    }
-                }                
+                }
                 else
                 {
-                    if (fLineInfo1 != null && fLineInfo1.LineId == scannedData.ProductionLineUId)
+                    try
                     {
-                        fLineInfo1.UpdateScannerUI(true, string.Empty, false, "Bad Scan. Please retry");
+                        lineInfoPage(scannedData.ProductionLineUId).UpdateScannerUI(true, string.Empty, false, "Bad data scanned");
                     }
-                    if (fLineInfo2 != null && fLineInfo2.LineId == scannedData.ProductionLineUId)
-                    {
-                        fLineInfo2.UpdateScannerUI(true, string.Empty, false, "Bad Scan. Please retry");
-                    }
-                    if (fLineInfo3 != null && fLineInfo3.LineId == scannedData.ProductionLineUId)
-                    {
-                        fLineInfo3.UpdateScannerUI(true, string.Empty, false, "Bad Scan. Please retry");
-                    }
-
+                    catch { } //Line not found so do nothing!
                 }
             }
             catch (Exception ex)
@@ -330,6 +301,35 @@ namespace ITS.Exwold.Desktop
                 Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex.Message);
             }
             #endregion
+        }
+        private bool checkScanData(ScannerDataEventArgs scannedData)
+        {
+            bool bGTIN = scannedData.GTIN.Length == 14;
+            bool bProdDate = scannedData.ProdDate.Length == 6;
+            bool bLotNo = scannedData.LotNo.Length >= 3 && scannedData.LotNo.Length <= 20;
+            bool bProdName = scannedData.ProdName.Length <= 50;
+
+            return bGTIN && bProdDate && bLotNo && bProdDate;
+        }
+        private frmLineInfo lineInfoPage(int LineUId)
+        {
+            try
+            {
+                if (fLineInfo1 != null && fLineInfo1.LineId == LineUId)
+                {
+                    return fLineInfo1;
+                }
+                if (fLineInfo2 != null && fLineInfo2.LineId == LineUId)
+                {
+                    return fLineInfo2;
+                }
+                if (fLineInfo3 != null && fLineInfo3.LineId == LineUId)
+                {
+                    return fLineInfo3;
+                }
+            }
+            catch { }
+            return null;
         }
     }
     internal class ScannerOrderData

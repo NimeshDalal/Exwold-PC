@@ -12,13 +12,15 @@ namespace ITS.Exwold.Desktop
 {
     internal partial class frmScannerDetail : Form
     {
+        private readonly DataInterface.execFunction _db;
         private StandAloneScanner _scanner;
         private string _simulationMessage;
         private bool _enableClose = false;
 
-        internal frmScannerDetail(StandAloneScanner Scanner)
+        internal frmScannerDetail(DataInterface.execFunction database, StandAloneScanner Scanner)
         {
             InitializeComponent();
+            _db = database;
             _scanner = Scanner;
             LoadScannerData(_scanner);
         }
@@ -85,15 +87,18 @@ namespace ITS.Exwold.Desktop
 
         #endregion
 
-        private void btnScanningSimulateMsg_Click(object sender, EventArgs e)
+        private async void btnScanningSimulateMsg_Click(object sender, EventArgs e)
         {
-            frmScannerMsg fscannercMsg = new frmScannerMsg()
-            {
-                GTIN = tbLastGTIN.Text,
-                LotNo = tbLastLotNo.Text,
-                ProdDate = tbLastProdDate.Text,
-                ProdName = tbLastProdName.Text
-            };
+            _db.QueryParameters.Clear();
+            _db.QueryParameters.Add("PalletBatchId", _scanner.OrderData.PalletBatchUId.ToString());
+            DataSet dsLabelData = await _db.getDataSet("[GUI].[getLabelData]", true);
+            frmScannerMsg fscannercMsg = new frmScannerMsg(dsLabelData);
+            //{
+            //    GTIN = tbLastGTIN.Text,
+            //    LotNo = tbLastLotNo.Text,
+            //    ProdDate = tbLastProdDate.Text,
+            //    ProdName = tbLastProdName.Text
+            //};
 
             fscannercMsg.TopMost = true;
             fscannercMsg.ShowDialog();
@@ -108,14 +113,15 @@ namespace ITS.Exwold.Desktop
         {
             if (_scanner.MX300N != null)
             {
-                _scanner.MX300N.StartScanningSimulation(_scanner.ConfigData.ScanRate);
+//                _scanner.MX300N.StartScanningSimulation(1, _scanner.ConfigData.ScanRate);
+                _scanner.MX300N.StartScanningSimulation(int.Parse(tbNumScans.Text), 1000);
             }
             btnScanningStop.Enabled = true;
         }
 
         private void mx300n_DataParsed(object sender, ScannerDataEventArgs args)
         {
-            Console.WriteLine($"Parsed Data:{args.ScannerId}\n{args.GTIN}\n{args.LotNo}\n{args.ProdDate}\n{args.ProdName}");
+            //Console.WriteLine($"Parsed Data:{args.ScannerId}\n{args.GTIN}\n{args.LotNo}\n{args.ProdDate}\n{args.ProdName}");
             lblLastScannedDate.Text = args.ScannedDate.ToString("dd-MMM-yyyy HH:mm:ss");
             tbLastGTIN.Text = args.GTIN;
             tbLastLotNo.Text = args.LotNo;
@@ -140,5 +146,7 @@ namespace ITS.Exwold.Desktop
                 this.Dispose();
             }
         }
+
+
     }
 }

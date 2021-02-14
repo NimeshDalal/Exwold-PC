@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +12,8 @@ namespace ITS.Exwold.Desktop
 {
     public partial class frmScannerMsg : Form
     {
+        //private readonly DataInterface.execFunction _db = null;
+        private readonly DataSet _labelDetails;
         private string _simMsg = string.Empty;
         public string SimMsg
         {  get { return _simMsg; } }
@@ -19,11 +21,18 @@ namespace ITS.Exwold.Desktop
         public string LotNo { get; set; }
         public string ProdDate { get; set; }
         public string ProdName { get; set; }
-        public frmScannerMsg()
+
+        public frmScannerMsg(DataSet LabelDetails)
         {
             InitializeComponent();
+            //_db = database;
+            _labelDetails = LabelDetails;
         }
 
+        private void frmScannerMsg_Load(object sender, EventArgs e)
+        {
+            writeLabelDetails(_labelDetails);
+        }
         private void btnClose_Click(object sender, EventArgs e)
         {            
             this.DialogResult = DialogResult.Cancel;
@@ -101,22 +110,54 @@ namespace ITS.Exwold.Desktop
             return msg.ToString();
         }
 
-        private void frmScannerMsg_Load(object sender, EventArgs e)
+
+        private void writeLabelDetails(DataSet LabelDetails)
         {
-            DateTime dt;
+            
+            if (rdoInnerLabel.Checked && LabelDetails.Tables.Count == 2)
+            {
+                tbGTIN.Text = LabelDetails.Tables[1].Rows[0]["GTIN"].ToString();
+                tbLotNo.Text = LabelDetails.Tables[1].Rows[0]["LotNo"].ToString();
+                tbProdDate.Text = fmtDate(LabelDetails.Tables[1].Rows[0]["ManufactureDate"].ToString()).ToString("dd-MMM-yyyy");
+                tbProdName.Text = string.Empty;
+                tbProdName.Enabled = false;
+
+            }
+            else if (rdoOuterLabel.Checked && LabelDetails.Tables.Count == 2)
+            {
+                tbGTIN.Text = LabelDetails.Tables[0].Rows[0]["GTIN"].ToString();
+                tbLotNo.Text = LabelDetails.Tables[0].Rows[0]["LotNo"].ToString();
+                tbProdDate.Text = fmtDate(LabelDetails.Tables[1].Rows[0]["ManufactureDate"].ToString()).ToString("dd-MMM-yyyy");
+                tbProdName.Text = LabelDetails.Tables[0].Rows[0]["ProductName"].ToString();
+                tbProdName.Enabled = true;
+            }
+            else
+            {               
+                tbGTIN.Text = GTIN;
+                tbLotNo.Text = LotNo;
+                tbProdDate.Text = fmtDate(ProdDate).ToString("dd-MMM-yyyy");
+                tbProdName.Text = ProdName;
+                tbProdName.Enabled = true;
+            }
+        }
+        private DateTime fmtDate(string ProdDate)
+        {
+            DateTime dte;
             try
             {
-                DateTime.TryParseExact(ProdDate, "yyMMdd", null, 
-                    System.Globalization.DateTimeStyles.None, out dt);
-                tbProdDate.Text = dt.ToString("dd-MMM-yyyy");
+                DateTime.TryParse(ProdDate, out dte);
+                //DateTime.TryParseExact(ProdDate, "yyMMdd", null, DateTimeStyles.None, out dte);
             }
             catch
             {
-                tbProdDate.Text = DateTime.Now.ToString("dd-MMM-yyyy");
+                dte = DateTime.Now;
             }
-            tbGTIN.Text = GTIN;
-            tbLotNo.Text = LotNo;
-            tbProdName.Text = ProdName;
+            return dte;
+        }
+
+        private void rdo_CheckedChanged(object sender, EventArgs e)
+        {
+            writeLabelDetails(_labelDetails);
         }
     }
 }

@@ -38,7 +38,7 @@
             this.lblPalletBatchNo = new System.Windows.Forms.Label();
             this.lblPalletLineNo = new System.Windows.Forms.Label();
             this.tbPalletBatchNumber = new System.Windows.Forms.TextBox();
-            this.tbPalletNetVolume = new System.Windows.Forms.TextBox();
+            this.tbPalletNetVolOrWt = new System.Windows.Forms.TextBox();
             this.tbPalletProductionDate = new System.Windows.Forms.TextBox();
             this.lblPalletNetWt = new System.Windows.Forms.Label();
             this.tbPalletSSCC = new System.Windows.Forms.TextBox();
@@ -174,7 +174,7 @@
             this.grpPalletLabelData.Controls.Add(this.lblPalletBatchNo);
             this.grpPalletLabelData.Controls.Add(this.lblPalletLineNo);
             this.grpPalletLabelData.Controls.Add(this.tbPalletBatchNumber);
-            this.grpPalletLabelData.Controls.Add(this.tbPalletNetVolume);
+            this.grpPalletLabelData.Controls.Add(this.tbPalletNetVolOrWt);
             this.grpPalletLabelData.Controls.Add(this.tbPalletProductionDate);
             this.grpPalletLabelData.Controls.Add(this.lblPalletNetWt);
             this.grpPalletLabelData.Controls.Add(this.tbPalletSSCC);
@@ -298,7 +298,6 @@
             this.tbPalletNetUnits.Name = "tbPalletNetUnits";
             this.tbPalletNetUnits.Size = new System.Drawing.Size(48, 29);
             this.tbPalletNetUnits.TabIndex = 41;
-            this.tbPalletNetUnits.Visible = false;
             // 
             // lblPalletNetUnits
             // 
@@ -317,7 +316,7 @@
             // 
             this.lblPalletNetUnits_AI.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPalletNetUnits_AI.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblPalletNetUnits_AI.Location = new System.Drawing.Point(432, 179);
+            this.lblPalletNetUnits_AI.Location = new System.Drawing.Point(488, 123);
             this.lblPalletNetUnits_AI.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPalletNetUnits_AI.Name = "lblPalletNetUnits_AI";
             this.lblPalletNetUnits_AI.Size = new System.Drawing.Size(112, 22);
@@ -330,25 +329,24 @@
             // 
             this.tbPalletNetUnits_AI.Enabled = false;
             this.tbPalletNetUnits_AI.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPalletNetUnits_AI.Location = new System.Drawing.Point(552, 176);
+            this.tbPalletNetUnits_AI.Location = new System.Drawing.Point(552, 93);
             this.tbPalletNetUnits_AI.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbPalletNetUnits_AI.MaxLength = 15;
             this.tbPalletNetUnits_AI.Name = "tbPalletNetUnits_AI";
             this.tbPalletNetUnits_AI.Size = new System.Drawing.Size(48, 29);
             this.tbPalletNetUnits_AI.TabIndex = 43;
-            this.tbPalletNetUnits_AI.Visible = false;
             // 
             // tbPalletProductionLineNumber
             // 
             this.tbPalletProductionLineNumber.Enabled = false;
             this.tbPalletProductionLineNumber.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPalletProductionLineNumber.Location = new System.Drawing.Point(552, 146);
+            this.tbPalletProductionLineNumber.Location = new System.Drawing.Point(552, 176);
             this.tbPalletProductionLineNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbPalletProductionLineNumber.MaxLength = 15;
             this.tbPalletProductionLineNumber.Name = "tbPalletProductionLineNumber";
             this.tbPalletProductionLineNumber.Size = new System.Drawing.Size(48, 29);
             this.tbPalletProductionLineNumber.TabIndex = 61;
-            this.tbPalletProductionLineNumber.Visible = false;
+            this.tbPalletProductionLineNumber.TabStop = false;
             // 
             // lblPalletBatchNo
             // 
@@ -366,7 +364,7 @@
             // 
             this.lblPalletLineNo.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPalletLineNo.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblPalletLineNo.Location = new System.Drawing.Point(432, 149);
+            this.lblPalletLineNo.Location = new System.Drawing.Point(432, 179);
             this.lblPalletLineNo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPalletLineNo.Name = "lblPalletLineNo";
             this.lblPalletLineNo.Size = new System.Drawing.Size(112, 22);
@@ -387,17 +385,17 @@
             this.tbPalletBatchNumber.TabIndex = 47;
             this.tbPalletBatchNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // tbPalletNetVolume
+            // tbPalletNetVolOrWt
             // 
-            this.tbPalletNetVolume.Enabled = false;
-            this.tbPalletNetVolume.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPalletNetVolume.Location = new System.Drawing.Point(406, 93);
-            this.tbPalletNetVolume.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbPalletNetVolume.MaxLength = 15;
-            this.tbPalletNetVolume.Name = "tbPalletNetVolume";
-            this.tbPalletNetVolume.Size = new System.Drawing.Size(194, 29);
-            this.tbPalletNetVolume.TabIndex = 59;
-            this.tbPalletNetVolume.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPalletNetVolOrWt.Enabled = false;
+            this.tbPalletNetVolOrWt.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPalletNetVolOrWt.Location = new System.Drawing.Point(406, 93);
+            this.tbPalletNetVolOrWt.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbPalletNetVolOrWt.MaxLength = 15;
+            this.tbPalletNetVolOrWt.Name = "tbPalletNetVolOrWt";
+            this.tbPalletNetVolOrWt.Size = new System.Drawing.Size(144, 29);
+            this.tbPalletNetVolOrWt.TabIndex = 59;
+            this.tbPalletNetVolOrWt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbPalletProductionDate
             // 
@@ -538,7 +536,7 @@
         private System.Windows.Forms.Label lblPalletPrinter;
         private System.Windows.Forms.TextBox tbPalletProductionLineNumber;
         private System.Windows.Forms.Label lblPalletLineNo;
-        private System.Windows.Forms.TextBox tbPalletNetVolume;
+        private System.Windows.Forms.TextBox tbPalletNetVolOrWt;
         private System.Windows.Forms.Label lblPalletNetWt;
         private System.Windows.Forms.TextBox tbPalletGTIN;
         private System.Windows.Forms.Label lblPalletGTIN;

@@ -201,7 +201,7 @@ namespace ITS.Exwold.Desktop
         public string ReadTcpSocket()
         {
             Task<string> rtn = Task.Run(async () => await ReadTcpSocket(_client));
-            Console.WriteLine("Socket Read");
+            Console.WriteLine($"{Logging.ThisMethod()} Socket Read");
             return rtn.Result;
         }
         /// <summary>
@@ -251,12 +251,12 @@ namespace ITS.Exwold.Desktop
         /// Starts a scanning 
         /// </summary>
         /// <param name="ReadInterval"></param>
-        public async void StartScanningSimulation(int ReadInterval)
+        public async void StartScanningSimulation(int NumberOfScans, int ReadInterval)
         {
             _cancelSource = new CancellationTokenSource();
             try
             {
-                _taskSimulateScanning = StartScanningSimulationTask(ReadInterval);
+                _taskSimulateScanning = StartScanningSimulationTask(NumberOfScans, ReadInterval);
                 if (_taskSimulateScanning != null)
                 {
                     await _taskSimulateScanning;
@@ -332,7 +332,7 @@ namespace ITS.Exwold.Desktop
                     {
                         // Check that we are connected to the correct port
                         IPEndPoint remoteEndPoint = (IPEndPoint)_client.Client.RemoteEndPoint;
-                        Console.WriteLine($"{remoteEndPoint.Address}, {remoteEndPoint.Address.Equals(_ipaddr)} : {remoteEndPoint.Port}, {remoteEndPoint.Port == _port}");
+                        Console.WriteLine($"{Logging.ThisMethod()} {remoteEndPoint.Address}, {remoteEndPoint.Address.Equals(_ipaddr)} : {remoteEndPoint.Port}, {remoteEndPoint.Port == _port}");
                         if (remoteEndPoint.Address.Equals(_ipaddr) & remoteEndPoint.Port == _port)
                         {
                             return _client.Client.Connected;
@@ -387,7 +387,7 @@ namespace ITS.Exwold.Desktop
                 {
                     numEventSubscriptions = this.ScannerRead.GetInvocationList().Where(t => t.Target.GetType() == this.GetType()).Count();                    
                 }
-                //Console.WriteLine("Before Total Events {0}, Number in class {0}", this.ScannerRead.GetInvocationList().Length.ToString(), numEventSubscriptions);
+                Console.WriteLine($"{Logging.ThisMethod()} Before Total Events {this.ScannerRead.GetInvocationList().Length.ToString()}, Number in class {numEventSubscriptions}");
             }
             catch (Exception ex)
             {
@@ -642,7 +642,7 @@ namespace ITS.Exwold.Desktop
                 await Task.Delay(ReadInterval);
             }
         }
-        private async Task StartScanningSimulationTask(int ReadInterval)
+        private async Task StartScanningSimulationTask(int NumberOfScans, int ReadInterval)
         {
             CancellationToken cancelReading = _cancelSource.Token;
             ScannerReadEventArgs readEventArgs;
@@ -659,7 +659,7 @@ namespace ITS.Exwold.Desktop
             OnScannerReadStart(statusEventArgs);
 
             //Loop until stopped
-            while (true)
+            while (readstried < NumberOfScans)
             {
                 readstried++;
                 LogStatus(_ctrlreads, readstried);
@@ -792,19 +792,19 @@ namespace ITS.Exwold.Desktop
 
         private void mx300n_ScannerRead(object sender, ScannerReadEventArgs a)
         {
-            Console.WriteLine($"clsMx300N Scanner read event fired {a.IPAddr}");
+            Console.WriteLine($"{Logging.ThisMethod()} clsMx300N Scanner read event fired {a.IPAddr}");
         }
         private void mx300n_ScannerReadStarted(object sender, ScannerReadStatusEventArgs a)
         {
-            Console.WriteLine($"clsMx300N Scanner read started {a.IPAddr}");
+            Console.WriteLine($"{Logging.ThisMethod()} clsMx300N Scanner read started {a.IPAddr}");
         }
         private void mx300n_ScannerReadStopped(object sender, ScannerReadStatusEventArgs a)
         {
-            Console.WriteLine($"clsMx300N Scanner read stopped {a.IPAddr}");
+            Console.WriteLine($"{Logging.ThisMethod()} clsMx300N Scanner read stopped {a.IPAddr}");
         }
         private void mx300n_ScannerDataParsed(object sender, ScannerDataEventArgs a)
         {
-            Console.WriteLine($"Data parsed {a.GTIN}");
+            Console.WriteLine($"{Logging.ThisMethod()} Data parsed {a.GTIN}");
         }
         #endregion
         #region Parsing Methods

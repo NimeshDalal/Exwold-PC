@@ -277,7 +277,7 @@ namespace ITS.Exwold.Desktop
                     updatedData.ProductionDate = dtPalletLabels.Rows[i]["ProdDate"].ToString();
                     updatedData.SSCC = dtPalletLabels.Rows[i]["SSCC"].ToString();
                     updatedData.GTIN = dtPalletLabels.Rows[i]["GTIN"].ToString();
-                    updatedData.NetVolume = dtPalletLabels.Rows[i]["NetVolOrWt"].ToString();
+                    updatedData.NetVolOrWt = dtPalletLabels.Rows[i]["NetVolOrWt"].ToString();
                     updatedData.TotalLabels = NoOfLabelsOnPallet.ToString();
                     updatedData.LabelNumber = (i + 1).ToString();  //Add 1 for the display
 

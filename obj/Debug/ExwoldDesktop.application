@@ -7,14 +7,14 @@
     <framework targetVersion="4.8" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="ExwoldDesktop.exe.manifest" size="48099">
+    <dependentAssembly dependencyType="install" codebase="ExwoldDesktop.exe.manifest" size="48097">
       <assemblyIdentity name="ExwoldDesktop.exe" version="2.0.4.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>CXQOVEvV+QHMW+byNgf5zXZJXLaXKacCO7Eq2zHLbfg=</dsig:DigestValue>
+        <dsig:DigestValue>I2Vd/+jlMgai3EsvHH8oklMnhZjFlMGsxUpkU6+Sc20=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

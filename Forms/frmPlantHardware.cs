@@ -29,6 +29,7 @@ namespace ITS.Exwold.Desktop
     public partial class frmPlantHardware : Form
     {
         #region private variables
+        private readonly DataInterface.execFunction _db = null;
         private ExwoldConfigSettings _exwoldConfigSettings = null;
         private readonly Dictionary<string, Control> _ipadresses = new Dictionary<string, Control>();
         private List<StandAloneScanner> _scanners = null;
@@ -44,9 +45,10 @@ namespace ITS.Exwold.Desktop
             get { return _exwoldConfigSettings; }
             set { _exwoldConfigSettings = value; }
         }
-        internal frmPlantHardware(ExwoldConfigSettings ConfigSettings, List<StandAloneScanner> Scanners)
+        internal frmPlantHardware(DataInterface.execFunction database, ExwoldConfigSettings ConfigSettings, List<StandAloneScanner> Scanners)
         {
             InitializeComponent();
+            _db = database;
             _exwoldConfigSettings = ConfigSettings;
             _scanners = Scanners;
 
@@ -413,7 +415,7 @@ namespace ITS.Exwold.Desktop
 
         private void btnStandAloneScanners_Click(object sender, EventArgs e)
         {
-            frmStandAloneScanners fScanners = new frmStandAloneScanners(_scanners);
+            frmStandAloneScanners fScanners = new frmStandAloneScanners(_db, _scanners);
             fScanners.ShowDialog();
         }
 

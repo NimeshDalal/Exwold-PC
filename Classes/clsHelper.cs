@@ -220,6 +220,25 @@ namespace ITS.Exwold.Desktop
             return ChangeUser;
         }
 
+        internal async static Task<int> CurrentPallet(DataInterface.execFunction db, int PalletBatchUId)
+        {
+            int CurrentPalletUId = 0;
+            try
+            {
+                // Get the current PalletUId
+                db.QueryParameters.Clear();
+                db.QueryParameters.Add("PalletBatchUniqueNo", PalletBatchUId.ToString());
+                DataSet dsPackInfo = await db.getDataSet("[GUI].[spPackInfo]", true);
+                if (dsPackInfo != null && dsPackInfo.Tables.Count > 1 && dsPackInfo.Tables[1].Rows.Count > 0)
+                {
+                    int.TryParse(dsPackInfo.Tables[1].Rows[0]["PalletuniqueNo"].ToString(), out CurrentPalletUId);
+                }
+            }
+            catch { CurrentPalletUId = 0; }
+
+            return CurrentPalletUId;
+        }
+
         #endregion
     }
 
