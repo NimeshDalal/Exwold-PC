@@ -206,21 +206,19 @@ namespace ITS.Exwold.Desktop
         {
             try
             {
-                await LoadLineInfo(_plantNumber, _pageNumber);
+                await LoadLineInfo(_plantNumber, _pageNumber, true);
+                GetLineData();
                 return true;
             }
             catch { }
             return false;
         }
-        private async Task LoadLineInfo(int PlantNumber, int PageNumber)
+        private async Task LoadLineInfo(int PlantNumber, int PageNumber, bool RefreshOnly = false)
         {
             const int cstNumInfoForms = 3;
 
             dgvReadyToPrint.DataSource = null;
             dgvOnHold.DataSource = null;
-
-
-
             //Get ReadyTo Print Data
             _db.QueryParameters.Clear();
 //            _db.QueryParameters.Add("Status", ((int)Helper.BatchStatus.Completed).ToString());
@@ -255,39 +253,40 @@ namespace ITS.Exwold.Desktop
                 }
             }
 
-
-            //Clear the display of data
-            pnlPosn1.Controls.Clear();
-            pnlPosn2.Controls.Clear();
-            pnlPosn3.Controls.Clear();
-
-            //Get the start line number
-            int line = (PageNumber * cstNumInfoForms) - cstNumInfoForms;
-
-            switch (PlantNumber)
+            if (!RefreshOnly)
             {
-                case 1:
-                    fLineInfo1 = AddLineForm(line++, pnlPosn1);
-                    fLineInfo2 = AddLineForm(line++, pnlPosn2);
-                    fLineInfo3 = AddLineForm(line, pnlPosn3);
-                    break;
-                case 2:
-                    fLineInfo1 = null;
-                    fLineInfo2 = AddLineForm(1, pnlPosn2);
-                    fLineInfo3 = null;
-                    break;
-                case 3:
-                    fLineInfo1 = null;
-                    fLineInfo2 = AddLineForm(1, pnlPosn2);
-                    fLineInfo3 = null;
-                    break;
-                default:
-                    fLineInfo1 = null;
-                    fLineInfo2 = null;
-                    fLineInfo3 = null;
-                    break;
+                //Clear the display of data
+                pnlPosn1.Controls.Clear();
+                pnlPosn2.Controls.Clear();
+                pnlPosn3.Controls.Clear();
+
+                //Get the start line number
+                int line = (PageNumber * cstNumInfoForms) - cstNumInfoForms;
+
+                switch (PlantNumber)
+                {
+                    case 1:
+                        fLineInfo1 = AddLineForm(line++, pnlPosn1);
+                        fLineInfo2 = AddLineForm(line++, pnlPosn2);
+                        fLineInfo3 = AddLineForm(line, pnlPosn3);
+                        break;
+                    case 2:
+                        fLineInfo1 = null;
+                        fLineInfo2 = AddLineForm(1, pnlPosn2);
+                        fLineInfo3 = null;
+                        break;
+                    case 3:
+                        fLineInfo1 = null;
+                        fLineInfo2 = AddLineForm(1, pnlPosn2);
+                        fLineInfo3 = null;
+                        break;
+                    default:
+                        fLineInfo1 = null;
+                        fLineInfo2 = null;
+                        fLineInfo3 = null;
+                        break;
+                }
             }
-            
         }
         private frmLineInfo AddLineForm(int LineNumber, Panel LinePanel)
         {
@@ -403,7 +402,10 @@ namespace ITS.Exwold.Desktop
         private extern static bool ExitWindowsEx(uint uFlags, uint dwReason);
 
 
-        #endregion
+        private async void btnRefresh_Click(object sender, EventArgs e)
+        {
+            await RefreshLineInfo();
+        }
 
         private void btnChangePage_Click(object sender, EventArgs e)
         {
@@ -442,8 +444,8 @@ namespace ITS.Exwold.Desktop
             fScanners.ShowDialog();
             fScanners.Dispose();
         }
-
-
+        #endregion
+        #region Test Events
         private void btnTCPListener_Click(object sender, EventArgs e)
         {
             frmAsyncTcpTest listener = new frmAsyncTcpTest(_db, _listener);
@@ -466,5 +468,7 @@ namespace ITS.Exwold.Desktop
             //List<PalletLabelInfo> plInfo = await plData.getPalletBatchLabels(1942);
 
         }
+        #endregion
+
     }
 }

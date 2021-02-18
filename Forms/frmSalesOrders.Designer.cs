@@ -44,7 +44,6 @@
             this.tbInnerGTIN = new System.Windows.Forms.MaskedTextBox();
             this.tbGTIN = new System.Windows.Forms.MaskedTextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.tbPalletBatchNo = new System.Windows.Forms.MaskedTextBox();
             this.tbGMID = new System.Windows.Forms.MaskedTextBox();
             this.tbDetails = new System.Windows.Forms.MaskedTextBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -70,12 +69,13 @@
             this.tbProdName = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.btnAction = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
-            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSetForDelete = new System.Windows.Forms.Button();
             this.btnViewDetails = new System.Windows.Forms.Button();
             this.grpButtons = new System.Windows.Forms.GroupBox();
             this.btnClose = new System.Windows.Forms.Button();
+            this.tbPalletBatchNo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOrders)).BeginInit();
             this.pnlTextBoxes.SuspendLayout();
             this.grpButtons.SuspendLayout();
@@ -131,6 +131,7 @@
             // 
             // pnlTextBoxes
             // 
+            this.pnlTextBoxes.Controls.Add(this.tbPalletBatchNo);
             this.pnlTextBoxes.Controls.Add(this.tbProdCode);
             this.pnlTextBoxes.Controls.Add(this.btnChangeStatus);
             this.pnlTextBoxes.Controls.Add(this.cboStatus);
@@ -143,7 +144,6 @@
             this.pnlTextBoxes.Controls.Add(this.tbInnerGTIN);
             this.pnlTextBoxes.Controls.Add(this.tbGTIN);
             this.pnlTextBoxes.Controls.Add(this.label9);
-            this.pnlTextBoxes.Controls.Add(this.tbPalletBatchNo);
             this.pnlTextBoxes.Controls.Add(this.tbGMID);
             this.pnlTextBoxes.Controls.Add(this.tbDetails);
             this.pnlTextBoxes.Controls.Add(this.label11);
@@ -303,15 +303,6 @@
             this.label9.Size = new System.Drawing.Size(151, 22);
             this.label9.TabIndex = 42;
             this.label9.Text = "Sales Order Number";
-            // 
-            // tbPalletBatchNo
-            // 
-            this.tbPalletBatchNo.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPalletBatchNo.Location = new System.Drawing.Point(1227, 35);
-            this.tbPalletBatchNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbPalletBatchNo.Name = "tbPalletBatchNo";
-            this.tbPalletBatchNo.Size = new System.Drawing.Size(256, 29);
-            this.tbPalletBatchNo.TabIndex = 41;
             // 
             // tbGMID
             // 
@@ -591,18 +582,18 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // btnSave
+            // btnAction
             // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSave.Location = new System.Drawing.Point(1037, 19);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(148, 39);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Save";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnAction.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAction.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAction.Location = new System.Drawing.Point(1037, 19);
+            this.btnAction.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnAction.Name = "btnAction";
+            this.btnAction.Size = new System.Drawing.Size(148, 39);
+            this.btnAction.TabIndex = 4;
+            this.btnAction.Text = "Save";
+            this.btnAction.UseVisualStyleBackColor = true;
+            this.btnAction.Click += new System.EventHandler(this.btnAction_Click);
             // 
             // label15
             // 
@@ -617,17 +608,17 @@
             this.label15.Text = "Sales Orders";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // btnDelete
+            // btnSetForDelete
             // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.Location = new System.Drawing.Point(283, 663);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(140, 39);
-            this.btnDelete.TabIndex = 10;
-            this.btnDelete.Text = "Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnSetForDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSetForDelete.Location = new System.Drawing.Point(283, 663);
+            this.btnSetForDelete.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnSetForDelete.Name = "btnSetForDelete";
+            this.btnSetForDelete.Size = new System.Drawing.Size(140, 39);
+            this.btnSetForDelete.TabIndex = 10;
+            this.btnSetForDelete.Text = "Delete";
+            this.btnSetForDelete.UseVisualStyleBackColor = true;
+            this.btnSetForDelete.Click += new System.EventHandler(this.btnSetForDelete_Click);
             // 
             // btnViewDetails
             // 
@@ -645,7 +636,7 @@
             // 
             this.grpButtons.Controls.Add(this.btnClose);
             this.grpButtons.Controls.Add(this.btnCancel);
-            this.grpButtons.Controls.Add(this.btnSave);
+            this.grpButtons.Controls.Add(this.btnAction);
             this.grpButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpButtons.Location = new System.Drawing.Point(0, 895);
             this.grpButtons.Name = "grpButtons";
@@ -666,6 +657,14 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // tbPalletBatchNo
+            // 
+            this.tbPalletBatchNo.Location = new System.Drawing.Point(1227, 33);
+            this.tbPalletBatchNo.MaxLength = 20;
+            this.tbPalletBatchNo.Name = "tbPalletBatchNo";
+            this.tbPalletBatchNo.Size = new System.Drawing.Size(256, 29);
+            this.tbPalletBatchNo.TabIndex = 14;
+            // 
             // frmSalesOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
@@ -675,7 +674,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.btnEdit);
-            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnSetForDelete);
             this.Controls.Add(this.btnViewDetails);
             this.Controls.Add(this.pnlTextBoxes);
             this.Controls.Add(this.dgvOrders);
@@ -700,7 +699,7 @@
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Panel pnlTextBoxes;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnAction;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MaskedTextBox tbProdName;
@@ -719,14 +718,13 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnSetForDelete;
         private System.Windows.Forms.ComboBox cboProdLine;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.MaskedTextBox tbCustomer;
         private System.Windows.Forms.MaskedTextBox tbGMID;
         private System.Windows.Forms.MaskedTextBox tbDetails;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.MaskedTextBox tbPalletBatchNo;
         private System.Windows.Forms.MaskedTextBox tbClientCode;
         private System.Windows.Forms.MaskedTextBox tbCompanyCode;
         private System.Windows.Forms.MaskedTextBox tbGTIN;
@@ -744,6 +742,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.MaskedTextBox tbLotNumber;
+        private System.Windows.Forms.TextBox tbPalletBatchNo;
     }
 }
 

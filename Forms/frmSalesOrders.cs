@@ -14,7 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -87,7 +87,7 @@ namespace ITS.Exwold.Desktop
                         ProductID = int.Parse(CreateBatchID);
                         btnAdd.PerformClick();
 
-                        setEnableCRUDButtons(false);
+                        enableCRUDButtons(false);
 
                         //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Form Loaded from Create Pallet Batch Button");
                         break;
@@ -114,17 +114,26 @@ namespace ITS.Exwold.Desktop
             {
                 case "Create":  //means dialogue has been opened from products page, continue
                     {
-                        UpdateType = "Add";
-                        
-                        this.pnlTextBoxes.Visible = true;
-                        this.btnChangeStatus.Visible = false;
-                        btnSave.Text = "Save";
+                        DataTable dtCurrentProduct;
 
-                        _db.QueryParameters.Clear();
-                        _db.QueryParameters.Add("ProductId", ProductID.ToString());
-                        //Get the data
-                        DataTable dtCurrentProduct = await _db.executeSP("[GUI].[getProductById]", true);
-                        dgvOrders.DataSource = dtCurrentProduct;
+                        try
+                        {
+                            _db.QueryParameters.Clear();
+                            _db.QueryParameters.Add("ProductId", ProductID.ToString());
+                            //Get the data
+                            dtCurrentProduct = await _db.executeSP("[GUI].[getProductById]", true);
+                            dgvOrders.DataSource = dtCurrentProduct;
+                        }
+                        catch (Exception ex)
+                        {
+                            Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex);
+                            return;
+                        }
+                        UpdateType = "Add";
+                        enableActionButtons(true);
+                        pnlTextBoxes.Visible = true;
+                        btnChangeStatus.Visible = false;
+                        btnAction.Text = "Save";
 
                         tbCustomer.Text = dtCurrentProduct.Rows[0]["Customer"].ToString();
                         tbDetails.Text = dtCurrentProduct.Rows[0]["CustomerDetails"].ToString();
@@ -170,6 +179,7 @@ namespace ITS.Exwold.Desktop
         }
         private async void btnEdit_Click(object sender, EventArgs e)
         {
+            DataTable dtCurrentProduct;
             //enable input panel and populate from selected row in datagrid. Set update type for save button
             if (CreateBatchFlag != "Edit")
             {
@@ -185,13 +195,22 @@ namespace ITS.Exwold.Desktop
                     return;
                 }
             }
+            try
+            {
+                dtCurrentProduct = await GetPalletBatch(BatchID);
+                dgvOrders.DataSource = dtCurrentProduct;
+            }
+            catch(Exception ex)
+            {
+                Program.Log.LogMessage(ThreadLog.DebugLevel.Exception, Logging.ThisMethod(), ex);
+                return;
+            }
             UpdateType = "Edit";
-            btnSave.Text = "Update";
+            btnAction.Text = "Update";
+            enableActionButtons(true);
+
             pnlTextBoxes.Visible = true;
             CreateBatchFlag = "";
-
-            DataTable dtCurrentProduct = await GetPalletBatch(BatchID);
-            dgvOrders.DataSource = dtCurrentProduct;
 
             tbCustomer.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "Customer").ToString();
             tbProdCode.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "ProductCode").ToString();
@@ -242,13 +261,14 @@ namespace ITS.Exwold.Desktop
                 EnableTextBoxes(true);
             }
         }
-        private async void btnDelete_Click(object sender, EventArgs e)
+        private async void btnSetForDelete_Click(object sender, EventArgs e)
         {
             {
                 //Set update type for save button, and open input panel
                 UpdateType = "Delete";
-                this.pnlTextBoxes.Visible = true;
-                this.btnSave.Text = "Delete";
+                pnlTextBoxes.Visible = true;
+                btnAction.Text = "Delete";
+                enableActionButtons(true);
                 BatchID = int.Parse(Helper.dgvGetCurrentRowColumn(dgvOrders, "PalletBatchUniqueNo").ToString());
 
                 DataTable dtCurrentProduct = await GetPalletBatch(BatchID);
@@ -256,6 +276,7 @@ namespace ITS.Exwold.Desktop
                 tbCustomer.Text = dtCurrentProduct.Rows[0]["Customer"].ToString();
                 tbProdCode.Text = dtCurrentProduct.Rows[0]["ProductCode"].ToString();
                 tbProdName.Text = dtCurrentProduct.Rows[0]["ProductName"].ToString();
+                tbLotNumber.Text = dtCurrentProduct.Rows[0]["LotNumber"].ToString();
                 tbTotalCartons.Text = dtCurrentProduct.Rows[0]["TotalNoOfCartons"].ToString();
                 tbCartonsPerPallet.Text = dtCurrentProduct.Rows[0]["CartonsPerPallet"].ToString();
                 tbInnersPerCart.Text = dtCurrentProduct.Rows[0]["InnerPacksPerCarton"].ToString();
@@ -270,13 +291,14 @@ namespace ITS.Exwold.Desktop
 
                 cboStatus.Enabled = false;
                 EnableTextBoxes(false);
-                MessageBox.Show("This order has now been set for deletion\nPlease select the 'Delete' button to confirm it's removal",
+                MessageBox.Show($"Order: \"{tbPalletBatchNo.Text}\"\nLot No: \"{tbLotNumber.Text}\"\nhas now been set for deletion\nPlease select the 'Delete' button to confirm it's removal",
                     "Deletion Flag Set", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
 
-        private async void btnSave_Click(object sender, EventArgs e)
+        private async void btnAction_Click(object sender, EventArgs e)
         {
+            bool bRefreshScreen = false;
             #region Do data validation
             clsValidation chk = new clsValidation(_db);
             DoAdd = "Yes";
@@ -300,7 +322,7 @@ namespace ITS.Exwold.Desktop
             {
                 DoAdd = "no";
             }
-            if (await chk.ValidateInput(tbCartonsPerPallet.Text, "Cartons per Pallet", "Int", 8,1, "No"))
+            if (await chk.ValidateInput(tbCartonsPerPallet.Text, "Cartons per Pallet", "Int", 8,1, "Yes"))
             {
                 DoAdd = "no";
             }
@@ -312,7 +334,7 @@ namespace ITS.Exwold.Desktop
             {
                 DoAdd = "no";
             }
-            if (await chk.ValidateInput(tbPalletBatchNo.Text, "Sales Order", "", 15, 1))
+            if (await chk.ValidateInput(tbPalletBatchNo.Text, "Sales Order", "", 20, 1))
             {
                 DoAdd = "no";
             }
@@ -325,9 +347,9 @@ namespace ITS.Exwold.Desktop
             //Run Insert or update depending on which button opened the inpuyt panel, copy data into SQL table
             switch (UpdateType)
             {
+                #region Edit
                 case "Edit":
-
-                    this.btnChangeStatus.Visible = true;
+                    btnChangeStatus.Visible = true;
                     if (await chk.ValidateInput(tbPalletBatchNo.Text, "Sales Order", "SalesOrderEdit"))
                     {
                         DoAdd = "no";
@@ -354,30 +376,25 @@ namespace ITS.Exwold.Desktop
                         int.TryParse(dtPalletBatch.Rows[0].ItemArray[0].ToString(), out NoRows);
 
                         // Re-Populate Datagrid                        
-                        getIncompleteOrders();
-                        this.pnlTextBoxes.Visible = false;
+                        bRefreshScreen = true;
+                        pnlTextBoxes.Visible = false;
 
                         //error checking - remove or update for logging
                         switch (NoRows)
                         {
                             case 1:
-                                {
-                                    break;
-                                }
-                            case 0:
-                                {
-                                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Edit of {TextBoxPalletBatchNo.Text} Failed\nPlease check data and try again.");
-                                    break;
-                                }
-                            default:
-                                {
-                                    Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), 
-                                        $"Unknown Error for {tbPalletBatchNo.Text}");
-                                    break;
-                                }
+                                break;                                
+                            case 0:                                
+                                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Edit of {TextBoxPalletBatchNo.Text} Failed\nPlease check data and try again.");
+                                break;                                
+                            default:                                
+                                Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), $"Unknown Error for {tbPalletBatchNo.Text}");
+                                break;                                
                         }
                     }
                     break;
+                #endregion
+                #region Add
                 case "Add":                   
                     if (await chk.ValidateInput(tbPalletBatchNo.Text, "Sales Order", "SalesOrderAdd"))
                     {
@@ -421,54 +438,48 @@ namespace ITS.Exwold.Desktop
                         _db.QueryParameters.Add("@Status", "0");
                         _db.QueryParameters.Add("@ChangeAction", "Insert");
 
+                        Console.WriteLine($"No Order params {_db.QueryParameters.Count.ToString()}");
                         DataTable dtResult = await _db.executeSP("[GUI].[createPalletBatch]", true);
                         int NewUId;
-                        if (int.TryParse(dtResult.Rows[0].ItemArray[0].ToString(), out NewUId))
-                        {
-                            if (NewUId > 0)
-                            {
-                                //The new UId is returned
-                                NoRows = 1;
-                            }
-                            else
-                            {
-                                NoRows = 0;
-                            }
-                        }
-                        else
+                        if (dtResult == null)
                         {
                             NoRows = int.MinValue;
                         }
-
+                        else
+                        {                            
+                            if (int.TryParse(dtResult.Rows[0].ItemArray[0].ToString(), out NewUId))
+                            {
+                                NoRows = NewUId > 0 ? 1 : 0;
+                            }
+                            else
+                            {
+                                NoRows = int.MinValue;
+                            }
+                        }
                         // Re-Populate Datagrid                        
-                        getIncompleteOrders();
-                        this.pnlTextBoxes.Visible = false;
+                        bRefreshScreen = true;
+                        pnlTextBoxes.Visible = false;
                         CreateBatchFlag = "False";
 
                         switch (NoRows)
                         {
                             case 1:
-                                {
-                                    MessageBox.Show("New Sales Order created");
-                                    //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Added " + TextBoxPalletBatchNo.Text);
-                                    break;
-                                }
+                                MessageBox.Show("New Sales Order created");
+                                //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Added " + TextBoxPalletBatchNo.Text);
+                                break;
                             case 0:
-                                {
-                                    MessageBox.Show("Failed to add Sales Order - Please check data and try again.");
-                                    //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Add Failed " + TextBoxPalletBatchNo.Text);
-                                    break;
-                                }
+                                MessageBox.Show("Failed to add Sales Order - Please check data and try again.");
+                                //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Add Failed " + TextBoxPalletBatchNo.Text);
+                                break;
                             default:
-                                {
-                                    MessageBox.Show("Failed to add Sales Order - Unknown Error, Please check data and try again.");
-                                    //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Add Failed - too many rows returned " + TextBoxPalletBatchNo.Text);
-                                    break;
-                                }
+                                MessageBox.Show("Failed to add Sales Order - Unknown Error, Please check data and try again.");
+                                //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Add Failed - too many rows returned " + TextBoxPalletBatchNo.Text);
+                                break;
                         }
                     }
                     break;
-
+                #endregion
+                #region Delete
                 case "Delete":
                    
                     DialogResult dialogResult = MessageBox.Show("This will permanently delete the selected Sales Order.", "Are you sure?", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
@@ -481,25 +492,20 @@ namespace ITS.Exwold.Desktop
                         int.TryParse(dtResult.Rows[0].ItemArray[0].ToString(), out NoRows);
 
                         // Re-Populate Datagrid                        
-                        getIncompleteOrders();
+                        bRefreshScreen = true;
                         this.pnlTextBoxes.Visible = false;
 
                         // logging 
                         switch (NoRows)
                         {
                             case 1:
-                                {
-                                MessageBox.Show("Sales Order deleted.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //MessageBox.Show("Sales Order deleted.", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Sales Order Deleted " + TextBoxPalletBatchNo.Text);
                                 break;
-                            }
-
                             default:
-                                {
                                 MessageBox.Show("Failed to Delete Sales Order\nPlease check data and try again.", "Deletion Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                    //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Batch Delete Failed " + TextBoxPalletBatchNo.Text);
-                                    break;
-                            }
+                                //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, Logging.ThisMethod(), "Pallet Batch Delete Failed " + TextBoxPalletBatchNo.Text);
+                                break;
                         }
                     }
                     
@@ -508,8 +514,9 @@ namespace ITS.Exwold.Desktop
                         //don't delete record
                     }
                     break;
+                #endregion
             }
-            getIncompleteOrders();
+            if (bRefreshScreen) { getIncompleteOrders(); }
         }
         /// <summary>
         /// Opens Pallet details form for highlighted batch
@@ -554,7 +561,7 @@ namespace ITS.Exwold.Desktop
             lblStatus.Visible = true;
             try
             {
-                setEnableCRUDButtons(true);
+                enableCRUDButtons(true);
                 this.btnChangeStatus.Visible = true;
                 CreateBatchFlag = "Reset";
                 getIncompleteOrders();
@@ -567,13 +574,17 @@ namespace ITS.Exwold.Desktop
         #endregion
 
         #region Local helpers methods
-        private void setEnableCRUDButtons(bool Status)
+        private void enableCRUDButtons(bool Status)
         {
             btnAdd.Enabled = Status;
             btnEdit.Enabled = Status;
-            btnDelete.Enabled = Status;
+            btnSetForDelete.Enabled = Status;
         }
-
+        private void enableActionButtons(bool Status)
+        {
+            btnAction.Enabled = Status;
+            btnCancel.Enabled = Status;
+        }
         private async void getIncompleteOrders()
         {
             _db.QueryParameters.Clear();
@@ -652,12 +663,13 @@ namespace ITS.Exwold.Desktop
 
         private void dgvOrders_DataSourceChanged(object sender, EventArgs e)
         {
-            dgvOrders.Columns[0].Frozen = false; ;
+            dgvOrders.Columns[0].Frozen = false;
             if (dgvOrders.Columns.Count > 0)
             {
                 dgvOrders.AutoResizeColumns();
                 dgvOrders.Columns[0].Frozen = true;
-
+                // No actions yet   
+                enableActionButtons(false);
             }
         }
     }

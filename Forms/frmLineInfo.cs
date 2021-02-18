@@ -15,7 +15,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Security.Permissions;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -125,46 +125,34 @@ namespace ITS.Exwold.Desktop
 
         public async Task UpdateScannedCounts()
         {
+            PackInformation.PackInfo packinfo;
             try
             {
-                _db.QueryParameters.Clear();
-                _db.QueryParameters.Add("PalletBatchUniqueNo", _palletBatchID.ToString());
-                DataSet dsPackInfo = await _db.getDataSet("[GUI].[spPackInfo]", true);
-                if (dsPackInfo != null && dsPackInfo.Tables[0].Rows.Count > 0)
+                packinfo = await Helper.PackInfoAsync(_db, _palletBatchID);
+
+                if (packinfo.RawPackInfo != null)
                 {
-                    Console.WriteLine($"{Logging.ThisMethod()} {dsPackInfo.Tables[0].Rows.Count}");
-                    int InnersUnassigned = int.Parse(dsPackInfo.Tables[0].Rows[0]["InnersUnassigned"].ToString());
-                    int InnersPerCarton = int.Parse(dsPackInfo.Tables[0].Rows[0]["InnerPacksPerCarton"].ToString());
-                    int CartonsScanned = int.Parse(dsPackInfo.Tables[0].Rows[0]["NumCartons"].ToString());
-                    int CartonsPerPallet = 0;
-                    int CurrentPalletUId = 0;
-                    try
-                    {
-                        if (dsPackInfo.Tables[1].Rows.Count > 0)
-                        {
-                            int.TryParse(dsPackInfo.Tables[1].Rows[0]["CartonsPerPallet"].ToString(), out CartonsPerPallet);
-                            int.TryParse(dsPackInfo.Tables[1].Rows[0]["PalletuniqueNo"].ToString(), out CurrentPalletUId);
-                        }
-                    }
-                    catch { }
-                    tbCartonsPerPallet.Text = CartonsPerPallet.ToString();
-                    tbCurrentPalletUId.Text = CurrentPalletUId.ToString();
-                    tbInnersPerCarton.Text = InnersPerCarton.ToString();
+                    tbCartonsPerPallet.Text = packinfo.CartonsPerPallet.ToString();
+                    tbCurrentPalletUId.Text = packinfo.CurrPalletUId.ToString();
+                    tbInnersPerCarton.Text = packinfo.InnerPacksPerCarton.ToString();
+
+                    tbCartonsPerPallet.Text = packinfo.CartonsPerPallet.ToString();
+                    tbCurrentPalletUId.Text = packinfo.CurrPalletUId.ToString();
+                    tbInnersPerCarton.Text = packinfo.InnerPacksPerCarton.ToString();
 
 
-
-                    tbOutersRqd.Text = dsPackInfo.Tables[0].Rows[0]["RequiredTotalOuters"].ToString();
-                    tbOutersScanned.Text = CartonsScanned.ToString();
-                    tbInnersInOuters.Text = dsPackInfo.Tables[0].Rows[0]["InnersInCarton"].ToString();
-                    tbInnersRqd.Text = dsPackInfo.Tables[0].Rows[0]["RequiredTotalInners"].ToString();
-                    tbInnersOnPallets.Text = dsPackInfo.Tables[0].Rows[0]["InnersOnPallet"].ToString();
-                    tbInnersUnassigned.Text = dsPackInfo.Tables[0].Rows[0]["InnersUnassigned"].ToString();
+                    tbOutersRqd.Text = packinfo.RequiredTotalOuters.ToString();
+                    tbOutersScanned.Text = packinfo.NumCartons.ToString();
+                    tbInnersInOuters.Text = packinfo.InnersInCarton.ToString();
+                    tbInnersRqd.Text = packinfo.RequiredTotalInners.ToString();
+                    tbInnersOnPallets.Text = packinfo.InnersOnPallet.ToString();
+                    tbInnersUnassigned.Text = packinfo.InnersUnassigned.ToString();
 
                     //Write the screen message
-                    lblCartonMessage.Text = (CartonsPerPallet > 0 && CartonsScanned >= CartonsPerPallet) ? "Pallet is ready for scanning" : string.Empty;
+                    lblCartonMessage.Text = (packinfo.CartonsPerPallet > 0 && packinfo.OutersScanned >= packinfo.CartonsPerPallet) ? "Pallet is ready for scanning" : string.Empty;
                     if (string.IsNullOrEmpty(lblCartonMessage.Text))
                     {
-                        lblCartonMessage.Text = (InnersPerCarton > 0 && InnersUnassigned >= InnersPerCarton) ? "Carton is for ready scanning" : string.Empty;
+                        lblCartonMessage.Text = (packinfo.InnerPacksPerCarton > 0 && packinfo.InnersUnassigned >= packinfo.InnerPacksPerCarton) ? "Carton is for ready scanning" : string.Empty;
                     }
                     //dtScannedInners.AsEnumerable().Where(row => int.Parse(row["Valid"].ToString()) == 1).Sum(res => int.Parse(res["Total"].ToString()));
                     //dtScannedInners.AsEnumerable().Where(row => int.Parse(row["Valid"].ToString()) == 1 && row["PalletUniqueNo"] != DBNull.Value).Sum(res => (int)(res["Total"] == DBNull.Value ? 0 : int.Parse(res["Total"].ToString())));
@@ -403,21 +391,25 @@ namespace ITS.Exwold.Desktop
 
         private async void btnCompletePallet_Click(object sender, EventArgs e)
         {
-            // Get the PalletUId
-            int PalletUId = await Helper.CurrentPallet(_db, _palletBatchID);
-            // This call closes the Pallet
-            _db.QueryParameters.Clear();
-            _db.QueryParameters.Add("PalletUniqueNo", PalletUId.ToString());
-            DataTable dtCollectPalletLabels = await _db.executeSP("[dbo].[spCollectPalletLabels]", true);
+            if (MessageBox.Show("Are you sure you want to end the current pallet?", "End Pallet", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                // Get the PalletUId
+                PackInformation.PackInfo packinfo = await Helper.PackInfoAsync(_db, _palletBatchID);
 
-            PalletLabelMethods plMethods = new PalletLabelMethods(_db);
-            if (await plMethods.PrintPalletLabels(PalletUId, 1))
-            {
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Information, Logging.ThisMethod(), "Pallet labels printed");
-            }
-            else
-            {
-                Program.Log.LogMessage(ThreadLog.DebugLevel.Information, Logging.ThisMethod(), "Pallet labels failed to print");
+                // This call closes the Pallet
+                _db.QueryParameters.Clear();
+                _db.QueryParameters.Add("PalletUniqueNo", packinfo.CurrPalletUId.ToString());
+                DataTable dtCollectPalletLabels = await _db.executeSP("[dbo].[spCollectPalletLabels]", true);
+
+                PalletLabelMethods plMethods = new PalletLabelMethods(_db);
+                if (await plMethods.PrintPalletLabels(packinfo.CurrPalletUId, 1))
+                {
+                    Program.Log.LogMessage(ThreadLog.DebugLevel.Information, Logging.ThisMethod(), "Pallet labels printed");
+                }
+                else
+                {
+                    Program.Log.LogMessage(ThreadLog.DebugLevel.Information, Logging.ThisMethod(), "Pallet labels failed to print");
+                }
             }
         }
     }

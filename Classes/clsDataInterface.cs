@@ -12,7 +12,7 @@
  */
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
@@ -138,6 +138,7 @@ namespace ITS.Exwold.Desktop.DataInterface
             //Get the result
             strJSON = await AzureHelper.executeSQL(_pAzure, spParams);
             //If the result is empty then something went wrong!
+            Debug.WriteLine($"getDataSet\n{strJSON}");
             if (string.IsNullOrWhiteSpace(strJSON)) return null;
 
             try

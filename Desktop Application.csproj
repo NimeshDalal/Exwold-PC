@@ -133,6 +133,7 @@
       <DependentUpon>frmAsyncTcpTest.cs</DependentUpon>
     </Compile>
     <Compile Include="AsyncTcp\ByteBuffer.cs" />
+    <Compile Include="Classes\PackInfo.cs" />
     <Compile Include="Classes\tcpListener.cs" />
     <Compile Include="Classes\clsAzureHelper.cs" />
     <Compile Include="Classes\clsCustomAppSetting.cs" />

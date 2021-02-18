@@ -251,7 +251,12 @@ namespace ITS.Exwold.Desktop
         {
             
             DataTable dtAcceptCartonData = null;
-            int CurrentPalletUId = await Helper.CurrentPallet(_db, scannedData.PalletBatchUId);
+            int rtnPalletUId = int.MinValue;
+            bool bGoodRtn = false;
+            
+            PackInformation.PackInfo packinfo = await Helper.PackInfoAsync(_db, scannedData.PalletBatchUId);
+            int CurrentPalletUId = packinfo.CurrPalletUId;
+
             try
             {
                 if (checkScanData(scannedData))
@@ -267,13 +272,18 @@ namespace ITS.Exwold.Desktop
                 }
                 if (dtAcceptCartonData != null)
                 {
-                    if (int.Parse(dtAcceptCartonData.Rows[0]["PalletUniqueNo"].ToString()) > 0)
+                    bGoodRtn = int.TryParse(dtAcceptCartonData.Rows[0]["PalletUniqueNo"].ToString(), out rtnPalletUId);
+                }
+
+                if (bGoodRtn)
+                {
+                    Console.WriteLine($"dtAcceptCartonData Rtn: {rtnPalletUId}, message {dtAcceptCartonData.Rows[0]["Message"].ToString()}");
+                    await lineInfoPage(scannedData.ProductionLineUId).UpdateScannedCounts();
+                    if (rtnPalletUId > 0)
                     {
-                        Console.WriteLine($"dtAcceptCartonData Rtn: {dtAcceptCartonData.Rows[0]["PalletUniqueNo"]}");
                         // If we have a valid UId returned and the data is valid, refresh the 
                         try
                         {
-                            await lineInfoPage(scannedData.ProductionLineUId).UpdateScannedCounts();
                             lineInfoPage(scannedData.ProductionLineUId).UpdateScannerUI(true, string.Empty, true, string.Empty);
                         }
                         catch { } //Line not found so do nothing!

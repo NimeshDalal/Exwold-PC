@@ -72,7 +72,6 @@ namespace ITS.Exwold.Desktop
             this.ControlBox = true;
             this.HelpButton = false;
         }
-
         private async void BatchDetailsForm_Load(object sender, EventArgs e)
         {
             //set fullscreen
@@ -158,14 +157,10 @@ namespace ITS.Exwold.Desktop
                     }
             }
         }
-
-
         private void buttonClose_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             UserAuthentication auth = new UserAuthentication();
@@ -180,7 +175,6 @@ namespace ITS.Exwold.Desktop
                 //Program.Log.LogMessage(ThreadLog.DebugLevel.Message, methodName + "User clicked Edit for batch " + _palletUId);
             }
         }
-
         private void btnPrintLabel_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("This option is only to re-print pallet labels. \n\rPlease make sure the old label is destryoyed before re-printing.\n\r\n\rOld Label Destroyed?", "", MessageBoxButtons.YesNo);
