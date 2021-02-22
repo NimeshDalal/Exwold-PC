@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.button_setBatch = new System.Windows.Forms.Button();
             this.button_exitPalletTracking = new System.Windows.Forms.Button();
             this.btnSetProduct = new System.Windows.Forms.Button();
@@ -44,12 +44,9 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.grpAuxBtns = new System.Windows.Forms.GroupBox();
             this.btnRefresh = new System.Windows.Forms.Button();
-            this.grpTesting = new System.Windows.Forms.GroupBox();
-            this.btnTCPListener = new System.Windows.Forms.Button();
-            this.tbLabelTest = new System.Windows.Forms.TextBox();
-            this.btnTest = new System.Windows.Forms.Button();
             this.grpHardware = new System.Windows.Forms.GroupBox();
             this.btnScanners = new System.Windows.Forms.Button();
+            this.btnAppSettings = new System.Windows.Forms.Button();
             this.btnHardwareSettings = new System.Windows.Forms.Button();
             this.grpReporting = new System.Windows.Forms.GroupBox();
             this.grpOperation = new System.Windows.Forms.GroupBox();
@@ -62,9 +59,12 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.lblPlantName = new System.Windows.Forms.Label();
+            this.grpTesting = new System.Windows.Forms.GroupBox();
+            this.btnTCPListener = new System.Windows.Forms.Button();
+            this.tbLabelTest = new System.Windows.Forms.TextBox();
+            this.btnTest = new System.Windows.Forms.Button();
             this.panel4.SuspendLayout();
             this.grpAuxBtns.SuspendLayout();
-            this.grpTesting.SuspendLayout();
             this.grpHardware.SuspendLayout();
             this.grpReporting.SuspendLayout();
             this.grpOperation.SuspendLayout();
@@ -72,6 +72,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.picITSLogo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOnHold)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReadyToPrint)).BeginInit();
+            this.grpTesting.SuspendLayout();
             this.SuspendLayout();
             // 
             // button_setBatch
@@ -175,7 +176,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.Controls.Add(this.grpAuxBtns);
-            this.panel4.Controls.Add(this.grpTesting);
             this.panel4.Controls.Add(this.grpHardware);
             this.panel4.Controls.Add(this.grpReporting);
             this.panel4.Controls.Add(this.grpOperation);
@@ -201,9 +201,9 @@
             // 
             this.grpAuxBtns.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.grpAuxBtns.Controls.Add(this.btnRefresh);
-            this.grpAuxBtns.Location = new System.Drawing.Point(1176, 821);
+            this.grpAuxBtns.Location = new System.Drawing.Point(1377, 821);
             this.grpAuxBtns.Name = "grpAuxBtns";
-            this.grpAuxBtns.Size = new System.Drawing.Size(191, 85);
+            this.grpAuxBtns.Size = new System.Drawing.Size(191, 55);
             this.grpAuxBtns.TabIndex = 102;
             this.grpAuxBtns.TabStop = false;
             // 
@@ -217,54 +217,15 @@
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // grpTesting
-            // 
-            this.grpTesting.Controls.Add(this.btnTCPListener);
-            this.grpTesting.Controls.Add(this.tbLabelTest);
-            this.grpTesting.Controls.Add(this.btnTest);
-            this.grpTesting.Location = new System.Drawing.Point(1378, 815);
-            this.grpTesting.Name = "grpTesting";
-            this.grpTesting.Size = new System.Drawing.Size(247, 85);
-            this.grpTesting.TabIndex = 100;
-            this.grpTesting.TabStop = false;
-            this.grpTesting.Text = "Test Group";
-            // 
-            // btnTCPListener
-            // 
-            this.btnTCPListener.Location = new System.Drawing.Point(9, 48);
-            this.btnTCPListener.Name = "btnTCPListener";
-            this.btnTCPListener.Size = new System.Drawing.Size(156, 29);
-            this.btnTCPListener.TabIndex = 102;
-            this.btnTCPListener.Text = "TCPListener";
-            this.btnTCPListener.UseVisualStyleBackColor = true;
-            this.btnTCPListener.Click += new System.EventHandler(this.btnTCPListener_Click);
-            // 
-            // tbLabelTest
-            // 
-            this.tbLabelTest.Location = new System.Drawing.Point(122, 16);
-            this.tbLabelTest.Name = "tbLabelTest";
-            this.tbLabelTest.Size = new System.Drawing.Size(107, 29);
-            this.tbLabelTest.TabIndex = 101;
-            this.tbLabelTest.Text = "40823";
-            // 
-            // btnTest
-            // 
-            this.btnTest.Location = new System.Drawing.Point(9, 16);
-            this.btnTest.Name = "btnTest";
-            this.btnTest.Size = new System.Drawing.Size(107, 29);
-            this.btnTest.TabIndex = 100;
-            this.btnTest.Text = "Label Print";
-            this.btnTest.UseVisualStyleBackColor = true;
-            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
-            // 
             // grpHardware
             // 
             this.grpHardware.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.grpHardware.Controls.Add(this.btnScanners);
+            this.grpHardware.Controls.Add(this.btnAppSettings);
             this.grpHardware.Controls.Add(this.btnHardwareSettings);
             this.grpHardware.Location = new System.Drawing.Point(924, 821);
             this.grpHardware.Name = "grpHardware";
-            this.grpHardware.Size = new System.Drawing.Size(191, 85);
+            this.grpHardware.Size = new System.Drawing.Size(373, 85);
             this.grpHardware.TabIndex = 101;
             this.grpHardware.TabStop = false;
             // 
@@ -277,6 +238,18 @@
             this.btnScanners.Text = "Scanners";
             this.btnScanners.UseVisualStyleBackColor = true;
             this.btnScanners.Click += new System.EventHandler(this.btnScanner_Click);
+            // 
+            // btnAppSettings
+            // 
+            this.btnAppSettings.AutoSize = true;
+            this.btnAppSettings.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAppSettings.Location = new System.Drawing.Point(187, 16);
+            this.btnAppSettings.Name = "btnAppSettings";
+            this.btnAppSettings.Size = new System.Drawing.Size(182, 32);
+            this.btnAppSettings.TabIndex = 95;
+            this.btnAppSettings.Text = "App Settings";
+            this.btnAppSettings.UseVisualStyleBackColor = true;
+            this.btnAppSettings.Click += new System.EventHandler(this.btnAppSettings_Click);
             // 
             // btnHardwareSettings
             // 
@@ -361,26 +334,26 @@
             // 
             // dgvOnHold
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvOnHold.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dgvOnHold.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvOnHold.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvOnHold.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvOnHold.CausesValidation = false;
             this.dgvOnHold.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvOnHold.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvOnHold.ColumnHeadersVisible = false;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Palatino Linotype", 12F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvOnHold.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvOnHold.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvOnHold.Enabled = false;
             this.dgvOnHold.EnableHeadersVisualStyles = false;
             this.dgvOnHold.Location = new System.Drawing.Point(1378, 397);
@@ -394,26 +367,26 @@
             // 
             // dgvReadyToPrint
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            this.dgvReadyToPrint.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            this.dgvReadyToPrint.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvReadyToPrint.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvReadyToPrint.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvReadyToPrint.CausesValidation = false;
             this.dgvReadyToPrint.ClipboardCopyMode = System.Windows.Forms.DataGridViewClipboardCopyMode.Disable;
             this.dgvReadyToPrint.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvReadyToPrint.ColumnHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Palatino Linotype", 12F);
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvReadyToPrint.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.AppWorkspace;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HotTrack;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvReadyToPrint.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgvReadyToPrint.Enabled = false;
             this.dgvReadyToPrint.EnableHeadersVisualStyles = false;
             this.dgvReadyToPrint.Location = new System.Drawing.Point(1378, 43);
@@ -458,23 +431,62 @@
             this.lblPlantName.Text = "Plant Name";
             this.lblPlantName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // grpTesting
+            // 
+            this.grpTesting.Controls.Add(this.btnTCPListener);
+            this.grpTesting.Controls.Add(this.tbLabelTest);
+            this.grpTesting.Controls.Add(this.btnTest);
+            this.grpTesting.Location = new System.Drawing.Point(344, 3);
+            this.grpTesting.Name = "grpTesting";
+            this.grpTesting.Size = new System.Drawing.Size(247, 85);
+            this.grpTesting.TabIndex = 100;
+            this.grpTesting.TabStop = false;
+            this.grpTesting.Text = "Test Group";
+            // 
+            // btnTCPListener
+            // 
+            this.btnTCPListener.Location = new System.Drawing.Point(9, 48);
+            this.btnTCPListener.Name = "btnTCPListener";
+            this.btnTCPListener.Size = new System.Drawing.Size(156, 29);
+            this.btnTCPListener.TabIndex = 102;
+            this.btnTCPListener.Text = "TCPListener";
+            this.btnTCPListener.UseVisualStyleBackColor = true;
+            this.btnTCPListener.Click += new System.EventHandler(this.btnTCPListener_Click);
+            // 
+            // tbLabelTest
+            // 
+            this.tbLabelTest.Location = new System.Drawing.Point(122, 16);
+            this.tbLabelTest.Name = "tbLabelTest";
+            this.tbLabelTest.Size = new System.Drawing.Size(107, 29);
+            this.tbLabelTest.TabIndex = 101;
+            this.tbLabelTest.Text = "40823";
+            // 
+            // btnTest
+            // 
+            this.btnTest.Location = new System.Drawing.Point(9, 16);
+            this.btnTest.Name = "btnTest";
+            this.btnTest.Size = new System.Drawing.Size(107, 29);
+            this.btnTest.TabIndex = 100;
+            this.btnTest.Text = "Label Print";
+            this.btnTest.UseVisualStyleBackColor = true;
+            this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
+            // 
             // MainStatusForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1619, 961);
             this.ControlBox = false;
+            this.Controls.Add(this.grpTesting);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.button_exitPalletTracking);
-            this.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "MainStatusForm";
             this.Text = "EXWOLD PALLET TRACKING";
             this.Load += new System.EventHandler(this.MainStatusForm_Load);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.grpAuxBtns.ResumeLayout(false);
-            this.grpTesting.ResumeLayout(false);
-            this.grpTesting.PerformLayout();
             this.grpHardware.ResumeLayout(false);
             this.grpHardware.PerformLayout();
             this.grpReporting.ResumeLayout(false);
@@ -485,6 +497,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.picITSLogo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvOnHold)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReadyToPrint)).EndInit();
+            this.grpTesting.ResumeLayout(false);
+            this.grpTesting.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -521,6 +535,7 @@
         private System.Windows.Forms.GroupBox grpOperation;
         private System.Windows.Forms.GroupBox grpAuxBtns;
         private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnAppSettings;
     }
 }
 

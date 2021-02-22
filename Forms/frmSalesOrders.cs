@@ -215,6 +215,7 @@ namespace ITS.Exwold.Desktop
             tbCustomer.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "Customer").ToString();
             tbProdCode.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "ProductCode").ToString();
             tbProdName.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "ProductName").ToString();
+            tbLotNumber.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "LotNumber").ToString();
             tbTotalCartons.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "TotalNoOfCartons").ToString();
             tbCartonsPerPallet.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "CartonsPerPallet").ToString();
             tbInnersPerCart.Text = Helper.dgvGetCurrentRowColumn(dgvOrders, "InnerPacksPerCarton").ToString();

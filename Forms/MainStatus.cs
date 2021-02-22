@@ -438,6 +438,16 @@ namespace ITS.Exwold.Desktop
             if (frmHW != null) frmHW.Dispose();
             GetLineData();
         }
+        private void btnAppSettings_Click(object sender, EventArgs e)
+        {
+            UserAuthentication auth = new UserAuthentication();
+            frmSettings frmset = new frmSettings();
+            auth.ShowDialog();
+            if (auth.Supervisor)
+            {
+                frmset.ShowDialog();
+            }
+        }
         private void btnScanner_Click(object sender, EventArgs e)
         {
             frmStandAloneScanners fScanners = new frmStandAloneScanners(_db, Scanners);
@@ -469,6 +479,7 @@ namespace ITS.Exwold.Desktop
 
         }
         #endregion
+
 
     }
 }

@@ -543,3 +543,4 @@ C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.AsyncTcp.frmAsyncTcpTest
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.Product.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmSalesOrders.resources
 C:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.ReportSelector.resources
+E:\991018-Exwold\Exwold PC\obj\Debug\ITS.Exwold.Desktop.frmSettings.resources

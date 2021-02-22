@@ -73,6 +73,7 @@
             this.lblCartonMessage = new System.Windows.Forms.Label();
             this.lblInnersInOuters = new System.Windows.Forms.Label();
             this.grpPalletInfo = new System.Windows.Forms.GroupBox();
+            this.btnCompletePallet = new System.Windows.Forms.Button();
             this.tbProductUId = new System.Windows.Forms.TextBox();
             this.tbCartonsPerPallet = new System.Windows.Forms.TextBox();
             this.tbCurrentPalletUId = new System.Windows.Forms.TextBox();
@@ -80,7 +81,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.grpPackTotals = new System.Windows.Forms.GroupBox();
-            this.btnCompletePallet = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCurrentPallet)).BeginInit();
             this.grpDisplay.SuspendLayout();
             this.grpButtons.SuspendLayout();
@@ -497,7 +497,7 @@
             this.grpButtons.Controls.Add(this.btnPackLabels);
             this.grpButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpButtons.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpButtons.Location = new System.Drawing.Point(0, 709);
+            this.grpButtons.Location = new System.Drawing.Point(0, 612);
             this.grpButtons.Name = "grpButtons";
             this.grpButtons.Size = new System.Drawing.Size(454, 52);
             this.grpButtons.TabIndex = 81;
@@ -512,7 +512,7 @@
             this.grpScanner.Controls.Add(this.btnScannerStatus);
             this.grpScanner.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpScanner.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpScanner.Location = new System.Drawing.Point(0, 612);
+            this.grpScanner.Location = new System.Drawing.Point(0, 664);
             this.grpScanner.Name = "grpScanner";
             this.grpScanner.Size = new System.Drawing.Size(454, 97);
             this.grpScanner.TabIndex = 82;
@@ -642,6 +642,18 @@
             this.grpPalletInfo.TabIndex = 83;
             this.grpPalletInfo.TabStop = false;
             // 
+            // btnCompletePallet
+            // 
+            this.btnCompletePallet.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCompletePallet.Location = new System.Drawing.Point(282, 172);
+            this.btnCompletePallet.Name = "btnCompletePallet";
+            this.btnCompletePallet.Size = new System.Drawing.Size(140, 30);
+            this.btnCompletePallet.TabIndex = 79;
+            this.btnCompletePallet.Text = "Complete Pallet";
+            this.btnCompletePallet.UseVisualStyleBackColor = true;
+            this.btnCompletePallet.Visible = false;
+            this.btnCompletePallet.Click += new System.EventHandler(this.btnCompletePallet_Click);
+            // 
             // tbProductUId
             // 
             this.tbProductUId.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -733,32 +745,21 @@
             this.grpPackTotals.TabIndex = 85;
             this.grpPackTotals.TabStop = false;
             // 
-            // btnCompletePallet
-            // 
-            this.btnCompletePallet.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCompletePallet.Location = new System.Drawing.Point(282, 172);
-            this.btnCompletePallet.Name = "btnCompletePallet";
-            this.btnCompletePallet.Size = new System.Drawing.Size(140, 30);
-            this.btnCompletePallet.TabIndex = 79;
-            this.btnCompletePallet.Text = "Complete Pallet";
-            this.btnCompletePallet.UseVisualStyleBackColor = true;
-            this.btnCompletePallet.Click += new System.EventHandler(this.btnCompletePallet_Click);
-            // 
             // frmLineInfo
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(454, 761);
             this.ControlBox = false;
+            this.Controls.Add(this.grpPalletInfo);
+            this.Controls.Add(this.grpButtons);
             this.Controls.Add(this.grpPackTotals);
             this.Controls.Add(this.tbProductUId);
-            this.Controls.Add(this.grpPalletInfo);
             this.Controls.Add(this.tbPalletBatchUId);
             this.Controls.Add(this.tbCurrentPalletUId);
             this.Controls.Add(this.grpOuterCounts);
             this.Controls.Add(this.grpScanner);
             this.Controls.Add(this.grpInnerCounts);
-            this.Controls.Add(this.grpButtons);
             this.Controls.Add(this.grpDisplay);
             this.Controls.Add(this.lblLine);
             this.Font = new System.Drawing.Font("Palatino Linotype", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

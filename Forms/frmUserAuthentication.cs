@@ -15,16 +15,19 @@
  * ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
  */
 using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Threading;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Security.Principal;
+using System.DirectoryServices;
 using System.Threading.Tasks;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 using System.DirectoryServices.AccountManagement;
+using System.Collections;
 
 namespace ITS.Exwold.Desktop
 {
@@ -36,6 +39,8 @@ namespace ITS.Exwold.Desktop
         public bool Operator   = false;
         public bool Supervisor = false;
         public bool Administrator = false;
+
+        private string LoggedInUserName = string.Empty;
 
         /// <summary>
         /// Constructor
@@ -54,37 +59,97 @@ namespace ITS.Exwold.Desktop
             this.TopMost = true;
             this.ControlBox = true;
             this.HelpButton = false;
+
+            LoggedInUserName = WindowsIdentity.GetCurrent().Name;
+            tbUsername.Text = LoggedInUserName;
         }
 
-        /// <summary>
-        /// OK Button handler, check username & password match, if they do then check local group membership
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void OkButton_Click(object sender, EventArgs e)
+        private bool ValidateUserNamePasswd()
         {
-            OkButton.Enabled = false;
-            CheckingLabel.Visible = true;
-            this.Refresh();
+            bool bRtn = false;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
 
-            bool validUsernamePasswordCombination = false;
-            using (PrincipalContext context = new PrincipalContext(ContextType.Machine))    //checks local machine first
+            using (PrincipalContext context = new PrincipalContext(ContextType.Machine))
             {
                 // try/catch is needed for Local groups, but we don't need to handle the exception (just treat as not authenticated)
                 try
                 {
-                    validUsernamePasswordCombination = context.ValidateCredentials(UsernameTextbox.Text, PasswordTextbox.Text);
+                    bRtn = context.ValidateCredentials(tbUsername.Text, tbPassword.Text);
                 }
-                catch { }
+                catch { bRtn = false; }
+            }
+            Debug.WriteLine($"PWD check Elapsed time {sw.Elapsed.TotalSeconds}");
+            return bRtn;
+        }
 
-                if (validUsernamePasswordCombination)
+
+
+        /// <summary>
+        /// Check user group membership using Diectory Services
+        /// This is MUCH faster than Group Principals
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="groupName"></param>
+        /// <returns></returns>
+        private bool UserInGroupDS(string userName, string groupName)
+        {
+            bool bRtn = false;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            if (userName.StartsWith(Environment.MachineName))
+            {
+                userName = userName.Remove(0, Environment.MachineName.Length + 1);
+            }
+
+            using (DirectoryEntry machine = new DirectoryEntry($"WinNT://{Environment.MachineName}"))
+            {
+                using (DirectoryEntry group = machine.Children.Find(groupName, "Group"))
                 {
-                    // username & password match, so check group membership
-                    PrincipalContext domain = new PrincipalContext(ContextType.Machine);
-                    UserPrincipal user = UserPrincipal.FindByIdentity(domain, UsernameTextbox.Text);
+                    var members = group.Invoke("Members", null);
+                    foreach (var member in (IEnumerable)members)
+                    {
+                        string accountName = new DirectoryEntry(member).Name;
+                        // Test for the usernam, but make it case insensitive
+                        if (accountName.ToUpper() == userName.ToUpper())
+                        {
+                            bRtn = true;
+                            break;
+                        }
+                    }
+                }
+            }
+            return bRtn;
+        }
+
+        /// <summary>
+        /// Check Group membership using Group Principals
+        /// This is v. slow (but works)
+        /// </summary>
+        /// <returns></returns>
+        private bool UserInGroupPrincipals()
+        {
+            bool bRtn = false;
+            CheckingLabel.Text = "Password OK. Checking Permissions";
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            using (PrincipalContext context = new PrincipalContext(ContextType.Machine))
+            {
+                using (UserPrincipal user = UserPrincipal.FindByIdentity(context, tbUsername.Text))
+                {
+                    PrincipalSearchResult<Principal> results = user.GetAuthorizationGroups();
+                    Debug.WriteLine($"Got Results Elapsed time {sw.Elapsed.TotalSeconds}");
+
+
+                    foreach (Principal p in results)
+                    {
+                        Debug.WriteLine($"Name is {p.Name}");
+                    }
 
                     // loop through groups, and set flags if required
-                    foreach (GroupPrincipal group in user.GetAuthorizationGroups())
+                    foreach (GroupPrincipal group in results)
                     {
                         switch (group.Name)
                         {
@@ -92,6 +157,7 @@ namespace ITS.Exwold.Desktop
                                 Operator = true;
                                 break;
                             case "ExwoldSupervisors":
+                                Debug.WriteLine("I am in ExwoldSupervisors");
                                 Supervisor = true;
                                 break;
                             case "ExwoldAdministrators":
@@ -101,22 +167,58 @@ namespace ITS.Exwold.Desktop
                                 break;
                         }
                     }
-                    if (Operator || Supervisor || Administrator)
-                    {
-                        this.Close();
-                    }
+                }
+                Debug.WriteLine($"Grp Check Elapsed time {sw.Elapsed.TotalSeconds}");
+                return bRtn;
+            }
+        }
 
+
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            btnOK.Enabled = false;
+            CheckingLabel.Text = "Validating Username/Password";
+            CheckingLabel.Visible = true;
+            this.Refresh();
+
+
+            PrincipalContext mycontext = null;
+            try
+            {
+                //Check the un\pw combination is valie
+                if (ValidateUserNamePasswd())
+                {
+                    CheckingLabel.Text = "Password OK. Checking Permissions";
+                    Refresh();
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
+                    //Now get the group memberships
+                    Operator = UserInGroupDS(tbUsername.Text, "ExwoldOperators");
+                    Supervisor = UserInGroupDS(tbUsername.Text, "ExwoldSupervisors");
+                    Administrator = UserInGroupDS(tbUsername.Text, "ExwoldAdministrators");
+
+                    chkAdmin.Checked = Administrator;
+                    chkSupervisor.Checked = Supervisor;
+                    chkOperator.Checked = Operator;
+
+                    Debug.WriteLine($"Grp Check Elapsed time {sw.Elapsed.TotalSeconds}");                    
+                    //Close();
+                    
                 }
                 else
                 {
-                    MessageBox.Show("Incorrect Username/password. Please try again.");
+                    MessageBox.Show("Incorrect Username/password. Please try again.", "Invalid Password", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-
-            OkButton.Enabled = true;
+            finally
+            {
+                if (mycontext != null) { mycontext.Dispose(); }
+            }
+            btnOK.Enabled = true;
             CheckingLabel.Visible = false;
             this.Refresh();
         }
+
 
         /// <summary>
         /// Close Button handler, just close the form
@@ -129,26 +231,26 @@ namespace ITS.Exwold.Desktop
         }
 
         /// <summary>
-        /// On Enter: select all test so it's overwritten
+        /// On Enter: select all text so it's overwritten
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void UsernameTextbox_Enter(object sender, EventArgs e)
         {
-            UsernameTextbox.SelectionStart = 0;
-            UsernameTextbox.SelectionLength = UsernameTextbox.Text.Length;
+            tbUsername.SelectionStart = 0;
+            tbUsername.SelectionLength = tbUsername.Text.Length;
 
         }
 
         /// <summary>
-        /// On Enter: select all test so it's overwritten
+        /// On Enter: select all text so it's overwritten
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void PasswordTextbox_Enter(object sender, EventArgs e)
         {
-            PasswordTextbox.SelectionStart = 0;
-            PasswordTextbox.SelectionLength = UsernameTextbox.Text.Length;
+            tbPassword.SelectionStart = 0;
+            tbPassword.SelectionLength = tbUsername.Text.Length;
         }
 
 
@@ -165,7 +267,7 @@ namespace ITS.Exwold.Desktop
 
         private void btnSimulate_Click(object sender, EventArgs e)
         {
-            Operator = chkUser.Checked;
+            Operator = chkOperator.Checked;
             Administrator = chkAdmin.Checked;
             Supervisor = chkSupervisor.Checked;
             this.Close();

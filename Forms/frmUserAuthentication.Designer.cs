@@ -30,15 +30,15 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.PasswordTextbox = new System.Windows.Forms.TextBox();
-            this.UsernameTextbox = new System.Windows.Forms.TextBox();
-            this.OkButton = new System.Windows.Forms.Button();
-            this.CloseFormButton = new System.Windows.Forms.Button();
+            this.tbPassword = new System.Windows.Forms.TextBox();
+            this.tbUsername = new System.Windows.Forms.TextBox();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.CheckingLabel = new System.Windows.Forms.Label();
             this.grpButtons = new System.Windows.Forms.GroupBox();
             this.grpSimulate = new System.Windows.Forms.GroupBox();
             this.btnSimulate = new System.Windows.Forms.Button();
-            this.chkUser = new System.Windows.Forms.CheckBox();
+            this.chkOperator = new System.Windows.Forms.CheckBox();
             this.chkSupervisor = new System.Windows.Forms.CheckBox();
             this.chkAdmin = new System.Windows.Forms.CheckBox();
             this.grpButtons.SuspendLayout();
@@ -63,49 +63,49 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "Password:";
             // 
-            // PasswordTextbox
+            // tbPassword
             // 
-            this.PasswordTextbox.Location = new System.Drawing.Point(107, 48);
-            this.PasswordTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.PasswordTextbox.Name = "PasswordTextbox";
-            this.PasswordTextbox.PasswordChar = '*';
-            this.PasswordTextbox.Size = new System.Drawing.Size(255, 29);
-            this.PasswordTextbox.TabIndex = 1;
-            this.PasswordTextbox.Enter += new System.EventHandler(this.PasswordTextbox_Enter);
+            this.tbPassword.Location = new System.Drawing.Point(107, 48);
+            this.tbPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.PasswordChar = '*';
+            this.tbPassword.Size = new System.Drawing.Size(255, 29);
+            this.tbPassword.TabIndex = 1;
+            this.tbPassword.Enter += new System.EventHandler(this.PasswordTextbox_Enter);
             // 
-            // UsernameTextbox
+            // tbUsername
             // 
-            this.UsernameTextbox.Location = new System.Drawing.Point(107, 18);
-            this.UsernameTextbox.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.UsernameTextbox.Name = "UsernameTextbox";
-            this.UsernameTextbox.Size = new System.Drawing.Size(255, 29);
-            this.UsernameTextbox.TabIndex = 0;
-            this.UsernameTextbox.Enter += new System.EventHandler(this.UsernameTextbox_Enter);
+            this.tbUsername.Location = new System.Drawing.Point(107, 18);
+            this.tbUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbUsername.Name = "tbUsername";
+            this.tbUsername.Size = new System.Drawing.Size(255, 29);
+            this.tbUsername.TabIndex = 0;
+            this.tbUsername.Enter += new System.EventHandler(this.UsernameTextbox_Enter);
             // 
-            // OkButton
+            // btnOK
             // 
-            this.OkButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.OkButton.Location = new System.Drawing.Point(3, 19);
-            this.OkButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.OkButton.Name = "OkButton";
-            this.OkButton.Size = new System.Drawing.Size(148, 39);
-            this.OkButton.TabIndex = 2;
-            this.OkButton.Text = "OK";
-            this.OkButton.UseVisualStyleBackColor = true;
-            this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
+            this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOK.Location = new System.Drawing.Point(3, 19);
+            this.btnOK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(148, 39);
+            this.btnOK.TabIndex = 2;
+            this.btnOK.Text = "OK";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Click += new System.EventHandler(this.OkButton_Click);
             // 
-            // CloseFormButton
+            // btnClose
             // 
-            this.CloseFormButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.CloseFormButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.CloseFormButton.Location = new System.Drawing.Point(467, 18);
-            this.CloseFormButton.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.CloseFormButton.Name = "CloseFormButton";
-            this.CloseFormButton.Size = new System.Drawing.Size(148, 39);
-            this.CloseFormButton.TabIndex = 3;
-            this.CloseFormButton.Text = "Cancel";
-            this.CloseFormButton.UseVisualStyleBackColor = true;
-            this.CloseFormButton.Click += new System.EventHandler(this.CancelButton_Click);
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(467, 18);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(148, 39);
+            this.btnClose.TabIndex = 3;
+            this.btnClose.Text = "Cancel";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // CheckingLabel
             // 
@@ -120,8 +120,8 @@
             // 
             // grpButtons
             // 
-            this.grpButtons.Controls.Add(this.OkButton);
-            this.grpButtons.Controls.Add(this.CloseFormButton);
+            this.grpButtons.Controls.Add(this.btnOK);
+            this.grpButtons.Controls.Add(this.btnClose);
             this.grpButtons.Controls.Add(this.CheckingLabel);
             this.grpButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.grpButtons.Location = new System.Drawing.Point(0, 101);
@@ -135,7 +135,7 @@
             // grpSimulate
             // 
             this.grpSimulate.Controls.Add(this.btnSimulate);
-            this.grpSimulate.Controls.Add(this.chkUser);
+            this.grpSimulate.Controls.Add(this.chkOperator);
             this.grpSimulate.Controls.Add(this.chkSupervisor);
             this.grpSimulate.Controls.Add(this.chkAdmin);
             this.grpSimulate.Dock = System.Windows.Forms.DockStyle.Right;
@@ -159,16 +159,16 @@
             this.btnSimulate.UseVisualStyleBackColor = true;
             this.btnSimulate.Click += new System.EventHandler(this.btnSimulate_Click);
             // 
-            // chkUser
+            // chkOperator
             // 
-            this.chkUser.AutoSize = true;
-            this.chkUser.Location = new System.Drawing.Point(7, 71);
-            this.chkUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.chkUser.Name = "chkUser";
-            this.chkUser.Size = new System.Drawing.Size(61, 26);
-            this.chkUser.TabIndex = 2;
-            this.chkUser.Text = "User";
-            this.chkUser.UseVisualStyleBackColor = true;
+            this.chkOperator.AutoSize = true;
+            this.chkOperator.Location = new System.Drawing.Point(7, 71);
+            this.chkOperator.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.chkOperator.Name = "chkOperator";
+            this.chkOperator.Size = new System.Drawing.Size(91, 26);
+            this.chkOperator.TabIndex = 2;
+            this.chkOperator.Text = "Operator";
+            this.chkOperator.UseVisualStyleBackColor = true;
             // 
             // chkSupervisor
             // 
@@ -194,15 +194,16 @@
             // 
             // UserAuthentication
             // 
+            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 22F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.CloseFormButton;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(618, 161);
             this.ControlBox = false;
             this.Controls.Add(this.grpSimulate);
             this.Controls.Add(this.grpButtons);
-            this.Controls.Add(this.UsernameTextbox);
-            this.Controls.Add(this.PasswordTextbox);
+            this.Controls.Add(this.tbUsername);
+            this.Controls.Add(this.tbPassword);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Palatino Linotype", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -223,15 +224,15 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox PasswordTextbox;
-        public System.Windows.Forms.TextBox UsernameTextbox;
-        private System.Windows.Forms.Button OkButton;
-        private System.Windows.Forms.Button CloseFormButton;
+        private System.Windows.Forms.TextBox tbPassword;
+        public System.Windows.Forms.TextBox tbUsername;
+        private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label CheckingLabel;
         private System.Windows.Forms.GroupBox grpButtons;
         private System.Windows.Forms.GroupBox grpSimulate;
         private System.Windows.Forms.Button btnSimulate;
-        private System.Windows.Forms.CheckBox chkUser;
+        private System.Windows.Forms.CheckBox chkOperator;
         private System.Windows.Forms.CheckBox chkSupervisor;
         private System.Windows.Forms.CheckBox chkAdmin;
     }

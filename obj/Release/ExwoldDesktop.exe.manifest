@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="ExwoldDesktop.exe" version="2.0.4.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="ExwoldDesktop.exe" version="2.0.5.1" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <description asmv2:iconFile="Resources\ExwoldApp.ico" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="ExwoldDesktop" version="2.0.7708.34248" language="neutral" processorArchitecture="msil" />
+    <assemblyIdentity name="ExwoldDesktop" version="2.0.7719.30113" language="neutral" processorArchitecture="msil" />
     <commandLine file="ExwoldDesktop.exe" parameters="" />
   </entryPoint>
   <trustInfo>
@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExwoldDesktop.exe" size="1198080">
-      <assemblyIdentity name="ExwoldDesktop" version="2.0.7708.34248" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="ExwoldDesktop.exe" size="1223680">
+      <assemblyIdentity name="ExwoldDesktop" version="2.0.7719.30113" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>JX/0GUhs0tBM0YusvEPrWXGXqb24hh4SKL7hDLtLdrU=</dsig:DigestValue>
+        <dsig:DigestValue>iHs8fXJiu+RZQ4QWkxB6kBStv1FklTx05xZ3UvJQGWQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -750,13 +750,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="ExwoldDesktop.exe.config" size="7316">
+  <file name="ExwoldDesktop.exe.config" size="7320">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-      <dsig:DigestValue>Ul7tMR5Jial8D+ybUp0E+Ht2lasSJmEm4w1OWiwiDEw=</dsig:DigestValue>
+      <dsig:DigestValue>xiKyZ+UBxR3T1MD6DsBuqoXemPxLe2fFtjfSZtIQPXQ=</dsig:DigestValue>
     </hash>
   </file>
   <file name="Resources\ExwoldApp.ico" size="169226">

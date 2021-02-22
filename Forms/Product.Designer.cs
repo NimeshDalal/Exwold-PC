@@ -33,6 +33,8 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.pnlProductDetails = new System.Windows.Forms.Panel();
+            this.label7 = new System.Windows.Forms.Label();
+            this.tbLotNumber = new System.Windows.Forms.MaskedTextBox();
             this.dtpDateOfManufacture = new System.Windows.Forms.DateTimePicker();
             this.lblDoM = new System.Windows.Forms.Label();
             this.lblInnerGTIN = new System.Windows.Forms.Label();
@@ -78,8 +80,6 @@
             this.grpEditButtons = new System.Windows.Forms.GroupBox();
             this.grpButtons = new System.Windows.Forms.GroupBox();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.tbLotNumber = new System.Windows.Forms.MaskedTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAllProducts)).BeginInit();
             this.pnlProductDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1BindingSource)).BeginInit();
@@ -182,6 +182,26 @@
             this.pnlProductDetails.Name = "pnlProductDetails";
             this.pnlProductDetails.Size = new System.Drawing.Size(1484, 281);
             this.pnlProductDetails.TabIndex = 3;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.label7.Location = new System.Drawing.Point(993, 41);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(95, 22);
+            this.label7.TabIndex = 42;
+            this.label7.Text = "Lot Number";
+            // 
+            // tbLotNumber
+            // 
+            this.tbLotNumber.Font = new System.Drawing.Font("Palatino Linotype", 12F);
+            this.tbLotNumber.Location = new System.Drawing.Point(1286, 38);
+            this.tbLotNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.tbLotNumber.Name = "tbLotNumber";
+            this.tbLotNumber.Size = new System.Drawing.Size(198, 29);
+            this.tbLotNumber.TabIndex = 43;
             // 
             // dtpDateOfManufacture
             // 
@@ -618,7 +638,7 @@
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnRefresh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRefresh.Font = new System.Drawing.Font("Palatino Linotype", 12F);
             this.btnRefresh.Location = new System.Drawing.Point(7, 19);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -667,26 +687,6 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Palatino Linotype", 12F);
-            this.label7.Location = new System.Drawing.Point(993, 41);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(95, 22);
-            this.label7.TabIndex = 42;
-            this.label7.Text = "Lot Number";
-            // 
-            // tbLotNumber
-            // 
-            this.tbLotNumber.Font = new System.Drawing.Font("Palatino Linotype", 12F);
-            this.tbLotNumber.Location = new System.Drawing.Point(1286, 38);
-            this.tbLotNumber.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbLotNumber.Name = "tbLotNumber";
-            this.tbLotNumber.Size = new System.Drawing.Size(198, 29);
-            this.tbLotNumber.TabIndex = 43;
             // 
             // Product
             // 
