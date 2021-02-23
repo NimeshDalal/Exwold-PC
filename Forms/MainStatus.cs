@@ -319,11 +319,23 @@ namespace ITS.Exwold.Desktop
 
             return fLine;
         }
-        private void GetLineData()
+        private async void GetLineData()
         { 
-            if (fLineInfo1 != null) { fLineInfo1.GetLineData(); }
-            if (fLineInfo2 != null) { fLineInfo2.GetLineData(); }
-            if (fLineInfo3 != null) { fLineInfo3.GetLineData(); }
+            if (fLineInfo1 != null) 
+            { 
+                fLineInfo1.GetLineData();
+                await fLineInfo1.UpdateScannedCounts();
+            }
+            if (fLineInfo2 != null) 
+            { 
+                fLineInfo2.GetLineData();
+                await fLineInfo2.UpdateScannedCounts();
+            }
+            if (fLineInfo3 != null) 
+            { 
+                fLineInfo3.GetLineData();
+                await fLineInfo3.UpdateScannedCounts();
+            }
         }
 
         #region Event Methods

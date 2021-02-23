@@ -83,6 +83,10 @@ namespace ITS.Exwold.Desktop
                 }
                 tbStatusScanning.Text = Scanner.MX300N.IsScanning().ToString();
             }
+            
+            btnScanningSimulateMsg.Enabled = _scanner.OrderData.PalletBatchUId > 0;
+            btnScanningStart.Enabled = _scanner.OrderData.PalletBatchUId > 0;
+            btnScanningStop.Enabled = _scanner.OrderData.PalletBatchUId > 0;
         }
 
         #endregion
@@ -93,13 +97,7 @@ namespace ITS.Exwold.Desktop
             _db.QueryParameters.Add("PalletBatchId", _scanner.OrderData.PalletBatchUId.ToString());
             DataSet dsLabelData = await _db.getDataSet("[GUI].[getLabelData]", true);
             frmScannerMsg fscannercMsg = new frmScannerMsg(dsLabelData);
-            //{
-            //    GTIN = tbLastGTIN.Text,
-            //    LotNo = tbLastLotNo.Text,
-            //    ProdDate = tbLastProdDate.Text,
-            //    ProdName = tbLastProdName.Text
-            //};
-
+         
             fscannercMsg.TopMost = true;
             fscannercMsg.ShowDialog();
             _simulationMessage = fscannercMsg.SimMsg;

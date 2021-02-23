@@ -114,7 +114,7 @@ namespace ITS.Exwold.Desktop
         private void writeLabelDetails(DataSet LabelDetails)
         {
             
-            if (rdoInnerLabel.Checked && LabelDetails.Tables.Count == 2)
+            if (rdoInnerLabel.Checked && LabelDetails.Tables.Count == 2 && LabelDetails.Tables[1].Columns.Count > 0)
             {
                 tbGTIN.Text = LabelDetails.Tables[1].Rows[0]["GTIN"].ToString();
                 tbLotNo.Text = LabelDetails.Tables[1].Rows[0]["LotNo"].ToString();
@@ -123,7 +123,7 @@ namespace ITS.Exwold.Desktop
                 tbProdName.Enabled = false;
 
             }
-            else if (rdoOuterLabel.Checked && LabelDetails.Tables.Count == 2)
+            else if (rdoOuterLabel.Checked && LabelDetails.Tables.Count == 2 && LabelDetails.Tables[0].Columns.Count > 0)
             {
                 tbGTIN.Text = LabelDetails.Tables[0].Rows[0]["GTIN"].ToString();
                 tbLotNo.Text = LabelDetails.Tables[0].Rows[0]["LotNo"].ToString();

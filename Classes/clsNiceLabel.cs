@@ -285,7 +285,7 @@ namespace ITS.Exwold.Desktop
             ctsPrinting.CancelAfter(PrintTimeout);
 
             CancellationToken CancelToken = ctsPrinting.Token;
-            ctsPrinting.CancelAfter(PrintTimeout);
+
 
             //Defin the print task
             return Task.Run(() =>
